@@ -1,0 +1,157 @@
+﻿<controls:MetroWindow x:Class="OpenTyping.SettingsWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:OpenTyping"
+                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      xmlns:properties="clr-namespace:OpenTyping.Properties"
+                      mc:Ignorable="d"
+                      Title="설정" 
+                      Width="500" 
+                      Height="450" 
+                      Icon="{StaticResource AppIcon}">
+    <controls:MetroWindow.Resources>
+        <Style x:Key="SettingNameTextBlock" 
+               TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+            <Setter Property="FontSize" Value="15pt"/>
+            <Setter Property="Margin" Value="0 15 0 10"/>
+        </Style>
+    </controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" 
+                    Margin="10 5 10 5">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="45" 
+                           Height="45"
+                           VerticalAlignment="Center">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{iconPacks:Modern Cog}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Style="{StaticResource NormalTextBlock}"
+                           FontSize="30pt"
+                           Margin="5 10 0 5"
+                           VerticalAlignment="Center"
+                           Text="설정"/>
+            </StackPanel>
+
+            <TabControl Margin="0 3 0 0">
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Style="{StaticResource TabItemLabel}">
+                            연습 자판
+                        </Label>
+                    </TabItem.Header>
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            현재 자판
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="KeyLayoutsCombo"
+                                      Width="200" 
+                                      Margin="0 0 5 0"
+                                      FontFamily="{StaticResource NanumGothic}"
+                                      FontSize="11pt"
+                                      HorizontalAlignment="Left"
+                                      SelectedItem="{Binding SelectedKeyLayout, Mode=TwoWay}"
+                                      DisplayMemberPath="Name"/>
+                            <Button x:Name="AddKeyLayoutButton"
+                                    Background="LightGreen"
+                                    BorderThickness="0"
+                                    Margin="0 0 5 0"
+                                    Click="AddKeyLayoutButton_Click">
+                                <Rectangle Width="12" 
+                                           Height="12" 
+                                           Fill="Green">   
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{iconPacks:Modern add}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                            <Button x:Name="RemoveKeyLayoutButton"
+                                    Click="RemoveKeyLayoutButton_Click"
+                                    Background="LightPink"
+                                    BorderThickness="0">
+                                <Rectangle Width="13" 
+                                           Height="15"
+                                           Fill="Black">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            자판 데이터 경로
+                        </TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="KeyLayoutDataDirTxt"
+                                     Grid.Column="0"
+                                     Text="{Binding Path=KeyLayoutDataDir, 
+                                                    Mode=OneWay}"
+                                     IsReadOnly="True"
+                                     Margin="0 0 5 0"/>
+                            <Button x:Name="KeyLayoutDataDirButton" 
+                                    Grid.Column="1" 
+                                    Click="KeyLayoutDataDirButton_OnClick">
+                                <Rectangle Width="12"
+                                           Height="12">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{iconPacks:Modern folder}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+
+        <DockPanel Grid.Row="1" 
+                   Margin="10 0 10 10">
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button x:Name="ApplyButton"
+                        Margin="0 0 5 0"
+                        Click="ApplyButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="18"
+                               Height="15" 
+                               Fill="Green">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Visual="{iconPacks:Modern check}"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                        <TextBlock Text="적용"
+                               FontFamily="{StaticResource NanumGothic}"
+                               FontSize="12pt"
+                               Margin="4 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="OkButton"
+                        Click="OkButton_Click">
+                    <TextBlock Text="확인"
+                               FontFamily="{StaticResource NanumGothic}"
+                               FontSize="12pt"/>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</controls:MetroWindow>

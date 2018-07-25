@@ -1,0 +1,103 @@
+﻿<controls:MetroWindow x:Class="OpenTyping.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:OpenTyping"
+                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      mc:Ignorable="d"
+                      Title="열린타자"
+                      Width="800" 
+                      Height="450" 
+                      Icon="{StaticResource AppIcon}">
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button x:Name="SettingsButton" 
+                    Click="SettingsButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18"
+                               Height="18"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" 
+                                         Visual="{iconPacks:Modern Cog}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               FontSize="13pt"
+                               Text="설정"/>
+                </StackPanel>
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="35" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{iconPacks:Modern Home}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label Style="{StaticResource TabItemLabel}"
+                           Content="홈"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:HomeMenu x:Name="HomeMenu"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="50" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome KeyboardRegular}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label Style="{StaticResource TabItemLabel}"
+                           Content="자리연습"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:KeyPracticeMenu x:Name="KeyPracticeMenu"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="37" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome PencilAltSolid}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label Style="{StaticResource TabItemLabel}"
+                           Content="문장연습"/>
+                </StackPanel>
+            </TabItem.Header>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="35" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome BookSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label Style="{StaticResource TabItemLabel}"
+                           Content="긴글연습"/>
+                </StackPanel>
+            </TabItem.Header>
+        </TabItem>
+    </TabControl>
+</controls:MetroWindow>

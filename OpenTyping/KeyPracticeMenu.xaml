@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="OpenTyping.KeyPracticeMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:OpenTyping"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical"
+                Margin="5 0 5 5">
+        <local:KeyLayoutBox x:Name="keyLayoutBox"
+                            ClickToggle="True"
+                            Margin="0 0 0 5"/>
+        <StackPanel Orientation="Horizontal"
+                    Margin="3 0 0 0">
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="{DynamicResource AccentColorBrush}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                       Text="연습하고 싶은 위치의 키를 클릭하여 설정/해제하세요."
+                       VerticalAlignment="Bottom"
+                       FontSize="14pt"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

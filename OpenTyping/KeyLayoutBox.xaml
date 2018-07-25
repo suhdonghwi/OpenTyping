@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="OpenTyping.KeyLayoutBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OpenTyping"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ModKeyBoxStyle"
+               TargetType="local:KeyBox">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Margin" Value="0 0 2 0"/>
+            <Setter Property="KeyColor" Value="LightGray"/>
+            <Setter Property="ShadowColor" Value="#a7a7a7"/>
+        </Style>
+        <Style x:Key="KeyRowStyle"
+               TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0 0 0 2"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="NumberRow"
+                        Style="{StaticResource KeyRowStyle}"/>
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Backspace,Backspace"
+                          Width="100"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Tab,Tab"
+                          Width="80"/>
+            <StackPanel x:Name="FirstRow"
+                        Style="{StaticResource KeyRowStyle}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Caps Lock,Caps Lock"
+                          Width="100"/>
+            <StackPanel x:Name="SecondRow"
+                        Style="{StaticResource KeyRowStyle}"/>
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Enter,Enter"
+                          Width="103"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Shift,Shift"
+                          Width="130"/>
+            <StackPanel x:Name="ThirdRow"
+                        Style="{StaticResource KeyRowStyle}"/>
+            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+                          Key="Shift,Shift"
+                          Width="125"/>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>
