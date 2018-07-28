@@ -123,13 +123,13 @@
             </TabControl>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Right"
+        <StackPanel Grid.Row="1" 
+                    HorizontalAlignment="Right"
                     Orientation="Horizontal"
-                    Margin="10 0 10 10"
-                    Grid.Row="1" >
-            <Button x:Name="ApplyButton"
+                    Margin="10 0 10 10">
+            <Button x:Name="OkButton"
                     Margin="0 0 5 0"
-                    Click="ApplyButton_Click">
+                    Click="OkButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
                                Height="15" 
@@ -139,17 +139,11 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
 
-                    <TextBlock Text="적용"
+                    <TextBlock Text="확인"
                                FontFamily="{StaticResource NanumGothic}"
                                FontSize="12pt"
                                Margin="4 0 0 0"/>
                 </StackPanel>
-            </Button>
-            <Button x:Name="OkButton"
-                    Click="OkButton_Click">
-                <TextBlock Text="확인"
-                           FontFamily="{StaticResource NanumGothic}"
-                           FontSize="12pt"/>
             </Button>
         </StackPanel>
     </Grid>

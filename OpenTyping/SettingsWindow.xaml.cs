@@ -8,6 +8,7 @@ using OpenTyping.Properties;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace OpenTyping
 {
@@ -16,13 +17,15 @@ namespace OpenTyping
     /// </summary>
     public partial class SettingsWindow : MetroWindow
     {
-        public ObservableCollection<KeyLayout> KeyLayouts { get; }
+        public ObservableCollection<KeyLayout> KeyLayouts { get; private set; }
         public string KeyLayoutDataDir { get; private set; } = (string)Settings.Default["KeyLayoutDataDir"];
         public KeyLayout SelectedKeyLayout { get; set; }
 
         public SettingsWindow(IEnumerable<KeyLayout> keyLayouts)
         {
             InitializeComponent();
+
+            this.Closing += this.OnClose;
 
             this.DataContext = this;
 
@@ -114,21 +117,32 @@ namespace OpenTyping
             {
                 KeyLayoutDataDir = dataFileDirDialog.FileName;
                 KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+
+                KeyLayouts.Clear();
+
+                foreach (KeyLayout keyLayout in KeyLayout.LoadKeyLayouts())
+                {
+                    KeyLayouts.Add(keyLayout);
+                }
+
+                SelectedKeyLayout = KeyLayouts[0];
+                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
             }
 
             this.Focus();
         }
 
-        private void ApplyButton_Click(object sender, RoutedEventArgs e)
-        {
-            Settings.Default["KeyLayout"] = SelectedKeyLayout.Name;
-            Settings.Default["KeyLayoutDataDir"] = KeyLayoutDataDir;
-            Settings.Default.Save();
-        }
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void OnClose(object sender, CancelEventArgs e)
+        {
+            Settings.Default["KeyLayout"] = SelectedKeyLayout.Name;
+            Settings.Default["KeyLayoutDataDir"] = KeyLayoutDataDir;
+
+            Settings.Default.Save();
         }
     }
 }
