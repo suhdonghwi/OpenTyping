@@ -123,35 +123,34 @@
             </TabControl>
         </StackPanel>
 
-        <DockPanel Grid.Row="1" 
-                   Margin="10 0 10 10">
-            <StackPanel HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <Button x:Name="ApplyButton"
-                        Margin="0 0 5 0"
-                        Click="ApplyButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Width="18"
+        <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Margin="10 0 10 10"
+                    Grid.Row="1" >
+            <Button x:Name="ApplyButton"
+                    Margin="0 0 5 0"
+                    Click="ApplyButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18"
                                Height="15" 
                                Fill="Green">
-                            <Rectangle.OpacityMask>
-                                <VisualBrush Visual="{iconPacks:Modern check}"/>
-                            </Rectangle.OpacityMask>
-                        </Rectangle>
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:Modern check}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
 
-                        <TextBlock Text="적용"
+                    <TextBlock Text="적용"
                                FontFamily="{StaticResource NanumGothic}"
                                FontSize="12pt"
                                Margin="4 0 0 0"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="OkButton"
-                        Click="OkButton_Click">
-                    <TextBlock Text="확인"
-                               FontFamily="{StaticResource NanumGothic}"
-                               FontSize="12pt"/>
-                </Button>
-            </StackPanel>
-        </DockPanel>
+                </StackPanel>
+            </Button>
+            <Button x:Name="OkButton"
+                    Click="OkButton_Click">
+                <TextBlock Text="확인"
+                           FontFamily="{StaticResource NanumGothic}"
+                           FontSize="12pt"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </controls:MetroWindow>
