@@ -56,7 +56,7 @@ namespace OpenTyping
                 Environment.Exit(-1);
             }
 
-            if (string.IsNullOrEmpty((string) Settings.Default["KeyLayout"]))
+            if (GetCurrentKeyLayout() == null)
             {
                 if (keyLayouts.Any(kl => kl.Name == "두벌식 표준"))
                 {
