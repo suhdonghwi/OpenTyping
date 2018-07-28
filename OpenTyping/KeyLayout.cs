@@ -83,7 +83,7 @@ namespace OpenTyping
 
         public static KeyLayout LoadKeyLayout(string dataFileLocation)
         {
-            string[] keyLayoutLines = File.ReadAllLines(dataFileLocation, Encoding.Default);
+            string[] keyLayoutLines = File.ReadAllLines(dataFileLocation, Encoding.UTF8);
             KeyLayout keyLayout = null;
 
             try
@@ -96,17 +96,15 @@ namespace OpenTyping
                                 "열린타자",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
-                Application.Current.Shutdown();
+                Environment.Exit(-1);
             }
 
             return keyLayout;
         }
 
-        public static IList<KeyLayout> LoadKeyLayouts()
+        public static IList<KeyLayout> LoadKeyLayouts(string layoutsDirectory)
         {
             var keyLayouts = new List<KeyLayout>();
-
-            string layoutsDirectory = (string)Settings.Default["KeyLayoutDataDir"];
 
             Directory.CreateDirectory(layoutsDirectory);
             string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.kl");
@@ -121,7 +119,7 @@ namespace OpenTyping
                                     "열린타자",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
-                    Application.Current.Shutdown();
+                    Environment.Exit(-1);
                 }
 
                 keyLayout.Location = keyLayoutFile;

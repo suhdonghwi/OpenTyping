@@ -115,18 +115,31 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                KeyLayoutDataDir = dataFileDirDialog.FileName;
-                KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                var keyLayouts = KeyLayout.LoadKeyLayouts(dataFileDirDialog.FileName);
 
-                KeyLayouts.Clear();
-
-                foreach (KeyLayout keyLayout in KeyLayout.LoadKeyLayouts())
+                if (keyLayouts.Count == 0)
                 {
-                    KeyLayouts.Add(keyLayout);
+                    MessageBox.Show("경로 " + (string)Settings.Default["KeyLayoutDataDir"] +
+                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
                 }
+                else
+                {
+                    KeyLayoutDataDir = dataFileDirDialog.FileName;
+                    KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
 
-                SelectedKeyLayout = KeyLayouts[0];
-                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
+                    KeyLayouts.Clear();
+
+                    foreach (KeyLayout keyLayout in keyLayouts)
+                    {
+                        KeyLayouts.Add(keyLayout);
+                    }
+
+                    SelectedKeyLayout = KeyLayouts[0];
+                    KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
+                }
             }
 
             this.Focus();
