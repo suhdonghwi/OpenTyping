@@ -12,10 +12,22 @@
                 Margin="5">
         <StackPanel Orientation="Vertical"
                     Margin="9 0 0 12">
-            <TextBlock Text="자리연습"
-                       Style="{StaticResource NormalTextBlock}" 
-                       FontSize="32pt"
-                       Margin="0 2 0 0"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 2">
+                <Rectangle Width="59" 
+                           Height="40"
+                           Margin="0 0 9 0"
+                           VerticalAlignment="Center">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{iconPacks:FontAwesome KeyboardSolid}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Text="자리연습"
+                           Style="{StaticResource NormalTextBlock}" 
+                           FontSize="32pt"
+                           Margin="0 2 0 0"/>
+            </StackPanel>
+            
             <TextBlock Text=": 자판 위 글자들 각각의 자리를 연습합니다."
                    Style="{StaticResource NormalTextBlock}" 
                    FontSize="14pt"/>
