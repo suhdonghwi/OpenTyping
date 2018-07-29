@@ -10,6 +10,7 @@
                       Title="열린타자"
                       Width="800" 
                       Height="450" 
+                      ResizeMode="CanMinimize"
                       Icon="{StaticResource AppIcon}">
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>

@@ -10,7 +10,8 @@
                       mc:Ignorable="d"
                       Title="설정" 
                       Width="500" 
-                      Height="450" 
+                      Height="450"
+                      ResizeMode="CanMinimize"
                       Icon="{StaticResource AppIcon}">
     <controls:MetroWindow.Resources>
         <Style x:Key="SettingNameTextBlock" 
