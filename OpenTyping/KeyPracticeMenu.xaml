@@ -60,10 +60,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Right"
-                    Margin="10 0 5 10">
+                    Style="{StaticResource ControlButtonStackPanel}">
             <Button x:Name="StartButton"
-                    Margin="0 0 5 0"
                     Click="StartButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
@@ -74,8 +72,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource ControlButtonText}"
-                               Text="연습 시작"
-                               Margin="4 0 0 0"/>
+                               Text="연습 시작"/>
                 </StackPanel>
             </Button>
         </StackPanel>

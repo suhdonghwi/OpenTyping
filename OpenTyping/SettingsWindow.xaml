@@ -125,11 +125,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" 
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    Margin="10 0 10 10">
+                    Style="{StaticResource ControlButtonStackPanel}">
             <Button x:Name="OkButton"
-                    Margin="0 0 5 0"
                     Click="OkButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
@@ -140,8 +137,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource ControlButtonText}"
-                               Text="확인"
-                               Margin="4 0 0 0"/>
+                               Text="확인"/>
                 </StackPanel>
             </Button>
         </StackPanel>

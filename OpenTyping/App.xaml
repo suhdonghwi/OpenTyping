@@ -49,6 +49,13 @@
             <Style x:Key="ControlButtonText" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
                 <Setter Property="FontSize" Value="12pt"/>
+                <Setter Property="Margin" Value="4 0 0 0"/>
+            </Style>
+
+            <Style x:Key="ControlButtonStackPanel" TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Margin" Value="10 0 10 10"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
