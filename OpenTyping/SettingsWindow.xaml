@@ -139,10 +139,8 @@
                             <VisualBrush Visual="{iconPacks:Modern check}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-
-                    <TextBlock Text="확인"
-                               FontFamily="{StaticResource NanumGothic}"
-                               FontSize="12pt"
+                    <TextBlock Style="{StaticResource ControlButtonText}"
+                               Text="확인"
                                Margin="4 0 0 0"/>
                 </StackPanel>
             </Button>

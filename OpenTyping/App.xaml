@@ -39,11 +39,16 @@
             </Style>
 
             <Style x:Key="NormalLabel" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}" />
+                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
             </Style>
 
             <Style x:Key="NormalTextBlock" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}" />
+                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+            </Style>
+
+            <Style x:Key="ControlButtonText" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
+                <Setter Property="FontSize" Value="12pt"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
