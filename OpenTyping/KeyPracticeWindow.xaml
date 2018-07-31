@@ -12,29 +12,33 @@
                       ResizeMode="CanMinimize"
                       Icon="{StaticResource AppIcon}">
     <StackPanel Orientation="Vertical">
-        <Grid HorizontalAlignment="Center"
-              Margin="0 10 0 0">
+        <Grid Margin="0 10 0 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="50"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto" MinWidth="50"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Text="ㄱ"
-                       FontSize="36pt"/>
+                       Text="ㄱㄴㄷ"
+                       FontSize="35pt"
+                       FontFamily="{StaticResource NanumBarunGothic}"
+                       Foreground="DarkGray"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
             <TextBlock Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
                        Text="ㄴ"
-                       FontSize="36pt"/>
-            <TextBlock Grid.Column="2"
+                       FontSize="70pt"
+                       FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2"
                        Text="ㄷ"
-                       FontSize="36pt"/>
+                       FontSize="35pt"
+                       FontFamily="{StaticResource NanumBarunGothic}"
+                       Foreground="DarkGray"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
         </Grid>
 
         <local:KeyLayoutBox ClickToggle="False"
