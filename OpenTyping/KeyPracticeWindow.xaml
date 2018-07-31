@@ -16,6 +16,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -26,13 +28,25 @@
                        Foreground="DarkGray"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="1"
+            <Rectangle Grid.Column="1"
+                       Width="0.5"
+                       SnapsToDevicePixels="True"
+                       Height="60"
+                       Margin="10 0 10 0" 
+                       Stroke="Gray"/>
+            <TextBlock Grid.Column="2"
                        Text="ㄴ"
-                       FontSize="70pt"
+                       FontSize="75pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="2"
+            <Rectangle Grid.Column="3"
+                       Width="0.5"
+                       SnapsToDevicePixels="True"
+                       Height="60"
+                       Margin="10 0 10 0" 
+                       Stroke="Gray"/>
+            <TextBlock Grid.Column="4"
                        Text="ㄷ"
                        FontSize="35pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
