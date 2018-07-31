@@ -129,6 +129,9 @@
     <Compile Include="KeyPracticeMenu.xaml.cs">
       <DependentUpon>KeyPracticeMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KeyPracticeWindow.xaml.cs">
+      <DependentUpon>KeyPracticeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="KeyPracticeMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KeyPracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
