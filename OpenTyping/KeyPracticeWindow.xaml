@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
-                       Text="ㄱㄴㄷ"
+                       Text="{Binding PreviousKey}"
                        FontSize="35pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"
@@ -32,11 +32,11 @@
                        Width="0.5"
                        SnapsToDevicePixels="True"
                        Height="60"
-                       Margin="10 0 10 0" 
+                       Margin="10 0 15 0" 
                        Stroke="Gray"/>
             <TextBlock Grid.Column="2"
-                       Text="ㄴ"
-                       FontSize="75pt"
+                       Text="{Binding CurrentKey}"
+                       FontSize="70pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
@@ -44,10 +44,10 @@
                        Width="0.5"
                        SnapsToDevicePixels="True"
                        Height="60"
-                       Margin="10 0 10 0" 
+                       Margin="15 0 10 0" 
                        Stroke="Gray"/>
             <TextBlock Grid.Column="4"
-                       Text="ㄷ"
+                       Text="{Binding NextKey}"
                        FontSize="35pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"

@@ -20,9 +20,32 @@ namespace OpenTyping
     /// </summary>
     public partial class KeyPracticeWindow : MetroWindow
     {
+        private List<KeyPos> keyList;
+
+        public string PreviousKey { get; }
+        public string CurrentKey { get; }
+        public string NextKey { get; }
+
+        private static readonly Random randomizer = new Random();
+
         public KeyPracticeWindow(List<KeyPos> keyList)
         {
             InitializeComponent();
+
+            this.DataContext = this;
+
+            this.keyList = keyList;
+
+            CurrentKey = RandomKey();
+            NextKey = RandomKey();
+        }
+
+        private string RandomKey()
+        {
+            KeyPos keyPos = keyList[randomizer.Next(0, keyList.Count)];
+            Key key = MainWindow.CurrentKeyLayout[keyPos];
+
+            return randomizer.Next(0, 1) == 0 ? key.KeyData : key.ShiftKeyData; 
         }
     }
 }
