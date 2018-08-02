@@ -22,6 +22,15 @@ namespace OpenTyping
 
         public string Location { get; set; } = "";
 
+        public Key this[KeyPos pos]
+        {
+            get
+            {
+                return KeyLayoutData[pos.Row][pos.Column];
+            }
+        }
+
+
         public static KeyLayout ParseKeyLayoutData(string[] dataLines)
         {
             string name = dataLines[0];

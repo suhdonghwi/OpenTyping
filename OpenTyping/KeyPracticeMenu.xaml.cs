@@ -28,7 +28,7 @@ namespace OpenTyping
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var keyPracticeWindow = new KeyPracticeWindow();
+            var keyPracticeWindow = new KeyPracticeWindow(keyLayoutBox.PressedKeys());
             keyPracticeWindow.ShowDialog();
         }
     }

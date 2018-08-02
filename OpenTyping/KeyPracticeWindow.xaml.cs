@@ -20,7 +20,7 @@ namespace OpenTyping
     /// </summary>
     public partial class KeyPracticeWindow : MetroWindow
     {
-        public KeyPracticeWindow()
+        public KeyPracticeWindow(List<KeyPos> keyList)
         {
             InitializeComponent();
         }
