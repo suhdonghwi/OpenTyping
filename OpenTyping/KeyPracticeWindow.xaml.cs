@@ -22,9 +22,9 @@ namespace OpenTyping
     {
         private List<KeyPos> keyList;
 
-        public string PreviousKey { get; }
-        public string CurrentKey { get; }
-        public string NextKey { get; }
+        public Tuple<string, KeyPos> PreviousKey { get; }
+        public Tuple<string, KeyPos> CurrentKey { get; }
+        public Tuple<string, KeyPos> NextKey { get; }
 
         private static readonly Random randomizer = new Random();
 
@@ -40,12 +40,17 @@ namespace OpenTyping
             NextKey = RandomKey();
         }
 
-        private string RandomKey()
+        private Tuple<string, KeyPos> RandomKey()
         {
             KeyPos keyPos = keyList[randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
 
-            return randomizer.Next(0, 1) == 0 ? key.KeyData : key.ShiftKeyData; 
+            return Tuple.Create(randomizer.Next(0, 1) == 0 ? key.KeyData : key.ShiftKeyData, keyPos); 
+        }
+
+        private void MoveKey()
+        {
+
         }
     }
 }
