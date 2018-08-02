@@ -23,7 +23,7 @@
 
             <TextBlock Grid.Column="0"
                        Text="{Binding PreviousKey, UpdateSourceTrigger=PropertyChanged}"
-                       FontSize="35pt"
+                       FontSize="30pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"
                        HorizontalAlignment="Right"
@@ -36,7 +36,7 @@
                        Stroke="Gray"/>
             <TextBlock Grid.Column="2"
                        Text="{Binding CurrentKey, UpdateSourceTrigger=PropertyChanged}"
-                       FontSize="65pt"
+                       FontSize="60pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
@@ -48,7 +48,7 @@
                        Stroke="Gray"/>
             <TextBlock Grid.Column="4"
                        Text="{Binding NextKey, UpdateSourceTrigger=PropertyChanged}"
-                       FontSize="35pt"
+                       FontSize="30pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"
                        HorizontalAlignment="Left"

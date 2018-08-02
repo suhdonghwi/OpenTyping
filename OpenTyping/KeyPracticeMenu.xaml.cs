@@ -23,6 +23,7 @@ namespace OpenTyping
         public KeyPracticeMenu()
         {
             InitializeComponent();
+            keyLayoutBox.PressKeys();
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)

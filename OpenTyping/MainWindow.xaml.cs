@@ -83,6 +83,7 @@ namespace OpenTyping
             CurrentKeyLayout = GetCurrentKeyLayout();
 
             KeyPracticeMenu.keyLayoutBox.LoadKeyLayout();
+            KeyPracticeMenu.keyLayoutBox.PressKeys();
         }
     }
 }
