@@ -86,6 +86,15 @@ namespace OpenTyping
             NextKey = RandomKey();
 
             this.KeyDown += KeyPracticeWindow_KeyDown;
+
+            foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
+            {
+                if (lang.LayoutName == "English")
+                {
+                    System.Windows.Forms.InputLanguage.CurrentInputLanguage = lang;
+                    InputMethod.Current.ImeState = InputMethodState.On;
+                }
+            }
         }
 
         private KeyInfo RandomKey()
@@ -106,8 +115,21 @@ namespace OpenTyping
 
         private void KeyPracticeWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == System.Windows.Input.Key.LeftShift || e.Key == System.Windows.Input.Key.RightShift)
+            {
+                return;
+            }
+
             MoveKey();
-            Debug.Print(e.Key.ToString());
+
+            if (Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) || Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift))
+            {
+                Debug.Print(e.Key.ToString() + " with Shift");
+            }
+            else
+            {
+                Debug.Print(e.Key.ToString());
+            }   
         }
 
         private void OnPropertyChanged(string propertyName)
