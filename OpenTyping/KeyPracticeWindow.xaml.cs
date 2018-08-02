@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,24 @@ namespace OpenTyping
     /// </summary>
     public partial class KeyPracticeWindow : MetroWindow, INotifyPropertyChanged
     {
+        public class KeyInfo
+        {
+            public KeyInfo(string keyData, KeyPos keyPos, bool isShift)
+            {
+                KeyData = keyData;
+                KeyPos = keyPos;
+                IsShift = isShift;
+            }
+
+            public string KeyData { get; set; }
+            public KeyPos KeyPos { get; set; }
+            public bool IsShift { get; set; }
+        }
+
         private List<KeyPos> keyList;
 
-        private string previousKey;
-        public string PreviousKey
+        private KeyInfo previousKey;
+        public KeyInfo PreviousKey
         {
             get { return previousKey; }
             private set
@@ -34,8 +49,8 @@ namespace OpenTyping
             }
         }
 
-        private string currentKey;
-        public string CurrentKey
+        private KeyInfo currentKey;
+        public KeyInfo CurrentKey
         {
             get { return currentKey; }
             private set
@@ -44,11 +59,9 @@ namespace OpenTyping
                 OnPropertyChanged("CurrentKey");
             }
         }
-        private KeyPos currentPos;
 
-
-        private string nextKey;
-        public string NextKey
+        private KeyInfo nextKey;
+        public KeyInfo NextKey
         {
             get { return nextKey; }
             private set
@@ -57,7 +70,6 @@ namespace OpenTyping
                 OnPropertyChanged("NextKey");
             }
         }
-        private KeyPos nextPos;
 
         private static readonly Random randomizer = new Random();
 
@@ -70,40 +82,32 @@ namespace OpenTyping
             this.DataContext = this;
             this.keyList = keyList;
 
-            var currentKey = RandomKey();
-            CurrentKey = currentKey.Item1;
-            currentPos = currentKey.Item2;
-
-            var nextKey = RandomKey();
-            NextKey = nextKey.Item1;
-            nextPos = nextKey.Item2;
+            CurrentKey = RandomKey();
+            NextKey = RandomKey();
 
             this.KeyDown += KeyPracticeWindow_KeyDown;
         }
 
-        private Tuple<string, KeyPos> RandomKey()
+        private KeyInfo RandomKey()
         {
             KeyPos keyPos = keyList[randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
+            bool isShift = randomizer.Next(0, 1) == 0;
 
-            return Tuple.Create(randomizer.Next(0, 1) == 0 ? key.KeyData : key.ShiftKeyData, keyPos); 
+            return new KeyInfo(isShift ? key.KeyData : key.ShiftKeyData, keyPos, isShift);
         }
 
         private void MoveKey()
         {
             PreviousKey = CurrentKey;
-
             CurrentKey = NextKey;
-            currentPos = nextPos;
-
-            var nextKey = RandomKey();
-            NextKey = nextKey.Item1;
-            nextPos = nextKey.Item2;
+            NextKey = RandomKey();
         }
 
         private void KeyPracticeWindow_KeyDown(object sender, KeyEventArgs e)
         {
             MoveKey();
+            Debug.Print(e.Key.ToString());
         }
 
         private void OnPropertyChanged(string propertyName)

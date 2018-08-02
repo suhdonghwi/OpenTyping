@@ -21,5 +21,10 @@ namespace OpenTyping
         {
             return (Row == other.Row) && (Column == other.Column);
         }
+
+        public static KeyPos FromKeyCode(System.Windows.Input.Key key)
+        {
+            return new KeyPos(1, 2);
+        }
     }
 }
