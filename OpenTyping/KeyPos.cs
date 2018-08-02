@@ -22,7 +22,53 @@ namespace OpenTyping
         {
             return (Row == other.Row) && (Column == other.Column);
         }
-        
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((KeyPos)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = Row.GetHashCode();
+                hashCode = (hashCode * 397) ^ Column.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        public static bool operator==(KeyPos lhs, KeyPos rhs)
+        {
+            if (ReferenceEquals(lhs, rhs))
+            {
+                return true;
+            }
+            if (lhs is null)
+            {
+                return false;
+            }
+            if (rhs is null)
+            {
+                return false;
+            }
+
+            return (lhs.Row == rhs.Row) && (lhs.Column == rhs.Column);
+        }
+
+        public static bool operator!=(KeyPos lhs, KeyPos rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         public static KeyPos FromKeyCode(Input.Key key)
         {

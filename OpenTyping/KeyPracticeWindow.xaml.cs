@@ -101,9 +101,14 @@ namespace OpenTyping
         {
             KeyPos keyPos = keyList[randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
-            bool isShift = randomizer.Next(0, 1) == 0;
 
-            return new KeyInfo(isShift ? key.KeyData : key.ShiftKeyData, keyPos, isShift);
+            if (key.ShiftKeyData == "")
+            {
+                return new KeyInfo(key.KeyData, keyPos, false);
+            }
+
+            bool isShift = randomizer.Next(0, 1) == 0;
+            return new KeyInfo(isShift ? key.ShiftKeyData : key.KeyData, keyPos, isShift);
         }
 
         private void MoveKey()
@@ -115,21 +120,23 @@ namespace OpenTyping
 
         private void KeyPracticeWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.LeftShift || e.Key == System.Windows.Input.Key.RightShift)
-            {
-                return;
-            }
+            KeyPos pos = KeyPos.FromKeyCode(e.Key);
 
-            MoveKey();
+            if (e.Key == System.Windows.Input.Key.LeftShift || 
+                e.Key == System.Windows.Input.Key.RightShift || 
+                pos == null) return;
 
-            if (Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) || Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift))
+            bool isShift = Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) || Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift);
+            
+            if (CurrentKey.KeyPos == pos && CurrentKey.IsShift == isShift)
             {
-                Debug.Print(e.Key.ToString() + " with Shift");
+                Debug.Print("Correct!");
+                MoveKey();
             }
             else
             {
-                Debug.Print(e.Key.ToString());
-            }   
+                Debug.Print("Wrong!");
+            }
         }
 
         private void OnPropertyChanged(string propertyName)
