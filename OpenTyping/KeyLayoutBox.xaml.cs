@@ -75,6 +75,8 @@ namespace OpenTyping
                     keyRows[i].Children.Add(keyLayout[i][j]);
                 }
             }
+
+            PressKeys();
         }
 
         public void PressKeys()
