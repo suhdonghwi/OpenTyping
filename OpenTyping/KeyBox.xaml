@@ -27,11 +27,19 @@
                 BorderThickness="2 2 2 1"
                 Width="{Binding ActualWidth, ElementName=KeyBoxContainer}"
                 Height="43">
-            <TextBlock Text="{Binding KeyText}"
-                       Style="{StaticResource NormalTextBlock}"
-                       FontSize="11pt"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <Viewbox StretchDirection="DownOnly" Stretch="Uniform">
+                    <TextBlock Text="{Binding Key.ShiftKeyData}"
+                               Style="{StaticResource NormalTextBlock}"
+                               FontSize="11pt"/>
+                </Viewbox>
+                <Viewbox StretchDirection="DownOnly" Stretch="Uniform">
+                    <TextBlock Text="{Binding Key.KeyData}"
+                               Style="{StaticResource NormalTextBlock}"
+                               FontSize="11pt"/>
+                </Viewbox>
+            </StackPanel>
         </Border>
     </Canvas>
 </UserControl>

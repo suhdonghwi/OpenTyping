@@ -27,6 +27,13 @@ namespace OpenTyping
             if (value is string)
             {
                 string[] splitedValue = Regex.Split((string)value, @"(?<!\\)(?:\\\\)*,");
+                splitedValue = splitedValue.Select(str => str.Replace(@"\,", ",")).ToArray();
+
+                if (splitedValue.Count() == 1)
+                {
+                    return new Key(splitedValue[0].Trim(), "");
+                }
+
                 return new Key(splitedValue[0].Trim(), splitedValue[1].Trim());
             }
 

@@ -37,14 +37,6 @@ namespace OpenTyping
             DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.LightGray));
 
         public Key Key { get; set; }
-        public string KeyText
-        {
-            get
-            {
-                if (Key.KeyData == Key.ShiftKeyData) return Key.KeyData;
-                else return Key.ShiftKeyData + "\n" + Key.KeyData;
-            }
-        }
 
         public bool Pressed { get; private set; } = false;
 

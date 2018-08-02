@@ -69,19 +69,11 @@ namespace OpenTyping
 
                 var newRow = new List<Key>();
 
+                KeyConverter keyConverter = new KeyConverter();
+
                 foreach (string keyString in row)
                 {
-                    string[] splitedKeyString = Regex.Split(keyString, @"(?<!\\)(?:\\\\)*,");
-                    splitedKeyString = splitedKeyString.Select(str => str.Replace(@"\,", ",")).ToArray();
-
-                    if (splitedKeyString.Length != 2)
-                    {
-                        string exMessage
-                            = "글쇠, 윗글쇠 2개가 주어져야 하는데 " + splitedKeyString.Length + "개가 주어졌습니다.";
-                        throw new InvalidKeyLayoutDataException(exMessage);
-                    }
-
-                    newRow.Add(new Key(splitedKeyString[0], splitedKeyString[1]));
+                    newRow.Add((Key)keyConverter.ConvertFromString(keyString));
                 }
 
                 keyLayoutData.Add(newRow);

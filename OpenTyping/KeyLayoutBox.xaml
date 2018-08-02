@@ -26,34 +26,34 @@
             <StackPanel x:Name="NumberRow"
                         Style="{StaticResource KeyRowStyle}"/>
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Backspace,Backspace"
+                          Key="Backspace,"
                           Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Tab,Tab"
+                          Key="Tab"
                           Width="80"/>
             <StackPanel x:Name="FirstRow"
                         Style="{StaticResource KeyRowStyle}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Caps Lock,Caps Lock"
+                          Key="Caps Lock,"
                           Width="100"/>
             <StackPanel x:Name="SecondRow"
                         Style="{StaticResource KeyRowStyle}"/>
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Enter,Enter"
+                          Key="Enter"
                           Width="103"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Shift,Shift"
+                          Key="Shift"
                           Width="130"/>
             <StackPanel x:Name="ThirdRow"
                         Style="{StaticResource KeyRowStyle}"/>
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Shift,Shift"
+                          Key="Shift"
                           Width="125"/>
         </StackPanel>
 
