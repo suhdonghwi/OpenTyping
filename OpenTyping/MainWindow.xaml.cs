@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using MahApps.Metro.Controls;
+using Newtonsoft.Json;
 using OpenTyping.Properties;
 
 namespace OpenTyping
@@ -72,6 +73,17 @@ namespace OpenTyping
             CurrentKeyLayout = GetCurrentKeyLayout();
 
             InitializeComponent();
+            this.Closed += MainWindow_Closed;
+        }
+
+        private void SaveKeyLayout()
+        {
+            System.IO.File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout));
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            SaveKeyLayout();
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +92,7 @@ namespace OpenTyping
             settingsWindow.ShowDialog();
 
             keyLayouts = settingsWindow.KeyLayouts;
+            SaveKeyLayout();
             CurrentKeyLayout = GetCurrentKeyLayout();
 
             KeyPracticeMenu.keyLayoutBox.LoadKeyLayout();

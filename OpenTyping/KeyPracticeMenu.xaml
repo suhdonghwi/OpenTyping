@@ -38,7 +38,7 @@
                            FontSize="14pt"/>
             </StackPanel>
             <local:KeyLayoutBox x:Name="keyLayoutBox"
-                                ClickToggle="True"
+                                Clickable="True"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Margin="0 0 0 5"/>

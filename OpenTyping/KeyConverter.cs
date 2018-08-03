@@ -45,7 +45,15 @@ namespace OpenTyping
             if (destinationType == typeof(string))
             {
                 Key keyValue = (Key)value;
-                return keyValue.KeyData + "," + keyValue.ShiftKeyData;
+                
+                if (string.IsNullOrEmpty(keyValue.ShiftKeyData))
+                {
+                    return keyValue.KeyData.Replace(",", "\\,");
+                }
+                else
+                {
+                    return keyValue.KeyData.Replace(",", "\\,") + "," + keyValue.ShiftKeyData.Replace(",", "\\,");
+                }
             }
 
             return base.ConvertTo(context, culture, value, destinationType);

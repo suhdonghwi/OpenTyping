@@ -55,7 +55,7 @@
                        VerticalAlignment="Center"/>
         </Grid>
 
-        <local:KeyLayoutBox ClickToggle="False"
+        <local:KeyLayoutBox Clickable="False"
                             HorizontalAlignment="Center"/>
     </StackPanel>
 </controls:MetroWindow>

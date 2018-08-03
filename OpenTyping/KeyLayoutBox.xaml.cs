@@ -23,11 +23,22 @@ namespace OpenTyping
     {
         private List<List<KeyBox>> keyLayout;
 
-        public bool ClickToggle { get; set; } = false;
+        public bool Clickable
+        {
+            get => (bool)GetValue(ClickableProperty);
+            set => SetValue(ClickableProperty, value);
+        }
+        public static readonly DependencyProperty ClickableProperty =
+            DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
 
         public KeyLayoutBox()
         {
             InitializeComponent();
+            this.Loaded += KeyLayoutBox_Loaded; 
+        }
+
+        private void KeyLayoutBox_Loaded(object sender, RoutedEventArgs e)
+        {
             LoadKeyLayout();
         }
 
@@ -56,7 +67,11 @@ namespace OpenTyping
                         Margin = new Thickness(0, 0, 2, 0)
                     };
 
-                    keyBox.MouseDown += KeyBox_MouseDown;
+                    if (Clickable)
+                    {
+                        keyBox.MouseDown += KeyBox_MouseDown;
+                    }
+
                     keyBoxes.Add(keyBox);
                 }
 
@@ -75,6 +90,8 @@ namespace OpenTyping
                     keyRows[i].Children.Add(keyLayout[i][j]);
                 }
             }
+
+            if (Clickable) PressKeys();
         }
 
         public void PressKeys()
@@ -113,10 +130,8 @@ namespace OpenTyping
 
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (ClickToggle)
-            {
-                ((KeyBox)sender).PressToggle();
-            }
+            ((KeyBox)sender).PressToggle();
+            MainWindow.CurrentKeyLayout.Pressing = PressedKeys();
         }
     }
 }

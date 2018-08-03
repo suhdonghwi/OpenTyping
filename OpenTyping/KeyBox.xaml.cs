@@ -22,16 +22,16 @@ namespace OpenTyping
     {
         public Brush KeyColor
         {
-            get => (Brush)this.GetValue(KeyColorProperty);
-            set => this.SetValue(KeyColorProperty, value);
+            get => (Brush)GetValue(KeyColorProperty);
+            set => SetValue(KeyColorProperty, value);
         }
         public static readonly DependencyProperty KeyColorProperty =
             DependencyProperty.Register("KeyColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.White));
 
         public Brush ShadowColor
         {
-            get => (Brush)this.GetValue(ShadowColorProperty);
-            set => this.SetValue(ShadowColorProperty, value);
+            get => (Brush)GetValue(ShadowColorProperty);
+            set => SetValue(ShadowColorProperty, value);
         }
         public static readonly DependencyProperty ShadowColorProperty =
             DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.LightGray));

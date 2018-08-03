@@ -21,7 +21,7 @@ namespace OpenTyping
 
         public string Name { get; }
         public IList<IList<Key>> KeyLayoutData { get; }
-        public List<KeyPos> Pressing { get; }
+        public List<KeyPos> Pressing { get; set; }
 
         [JsonIgnore]
         public string Location { get; set; } = "";
