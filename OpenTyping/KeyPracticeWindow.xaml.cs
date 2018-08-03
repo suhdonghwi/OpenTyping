@@ -107,7 +107,7 @@ namespace OpenTyping
                 return new KeyInfo(key.KeyData, keyPos, false);
             }
 
-            bool isShift = randomizer.Next(0, 1) == 0;
+            bool isShift = randomizer.Next(0, 2) == 0;
             return new KeyInfo(isShift ? key.ShiftKeyData : key.KeyData, keyPos, isShift);
         }
 
