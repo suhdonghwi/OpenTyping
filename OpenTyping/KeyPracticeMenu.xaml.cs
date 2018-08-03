@@ -28,7 +28,18 @@ namespace OpenTyping
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var keyPracticeWindow = new KeyPracticeWindow(keyLayoutBox.PressedKeys());
+            List<KeyPos> pressedKeys = keyLayoutBox.PressedKeys();
+            
+            if (pressedKeys.Count <= 1)
+            {
+                MessageBox.Show("연습할 키를 2개 이상 선택해주세요.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
+            }
+
+            var keyPracticeWindow = new KeyPracticeWindow(pressedKeys);
             keyPracticeWindow.ShowDialog();
         }
     }
