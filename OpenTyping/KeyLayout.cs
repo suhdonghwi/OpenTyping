@@ -34,8 +34,7 @@ namespace OpenTyping
             }
         }
 
-
-        public static KeyLayout ParseKeyLayoutData(string data)
+        public static KeyLayout Parse(string data)
         {
             KeyLayout keyLayout = JsonConvert.DeserializeObject<KeyLayout>(data);
 
@@ -73,7 +72,7 @@ namespace OpenTyping
 
             try
             {
-                keyLayout = ParseKeyLayoutData(keyLayoutLines);         
+                keyLayout = Parse(keyLayoutLines);         
             }
             catch (InvalidKeyLayoutDataException ex)
             {
