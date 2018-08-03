@@ -5,21 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Newtonsoft.Json;
 using OpenTyping.Properties;
 
 namespace OpenTyping
 {
     public class KeyLayout
     {
-        public KeyLayout(IList<IList<Key>> keyLayoutData, string name)
+        public KeyLayout(IList<IList<Key>> keyLayoutData, string name, List<KeyPos> pressing)
         {
             KeyLayoutData = keyLayoutData;
             Name = name;
+            Pressing = pressing;
         }
 
-        public IList<IList<Key>> KeyLayoutData { get; }
         public string Name { get; }
+        public IList<IList<Key>> KeyLayoutData { get; }
+        public List<KeyPos> Pressing { get; }
 
+        [JsonIgnore]
         public string Location { get; set; } = "";
 
         public Key this[KeyPos pos]
@@ -31,60 +35,14 @@ namespace OpenTyping
         }
 
 
-        public static KeyLayout ParseKeyLayoutData(string[] dataLines)
+        public static KeyLayout ParseKeyLayoutData(string data)
         {
-            string name = dataLines[0];
-            dataLines = dataLines.Skip(1).ToArray();
-
-            List<string[]> splitedData
-                = dataLines.Select(line => line.Split(new string[] { " | " }, StringSplitOptions.None)).ToList();
-
-            if (splitedData.Count != 4)
-            {
-                string exMessage = "자판 데이터의 행 수는 4 여야 하는데 " + splitedData.Count + "개가 주어졌습니다.";
-                throw new InvalidKeyLayoutDataException(exMessage);
-            }
-
-            var rowNumberData = new List<Tuple<string, int>>
-            {
-                Tuple.Create("숫자열", 13),
-                Tuple.Create("첫째 열", 13),
-                Tuple.Create("둘째 열", 11),
-                Tuple.Create("셋째 열", 10)
-            };
-
-            List<IList<Key>> keyLayoutData = new List<IList<Key>>();
-
-            for (int i = 0; i < splitedData.Count; i++)
-            {
-                string[] row = splitedData[i];
-
-                if (row.Length != rowNumberData[i].Item2)
-                {
-                    string exMessage
-                        = rowNumberData[i].Item1 + "의 키 개수는 " + rowNumberData[i].Item2 + " 이어야 하는데 " + row.Length +
-                          "개가 주어졌습니다.";
-                    throw new InvalidKeyLayoutDataException(exMessage);
-                }
-
-                var newRow = new List<Key>();
-
-                KeyConverter keyConverter = new KeyConverter();
-
-                foreach (string keyString in row)
-                {
-                    newRow.Add((Key)keyConverter.ConvertFromString(keyString));
-                }
-
-                keyLayoutData.Add(newRow);
-            }
-
-            return new KeyLayout(keyLayoutData, name);
+            return JsonConvert.DeserializeObject<KeyLayout>(data);
         }
 
         public static KeyLayout LoadKeyLayout(string dataFileLocation)
         {
-            string[] keyLayoutLines = File.ReadAllLines(dataFileLocation, Encoding.UTF8);
+            string keyLayoutLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
             KeyLayout keyLayout = null;
 
             try
@@ -108,7 +66,7 @@ namespace OpenTyping
             var keyLayouts = new List<KeyLayout>();
 
             Directory.CreateDirectory(layoutsDirectory);
-            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.kl");
+            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.json");
 
             foreach (string keyLayoutFile in keyLayoutFiles)
             {
@@ -124,6 +82,7 @@ namespace OpenTyping
                 }
 
                 keyLayout.Location = keyLayoutFile;
+
                 keyLayouts.Add(keyLayout);
             }
 

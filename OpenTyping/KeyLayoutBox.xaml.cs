@@ -79,19 +79,13 @@ namespace OpenTyping
 
         public void PressKeys()
         {
-            var unpressKeys = new List<KeyPos>
-            {
-                new KeyPos(0, 0), new KeyPos(0, 11), new KeyPos(0, 12),
-                new KeyPos(1, 10), new KeyPos(1, 11), new KeyPos(1, 12),
-                new KeyPos(2, 9), new KeyPos(2, 10),
-                new KeyPos(3, 7), new KeyPos(3, 8), new KeyPos(3, 9)
-            };
+            List<KeyPos> pressingKeys = MainWindow.CurrentKeyLayout.Pressing;
 
             for (int i = 0; i < keyLayout.Count(); i++)
             {
                 for (int j = 0; j < keyLayout[i].Count(); j++)
                 {
-                    if (!unpressKeys.Contains(new KeyPos(i, j)))
+                    if (pressingKeys.Contains(new KeyPos(i, j)))
                     {
                         keyLayout[i][j].PressToggle();
                     }
