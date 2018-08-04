@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
-using Newtonsoft.Json;
-using OpenTyping.Properties;
 
 namespace OpenTyping
 {
@@ -59,7 +57,7 @@ namespace OpenTyping
             return keyLayout;
         }
 
-        public static KeyLayout LoadKeyLayout(string dataFileLocation)
+        public static KeyLayout Load(string dataFileLocation)
         {
             string keyLayoutLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
             KeyLayout keyLayout = null;
@@ -77,6 +75,8 @@ namespace OpenTyping
                 Environment.Exit(-1);
             }
 
+            keyLayout.Location = dataFileLocation;
+
             return keyLayout;
         }
 
@@ -89,7 +89,7 @@ namespace OpenTyping
 
             foreach (string keyLayoutFile in keyLayoutFiles)
             {
-                KeyLayout keyLayout = LoadKeyLayout(keyLayoutFile);
+                KeyLayout keyLayout = Load(keyLayoutFile);
 
                 if (keyLayouts.Any(kl => kl.Name == keyLayout.Name))
                 {
@@ -99,9 +99,6 @@ namespace OpenTyping
                                     MessageBoxImage.Error);
                     Environment.Exit(-1);
                 }
-
-                keyLayout.Location = keyLayoutFile;
-
                 keyLayouts.Add(keyLayout);
             }
 

@@ -26,7 +26,7 @@ namespace OpenTyping
 
                 if (splitedValue.Count() == 1)
                 {
-                    return new Key(splitedValue[0].Trim(), "");
+                    return new Key(splitedValue[0].Trim(), null);
                 }
 
                 return new Key(splitedValue[0].Trim(), splitedValue[1].Trim());

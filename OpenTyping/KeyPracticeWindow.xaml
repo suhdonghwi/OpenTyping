@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
-                       Text="{Binding PreviousKey.KeyData, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding PreviousKey.KeyData}"
                        FontSize="30pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"
@@ -35,7 +35,7 @@
                        Margin="10 0 15 0" 
                        Stroke="Gray"/>
             <TextBlock Grid.Column="2"
-                       Text="{Binding CurrentKey.KeyData, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding CurrentKey.KeyData}"
                        FontSize="60pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
@@ -47,7 +47,7 @@
                        Margin="15 0 10 0" 
                        Stroke="Gray"/>
             <TextBlock Grid.Column="4"
-                       Text="{Binding NextKey.KeyData, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding NextKey.KeyData}"
                        FontSize="30pt"
                        FontFamily="{StaticResource NanumBarunGothic}"
                        Foreground="DarkGray"

@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using MahApps.Metro.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using OpenTyping.Properties;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
-using MahApps.Metro.Controls;
-using Microsoft.Win32;
-using OpenTyping.Properties;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace OpenTyping
 {
@@ -18,15 +16,35 @@ namespace OpenTyping
     public partial class SettingsWindow : MetroWindow
     {
         public ObservableCollection<KeyLayout> KeyLayouts { get; }
-        public string KeyLayoutDataDir { get; private set; } = (string)Settings.Default["KeyLayoutDataDir"];
-        public KeyLayout SelectedKeyLayout { get; set; }
+
+        public string keyLayoutDataDir = (string)Settings.Default["KeyLayoutDataDir"];
+
+        public string KeyLayoutDataDir
+        {
+            get => keyLayoutDataDir;
+            private set
+            {
+                keyLayoutDataDir = value;
+                KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+            }
+        } 
+
+        private KeyLayout selectedKeyLayout;
+        public KeyLayout SelectedKeyLayout
+        {
+            get => selectedKeyLayout;
+            set
+            {
+                selectedKeyLayout = value;
+                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateTarget();
+            }
+        }
 
         public SettingsWindow(IEnumerable<KeyLayout> keyLayouts)
         {
             InitializeComponent();
 
             this.Closing += this.OnClose;
-
             this.DataContext = this;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(keyLayouts);
@@ -47,7 +65,7 @@ namespace OpenTyping
         {
             var dataFileDialog = new CommonOpenFileDialog();
 
-            dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.kl"));
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
             dataFileDialog.Multiselect = false;
             dataFileDialog.EnsureFileExists = true;
             dataFileDialog.EnsurePathExists = true;
@@ -69,10 +87,9 @@ namespace OpenTyping
                 {
                     File.Copy(dataFileName, destLocation);
 
-                    KeyLayout keyLayout = KeyLayout.LoadKeyLayout(destLocation);
-                    keyLayout.Location = destLocation;
-
+                    KeyLayout keyLayout = KeyLayout.Load(destLocation);
                     KeyLayouts.Add(keyLayout);
+                    SelectedKeyLayout = keyLayout;
                 }
                 
             }
@@ -101,7 +118,6 @@ namespace OpenTyping
                 File.Delete(SelectedKeyLayout.Location);
                 KeyLayouts.Remove(SelectedKeyLayout);
                 SelectedKeyLayout = KeyLayouts[0];
-                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
             }
         }
 
@@ -128,8 +144,6 @@ namespace OpenTyping
                 else
                 {
                     KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
-
                     KeyLayouts.Clear();
 
                     foreach (KeyLayout keyLayout in keyLayouts)
@@ -138,7 +152,6 @@ namespace OpenTyping
                     }
 
                     SelectedKeyLayout = KeyLayouts[0];
-                    KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty).UpdateTarget();
                 }
             }
 

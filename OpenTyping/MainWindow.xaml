@@ -19,7 +19,8 @@
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
                                Height="18"
-                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, 
+                                              Path=Foreground}">
                         <Rectangle.OpacityMask>
                             <VisualBrush Stretch="Fill" 
                                          Visual="{iconPacks:Modern Cog}"/>

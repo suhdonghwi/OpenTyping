@@ -3,17 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OpenTyping
 {
@@ -36,7 +26,7 @@ namespace OpenTyping
             public bool IsShift { get; set; }
         }
 
-        private readonly List<KeyPos> keyList;
+        private readonly IList<KeyPos> keyList;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -75,7 +65,7 @@ namespace OpenTyping
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public KeyPracticeWindow(List<KeyPos> keyList)
+        public KeyPracticeWindow(IList<KeyPos> keyList)
         {
             InitializeComponent();
 
@@ -106,7 +96,7 @@ namespace OpenTyping
             KeyPos keyPos = keyList[Randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
 
-            if (key.ShiftKeyData == "")
+            if (string.IsNullOrEmpty(key.ShiftKeyData))
             {
                 return new KeyInfo(key.KeyData, keyPos, false);
             }

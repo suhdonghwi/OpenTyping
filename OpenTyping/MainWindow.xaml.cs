@@ -18,13 +18,6 @@ namespace OpenTyping
         private IList<KeyLayout> keyLayouts;
         public static KeyLayout CurrentKeyLayout { get; private set; }
 
-        private KeyLayout GetCurrentKeyLayout()
-        {
-            var layoutName = (string)Settings.Default["KeyLayout"];
-
-            return keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
-        }
-
         public MainWindow()
         {
             this.DataContext = this;
@@ -61,21 +54,27 @@ namespace OpenTyping
                 }
             }
 
-            Settings.Default.Save();
             CurrentKeyLayout = GetCurrentKeyLayout();
 
             InitializeComponent();
             this.Closed += MainWindow_Closed;
         }
 
+        private KeyLayout GetCurrentKeyLayout()
+        {
+            var layoutName = (string)Settings.Default["KeyLayout"];
+            return keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
+        }
+
         private static void SaveKeyLayout()
         {
-            System.IO.File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout));
+            File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout));
         }
 
         private static void MainWindow_Closed(object sender, EventArgs e)
         {
             SaveKeyLayout();
+            Settings.Default.Save();
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -84,11 +83,11 @@ namespace OpenTyping
             settingsWindow.ShowDialog();
 
             keyLayouts = settingsWindow.KeyLayouts;
+
             SaveKeyLayout();
             CurrentKeyLayout = GetCurrentKeyLayout();
 
-            KeyPracticeMenu.keyLayoutBox.LoadKeyLayout();
-            KeyPracticeMenu.keyLayoutBox.PressKeys();
+            KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace OpenTyping
 
         public Key Key { get; set; }
 
-        public bool Pressed { get; private set; } = false;
+        public bool Pressed { get; private set; }
 
         public KeyBox()
         {

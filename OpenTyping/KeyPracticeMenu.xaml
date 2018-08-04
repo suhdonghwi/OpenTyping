@@ -37,7 +37,7 @@
                            Style="{StaticResource NormalTextBlock}" 
                            FontSize="14pt"/>
             </StackPanel>
-            <local:KeyLayoutBox x:Name="keyLayoutBox"
+            <local:KeyLayoutBox x:Name="KeyLayoutBox"
                                 Clickable="True"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"

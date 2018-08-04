@@ -4,15 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d" 
              d:DesignHeight="50" 
              d:DesignWidth="50">
-    <Canvas x:Name="Container">
+    <Canvas>
         <Border x:Name="KeyBack"
                 Panel.ZIndex="1"
                 CornerRadius="5"
-                Background="{Binding Path=ShadowColor}"
+                Background="{Binding ShadowColor}"
                 BorderBrush="Black"
                 BorderThickness="2"
                 Width="{Binding ActualWidth, ElementName=KeyBoxContainer}"
@@ -21,7 +20,7 @@
         <Border x:Name="KeyTop"
                 Panel.ZIndex="2"
                 CornerRadius="5"
-                Background="{Binding Path=KeyColor}"
+                Background="{Binding KeyColor}"
                 VerticalAlignment="Top"
                 BorderBrush="Black"
                 BorderThickness="2 2 2 1"
