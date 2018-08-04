@@ -26,13 +26,7 @@ namespace OpenTyping
         [JsonIgnore]
         public string Location { get; set; } = "";
 
-        public Key this[KeyPos pos]
-        {
-            get
-            {
-                return KeyLayoutData[pos.Row][pos.Column];
-            }
-        }
+        public Key this[KeyPos pos] => KeyLayoutData[pos.Row][pos.Column];
 
         public static KeyLayout Parse(string data)
         {
@@ -40,7 +34,7 @@ namespace OpenTyping
 
             if (string.IsNullOrEmpty(keyLayout.Name))
             {
-                string message = "자판 데이터의 이름(Name 필드)이 주어지지 않았습니다.";
+                const string message = "자판 데이터의 이름(Name 필드)이 주어지지 않았습니다.";
                 throw new InvalidKeyLayoutDataException(message);
             }
 

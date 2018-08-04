@@ -22,15 +22,7 @@ namespace OpenTyping
         {
             var layoutName = (string)Settings.Default["KeyLayout"];
 
-            foreach (KeyLayout keyLayout in keyLayouts)
-            {
-                if (keyLayout.Name == layoutName)
-                {
-                    return keyLayout;
-                }
-            }
-
-            return null;
+            return keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
         }
 
         public MainWindow()
@@ -76,12 +68,12 @@ namespace OpenTyping
             this.Closed += MainWindow_Closed;
         }
 
-        private void SaveKeyLayout()
+        private static void SaveKeyLayout()
         {
             System.IO.File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout));
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
+        private static void MainWindow_Closed(object sender, EventArgs e)
         {
             SaveKeyLayout();
         }

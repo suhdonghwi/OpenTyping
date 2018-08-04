@@ -17,7 +17,7 @@ namespace OpenTyping
     /// </summary>
     public partial class SettingsWindow : MetroWindow
     {
-        public ObservableCollection<KeyLayout> KeyLayouts { get; private set; }
+        public ObservableCollection<KeyLayout> KeyLayouts { get; }
         public string KeyLayoutDataDir { get; private set; } = (string)Settings.Default["KeyLayoutDataDir"];
         public KeyLayout SelectedKeyLayout { get; set; }
 
@@ -115,7 +115,7 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                var keyLayouts = KeyLayout.LoadKeyLayouts(dataFileDirDialog.FileName);
+                IList<KeyLayout> keyLayouts = KeyLayout.LoadKeyLayouts(dataFileDirDialog.FileName);
 
                 if (keyLayouts.Count == 0)
                 {
@@ -128,7 +128,7 @@ namespace OpenTyping
                 else
                 {
                     KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+                    KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
 
                     KeyLayouts.Clear();
 

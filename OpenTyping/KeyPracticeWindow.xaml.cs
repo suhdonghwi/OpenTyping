@@ -36,12 +36,12 @@ namespace OpenTyping
             public bool IsShift { get; set; }
         }
 
-        private List<KeyPos> keyList;
+        private readonly List<KeyPos> keyList;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
         {
-            get { return previousKey; }
+            get => previousKey;
             private set
             {
                 previousKey = value;
@@ -52,7 +52,7 @@ namespace OpenTyping
         private KeyInfo currentKey;
         public KeyInfo CurrentKey
         {
-            get { return currentKey; }
+            get => currentKey;
             private set
             {
                 currentKey = value;
@@ -63,7 +63,7 @@ namespace OpenTyping
         private KeyInfo nextKey;
         public KeyInfo NextKey
         {
-            get { return nextKey; }
+            get => nextKey;
             private set
             {
                 nextKey = value;
@@ -71,7 +71,7 @@ namespace OpenTyping
             }
         }
 
-        private static readonly Random randomizer = new Random();
+        private static readonly Random Randomizer = new Random();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -92,14 +92,18 @@ namespace OpenTyping
                 if (lang.LayoutName == "English")
                 {
                     System.Windows.Forms.InputLanguage.CurrentInputLanguage = lang;
-                    InputMethod.Current.ImeState = InputMethodState.On;
+
+                    if (InputMethod.Current != null)
+                    {
+                        InputMethod.Current.ImeState = InputMethodState.On;
+                    }
                 }
             }
         }
 
         private KeyInfo RandomKey()
         {
-            KeyPos keyPos = keyList[randomizer.Next(0, keyList.Count)];
+            KeyPos keyPos = keyList[Randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
 
             if (key.ShiftKeyData == "")
@@ -107,7 +111,7 @@ namespace OpenTyping
                 return new KeyInfo(key.KeyData, keyPos, false);
             }
 
-            bool isShift = randomizer.Next(0, 2) == 0;
+            bool isShift = Randomizer.Next(0, 2) == 0;
             return new KeyInfo(isShift ? key.ShiftKeyData : key.KeyData, keyPos, isShift);
         }
 

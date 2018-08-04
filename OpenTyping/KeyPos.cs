@@ -9,8 +9,8 @@ namespace OpenTyping
 {
     public sealed class KeyPos : IEquatable<KeyPos>
     {
-        public int Row { get; set; }
-        public int Column { get; set; }
+        public int Row { get; }
+        public int Column { get; }
 
         public KeyPos(int row, int column)
         {
@@ -20,6 +20,15 @@ namespace OpenTyping
 
         public bool Equals(KeyPos other)
         {
+            if (other is null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
             return (Row == other.Row) && (Column == other.Column);
         }
 

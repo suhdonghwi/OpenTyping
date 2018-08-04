@@ -59,7 +59,7 @@ namespace OpenTyping
                 {
                     Key key = MainWindow.CurrentKeyLayout.KeyLayoutData[i][j];
 
-                    KeyBox keyBox = new KeyBox
+                    var keyBox = new KeyBox
                     {
                         Key = key,
                         Width = 50,

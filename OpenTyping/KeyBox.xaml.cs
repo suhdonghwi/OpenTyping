@@ -49,7 +49,7 @@ namespace OpenTyping
 
         public void PressToggle()
         {
-            double diff = 1.7;
+            const double diff = 1.7;
 
             if (Pressed)
             {

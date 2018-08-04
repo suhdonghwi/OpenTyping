@@ -14,19 +14,14 @@ namespace OpenTyping
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            if (sourceType == typeof(string))
-            {
-                return true;
-            }
-
-            return base.CanConvertFrom(context, sourceType);
+            return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
         }
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value is string)
+            if (value is string s)
             {
-                string[] splitedValue = Regex.Split((string)value, @"(?<!\\)(?:\\\\)*,");
+                string[] splitedValue = Regex.Split(s, @"(?<!\\)(?:\\\\)*,");
                 splitedValue = splitedValue.Select(str => str.Replace(@"\,", ",")).ToArray();
 
                 if (splitedValue.Count() == 1)
@@ -44,16 +39,14 @@ namespace OpenTyping
         {
             if (destinationType == typeof(string))
             {
-                Key keyValue = (Key)value;
+                var keyValue = (Key)value;
                 
                 if (string.IsNullOrEmpty(keyValue.ShiftKeyData))
                 {
                     return keyValue.KeyData.Replace(",", "\\,");
                 }
-                else
-                {
-                    return keyValue.KeyData.Replace(",", "\\,") + "," + keyValue.ShiftKeyData.Replace(",", "\\,");
-                }
+
+                return keyValue.KeyData.Replace(",", "\\,") + "," + keyValue.ShiftKeyData.Replace(",", "\\,");
             }
 
             return base.ConvertTo(context, culture, value, destinationType);
