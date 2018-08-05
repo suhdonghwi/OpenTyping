@@ -41,7 +41,8 @@
                   HorizontalAlignment="Left"
                   Width="150"
                   Height="110">
-            <local:KeyBox Key="{Binding Path=Stats.MostIncorrect.Key, 
+            <local:KeyBox x:Name="MostIncorrectKey"
+                          Key="{Binding Path=Stats.MostIncorrect.Key, 
                                         Source={x:Static local:MainWindow.CurrentKeyLayout},
                                         Converter={StaticResource KeyPosToKeyDataConverter}}"
                           Foreground="Black"

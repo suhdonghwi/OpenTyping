@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Data;
 using MahApps.Metro.Controls;
 using Newtonsoft.Json;
 using OpenTyping.Properties;
@@ -16,6 +19,7 @@ namespace OpenTyping
     public partial class MainWindow : MetroWindow
     {
         private IList<KeyLayout> keyLayouts;
+
         public static KeyLayout CurrentKeyLayout { get; private set; }
 
         public MainWindow()
@@ -88,6 +92,15 @@ namespace OpenTyping
             CurrentKeyLayout = GetCurrentKeyLayout();
 
             KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
+
+            var binding = new Binding
+            {
+                Path = new PropertyPath("Stats.MostIncorrect.Key"),
+                Source = CurrentKeyLayout,
+                Converter = new KeyPosToKeyConverter()
+            };
+
+            HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, binding);
         }
     }
 }
