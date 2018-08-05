@@ -128,6 +128,7 @@
     <Compile Include="KeyLayoutBox.xaml.cs">
       <DependentUpon>KeyLayoutBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KeyLayoutStats.cs" />
     <Compile Include="KeyPos.cs" />
     <Compile Include="KeyPracticeMenu.xaml.cs">
       <DependentUpon>KeyPracticeMenu.xaml</DependentUpon>
@@ -135,6 +136,7 @@
     <Compile Include="KeyPracticeWindow.xaml.cs">
       <DependentUpon>KeyPracticeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

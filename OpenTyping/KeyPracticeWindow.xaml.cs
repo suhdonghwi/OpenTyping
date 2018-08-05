@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -35,70 +36,40 @@ namespace OpenTyping
         public KeyInfo PreviousKey
         {
             get => previousKey;
-            private set
-            {
-                previousKey = value;
-                OnPropertyChanged("PreviousKey");
-            }
+            private set => SetField(ref previousKey, value);
         }
 
         private KeyInfo currentKey;
         public KeyInfo CurrentKey
         {
             get => currentKey;
-            private set
-            {
-                currentKey = value;
-                OnPropertyChanged("CurrentKey");
-            }
+            private set => SetField(ref currentKey, value);
         }
 
         private KeyInfo nextKey;
         public KeyInfo NextKey
         {
             get => nextKey;
-            private set
-            {
-                nextKey = value;
-                OnPropertyChanged("NextKey");
-            }
+            private set => SetField(ref nextKey, value);
         }
 
         private int correctCount = 0;
         public int CorrectCount
         {
             get => correctCount;
-            private set
-            {
-                correctCount = value;
-                OnPropertyChanged("CorrectCount");
-            }
+            private set => SetField(ref correctCount, value);
         }
 
         private int incorrectCount = 0;
         public int IncorrectCount
         {
             get => incorrectCount;
-            private set
-            {
-                incorrectCount = value;
-                OnPropertyChanged("IncorrectCount");
-            }
+            private set => SetField(ref incorrectCount, value);
         }
 
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public static readonly RoutedEvent IncorrectKeyEvent 
-            = EventManager.RegisterRoutedEvent("IncorrectKeyEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(KeyPracticeWindow));
-
-        public event RoutedEventHandler IncorrectKey
-        {
-            add => AddHandler(IncorrectKeyEvent, value);
-            remove => RemoveHandler(IncorrectKeyEvent, value);
-        }
 
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {
@@ -216,9 +187,19 @@ namespace OpenTyping
             }
         }
 
-        private void OnPropertyChanged(string propertyName)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
