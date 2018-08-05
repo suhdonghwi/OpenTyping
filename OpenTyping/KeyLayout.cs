@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
+using Newtonsoft.Json.Converters;
 
 namespace OpenTyping
 {
@@ -20,6 +22,9 @@ namespace OpenTyping
         public string Name { get; }
         public IList<IList<Key>> KeyLayoutData { get; }
         public List<KeyPos> DefaultKeys { get; set; }
+
+        [JsonProperty]
+        public KeyLayoutStats Stats { get; private set; } = new KeyLayoutStats();
 
         [JsonIgnore]
         public string Location { get; set; } = "";

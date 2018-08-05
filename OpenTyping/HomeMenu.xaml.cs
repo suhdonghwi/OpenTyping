@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace OpenTyping
 {
@@ -10,6 +13,20 @@ namespace OpenTyping
         public HomeMenu()
         {
             InitializeComponent();
+        }
+    }
+
+    public class KeyPosToKeyConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is null) return "(아직 없음)";
+            return MainWindow.CurrentKeyLayout[((KeyPos) value)];
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
         }
     }
 }

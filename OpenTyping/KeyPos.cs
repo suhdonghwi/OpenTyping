@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Input = System.Windows.Input;
 
 namespace OpenTyping
 {
+    [TypeConverter(typeof(KeyPosConverter))]
     public sealed class KeyPos : IEquatable<KeyPos>
     {
         public int Row { get; }

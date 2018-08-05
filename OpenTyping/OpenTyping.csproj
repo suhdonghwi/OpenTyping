@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="KeyLayoutStats.cs" />
     <Compile Include="KeyPos.cs" />
+    <Compile Include="KeyPosConverter.cs" />
     <Compile Include="KeyPracticeMenu.xaml.cs">
       <DependentUpon>KeyPracticeMenu.xaml</DependentUpon>
     </Compile>

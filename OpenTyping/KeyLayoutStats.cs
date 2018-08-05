@@ -6,22 +6,23 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OpenTyping.Annotations;
 
 namespace OpenTyping
 {
     public class KeyLayoutStats : INotifyPropertyChanged
     {
-        private IDictionary<KeyPos, int> keyIncorrectCount = new Dictionary<KeyPos, int>();
+        public Dictionary<KeyPos, int> KeyIncorrectCount { get; set; } = new Dictionary<KeyPos, int>();
 
-        private KeyValuePair<KeyPos, int> mostIncorrect = new KeyValuePair<KeyPos, int>();
+        private KeyValuePair<KeyPos, int> mostIncorrect;
         public KeyValuePair<KeyPos, int> MostIncorrect
         {
             get => mostIncorrect;
             set => SetField(ref mostIncorrect, value);
         }
 
-        private static IDictionary<TK, TV> MergeBy<TK, TV>(IDictionary<TK, TV> lhs, IDictionary<TK, TV> rhs, Func<TV, TV, TV> mergeFunc)
+        private static Dictionary<TK, TV> MergeBy<TK, TV>(Dictionary<TK, TV> lhs, Dictionary<TK, TV> rhs, Func<TV, TV, TV> mergeFunc)
         {
             var result = new Dictionary<TK, TV>();
 
@@ -42,7 +43,9 @@ namespace OpenTyping
         public void AddStats(KeyLayoutStats other)
         {
             int AddInt(int lhs, int rhs) => lhs + rhs;
-            keyIncorrectCount = MergeBy(keyIncorrectCount, other.keyIncorrectCount, AddInt);
+            KeyIncorrectCount = MergeBy(KeyIncorrectCount, other.KeyIncorrectCount, AddInt);
+
+            MostIncorrect = KeyIncorrectCount.FirstOrDefault(x => x.Value == KeyIncorrectCount.Values.Max());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

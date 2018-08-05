@@ -3,14 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d"
              d:DesignHeight="450" 
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:KeyPosToKeyConverter x:Key="KeyPosToKeyDataConverter"/>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical" 
-                Margin="5 0 5 5">
-        <StackPanel Orientation="Horizontal">
+                Margin="10 0 5 5">
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 0 0 10">
             <Image Source="{StaticResource AppIcon}" 
-                   Height="90" />
+                   Height="110"
+                   Margin="-5 0 0 0"/>
             <StackPanel Orientation="Vertical" 
                         Margin="7 0 0 0" 
                         VerticalAlignment="Center">
@@ -18,7 +26,27 @@
                            Style="{StaticResource NormalTextBlock}" 
                            FontWeight="Light" 
                            FontSize="42pt"/>
+                <TextBlock Text=": 현대적인 오픈 소스 타자 연습 프로그램"
+                           Style="{StaticResource NormalTextBlock}"
+                           FontSize="15pt"/>
             </StackPanel>
         </StackPanel>
+
+        <mah:Tile Title="가장 많이 틀린 키"
+                  TitleFontSize="13"
+                  FontFamily="{StaticResource NanumGothic}"
+                  Background="#e24541"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  HorizontalAlignment="Left"
+                  Width="150"
+                  Height="110">
+            <local:KeyBox Key="{Binding Path=Stats.MostIncorrect.Key, 
+                                        Source={x:Static local:MainWindow.CurrentKeyLayout},
+                                        Converter={StaticResource KeyPosToKeyDataConverter}}"
+                          Foreground="Black"
+                          Width="50"
+                          Margin="0 0 0 60"/>
+        </mah:Tile>
     </StackPanel>
 </UserControl>

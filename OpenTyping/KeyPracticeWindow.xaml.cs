@@ -31,6 +31,7 @@ namespace OpenTyping
         }
 
         private readonly IList<KeyPos> keyList;
+        private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -69,7 +70,6 @@ namespace OpenTyping
 
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
-
 
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {
@@ -125,6 +125,8 @@ namespace OpenTyping
 
             ShakeAnimation.KeyFrames = keyFrames;
 
+            this.Closed += KeyPracticeWindow_Closed;
+
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
             {
                 if (lang.LayoutName == "English")
@@ -137,6 +139,14 @@ namespace OpenTyping
                     }
                 }
             }
+        }
+
+        private void KeyPracticeWindow_Closed(object sender, EventArgs e)
+        {
+            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+            {
+                KeyIncorrectCount = incorrectStats
+            });
         }
 
         private KeyInfo RandomKey()
@@ -182,6 +192,9 @@ namespace OpenTyping
             else
             {
                 IncorrectCount++;
+
+                if (!incorrectStats.ContainsKey(CurrentKey.Pos)) incorrectStats[CurrentKey.Pos] = 1;
+                else incorrectStats[CurrentKey.Pos]++;
 
                 KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
             }
