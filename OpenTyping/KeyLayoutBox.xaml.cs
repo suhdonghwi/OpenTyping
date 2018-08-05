@@ -81,18 +81,28 @@ namespace OpenTyping
                 }
             }
 
-            if (Clickable) PressKeys();
+            if (Clickable) PressDefaultKeys();
         }
 
-        public void PressKeys()
+        public void PressKey(KeyPos pos)
         {
-            List<KeyPos> pressingKeys = MainWindow.CurrentKeyLayout.Pressing;
+            if (!keyLayout[pos.Row][pos.Column].Pressed) keyLayout[pos.Row][pos.Column].PressToggle();
+        }
+
+        public void ReleaseKey(KeyPos pos)
+        {
+            if (keyLayout[pos.Row][pos.Column].Pressed) keyLayout[pos.Row][pos.Column].PressToggle();
+        }
+
+        public void PressDefaultKeys()
+        {
+            List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
 
             for (int i = 0; i < keyLayout.Count(); i++)
             {
                 for (int j = 0; j < keyLayout[i].Count(); j++)
                 {
-                    if (pressingKeys.Contains(new KeyPos(i, j)))
+                    if (defaultKeys.Contains(new KeyPos(i, j)))
                     {
                         keyLayout[i][j].PressToggle();
                     }
@@ -121,7 +131,7 @@ namespace OpenTyping
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ((KeyBox)sender).PressToggle();
-            MainWindow.CurrentKeyLayout.Pressing = PressedKeys();
+            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
         }
     }
 }

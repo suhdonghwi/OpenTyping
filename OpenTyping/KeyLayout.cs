@@ -10,16 +10,16 @@ namespace OpenTyping
 {
     public class KeyLayout
     {
-        public KeyLayout(IList<IList<Key>> keyLayoutData, string name, List<KeyPos> pressing)
+        public KeyLayout(IList<IList<Key>> keyLayoutData, string name, List<KeyPos> defaultKeys)
         {
             KeyLayoutData = keyLayoutData;
             Name = name;
-            Pressing = pressing;
+            DefaultKeys = defaultKeys;
         }
 
         public string Name { get; }
         public IList<IList<Key>> KeyLayoutData { get; }
-        public List<KeyPos> Pressing { get; set; }
+        public List<KeyPos> DefaultKeys { get; set; }
 
         [JsonIgnore]
         public string Location { get; set; } = "";

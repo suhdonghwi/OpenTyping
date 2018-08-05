@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace OpenTyping
 {
@@ -75,6 +76,7 @@ namespace OpenTyping
             CurrentKey = RandomKey();
             NextKey = RandomKey();
 
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => KeyLayoutBox.PressKey(CurrentKey.KeyPos)));
             this.KeyDown += KeyPracticeWindow_KeyDown;
 
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
@@ -108,7 +110,11 @@ namespace OpenTyping
         private void MoveKey()
         {
             PreviousKey = CurrentKey;
+            KeyLayoutBox.ReleaseKey(PreviousKey.KeyPos);
+
             CurrentKey = NextKey;
+            KeyLayoutBox.PressKey(CurrentKey.KeyPos);
+
             NextKey = RandomKey();
         }
 
