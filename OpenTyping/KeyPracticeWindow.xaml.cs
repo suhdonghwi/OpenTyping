@@ -62,6 +62,28 @@ namespace OpenTyping
             }
         }
 
+        private int correctCount = 0;
+        public int CorrectCount
+        {
+            get => correctCount;
+            private set
+            {
+                correctCount = value;
+                OnPropertyChanged("CorrectCount");
+            }
+        }
+
+        private int incorrectCount = 0;
+        public int IncorrectCount
+        {
+            get => incorrectCount;
+            private set
+            {
+                incorrectCount = value;
+                OnPropertyChanged("IncorrectCount");
+            }
+        }
+
         private static readonly Random Randomizer = new Random();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -130,13 +152,12 @@ namespace OpenTyping
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
-                Debug.Print("Correct!");
+                CorrectCount++;
                 MoveKey();
             }
             else
             {
-                Debug.Print("Wrong!");
-            }
+                IncorrectCount++;            }
         }
 
         private void OnPropertyChanged(string propertyName)

@@ -5,6 +5,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:local="clr-namespace:OpenTyping"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                       mc:Ignorable="d"
                       Title="열린타자"
                       Width="800" 
@@ -55,6 +56,40 @@
                        VerticalAlignment="Center"/>
         </Grid>
 
+        <StackPanel Orientation="Horizontal"
+                    Margin="10 0 0 10">
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="LimeGreen">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                       Text="{Binding CorrectCount}"
+                       Margin="0 3 0 0"
+                       FontSize="14pt"/>
+
+            <Rectangle Width="1.5"
+                       SnapsToDevicePixels="True"
+                       Height="20"
+                       Margin="10 0 10 0" 
+                       Stroke="Gray"/>
+
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="Red">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                       Text="{Binding IncorrectCount}"
+                       Margin="0 3 0 0"
+                       FontSize="14pt"/>
+        </StackPanel>
         <local:KeyLayoutBox x:Name="KeyLayoutBox"
                             Clickable="False"
                             HorizontalAlignment="Center"/>
