@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace OpenTyping
@@ -85,8 +87,18 @@ namespace OpenTyping
         }
 
         private static readonly Random Randomizer = new Random();
+        private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public static readonly RoutedEvent IncorrectKeyEvent 
+            = EventManager.RegisterRoutedEvent("IncorrectKeyEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(KeyPracticeWindow));
+
+        public event RoutedEventHandler IncorrectKey
+        {
+            add => AddHandler(IncorrectKeyEvent, value);
+            remove => RemoveHandler(IncorrectKeyEvent, value);
+        }
 
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {
@@ -100,6 +112,47 @@ namespace OpenTyping
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => KeyLayoutBox.PressKey(CurrentKey.Pos)));
             this.KeyDown += KeyPracticeWindow_KeyDown;
+
+            double shakiness = 30;
+            const double shakeDiff = 3;
+            var keyFrames = new ThicknessKeyFrameCollection();
+
+            for(int timeSpan = 5; shakiness > 0;)
+            {
+                keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(0, 10, 0, 0))
+                {
+                    KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, timeSpan))
+                });
+                timeSpan += 5;
+
+                keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(shakiness, 10, 0, 0))
+                {
+                    KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, timeSpan))
+                });
+                timeSpan += 5;
+
+                keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(0, 10, 0, 0))
+                {
+                    KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, timeSpan))
+                });
+                timeSpan += 5;
+
+                keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(-shakiness, 10, 0, 0))
+                {
+                    KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, timeSpan))
+                });
+                timeSpan += 5;
+
+                keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(0, 10, 0, 0))
+                {
+                    KeyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, timeSpan))
+                });
+                timeSpan += 5;
+
+                shakiness -= shakeDiff;
+            }
+
+            ShakeAnimation.KeyFrames = keyFrames;
 
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
             {
@@ -157,7 +210,10 @@ namespace OpenTyping
             }
             else
             {
-                IncorrectCount++;            }
+                IncorrectCount++;
+
+                KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
+            }
         }
 
         private void OnPropertyChanged(string propertyName)

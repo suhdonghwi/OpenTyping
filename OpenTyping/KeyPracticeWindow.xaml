@@ -13,7 +13,8 @@
                       ResizeMode="CanMinimize"
                       Icon="{StaticResource AppIcon}">
     <StackPanel Orientation="Vertical">
-        <Grid Margin="0 10 0 0">
+        <Grid x:Name="KeyGrid"
+              Margin="0 10 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -33,7 +34,7 @@
                        Width="0.5"
                        SnapsToDevicePixels="True"
                        Height="60"
-                       Margin="10 0 15 0" 
+                       Margin="10 0 15 0"
                        Stroke="Gray"/>
             <TextBlock Grid.Column="2"
                        Text="{Binding CurrentKey.KeyData}"
