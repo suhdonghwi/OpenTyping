@@ -15,15 +15,15 @@ namespace OpenTyping
     {
         public class KeyInfo
         {
-            public KeyInfo(string keyData, KeyPos keyPos, bool isShift)
+            public KeyInfo(string keyData, KeyPos pos, bool isShift)
             {
                 KeyData = keyData;
-                KeyPos = keyPos;
+                Pos = pos;
                 IsShift = isShift;
             }
 
             public string KeyData { get; set; }
-            public KeyPos KeyPos { get; set; }
+            public KeyPos Pos { get; set; }
             public bool IsShift { get; set; }
         }
 
@@ -76,7 +76,7 @@ namespace OpenTyping
             CurrentKey = RandomKey();
             NextKey = RandomKey();
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => KeyLayoutBox.PressKey(CurrentKey.KeyPos)));
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => KeyLayoutBox.PressKey(CurrentKey.Pos)));
             this.KeyDown += KeyPracticeWindow_KeyDown;
 
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
@@ -110,10 +110,10 @@ namespace OpenTyping
         private void MoveKey()
         {
             PreviousKey = CurrentKey;
-            KeyLayoutBox.ReleaseKey(PreviousKey.KeyPos);
+            KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressKey(CurrentKey.KeyPos);
+            KeyLayoutBox.PressKey(CurrentKey.Pos);
 
             NextKey = RandomKey();
         }
@@ -128,7 +128,7 @@ namespace OpenTyping
 
             bool isShift = Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) || Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift);
             
-            if (CurrentKey.KeyPos == pos && CurrentKey.IsShift == isShift)
+            if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
                 Debug.Print("Correct!");
                 MoveKey();
