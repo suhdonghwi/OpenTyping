@@ -176,6 +176,8 @@ namespace OpenTyping
 
         private void KeyPracticeWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.IsRepeat) return;
+
             KeyPos pos = KeyPos.FromKeyCode(e.Key);
 
             if (e.Key == System.Windows.Input.Key.LeftShift || 

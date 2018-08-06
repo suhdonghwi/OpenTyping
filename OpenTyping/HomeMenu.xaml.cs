@@ -20,8 +20,7 @@ namespace OpenTyping
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is null) return new Key("(아직 없음)");
-            return MainWindow.CurrentKeyLayout[((KeyPos) value)];
+            return value is null ? new Key("(아직 없음)") : MainWindow.CurrentKeyLayout[((KeyPos) value)];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
