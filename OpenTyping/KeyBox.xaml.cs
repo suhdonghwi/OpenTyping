@@ -36,7 +36,13 @@ namespace OpenTyping
         public static readonly DependencyProperty ShadowColorProperty =
             DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.LightGray));
 
-        public Key Key { get; set; }
+        public Key Key
+        {
+            get => (Key)GetValue(KeyProperty);
+            set => SetValue(KeyProperty, value);
+        }
+        public static readonly DependencyProperty KeyProperty =
+            DependencyProperty.Register("Key", typeof(Key), typeof(KeyBox));
 
         public bool Pressed { get; private set; }
 
