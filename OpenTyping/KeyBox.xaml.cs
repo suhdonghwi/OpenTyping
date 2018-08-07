@@ -46,6 +46,8 @@ namespace OpenTyping
 
         public bool Pressed { get; private set; }
 
+        private double pressDiff = 1.7;
+
         public KeyBox()
         {
             InitializeComponent();
@@ -53,32 +55,36 @@ namespace OpenTyping
             this.DataContext = this;
         }
 
-        public void PressToggle()
+        public void Press(Brush keyColor, Brush shadowColor)
         {
-            const double diff = 1.7;
+            KeyTop.Height += pressDiff;
+            Canvas.SetTop(KeyTop, pressDiff);
+            KeyBack.Height -= pressDiff;
+            Canvas.SetTop(KeyBack, pressDiff);
 
-            if (Pressed)
-            {
-                KeyTop.Height -= diff;
-                Canvas.SetTop(KeyTop, 0);
-                KeyBack.Height += diff;
-                Canvas.SetTop(KeyBack, 0);
+            KeyColor = Brushes.LightGreen;
+            ShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
 
-                KeyColor = Brushes.White;
-                ShadowColor = Brushes.LightGray;
-            }
-            else
-            {
-                KeyTop.Height += diff;
-                Canvas.SetTop(KeyTop, diff);
-                KeyBack.Height -= diff;
-                Canvas.SetTop(KeyBack, diff);
+            Pressed = true;
+        }
 
-                KeyColor = Brushes.LightGreen;
-                ShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
-            }
+        public void Release()
+        {
+            KeyTop.Height -= pressDiff;
+            Canvas.SetTop(KeyTop, 0);
+            KeyBack.Height += pressDiff;
+            Canvas.SetTop(KeyBack, 0);
 
-            Pressed = !Pressed;
+            KeyColor = Brushes.White;
+            ShadowColor = Brushes.LightGray;
+
+            Pressed = false;
+        }
+
+        public void PressToggle(Brush keyColor, Brush shadowColor)
+        {
+            if (Pressed) Release();
+            else Press(keyColor, shadowColor);
         }
     }
 }

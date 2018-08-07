@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace OpenTyping
 {
@@ -20,6 +21,9 @@ namespace OpenTyping
         }
         public static readonly DependencyProperty ClickableProperty =
             DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
+
+        private static readonly Brush DefaultKeyColor = Brushes.LightGreen;
+        private static readonly Brush DefaultKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
 
         public KeyLayoutBox()
         {
@@ -81,20 +85,20 @@ namespace OpenTyping
                 }
             }
 
-            if (Clickable) PressDefaultKeys();
+            if (Clickable) PressDefaultKeys(DefaultKeyColor, DefaultKeyShadowColor);
         }
 
-        public void PressKey(KeyPos pos)
+        public void PressKey(KeyPos pos, Brush keyColor, Brush shadowColor)
         {
-            if (!keyLayout[pos.Row][pos.Column].Pressed) keyLayout[pos.Row][pos.Column].PressToggle();
+            keyLayout[pos.Row][pos.Column].Press(keyColor, shadowColor);
         }
 
         public void ReleaseKey(KeyPos pos)
         {
-            if (keyLayout[pos.Row][pos.Column].Pressed) keyLayout[pos.Row][pos.Column].PressToggle();
+            keyLayout[pos.Row][pos.Column].Release();
         }
 
-        public void PressDefaultKeys()
+        public void PressDefaultKeys(Brush keyColor, Brush shadowColor)
         {
             List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
 
@@ -104,7 +108,7 @@ namespace OpenTyping
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {
-                        keyLayout[i][j].PressToggle();
+                        keyLayout[i][j].Press(keyColor, shadowColor);
                     }
                 }
             }
@@ -130,7 +134,7 @@ namespace OpenTyping
 
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((KeyBox)sender).PressToggle();
+            ((KeyBox)sender).PressToggle(DefaultKeyColor, DefaultKeyShadowColor);
             MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
         }
     }

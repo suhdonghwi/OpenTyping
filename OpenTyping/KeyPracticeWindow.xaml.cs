@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
@@ -71,6 +72,9 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
+        private static readonly Brush CurrentKeyColor = Brushes.LightGreen;
+        private static readonly Brush CurrentKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
+
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {
             InitializeComponent();
@@ -81,7 +85,8 @@ namespace OpenTyping
             CurrentKey = RandomKey();
             NextKey = RandomKey();
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => KeyLayoutBox.PressKey(CurrentKey.Pos)));
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
+                                   new Action(() => KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor)));
             this.KeyDown += KeyPracticeWindow_KeyDown;
 
             double shakiness = 30;
@@ -169,7 +174,7 @@ namespace OpenTyping
             KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressKey(CurrentKey.Pos);
+            KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor);
 
             NextKey = RandomKey();
         }
