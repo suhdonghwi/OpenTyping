@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -74,6 +75,9 @@ namespace OpenTyping
 
         private static readonly Brush CurrentKeyColor = Brushes.LightGreen;
         private static readonly Brush CurrentKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
+
+        private static readonly Brush WrongKeyColor = new SolidColorBrush(Color.FromRgb(255, 192, 203));
+        private static readonly Brush WrongKeyShadowColor = new SolidColorBrush(Color.FromRgb(211, 148, 159));
 
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {
@@ -206,6 +210,12 @@ namespace OpenTyping
                 else incorrectStats[CurrentKey.Pos]++;
 
                 KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
+                this.Dispatcher.Invoke(async () =>
+                {
+                    KeyLayoutBox.PressKey(pos, WrongKeyColor, WrongKeyShadowColor);
+                    await Task.Delay(500);
+                    KeyLayoutBox.ReleaseKey(pos);
+                });
             }
         }
 
