@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace OpenTyping
 {
@@ -88,7 +90,11 @@ namespace OpenTyping
                 }
             }
 
-            if (Clickable) PressDefaultKeys(PressedKeyColor, PressedKeyShadowColor);
+            if (Clickable)
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle,
+                    new Action(() => PressDefaultKeys(PressedKeyColor, PressedKeyShadowColor)));
+            }
         }
 
         public void PressKey(KeyPos pos, Brush keyColor, Brush shadowColor)
@@ -115,18 +121,6 @@ namespace OpenTyping
                     }
                 }
             }
-        }
-
-        public void PressShift(Brush keyColor, Brush shadowColor)
-        {
-            LShiftKey.Press(keyColor, shadowColor);
-            RShiftKey.Press(keyColor, shadowColor);
-        }
-
-        public void ReleaseShift()
-        {
-            LShiftKey.Release();
-            RShiftKey.Release();
         }
 
         public List<KeyPos> PressedKeys()

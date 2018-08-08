@@ -86,11 +86,10 @@ namespace OpenTyping
             this.DataContext = this;
             this.keyList = keyList;
 
-            CurrentKey = RandomKey();
             NextKey = RandomKey();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
-                                   new Action(() => KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor)));
+                                   new Action(() => MoveKey()));
             this.KeyDown += KeyPracticeWindow_KeyDown;
 
             double shakiness = 30;
@@ -175,12 +174,23 @@ namespace OpenTyping
         private void MoveKey()
         {
             PreviousKey = CurrentKey;
-            KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
-            if (PreviousKey.IsShift) KeyLayoutBox.ReleaseShift();
+            if (PreviousKey != null)
+            {
+                KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
+                if (PreviousKey.IsShift)
+                {
+                    KeyLayoutBox.LShiftKey.Release();
+                    KeyLayoutBox.RShiftKey.Release();
+                }
+            }
 
             CurrentKey = NextKey;
             KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor);
-            if (CurrentKey.IsShift) KeyLayoutBox.PressShift(CurrentKeyColor, CurrentKeyShadowColor);
+            if (CurrentKey.IsShift)
+            {
+                KeyLayoutBox.LShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+                KeyLayoutBox.RShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+            }
 
             NextKey = RandomKey();
         }
@@ -195,7 +205,9 @@ namespace OpenTyping
                 e.Key == System.Windows.Input.Key.RightShift || 
                 pos == null) return;
 
-            bool isShift = Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) || Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift);
+            bool isLShift = Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift);
+            bool isRShift = Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift);
+            bool isShift = isLShift || isRShift;
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
@@ -213,8 +225,30 @@ namespace OpenTyping
                 this.Dispatcher.Invoke(async () =>
                 {
                     KeyLayoutBox.PressKey(pos, WrongKeyColor, WrongKeyShadowColor);
+                    if (isLShift) KeyLayoutBox.LShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);
+                    if (isRShift) KeyLayoutBox.RShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);
+
                     await Task.Delay(500);
-                    KeyLayoutBox.ReleaseKey(pos);
+
+                    if (CurrentKey.Pos == pos)
+                    {
+                        KeyLayoutBox.PressKey(pos, CurrentKeyColor, CurrentKeyShadowColor);
+                    }
+                    else
+                    {
+                        KeyLayoutBox.ReleaseKey(pos);
+                    }
+
+                    if (CurrentKey.IsShift)
+                    {
+                        if (isLShift) KeyLayoutBox.LShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+                        if (isRShift) KeyLayoutBox.RShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+                    }
+                    else
+                    {
+                        if (isLShift) KeyLayoutBox.LShiftKey.Release();
+                        if (isRShift) KeyLayoutBox.RShiftKey.Release();
+                    }
                 });
             }
         }

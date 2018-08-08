@@ -44,9 +44,9 @@ namespace OpenTyping
         public static readonly DependencyProperty KeyProperty =
             DependencyProperty.Register("Key", typeof(Key), typeof(KeyBox));
 
-        public bool Pressed { get; private set; }
+        public bool Pressed { get; private set; } = false;
 
-        private double pressDiff = 1.7;
+        private const double PressDiff = 1.7;
         private Brush defaultKeyColor;
         private Brush defaultShadowColor;
 
@@ -55,6 +55,8 @@ namespace OpenTyping
             InitializeComponent();
 
             this.DataContext = this;
+            defaultKeyColor = KeyColor;
+            defaultShadowColor = ShadowColor;
             Loaded += OnLoaded;
         }
 
@@ -66,10 +68,13 @@ namespace OpenTyping
 
         public void Press(Brush keyColor, Brush shadowColor)
         {
-            KeyTop.Height += pressDiff;
-            Canvas.SetTop(KeyTop, pressDiff);
-            KeyBack.Height -= pressDiff;
-            Canvas.SetTop(KeyBack, pressDiff);
+            if (!Pressed)
+            {
+                KeyTop.Height += PressDiff;
+                Canvas.SetTop(KeyTop, PressDiff);
+                KeyBack.Height -= PressDiff;
+                Canvas.SetTop(KeyBack, PressDiff);
+            }
 
             KeyColor = keyColor;
             ShadowColor = shadowColor;
@@ -79,10 +84,13 @@ namespace OpenTyping
 
         public void Release()
         {
-            KeyTop.Height -= pressDiff;
-            Canvas.SetTop(KeyTop, 0);
-            KeyBack.Height += pressDiff;
-            Canvas.SetTop(KeyBack, 0);
+            if (Pressed)
+            {
+                KeyTop.Height -= PressDiff;
+                Canvas.SetTop(KeyTop, 0);
+                KeyBack.Height += PressDiff;
+                Canvas.SetTop(KeyBack, 0);
+            }
 
             KeyColor = defaultKeyColor;
             ShadowColor = defaultShadowColor;
