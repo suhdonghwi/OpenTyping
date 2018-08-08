@@ -48,12 +48,14 @@
                           Width="103"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="LShiftKey"
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="Shift"
                           Width="130"/>
             <StackPanel x:Name="ThirdRow"
                         Style="{StaticResource KeyRowStyle}"/>
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="RShiftKey"
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="Shift"
                           Width="125"/>
         </StackPanel>

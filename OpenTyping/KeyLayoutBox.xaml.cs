@@ -22,8 +22,11 @@ namespace OpenTyping
         public static readonly DependencyProperty ClickableProperty =
             DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
 
-        private static readonly Brush DefaultKeyColor = Brushes.LightGreen;
-        private static readonly Brush DefaultKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
+        private static readonly Brush DefaultKeyColor = Brushes.White;
+        private static readonly Brush DefaultKeyShadowColor = Brushes.LightGray;
+
+        private static readonly Brush PressedKeyColor = Brushes.LightGreen;
+        private static readonly Brush PressedKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
 
         public KeyLayoutBox()
         {
@@ -85,7 +88,7 @@ namespace OpenTyping
                 }
             }
 
-            if (Clickable) PressDefaultKeys(DefaultKeyColor, DefaultKeyShadowColor);
+            if (Clickable) PressDefaultKeys(PressedKeyColor, PressedKeyShadowColor);
         }
 
         public void PressKey(KeyPos pos, Brush keyColor, Brush shadowColor)
@@ -114,6 +117,18 @@ namespace OpenTyping
             }
         }
 
+        public void PressShift(Brush keyColor, Brush shadowColor)
+        {
+            LShiftKey.Press(keyColor, shadowColor);
+            RShiftKey.Press(keyColor, shadowColor);
+        }
+
+        public void ReleaseShift()
+        {
+            LShiftKey.Release();
+            RShiftKey.Release();
+        }
+
         public List<KeyPos> PressedKeys()
         {
             var result = new List<KeyPos>();
@@ -134,7 +149,7 @@ namespace OpenTyping
 
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((KeyBox)sender).PressToggle(DefaultKeyColor, DefaultKeyShadowColor);
+            ((KeyBox)sender).PressToggle(DefaultKeyColor, DefaultKeyShadowColor, PressedKeyColor, PressedKeyShadowColor);
             MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
         }
     }

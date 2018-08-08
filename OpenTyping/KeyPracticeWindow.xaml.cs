@@ -172,9 +172,11 @@ namespace OpenTyping
         {
             PreviousKey = CurrentKey;
             KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
+            if (PreviousKey.IsShift) KeyLayoutBox.ReleaseShift();
 
             CurrentKey = NextKey;
             KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor);
+            if (CurrentKey.IsShift) KeyLayoutBox.PressShift(CurrentKeyColor, CurrentKeyShadowColor);
 
             NextKey = RandomKey();
         }
