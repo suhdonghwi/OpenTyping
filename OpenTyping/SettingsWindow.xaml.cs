@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using System;
+using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using OpenTyping.Properties;
 using System.Collections.Generic;
@@ -72,29 +73,29 @@ namespace OpenTyping
 
             if (dataFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                string dataFileName = Path.GetFileName(dataFileDialog.FileName);
+                string dataFileLocation = dataFileDialog.FileName;
+                string dataFileName = Path.GetFileName(dataFileLocation);
                 string destLocation =
-                    (string)Settings.Default["KeyLayoutDataDir"] + "/" + dataFileName;
+                    Path.Combine((string)Settings.Default["KeyLayoutDataDir"], dataFileName);
 
                 if (File.Exists(destLocation))
                 {
-                    MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.", 
-                                    "열린타자",
-                                    MessageBoxButton.OK, 
-                                    MessageBoxImage.Error);
+                    MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.",
+                        "열린타자",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                 }
                 else
                 {
-                    File.Copy(dataFileName, destLocation);
+                    File.Copy(dataFileLocation, destLocation);
 
                     KeyLayout keyLayout = KeyLayout.Load(destLocation);
                     KeyLayouts.Add(keyLayout);
                     SelectedKeyLayout = keyLayout;
                 }
-                
-            }
 
-            this.Focus();
+                this.Focus();
+            }
         }
 
         private void RemoveKeyLayoutButton_Click(object sender, RoutedEventArgs e)
