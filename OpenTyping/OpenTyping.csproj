@@ -126,6 +126,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InvalidPracticeDataException.cs" />
     <Compile Include="KeyBox.xaml.cs">
       <DependentUpon>KeyBox.xaml</DependentUpon>
     </Compile>
@@ -142,6 +143,7 @@
     <Compile Include="KeyPracticeWindow.xaml.cs">
       <DependentUpon>KeyPracticeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticeData.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SentencePracticeMenu.xaml.cs">
       <DependentUpon>SentencePracticeMenu.xaml</DependentUpon>
