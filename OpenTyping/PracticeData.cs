@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -75,6 +76,31 @@ namespace OpenTyping
             practiceData.Location = dataFileLocation;
 
             return practiceData;
+        }
+
+        public static IList<PracticeData> LoadFromDirectory(string dataDirectory)
+        {
+            var practiceDataList = new List<PracticeData>();
+
+            Directory.CreateDirectory(dataDirectory);
+            string[] practiceDataFiles = Directory.GetFiles(dataDirectory, "*.json");
+
+            foreach (string practiceDataFile in practiceDataFiles)
+            {
+                PracticeData practiceData = Load(practiceDataFile);
+
+                if (practiceDataList.Any(data => data.Name == practiceData.Name))
+                {
+                    MessageBox.Show("연습 데이터 이름 \"" + practiceData.Name + "\" 이 중복되게 존재합니다.",
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                    Environment.Exit(-1);
+                }
+                practiceDataList.Add(practiceData);
+            }
+
+            return practiceDataList;
         }
     }
 }
