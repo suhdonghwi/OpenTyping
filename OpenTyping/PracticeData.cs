@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Windows;
 
 namespace OpenTyping
 {
@@ -47,6 +50,29 @@ namespace OpenTyping
                 const string message = "연습 데이터의 문자 종류(Character 필드)가 주어지지 않았습니다.";
                 throw new InvalidPracticeDataException(message);
             }
+
+            return practiceData;
+        }
+
+        public static PracticeData Load(string dataFileLocation)
+        {
+            string dataLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
+            PracticeData practiceData = null;
+
+            try
+            {
+                practiceData = Parse(dataLines);
+            }
+            catch (InvalidPracticeDataException ex)
+            {
+                MessageBox.Show(dataFileLocation + " : " + ex.Message, 
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                Environment.Exit(-1);
+            }
+
+            practiceData.Location = dataFileLocation;
 
             return practiceData;
         }
