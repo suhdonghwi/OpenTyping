@@ -77,13 +77,14 @@
                                Height="25">
                         <Rectangle.OpacityMask>
                             <VisualBrush Stretch="Uniform" 
-                                         Visual="{iconPacks:FontAwesome PencilAltSolid}" />
+                                         Visual="{iconPacks:FontAwesome Kind=PencilAltSolid}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <Label Style="{StaticResource TabItemLabel}"
                            Content="문장연습"/>
                 </StackPanel>
             </TabItem.Header>
+            <local:SentencePracticeMenu x:Name="SentencePracticeMenu"/>
         </TabItem>
         <TabItem>
             <TabItem.Header>

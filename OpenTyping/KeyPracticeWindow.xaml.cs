@@ -89,7 +89,7 @@ namespace OpenTyping
             NextKey = RandomKey();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
-                                   new Action(() => MoveKey()));
+                                   new Action(MoveKey));
             this.KeyDown += KeyPracticeWindow_KeyDown;
 
             double shakiness = 30;

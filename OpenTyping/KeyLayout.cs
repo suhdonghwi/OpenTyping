@@ -12,14 +12,16 @@ namespace OpenTyping
 {
     public class KeyLayout
     {
-        public KeyLayout(IList<IList<Key>> keyLayoutData, string name, List<KeyPos> defaultKeys)
-        {
-            KeyLayoutData = keyLayoutData;
+        public KeyLayout(string name, string character, IList<IList<Key>> keyLayoutData, List<KeyPos> defaultKeys)
+        {  
             Name = name;
+            Character = character;
+            KeyLayoutData = keyLayoutData;
             DefaultKeys = defaultKeys;
         }
 
         public string Name { get; }
+        public string Character { get; }
         public IList<IList<Key>> KeyLayoutData { get; }
         public List<KeyPos> DefaultKeys { get; set; }
 
