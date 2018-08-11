@@ -132,7 +132,7 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                IList<KeyLayout> keyLayouts = KeyLayout.LoadKeyLayouts(dataFileDirDialog.FileName);
+                IList<KeyLayout> keyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
 
                 if (keyLayouts.Count == 0)
                 {

@@ -85,7 +85,7 @@ namespace OpenTyping
             return keyLayout;
         }
 
-        public static IList<KeyLayout> LoadKeyLayouts(string layoutsDirectory)
+        public static IList<KeyLayout> LoadFromDirectory(string layoutsDirectory)
         {
             var keyLayouts = new List<KeyLayout>();
 

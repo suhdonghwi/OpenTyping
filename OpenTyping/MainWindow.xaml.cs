@@ -34,7 +34,7 @@ namespace OpenTyping
                 Settings.Default["KeyLayoutDataDir"] = layoutsDirectory;
             }
 
-            keyLayouts = KeyLayout.LoadKeyLayouts((string)Settings.Default["KeyLayoutDataDir"]);
+            keyLayouts = KeyLayout.LoadFromDirectory((string)Settings.Default["KeyLayoutDataDir"]);
 
             if (keyLayouts.Count == 0)
             {
