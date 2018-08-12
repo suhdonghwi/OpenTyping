@@ -106,10 +106,12 @@ namespace OpenTyping
             foreach (string keyLayoutFile in keyLayoutFiles)
             {
                 KeyLayout keyLayout = Load(keyLayoutFile);
+                KeyLayout duplicate = keyLayouts.Find(kl => kl.Name == keyLayout.Name);
 
-                if (keyLayouts.Any(kl => kl.Name == keyLayout.Name))
+                if (duplicate != null)
                 {
-                    MessageBox.Show("자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.",
+                    MessageBox.Show("자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.\n" +
+                                    keyLayout.Location + "\n" + duplicate.Location + ")",
                                     "열린타자",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);

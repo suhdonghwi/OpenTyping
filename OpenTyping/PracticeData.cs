@@ -99,10 +99,12 @@ namespace OpenTyping
             foreach (string practiceDataFile in practiceDataFiles)
             {
                 PracticeData practiceData = Load(practiceDataFile);
+                PracticeData duplicate = practiceDataList.Find(data => data.Name == practiceData.Name);
 
-                if (practiceDataList.Any(data => data.Name == practiceData.Name))
+                if (duplicate != null)
                 {
-                    MessageBox.Show("연습 데이터 이름 \"" + practiceData.Name + "\" 이 중복되게 존재합니다.",
+                    MessageBox.Show("연습 데이터 이름 \"" + practiceData.Name + "\" 이 중복되게 존재합니다.\n" +
+                                    practiceData.Location + "\n" + duplicate.Location + ")",
                                     "열린타자",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
