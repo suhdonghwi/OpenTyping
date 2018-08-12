@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +15,7 @@ namespace OpenTyping
     /// <summary>
     ///     SettingWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SettingsWindow : MetroWindow
+    public partial class SettingsWindow : MetroWindow, INotifyPropertyChanged
     {
         public ObservableCollection<KeyLayout> KeyLayouts { get; }
 
@@ -22,22 +23,14 @@ namespace OpenTyping
         public string KeyLayoutDataDir
         {
             get => keyLayoutDataDir;
-            private set
-            {
-                keyLayoutDataDir = value;
-                KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
-            }
+            private set => SetField(ref keyLayoutDataDir, value);
         } 
 
         private KeyLayout selectedKeyLayout;
         public KeyLayout SelectedKeyLayout
         {
             get => selectedKeyLayout;
-            set
-            {
-                selectedKeyLayout = value;
-                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateTarget();
-            }
+            set => SetField(ref selectedKeyLayout, value);
         }
 
         public SettingsWindow()
@@ -80,14 +73,13 @@ namespace OpenTyping
                 if (File.Exists(destLocation))
                 {
                     MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.",
-                        "열린타자",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                 }
                 else
                 {
                     File.Copy(dataFileLocation, destLocation);
-
                     KeyLayout keyLayout = KeyLayout.Load(destLocation);
                     KeyLayouts.Add(keyLayout);
                     SelectedKeyLayout = keyLayout;
@@ -169,6 +161,21 @@ namespace OpenTyping
             Settings.Default["KeyLayoutDataDir"] = KeyLayoutDataDir;
 
             Settings.Default.Save();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
