@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Data;
 using MahApps.Metro.Controls;
@@ -20,9 +18,9 @@ namespace OpenTyping
     {
         public static KeyLayout CurrentKeyLayout { get; private set; }
 
-        private const string KeyLayoutDataDir = "KeyLayoutDataDir";
-        private const string KeyLayout = "KeyLayout";
-        private const string PracticeDataDir = "PracticeDataDir";
+        public const string KeyLayoutDataDir = "KeyLayoutDataDir";
+        public const string KeyLayout = "KeyLayout";
+        public const string PracticeDataDir = "PracticeDataDir";
 
         public MainWindow()
         {
@@ -46,16 +44,6 @@ namespace OpenTyping
 
             var keyLayouts =
                 new List<KeyLayout>(OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDir]));
-
-            if (keyLayouts.Count == 0)
-            {
-                MessageBox.Show("경로 " + (string)Settings.Default[KeyLayoutDataDir] +
-                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                Environment.Exit(-1);
-            }
 
             var layoutName = (string)Settings.Default[KeyLayout];
             KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);

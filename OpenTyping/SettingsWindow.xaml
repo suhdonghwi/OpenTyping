@@ -62,6 +62,7 @@
                                       FontSize="11pt"
                                       HorizontalAlignment="Left"
                                       SelectedItem="{Binding SelectedKeyLayout, Mode=TwoWay}"
+                                      ItemsSource="{Binding KeyLayouts}"
                                       DisplayMemberPath="Name"/>
                             <Button x:Name="AddKeyLayoutButton"
                                     Background="LightGreen"

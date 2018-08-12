@@ -17,9 +17,14 @@ namespace OpenTyping
     /// </summary>
     public partial class SettingsWindow : MetroWindow, INotifyPropertyChanged
     {
-        public ObservableCollection<KeyLayout> KeyLayouts { get; }
+        private ObservableCollection<KeyLayout> keyLayouts;
+        public ObservableCollection<KeyLayout> KeyLayouts
+        {
+            get => keyLayouts;
+            private set => SetField(ref keyLayouts, value);
+        }
 
-        private string keyLayoutDataDir = (string)Settings.Default["KeyLayoutDataDir"];
+        private string keyLayoutDataDir = (string)Settings.Default[MainWindow.KeyLayoutDataDir];
         public string KeyLayoutDataDir
         {
             get => keyLayoutDataDir;
@@ -41,10 +46,9 @@ namespace OpenTyping
             this.DataContext = this;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
-            KeyLayoutsCombo.ItemsSource = KeyLayouts;
 
-            var currentKeyLayout = (string)Settings.Default["KeyLayout"];
-            foreach (KeyLayout item in KeyLayoutsCombo.Items)
+            var currentKeyLayout = (string)Settings.Default[MainWindow.KeyLayout];
+            foreach (KeyLayout item in KeyLayouts)
             {
                 if (item.Name == currentKeyLayout)
                 {
@@ -68,7 +72,7 @@ namespace OpenTyping
                 string dataFileLocation = dataFileDialog.FileName;
                 string dataFileName = Path.GetFileName(dataFileLocation);
                 string destLocation =
-                    Path.Combine((string)Settings.Default["KeyLayoutDataDir"], dataFileName);
+                    Path.Combine((string)Settings.Default[MainWindow.KeyLayoutDataDir], dataFileName);
 
                 if (File.Exists(destLocation))
                 {
@@ -123,7 +127,7 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                IList<KeyLayout> keyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
+                IList<KeyLayout> newKeyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
 
                 if (keyLayouts.Count == 0)
                 {
@@ -136,13 +140,7 @@ namespace OpenTyping
                 else
                 {
                     KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayouts.Clear();
-
-                    foreach (KeyLayout keyLayout in keyLayouts)
-                    {
-                        KeyLayouts.Add(keyLayout);
-                    }
-
+                    KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
                     SelectedKeyLayout = KeyLayouts[0];
                 }
             }
@@ -157,8 +155,8 @@ namespace OpenTyping
 
         private void OnClose(object sender, CancelEventArgs e)
         {
-            Settings.Default["KeyLayout"] = SelectedKeyLayout.Name;
-            Settings.Default["KeyLayoutDataDir"] = KeyLayoutDataDir;
+            Settings.Default[MainWindow.KeyLayout] = SelectedKeyLayout.Name;
+            Settings.Default[MainWindow.KeyLayoutDataDir] = KeyLayoutDataDir;
 
             Settings.Default.Save();
         }

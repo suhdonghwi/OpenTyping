@@ -13,10 +13,10 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0"
-                   Margin="5">
+                   Margin="14 5 14 10">
             <StackPanel DockPanel.Dock="Top"
                         Orientation="Vertical"
-                        Margin="9 0 0 12">
+                        Margin="0 0 0 12">
                 <StackPanel Orientation="Horizontal"
                             Margin="0 0 0 2">
                     <Rectangle Width="40" 
@@ -42,11 +42,11 @@
                 </Grid.ColumnDefinitions>
 
                 <ListBox Grid.Column="0"
-                         BorderThickness="1">
-                    <ListBoxItem>ListBox Item #1</ListBoxItem>
-                    <ListBoxItem>ListBox Item #2</ListBoxItem>
-                    <ListBoxItem>ListBox Item #3</ListBoxItem>
-                </ListBox>
+                         BorderThickness="1"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="13pt"
+                         ItemsSource="{Binding PracticeDataList}"
+                         DisplayMemberPath="Name"/>
             </Grid>
         </DockPanel>
 

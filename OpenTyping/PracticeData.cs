@@ -5,10 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using OpenTyping.Properties;
 
 namespace OpenTyping
 {
-    internal class PracticeData
+    public class PracticeData
     {
         public PracticeData(string name, IList<string> textData, string character)
         {
@@ -84,6 +85,16 @@ namespace OpenTyping
 
             Directory.CreateDirectory(dataDirectory);
             string[] practiceDataFiles = Directory.GetFiles(dataDirectory, "*.json");
+
+            if (!practiceDataFiles.Any())
+            {
+                MessageBox.Show("경로 " + (string)Settings.Default[MainWindow.PracticeDataDir] +
+                                "에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                Environment.Exit(-1);
+            }
 
             foreach (string practiceDataFile in practiceDataFiles)
             {

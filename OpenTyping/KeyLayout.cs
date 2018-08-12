@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OpenTyping.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -91,6 +92,16 @@ namespace OpenTyping
 
             Directory.CreateDirectory(layoutsDirectory);
             string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.json");
+
+            if (!keyLayoutFiles.Any())
+            {
+                MessageBox.Show("경로 " + (string)Settings.Default[MainWindow.KeyLayoutDataDir] +
+                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                Environment.Exit(-1);
+            }
 
             foreach (string keyLayoutFile in keyLayoutFiles)
             {
