@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace OpenTyping
 {
-    class PracticeData
+    internal class PracticeData
     {
         public PracticeData(string name, IList<string> textData, string character)
         {

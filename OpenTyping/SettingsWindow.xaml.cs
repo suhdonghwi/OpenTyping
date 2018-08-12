@@ -18,8 +18,7 @@ namespace OpenTyping
     {
         public ObservableCollection<KeyLayout> KeyLayouts { get; }
 
-        public string keyLayoutDataDir = (string)Settings.Default["KeyLayoutDataDir"];
-
+        private string keyLayoutDataDir = (string)Settings.Default["KeyLayoutDataDir"];
         public string KeyLayoutDataDir
         {
             get => keyLayoutDataDir;
@@ -41,14 +40,14 @@ namespace OpenTyping
             }
         }
 
-        public SettingsWindow(IEnumerable<KeyLayout> keyLayouts)
+        public SettingsWindow()
         {
             InitializeComponent();
 
             this.Closing += this.OnClose;
             this.DataContext = this;
 
-            KeyLayouts = new ObservableCollection<KeyLayout>(keyLayouts);
+            KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
             KeyLayoutsCombo.ItemsSource = KeyLayouts;
 
             var currentKeyLayout = (string)Settings.Default["KeyLayout"];

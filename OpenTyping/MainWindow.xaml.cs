@@ -18,27 +18,38 @@ namespace OpenTyping
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private IList<KeyLayout> keyLayouts;
-
         public static KeyLayout CurrentKeyLayout { get; private set; }
+
+        private const string KeyLayoutDataDir = "KeyLayoutDataDir";
+        private const string KeyLayout = "KeyLayout";
+        private const string PracticeDataDir = "PracticeDataDir";
 
         public MainWindow()
         {
             this.DataContext = this;
 
-            if (string.IsNullOrEmpty((string)Settings.Default["KeyLayoutDataDir"]))
+            string exeDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            if (exeDirectory is null)
             {
-                string exeDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-                string layoutsDirectory = Path.Combine(exeDirectory, "layouts");
-
-                Settings.Default["KeyLayoutDataDir"] = layoutsDirectory;
+                MessageBox.Show("응용 프로그램 경로를 찾는 도중 에러가 발생했습니다.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                Environment.Exit(-1);
             }
 
-            keyLayouts = KeyLayout.LoadFromDirectory((string)Settings.Default["KeyLayoutDataDir"]);
+            if (string.IsNullOrEmpty((string)Settings.Default[KeyLayoutDataDir]))
+            {
+                string layoutsDirectory = Path.Combine(exeDirectory, "layouts");
+                Settings.Default[KeyLayoutDataDir] = layoutsDirectory;
+            }
+
+            var keyLayouts =
+                new List<KeyLayout>(OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDir]));
 
             if (keyLayouts.Count == 0)
             {
-                MessageBox.Show("경로 " + (string)Settings.Default["KeyLayoutDataDir"] +
+                MessageBox.Show("경로 " + (string)Settings.Default[KeyLayoutDataDir] +
                                 "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
                                 "열린타자",
                                 MessageBoxButton.OK,
@@ -46,28 +57,37 @@ namespace OpenTyping
                 Environment.Exit(-1);
             }
 
-            if (GetCurrentKeyLayout() == null)
+            var layoutName = (string)Settings.Default[KeyLayout];
+            KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
+
+            if (currentKeylayout == null)
             {
-                if (keyLayouts.Any(kl => kl.Name == "두벌식 표준"))
+                KeyLayout dubeolsikLayout = keyLayouts.Find(keyLayout => keyLayout.Name == "두벌식 표준");
+
+                if (dubeolsikLayout != null)
                 {
-                    Settings.Default["KeyLayout"] = "두벌식 표준";
+                    Settings.Default[KeyLayout] = dubeolsikLayout.Name;
+                    CurrentKeyLayout = dubeolsikLayout;
                 }
                 else
                 {
-                    Settings.Default["KeyLayout"] = keyLayouts[0].Name;
+                    Settings.Default[KeyLayout] = keyLayouts[0].Name;
+                    CurrentKeyLayout = keyLayouts[0];
                 }
             }
+            else
+            {
+                CurrentKeyLayout = currentKeylayout;
+            }
 
-            CurrentKeyLayout = GetCurrentKeyLayout();
-
+            if (string.IsNullOrEmpty((string)Settings.Default[PracticeDataDir]))
+            {
+                string dataDirectory = Path.Combine(exeDirectory, "data");
+                Settings.Default[PracticeDataDir] = dataDirectory;
+            }
+            
             InitializeComponent();
             this.Closed += MainWindow_Closed;
-        }
-
-        private KeyLayout GetCurrentKeyLayout()
-        {
-            var layoutName = (string)Settings.Default["KeyLayout"];
-            return keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
         }
 
         private static void SaveKeyLayout()
@@ -83,13 +103,11 @@ namespace OpenTyping
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow(keyLayouts);
+            var settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
 
-            keyLayouts = settingsWindow.KeyLayouts;
-
             SaveKeyLayout();
-            CurrentKeyLayout = GetCurrentKeyLayout();
+            CurrentKeyLayout = settingsWindow.SelectedKeyLayout;
 
             KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
 

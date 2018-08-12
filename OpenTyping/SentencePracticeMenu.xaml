@@ -12,10 +12,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    Orientation="Vertical"
-                    Margin="5">
-            <StackPanel Orientation="Vertical"
+        <DockPanel Grid.Row="0"
+                   Margin="5">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Vertical"
                         Margin="9 0 0 12">
                 <StackPanel Orientation="Horizontal"
                             Margin="0 0 0 2">
@@ -35,6 +35,36 @@
                            Style="{StaticResource NormalTextBlock}" 
                            FontSize="14pt"/>
             </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox Grid.Column="0"
+                         BorderThickness="1">
+                    <ListBoxItem>ListBox Item #1</ListBoxItem>
+                    <ListBoxItem>ListBox Item #2</ListBoxItem>
+                    <ListBoxItem>ListBox Item #3</ListBoxItem>
+                </ListBox>
+            </Grid>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1"
+                    Style="{StaticResource ControlButtonStackPanel}">
+            <Button x:Name="StartButton">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18"
+                               Height="15" 
+                               Fill="Green">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:Modern Kind=ArrowRight}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource ControlButtonText}"
+                               Text="연습 시작"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
