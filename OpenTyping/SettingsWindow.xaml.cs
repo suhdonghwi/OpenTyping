@@ -29,7 +29,14 @@ namespace OpenTyping
         {
             get => keyLayoutDataDir;
             private set => SetField(ref keyLayoutDataDir, value);
-        } 
+        }
+
+        private ObservableCollection<PracticeData> practiceDataList;
+        public ObservableCollection<PracticeData> PracticeDataList
+        {
+            get => practiceDataList;
+            private set => SetField(ref practiceDataList, value);
+        }
 
         private string practiceDataDir = (string)Settings.Default[MainWindow.PracticeDataDir];
         public string PracticeDataDir
@@ -133,11 +140,18 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                IList<KeyLayout> newKeyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
+                try
+                {
+                    IList<KeyLayout> newKeyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
 
-                KeyLayoutDataDir = dataFileDirDialog.FileName;
-                KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
-                SelectedKeyLayout = KeyLayouts[0];
+                    KeyLayoutDataDir = dataFileDirDialog.FileName;
+                    KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
+                    SelectedKeyLayout = KeyLayouts[0];
+                }
+                catch (KeyLayoutLoadFail ex)
+                {
+                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             this.Focus();
@@ -153,9 +167,15 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                PracticeData.LoadFromDirectory(dataFileDirDialog.FileName);
-
-                PracticeDataDir = dataFileDirDialog.FileName;
+                try
+                {
+                    PracticeData.LoadFromDirectory(dataFileDirDialog.FileName);
+                    PracticeDataDir = dataFileDirDialog.FileName;
+                }
+                catch (PracticeDataLoadFail ex)
+                {
+                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             this.Focus();

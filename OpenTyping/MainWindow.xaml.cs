@@ -40,30 +40,39 @@ namespace OpenTyping
                 Settings.Default[KeyLayoutDataDir] = layoutsDirectory;
             }
 
-            var keyLayouts =
-                new List<KeyLayout>(OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDir]));
-
-            var layoutName = (string)Settings.Default[KeyLayout];
-            KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
-
-            if (currentKeylayout == null)
+            try
             {
-                KeyLayout dubeolsikLayout = keyLayouts.Find(keyLayout => keyLayout.Name == "두벌식 표준");
+                var keyLayouts =
+                    new List<KeyLayout>(
+                        OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDir]));
 
-                if (dubeolsikLayout != null)
+                var layoutName = (string)Settings.Default[KeyLayout];
+                KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
+
+                if (currentKeylayout == null)
                 {
-                    Settings.Default[KeyLayout] = dubeolsikLayout.Name;
-                    CurrentKeyLayout = dubeolsikLayout;
+                    KeyLayout dubeolsikLayout = keyLayouts.Find(keyLayout => keyLayout.Name == "두벌식 표준");
+
+                    if (dubeolsikLayout != null)
+                    {
+                        Settings.Default[KeyLayout] = dubeolsikLayout.Name;
+                        CurrentKeyLayout = dubeolsikLayout;
+                    }
+                    else
+                    {
+                        Settings.Default[KeyLayout] = keyLayouts[0].Name;
+                        CurrentKeyLayout = keyLayouts[0];
+                    }
                 }
                 else
                 {
-                    Settings.Default[KeyLayout] = keyLayouts[0].Name;
-                    CurrentKeyLayout = keyLayouts[0];
+                    CurrentKeyLayout = currentKeylayout;
                 }
             }
-            else
+            catch (KeyLayoutLoadFail ex)
             {
-                CurrentKeyLayout = currentKeylayout;
+                MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(-1);
             }
 
             if (string.IsNullOrEmpty((string)Settings.Default[PracticeDataDir]))

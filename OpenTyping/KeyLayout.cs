@@ -91,16 +91,13 @@ namespace OpenTyping
             var keyLayouts = new List<KeyLayout>();
 
             Directory.CreateDirectory(layoutsDirectory);
-            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.json");
+            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*Layout.json");
 
             if (!keyLayoutFiles.Any())
             {
-                MessageBox.Show("경로 " + (string)Settings.Default[MainWindow.KeyLayoutDataDir] +
-                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                Environment.Exit(-1);
+                string message = "경로 " + (string) Settings.Default[MainWindow.KeyLayoutDataDir] +
+                                 "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.";
+                throw new KeyLayoutLoadFail(message);
             }
 
             foreach (string keyLayoutFile in keyLayoutFiles)
@@ -110,12 +107,9 @@ namespace OpenTyping
 
                 if (duplicate != null)
                 {
-                    MessageBox.Show("자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.\n" +
-                                    keyLayout.Location + "\n" + duplicate.Location + ")",
-                                    "열린타자",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
-                    Environment.Exit(-1);
+                    string message = "자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.\n" +
+                                     keyLayout.Location + "\n" + duplicate.Location;
+                    throw new KeyLayoutLoadFail(message);
                 }
                 keyLayouts.Add(keyLayout);
             }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using OpenTyping.Properties;
 
@@ -38,9 +39,17 @@ namespace OpenTyping
 
         public void LoadData()
         {
-            PracticeDataList =
-                new ObservableCollection<PracticeData>(
-                    PracticeData.LoadFromDirectory((string)Settings.Default[MainWindow.PracticeDataDir]));
+            try
+            {
+                PracticeDataList =
+                    new ObservableCollection<PracticeData>(
+                        PracticeData.LoadFromDirectory((string)Settings.Default[MainWindow.PracticeDataDir]));
+            }
+            catch (PracticeDataLoadFail ex)
+            {
+                MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(-1);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

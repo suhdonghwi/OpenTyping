@@ -134,6 +134,8 @@
     <Compile Include="KeyLayoutBox.xaml.cs">
       <DependentUpon>KeyLayoutBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticeDataLoadFail.cs" />
+    <Compile Include="KeyLayoutLoadFail.cs" />
     <Compile Include="KeyLayoutStats.cs" />
     <Compile Include="KeyPos.cs" />
     <Compile Include="KeyPosConverter.cs" />
