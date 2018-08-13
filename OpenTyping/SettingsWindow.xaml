@@ -1,25 +1,25 @@
-﻿<controls:MetroWindow x:Name="SelfWindow"
-                      x:Class="OpenTyping.SettingsWindow"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      mc:Ignorable="d"
-                      Title="설정" 
-                      Width="500" 
-                      Height="450"
-                      ResizeMode="CanMinimize"
-                      Icon="{StaticResource AppIcon}">
-    <controls:MetroWindow.Resources>
+﻿<mah:MetroWindow x:Name="SelfWindow"
+                 x:Class="OpenTyping.SettingsWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 mc:Ignorable="d"
+                 Title="설정" 
+                 Width="500" 
+                 Height="450"
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}">
+    <mah:MetroWindow.Resources>
         <Style x:Key="SettingNameTextBlock" 
                TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
             <Setter Property="FontSize" Value="15pt"/>
             <Setter Property="Margin" Value="0 15 0 10"/>
         </Style>
-    </controls:MetroWindow.Resources>
+    </mah:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -144,4 +144,4 @@
             </Button>
         </StackPanel>
     </Grid>
-</controls:MetroWindow>
+</mah:MetroWindow>
