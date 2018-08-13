@@ -1,4 +1,5 @@
-﻿<controls:MetroWindow x:Class="OpenTyping.SettingsWindow"
+﻿<controls:MetroWindow x:Name="SelfWindow"
+                      x:Class="OpenTyping.SettingsWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -56,6 +57,7 @@
                         </TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <ComboBox x:Name="KeyLayoutsCombo"
+                                      DataContext="{Binding ElementName=SelfWindow}"
                                       Width="200" 
                                       Margin="0 0 5 0"
                                       FontFamily="{StaticResource NanumGothic}"
@@ -102,6 +104,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox x:Name="KeyLayoutDataDirTxt"
+                                     DataContext="{Binding ElementName=SelfWindow}"
                                      Grid.Column="0"
                                      Text="{Binding Path=KeyLayoutDataDir, 
                                                     Mode=OneWay}"

@@ -59,6 +59,5 @@
                           Key="Shift"
                           Width="125"/>
         </StackPanel>
-
     </StackPanel>
 </UserControl>

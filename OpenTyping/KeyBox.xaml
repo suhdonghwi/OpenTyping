@@ -1,4 +1,4 @@
-﻿<UserControl x:Name="KeyBoxContainer"
+﻿<UserControl x:Name="SelfControl"
              x:Class="OpenTyping.KeyBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,22 +9,24 @@
              d:DesignWidth="50">
     <Canvas>
         <Border x:Name="KeyBack"
+                DataContext="{Binding ElementName=SelfControl}"
                 Panel.ZIndex="1"
                 CornerRadius="5"
                 Background="{Binding ShadowColor}"
                 BorderBrush="Black"
                 BorderThickness="2"
-                Width="{Binding ActualWidth, ElementName=KeyBoxContainer}"
+                Width="{Binding ActualWidth}"
                 Height="50">
         </Border>
         <Border x:Name="KeyTop"
+                DataContext="{Binding ElementName=SelfControl}"
                 Panel.ZIndex="2"
                 CornerRadius="5"
                 Background="{Binding KeyColor}"
                 VerticalAlignment="Top"
                 BorderBrush="Black"
                 BorderThickness="2 2 2 1"
-                Width="{Binding ActualWidth, ElementName=KeyBoxContainer}"
+                Width="{Binding ActualWidth}"
                 Height="43">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">

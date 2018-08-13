@@ -54,7 +54,6 @@ namespace OpenTyping
         {
             InitializeComponent();
 
-            this.DataContext = this;
             defaultKeyColor = KeyColor;
             defaultShadowColor = ShadowColor;
             Loaded += OnLoaded;

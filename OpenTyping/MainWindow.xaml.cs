@@ -24,8 +24,6 @@ namespace OpenTyping
 
         public MainWindow()
         {
-            this.DataContext = this;
-
             string exeDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             if (exeDirectory is null)
             {

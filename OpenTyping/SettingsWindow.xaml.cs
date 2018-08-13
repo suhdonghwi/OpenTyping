@@ -43,7 +43,6 @@ namespace OpenTyping
             InitializeComponent();
 
             this.Closing += this.OnClose;
-            this.DataContext = this;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
 

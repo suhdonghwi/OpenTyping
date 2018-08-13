@@ -83,7 +83,6 @@ namespace OpenTyping
         {
             InitializeComponent();
 
-            this.DataContext = this;
             this.keyList = keyList;
 
             NextKey = RandomKey();
