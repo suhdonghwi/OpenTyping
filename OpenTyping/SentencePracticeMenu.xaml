@@ -7,6 +7,115 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ListBoxItemStyle1"
+               TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True" />
+            <Setter Property="Padding"
+                    Value="4,1" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="{Binding HorizontalContentAlignment,
+                          RelativeSource={RelativeSource FindAncestor,
+                                                         AncestorLevel=1,
+                                                         AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="{Binding VerticalContentAlignment,
+                          RelativeSource={RelativeSource FindAncestor,
+                                                         AncestorLevel=1,
+                                                         AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="FocusVisualStyle">
+                <Setter.Value>
+                    <Style>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Margin="2"
+                                               SnapsToDevicePixels="True"
+                                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                               StrokeDashArray="1 2"
+                                               StrokeThickness="1" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd"
+                                        Property="Background"
+                                        Value="#1F26A0DA" />
+                                <Setter TargetName="Bd"
+                                        Property="BorderBrush"
+                                        Value="#A826A0DA" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive"
+                                               Value="False" />
+                                    <Condition Property="IsSelected"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd"
+                                        Property="Background"
+                                        Value="#3DDADADA" />
+                                <Setter TargetName="Bd"
+                                        Property="BorderBrush"
+                                        Value="#FFDADADA" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive"
+                                               Value="True" />
+                                    <Condition Property="IsSelected"
+                                               Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd"
+                                        Property="Background"
+                                        Value="#3D26A0DA" />
+                                <Setter TargetName="Bd"
+                                        Property="BorderBrush"
+                                        Value="#FF26A0DA" />
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="Bd"
+                                        Property="TextElement.Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -46,14 +155,22 @@
                          Grid.Column="0"
                          BorderThickness="1"
                          FontFamily="{StaticResource NanumBarunGothic}"
+                         ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                          FontSize="14pt"
                          ItemsSource="{Binding PracticeDataList}">
+                    <ListBox.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+                    </ListBox.Resources>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="18" 
                                            Height="13"
                                            Fill="Green"
+                                           Visibility="{Binding Converter={StaticResource BoolToVis},
+                                                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                               AncestorType={x:Type ListBoxItem}},
+                                                                                               Path=IsSelected}"
                                            Margin="0 0 5 1">
                                     <Rectangle.OpacityMask>
                                         <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckSolid}"/>
