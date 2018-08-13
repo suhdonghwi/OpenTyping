@@ -33,7 +33,11 @@ namespace OpenTyping
         public SentencePracticeMenu()
         {
             InitializeComponent();
+            LoadData();
+        }
 
+        public void LoadData()
+        {
             PracticeDataList =
                 new ObservableCollection<PracticeData>(
                     PracticeData.LoadFromDirectory((string)Settings.Default[MainWindow.PracticeDataDir]));

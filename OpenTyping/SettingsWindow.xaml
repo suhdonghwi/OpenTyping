@@ -103,8 +103,7 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="KeyLayoutDataDirTxt"
-                                     DataContext="{Binding ElementName=SelfWindow}"
+                            <TextBox DataContext="{Binding ElementName=SelfWindow}"
                                      Grid.Column="0"
                                      Text="{Binding Path=KeyLayoutDataDir, 
                                                     Mode=OneWay}"
@@ -112,7 +111,44 @@
                                      Margin="0 0 5 0"/>
                             <Button x:Name="KeyLayoutDataDirButton" 
                                     Grid.Column="1" 
-                                    Click="KeyLayoutDataDirButton_OnClick">
+                                    Click="KeyLayoutDataDirButton_Click">
+                                <Rectangle Width="12"
+                                           Height="12">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{iconPacks:Modern folder}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Style="{StaticResource TabItemLabel}">
+                            연습 데이터
+                        </Label>
+                    </TabItem.Header>
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            연습 데이터 경로
+                        </TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox DataContext="{Binding ElementName=SelfWindow}"
+                                     Grid.Column="0"
+                                     Text="{Binding Path=KeyLayoutDataDir, 
+                                                    Mode=OneWay}"
+                                     IsReadOnly="True"
+                                     Margin="0 0 5 0"/>
+                            <Button x:Name="PracticeDataDirButton" 
+                                    Grid.Column="1" 
+                                    Click="PracticeDataDirButton_Click">
                                 <Rectangle Width="12"
                                            Height="12">
                                     <Rectangle.Fill>

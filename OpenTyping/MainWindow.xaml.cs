@@ -103,8 +103,9 @@ namespace OpenTyping
                 Source = CurrentKeyLayout,
                 Converter = new KeyPosToKeyConverter()
             };
-
             HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, binding);
+
+            SentencePracticeMenu.LoadData();
         }
     }
 }

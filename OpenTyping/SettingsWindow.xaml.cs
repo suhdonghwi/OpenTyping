@@ -31,6 +31,13 @@ namespace OpenTyping
             private set => SetField(ref keyLayoutDataDir, value);
         } 
 
+        private string practiceDataDir = (string)Settings.Default[MainWindow.PracticeDataDir];
+        public string PracticeDataDir
+        {
+            get => practiceDataDir;
+            private set => SetField(ref practiceDataDir, value);
+        } 
+
         private KeyLayout selectedKeyLayout;
         public KeyLayout SelectedKeyLayout
         {
@@ -116,7 +123,7 @@ namespace OpenTyping
             }
         }
 
-        private void KeyLayoutDataDirButton_OnClick(object sender, RoutedEventArgs e)
+        private void KeyLayoutDataDirButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDirDialog = new CommonOpenFileDialog
             {
@@ -128,20 +135,27 @@ namespace OpenTyping
             {
                 IList<KeyLayout> newKeyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
 
-                if (keyLayouts.Count == 0)
-                {
-                    MessageBox.Show("경로 " + (string)Settings.Default["KeyLayoutDataDir"] +
-                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                }
-                else
-                {
-                    KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
-                    SelectedKeyLayout = KeyLayouts[0];
-                }
+                KeyLayoutDataDir = dataFileDirDialog.FileName;
+                KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
+                SelectedKeyLayout = KeyLayouts[0];
+            }
+
+            this.Focus();
+        }
+
+        private void PracticeDataDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataFileDirDialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Multiselect = false
+            };
+
+            if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                PracticeData.LoadFromDirectory(dataFileDirDialog.FileName);
+
+                PracticeDataDir = dataFileDirDialog.FileName;
             }
 
             this.Focus();
@@ -156,6 +170,7 @@ namespace OpenTyping
         {
             Settings.Default[MainWindow.KeyLayout] = SelectedKeyLayout.Name;
             Settings.Default[MainWindow.KeyLayoutDataDir] = KeyLayoutDataDir;
+            Settings.Default[MainWindow.PracticeDataDir] = PracticeDataDir;
 
             Settings.Default.Save();
         }
@@ -174,5 +189,6 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
+
     }
 }

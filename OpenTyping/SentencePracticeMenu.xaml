@@ -152,7 +152,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListBox DataContext="{Binding ElementName=SelfControl}"
+                <ListBox x:Name="PracticeDataListBox"
+                         DataContext="{Binding ElementName=SelfControl}"
                          Grid.Row="1"
                          BorderThickness="1"
                          FontFamily="{StaticResource NanumBarunGothic}"

@@ -6,7 +6,7 @@
                  xmlns:local="clr-namespace:OpenTyping"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
-                 Title="SentencePracticeWindow"
+                 Title="열린타자"
                  Width="800"
                  Height="450">
     <Grid>

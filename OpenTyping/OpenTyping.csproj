@@ -148,6 +148,9 @@
     <Compile Include="SentencePracticeMenu.xaml.cs">
       <DependentUpon>SentencePracticeMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SentencePracticeWindow.xaml.cs">
+      <DependentUpon>SentencePracticeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SentencePracticeMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SentencePracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
