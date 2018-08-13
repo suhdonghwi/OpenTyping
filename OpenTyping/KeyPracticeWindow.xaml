@@ -10,7 +10,7 @@
                       mc:Ignorable="d"
                       Title="열린타자"
                       Width="800" 
-                      Height="390"
+                      Height="400"
                       ResizeMode="CanMinimize"
                       Icon="{StaticResource AppIcon}">
     <StackPanel Orientation="Vertical">

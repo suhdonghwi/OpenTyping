@@ -21,6 +21,15 @@ namespace OpenTyping
             private set => SetField(ref practiceDataList, value);
         }
 
+        private PracticeData selectedPracticeData;
+        public PracticeData SelectedPracticeData
+        {
+            get => selectedPracticeData;
+            set => SetField(ref selectedPracticeData, value);
+        }
+
+        public bool IsRandom { get; set; } = false;
+
         public SentencePracticeMenu()
         {
             InitializeComponent();

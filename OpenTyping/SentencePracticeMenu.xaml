@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style x:Key="ListBoxItemStyle1"
+        <Style x:Key="ListBoxItemStyle"
                TargetType="{x:Type ListBoxItem}">
             <Setter Property="SnapsToDevicePixels"
                     Value="True" />
@@ -123,7 +124,7 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0"
-                   Margin="14 5 14 10">
+                   Margin="14 5 14 5">
             <StackPanel DockPanel.Dock="Top"
                         Orientation="Vertical"
                         Margin="0 0 0 12">
@@ -141,23 +142,24 @@
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
-                <TextBlock Text=": 짧은 길이의 문장들을 대상으로 연습합니다."
+                <TextBlock Text=": 짧은 길이의 문장으로 나누어서 연습합니다."
                            Style="{StaticResource NormalTextBlock}" 
                            FontSize="14pt"/>
             </StackPanel>
             <Grid DockPanel.Dock="Bottom">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
                 <ListBox DataContext="{Binding ElementName=SelfControl}"
-                         Grid.Row="0"
+                         Grid.Row="1"
                          BorderThickness="1"
                          FontFamily="{StaticResource NanumBarunGothic}"
                          FontSize="14pt"
                          Margin="0 0 0 5"
-                         ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
+                         SelectedItem="{Binding SelectedPracticeData}"
+                         ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                          ItemsSource="{Binding PracticeDataList}">
                     <ListBox.Resources>
                         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -182,9 +184,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Row="1"
-                            Orientation="Horizontal"
-                            Margin="0 0 0 5">
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal">
                     <Rectangle Width="23" 
                                Height="23"
                                Margin="0 0 5 0"
@@ -201,9 +202,37 @@
             </Grid>
         </DockPanel>
 
-        <StackPanel Grid.Row="1"
-                    Style="{StaticResource ControlButtonStackPanel}">
-            <Button x:Name="StartButton">
+        <DockPanel Grid.Row="1"
+                   LastChildFill="False"
+                   Margin="10 0 10 10">
+            <StackPanel DockPanel.Dock="Left"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="5 0 0 0">
+                <Rectangle Width="18" 
+                           Height="18"
+                           Margin="0 0 6 0">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=RandomSolid}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock FontFamily="{StaticResource NanumGothic}"
+                           FontWeight="Bold"
+                           FontSize="13pt"
+                           VerticalAlignment="Center"
+                           Text="문장 무작위 배열"
+                           Margin="0 0 5 0"/>
+                <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                  OnLabel="" OffLabel=""
+                                  IsChecked="{Binding Path=IsRandom,
+                                                      Mode=OneWayToSource}"
+                                  Margin="0 1 0 0"/>
+            </StackPanel>
+            <Button x:Name="StartButton"
+                    DockPanel.Dock="Right">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
                                Height="15" 
@@ -216,6 +245,6 @@
                                Text="연습 시작"/>
                 </StackPanel>
             </Button>
-        </StackPanel>
+        </DockPanel>
     </Grid>
 </UserControl>
