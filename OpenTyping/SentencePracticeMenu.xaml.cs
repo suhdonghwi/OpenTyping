@@ -43,7 +43,7 @@ namespace OpenTyping
             {
                 PracticeDataList =
                     new ObservableCollection<PracticeData>(
-                        PracticeData.LoadFromDirectory((string)Settings.Default[MainWindow.PracticeDataDir]));
+                        PracticeData.LoadFromDirectory((string)Settings.Default[MainWindow.PracticeDataDir], MainWindow.CurrentKeyLayout.Character));
             }
             catch (Exception ex)
             {

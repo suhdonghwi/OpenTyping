@@ -75,7 +75,7 @@ namespace OpenTyping
             }
         }
 
-        public static IList<PracticeData> LoadFromDirectory(string dataDirectory)
+        public static IList<PracticeData> LoadFromDirectory(string dataDirectory, string character = null)
         {
             var practiceDataList = new List<PracticeData>();
 
@@ -92,7 +92,7 @@ namespace OpenTyping
             foreach (string practiceDataFile in practiceDataFiles)
             {
                 PracticeData practiceData = Load(practiceDataFile);
-                if (practiceData.Character != MainWindow.CurrentKeyLayout.Character)
+                if (character != null && practiceData.Character != character)
                 {
                     continue; 
                 }
