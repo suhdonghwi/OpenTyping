@@ -142,7 +142,7 @@
 
                             <TextBox DataContext="{Binding ElementName=SelfWindow}"
                                      Grid.Column="0"
-                                     Text="{Binding Path=KeyLayoutDataDir, 
+                                     Text="{Binding Path=PracticeDataDir, 
                                                     Mode=OneWay}"
                                      IsReadOnly="True"
                                      Margin="0 0 5 0"/>

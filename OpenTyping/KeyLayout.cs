@@ -42,6 +42,18 @@ namespace OpenTyping
                 throw new InvalidKeyLayoutDataException(message);
             }
 
+            if (keyLayout.KeyLayoutData is null)
+            {
+                const string message = "자판 데이터(KeyLayoutData 필드)가 주어지지 않았습니다.";
+                throw new InvalidKeyLayoutDataException(message);
+            }
+
+            if (string.IsNullOrEmpty(keyLayout.Character))
+            {
+                const string message = "자판 데이터의 문자 종류(Character 필드)가 주어지지 않았습니다.";
+                throw new InvalidKeyLayoutDataException(message);
+            }
+
             var rowNumberData = new List<Tuple<string, int>>
             {
                 Tuple.Create("숫자열", 13),
@@ -66,24 +78,18 @@ namespace OpenTyping
         public static KeyLayout Load(string dataFileLocation)
         {
             string keyLayoutLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
-            KeyLayout keyLayout = null;
 
             try
             {
-                keyLayout = Parse(keyLayoutLines);         
+                KeyLayout keyLayout = Parse(keyLayoutLines);
+                keyLayout.Location = dataFileLocation;
+
+                return keyLayout;
             }
             catch (InvalidKeyLayoutDataException ex)
             {
-                MessageBox.Show(dataFileLocation + " : " + ex.Message, 
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                Environment.Exit(-1);
+                throw new InvalidKeyLayoutDataException(dataFileLocation + " : " + ex.Message, ex);
             }
-
-            keyLayout.Location = dataFileLocation;
-
-            return keyLayout;
         }
 
         public static IList<KeyLayout> LoadFromDirectory(string layoutsDirectory)
@@ -91,7 +97,7 @@ namespace OpenTyping
             var keyLayouts = new List<KeyLayout>();
 
             Directory.CreateDirectory(layoutsDirectory);
-            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*Layout.json");
+            string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.json");
 
             if (!keyLayoutFiles.Any())
             {

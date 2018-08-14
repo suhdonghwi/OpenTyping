@@ -69,10 +69,13 @@ namespace OpenTyping
                     CurrentKeyLayout = currentKeylayout;
                 }
             }
-            catch (KeyLayoutLoadFail ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
-                Environment.Exit(-1);
+                if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
+                {
+                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(-1);
+                }
             }
 
             if (string.IsNullOrEmpty((string)Settings.Default[PracticeDataDir]))

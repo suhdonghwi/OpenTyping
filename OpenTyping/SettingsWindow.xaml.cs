@@ -148,9 +148,13 @@ namespace OpenTyping
                     KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
                     SelectedKeyLayout = KeyLayouts[0];
                 }
-                catch (KeyLayoutLoadFail ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
+                    {
+                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else throw;
                 }
             }
 
@@ -172,9 +176,12 @@ namespace OpenTyping
                     PracticeData.LoadFromDirectory(dataFileDirDialog.FileName);
                     PracticeDataDir = dataFileDirDialog.FileName;
                 }
-                catch (PracticeDataLoadFail ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (ex is PracticeDataLoadFail || ex is InvalidPracticeDataException)
+                    {
+                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
 

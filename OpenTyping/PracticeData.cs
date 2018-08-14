@@ -59,24 +59,18 @@ namespace OpenTyping
         public static PracticeData Load(string dataFileLocation)
         {
             string dataLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
-            PracticeData practiceData = null;
 
             try
             {
-                practiceData = Parse(dataLines);
+                PracticeData practiceData = Parse(dataLines);
+                practiceData.Location = dataFileLocation;
+
+                return practiceData;
             }
             catch (InvalidPracticeDataException ex)
             {
-                MessageBox.Show(dataFileLocation + " : " + ex.Message, 
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                Environment.Exit(-1);
+                throw new InvalidPracticeDataException(dataFileLocation + " : " + ex.Message, ex);
             }
-
-            practiceData.Location = dataFileLocation;
-
-            return practiceData;
         }
 
         public static IList<PracticeData> LoadFromDirectory(string dataDirectory)
