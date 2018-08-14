@@ -54,6 +54,11 @@ namespace OpenTyping
                 throw new InvalidKeyLayoutDataException(message);
             }
 
+            if (keyLayout.DefaultKeys is null)
+            {
+                keyLayout.DefaultKeys = new List<KeyPos>();
+            }
+
             var rowNumberData = new List<Tuple<string, int>>
             {
                 Tuple.Create("숫자열", 13),

@@ -27,7 +27,7 @@
             <StackPanel x:Name="NumberRow"
                         Style="{StaticResource KeyRowStyle}"/>
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Backspace,"
+                          Key="Backspace"
                           Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -39,7 +39,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
-                          Key="Caps Lock,"
+                          Key="Caps\ Lock"
                           Width="100"/>
             <StackPanel x:Name="SecondRow"
                         Style="{StaticResource KeyRowStyle}"/>

@@ -21,12 +21,12 @@ namespace OpenTyping
         {
             if (value is string s)
             {
-                string[] splitedValue = Regex.Split(s, @"(?<!\\)(?:\\\\)*,");
-                splitedValue = splitedValue.Select(str => str.Replace(@"\,", ",")).ToArray();
+                string[] splitedValue = Regex.Split(s, @"(?<!\\)[ ]");
+                splitedValue = splitedValue.Select(str => str.Replace(@"\ ", " ")).ToArray();
 
                 if (splitedValue.Count() == 1)
                 {
-                    return new Key(splitedValue[0].Trim(), null);
+                    return new Key(splitedValue[0].Trim());
                 }
 
                 return new Key(splitedValue[0].Trim(), splitedValue[1].Trim());
@@ -43,10 +43,10 @@ namespace OpenTyping
                 
                 if (string.IsNullOrEmpty(keyValue.ShiftKeyData))
                 {
-                    return keyValue.KeyData.Replace(",", "\\,");
+                    return keyValue.KeyData.Replace(" ", @"\ ");
                 }
 
-                return keyValue.KeyData.Replace(",", "\\,") + "," + keyValue.ShiftKeyData.Replace(",", "\\,");
+                return keyValue.KeyData.Replace(" ", @"\ ") + " " + keyValue.ShiftKeyData.Replace(" ", @"\ ");
             }
 
             return base.ConvertTo(context, culture, value, destinationType);

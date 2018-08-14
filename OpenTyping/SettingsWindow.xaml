@@ -146,6 +146,7 @@
                                  FontFamily="{StaticResource NanumBarunGothic}"
                                  FontSize="14pt"
                                  Margin="0 0 0 5"
+                                 MaxHeight="105"
                                  SelectedItem="{Binding SelectedPracticeData}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                  ItemsSource="{Binding PracticeDataList}">
