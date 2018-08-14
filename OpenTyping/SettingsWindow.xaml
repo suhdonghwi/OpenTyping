@@ -147,6 +147,7 @@
                                  FontSize="14pt"
                                  Margin="0 0 0 5"
                                  SelectedItem="{Binding SelectedPracticeData}"
+                                 ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                  ItemsSource="{Binding PracticeDataList}">
                             <ListBox.Resources>
                                 <local:NullToVisibilityConverter x:Key="NullToVis"/>
@@ -156,10 +157,18 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Path=Name}"/>
                                         <TextBlock Text=" "/>
-                                        <TextBlock Text="{Binding Path=Author, 
-                                                                  StringFormat=({0})}"
+                                        <TextBlock Text="{Binding Path=Author}"
+                                                   FontFamily="{StaticResource NanumGothic}"
+                                                   FontSize="10pt"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0 0 3 0"
                                                    Visibility="{Binding Converter={StaticResource NullToVis},
                                                                         Path=Author}"/>
+                                        <TextBlock Text="{Binding Path=Character}"
+                                                   FontFamily="{StaticResource NanumGothic}"
+                                                   FontSize="11pt"
+                                                   FontWeight="Bold"
+                                                   Foreground="{DynamicResource AccentColorBrush}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
