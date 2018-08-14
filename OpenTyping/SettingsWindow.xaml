@@ -10,7 +10,7 @@
                  mc:Ignorable="d"
                  Title="설정" 
                  Width="500" 
-                 Height="450"
+                 Height="500"
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
     <mah:MetroWindow.Resources>
@@ -74,10 +74,10 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button x:Name="AddKeyLayoutButton"
+                                    Click="AddKeyLayoutButton_Click"
                                     Background="LightGreen"
                                     BorderThickness="0"
-                                    Margin="0 0 5 0"
-                                    Click="AddKeyLayoutButton_Click">
+                                    Margin="0 0 5 0">
                                 <Rectangle Width="12" 
                                            Height="12" 
                                            Fill="Green">   
@@ -146,6 +146,7 @@
                                  FontFamily="{StaticResource NanumBarunGothic}"
                                  FontSize="14pt"
                                  Margin="0 0 0 5"
+                                 SelectedItem="{Binding SelectedPracticeData}"
                                  ItemsSource="{Binding PracticeDataList}">
                             <ListBox.Resources>
                                 <local:NullToVisibilityConverter x:Key="NullToVis"/>
@@ -163,6 +164,47 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <Button x:Name="AddPracticeDataButton"
+                                    Click="AddPracticeDataButton_Click"
+                                    Background="LightGreen"
+                                    BorderThickness="0"
+                                    Margin="0 0 5 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="12" 
+                                               Height="12" 
+                                               Margin="0 0 3 0"
+                                               Fill="Green">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{iconPacks:Modern add}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"
+                                               Text="추가"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="RemovePracticeDataButton"
+                                    Click="RemovePracticeDataButton_Click"
+                                    Background="LightPink"
+                                    BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="13" 
+                                               Height="15"
+                                               Margin="0 0 3 0"
+                                               Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"
+                                               Text="삭제"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
 
                         <TextBlock Style="{StaticResource SettingNameTextBlock}">
                             연습 데이터 경로

@@ -52,6 +52,13 @@ namespace OpenTyping
             set => SetField(ref selectedKeyLayout, value);
         }
 
+        private PracticeData selectedPracticeData;
+        public PracticeData SelectedPracticeData
+        {
+            get => selectedPracticeData;
+            set => SetField(ref selectedPracticeData, value);
+        }
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -76,6 +83,7 @@ namespace OpenTyping
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDialog = new CommonOpenFileDialog();
+                SelectedKeyLayout = KeyLayouts[0];
 
             dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
             dataFileDialog.Multiselect = false;
@@ -87,7 +95,7 @@ namespace OpenTyping
                 string dataFileLocation = dataFileDialog.FileName;
                 string dataFileName = Path.GetFileName(dataFileLocation);
                 string destLocation =
-                    Path.Combine((string)Settings.Default[MainWindow.KeyLayoutDataDir], dataFileName);
+                    Path.Combine(KeyLayoutDataDir, dataFileName);
 
                 if (File.Exists(destLocation))
                 {
@@ -162,6 +170,64 @@ namespace OpenTyping
             this.Focus();
         }
 
+        private void AddPracticeDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataFileDialog = new CommonOpenFileDialog();
+
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter("연습 데이터 파일", "*.json"));
+            dataFileDialog.Multiselect = false;
+            dataFileDialog.EnsureFileExists = true;
+            dataFileDialog.EnsurePathExists = true;
+
+            if (dataFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                string dataFileLocation = dataFileDialog.FileName;
+                string dataFileName = Path.GetFileName(dataFileLocation);
+                string destLocation =
+                    Path.Combine(PracticeDataDir, dataFileName);
+
+                if (File.Exists(destLocation))
+                {
+                    MessageBox.Show("같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다.",
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
+                else
+                {
+                    File.Copy(dataFileLocation, destLocation);
+                    PracticeData practiceData = PracticeData.Load(destLocation);
+                    PracticeDataList.Add(practiceData);
+                }
+
+                this.Focus();
+            }
+        }
+
+        private void RemovePracticeDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PracticeDataList.Count == 1)
+            {
+                MessageBox.Show("연습 데이터가 한 개 존재하여 삭제할 수 없습니다.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBoxResult result 
+                = MessageBox.Show("선택된 연습 데이터 \"" + SelectedPracticeData.Name + "\" 를 삭제하시겠습니까?",
+                                  "열린타자",
+                                  MessageBoxButton.OKCancel,
+                                  MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                File.Delete(SelectedPracticeData.Location);
+                PracticeDataList.Remove(SelectedPracticeData);
+                SelectedPracticeData = null;
+            }
+        }
+
         private void PracticeDataDirButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDirDialog = new CommonOpenFileDialog
@@ -219,6 +285,5 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
-
     }
 }
