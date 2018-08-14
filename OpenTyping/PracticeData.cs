@@ -11,14 +11,16 @@ namespace OpenTyping
 {
     public class PracticeData
     {
-        public PracticeData(string name, IList<string> textData, string character)
+        public PracticeData(string name, string author, IList<string> textData, string character)
         {
             Name = name;
+            Author = author;
             TextData = textData;
             Character = character;
         }
 
         public string Name { get; }
+        public string Author { get; }
         public IList<string> TextData { get; }
         public string Character { get; }
 
@@ -90,6 +92,11 @@ namespace OpenTyping
             foreach (string practiceDataFile in practiceDataFiles)
             {
                 PracticeData practiceData = Load(practiceDataFile);
+                if (practiceData.Character != MainWindow.CurrentKeyLayout.Character)
+                {
+                    continue; 
+                }
+
                 PracticeData duplicate = practiceDataList.Find(data => data.Name == practiceData.Name);
 
                 if (duplicate != null)

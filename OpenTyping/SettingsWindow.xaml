@@ -131,6 +131,18 @@
 
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            현재 연습 데이터
+                        </TextBlock>
+
+                        <ListBox DataContext="{Binding ElementName=SelfWindow}"
+                                 BorderThickness="1"
+                                 FontFamily="{StaticResource NanumBarunGothic}"
+                                 FontSize="14pt"
+                                 Margin="0 0 0 5"
+                                 ItemsSource="{Binding PracticeDataList}"
+                                 DisplayMemberPath="Name"/>
+
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
                             연습 데이터 경로
                         </TextBlock>
 

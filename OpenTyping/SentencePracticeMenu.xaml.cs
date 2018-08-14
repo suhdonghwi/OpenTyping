@@ -53,6 +53,8 @@ namespace OpenTyping
                     Environment.Exit(-1);
                 }
             }
+
+            SelectedPracticeData = null;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -69,6 +69,8 @@ namespace OpenTyping
                     break;
                 }
             }
+
+            PracticeDataList = new ObservableCollection<PracticeData>(PracticeData.LoadFromDirectory(PracticeDataDir));
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
@@ -142,10 +144,9 @@ namespace OpenTyping
             {
                 try
                 {
-                    IList<KeyLayout> newKeyLayouts = KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName);
-
+                    KeyLayouts =
+                        new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName));
                     KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayouts = new ObservableCollection<KeyLayout>(newKeyLayouts);
                     SelectedKeyLayout = KeyLayouts[0];
                 }
                 catch (Exception ex)
@@ -173,7 +174,9 @@ namespace OpenTyping
             {
                 try
                 {
-                    PracticeData.LoadFromDirectory(dataFileDirDialog.FileName);
+                    PracticeDataList =
+                        new ObservableCollection<PracticeData>(
+                            PracticeData.LoadFromDirectory(dataFileDirDialog.FileName));
                     PracticeDataDir = dataFileDirDialog.FileName;
                 }
                 catch (Exception ex)
