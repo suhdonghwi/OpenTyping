@@ -6,6 +6,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:local="clr-namespace:OpenTyping"
                  mc:Ignorable="d"
                  Title="설정" 
                  Width="500" 
@@ -64,8 +65,14 @@
                                       FontSize="11pt"
                                       HorizontalAlignment="Left"
                                       SelectedItem="{Binding SelectedKeyLayout, Mode=TwoWay}"
-                                      ItemsSource="{Binding KeyLayouts}"
-                                      DisplayMemberPath="Name"/>
+                                      ItemsSource="{Binding KeyLayouts}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button x:Name="AddKeyLayoutButton"
                                     Background="LightGreen"
                                     BorderThickness="0"
@@ -139,8 +146,23 @@
                                  FontFamily="{StaticResource NanumBarunGothic}"
                                  FontSize="14pt"
                                  Margin="0 0 0 5"
-                                 ItemsSource="{Binding PracticeDataList}"
-                                 DisplayMemberPath="Name"/>
+                                 ItemsSource="{Binding PracticeDataList}">
+                            <ListBox.Resources>
+                                <local:NullToVisibilityConverter x:Key="NullToVis"/>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                        <TextBlock Text=" "/>
+                                        <TextBlock Text="{Binding Path=Author, 
+                                                                  StringFormat=({0})}"
+                                                   Visibility="{Binding Converter={StaticResource NullToVis},
+                                                                        Path=Author}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
 
                         <TextBlock Style="{StaticResource SettingNameTextBlock}">
                             연습 데이터 경로
