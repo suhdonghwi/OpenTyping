@@ -62,14 +62,23 @@
                                       Width="200" 
                                       Margin="0 0 5 0"
                                       FontFamily="{StaticResource NanumGothic}"
-                                      FontSize="11pt"
+                                      FontSize="12pt"
                                       HorizontalAlignment="Left"
                                       SelectedItem="{Binding SelectedKeyLayout, Mode=TwoWay}"
                                       ItemsSource="{Binding KeyLayouts}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"
-                                                   TextTrimming="CharacterEllipsis"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Path=Character}"
+                                                       FontFamily="{StaticResource NanumGothic}"
+                                                       FontSize="11pt"
+                                                       FontWeight="Bold"
+                                                       VerticalAlignment="Bottom"
+                                                       Foreground="{DynamicResource AccentColorBrush}"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
