@@ -28,21 +28,26 @@
                         BorderBrush="Gainsboro" 
                         BorderThickness="1"
                         Margin="0 0 0 15">
-                    <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                    <TextBlock x:Name="CurrentTextBlock"
+                               DataContext="{Binding ElementName=SelfWindow}"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                FontSize="17pt"
-                               Text="{Binding CurrentText}"
+                               Text="{Binding Path=CurrentText}"
                                Margin="5"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"/>
                 </Border>
                 <TextBox x:Name="CurrentTextBox"
                          DataContext="{Binding ElementName=SelfWindow}"
+                         Text="{Binding Path=CurrentInput,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
                          FontFamily="{StaticResource NanumBarunGothic}"
                          FontSize="17pt"
                          MinWidth="150"
                          MaxWidth="450"
-                         HorizontalAlignment="Center"/>
+                         HorizontalAlignment="Center"
+                         PreviewKeyDown="CurrentTextBox_PreviewKeyDown"/>
             </StackPanel>
 
             <Separator Grid.Row="1"/>

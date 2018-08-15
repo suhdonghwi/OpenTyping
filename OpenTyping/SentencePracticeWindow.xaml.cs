@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 using MahApps.Metro.Controls;
 
 namespace OpenTyping
@@ -11,15 +14,29 @@ namespace OpenTyping
     /// </summary>
     public partial class SentencePracticeWindow : MetroWindow, INotifyPropertyChanged
     {
-        private string currentText = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산";
+        private string currentText;
         public string CurrentText
         {
             get => currentText;
-            set => SetField(ref currentText, value);
+            set
+            {
+                SetField(ref currentText, value);
+                currentWordSequence = new List<string>(currentText.Split(' '));
+            }
+        }
+
+        private string currentInput;
+        public string CurrentInput
+        {
+            get => currentInput;
+            set => SetField(ref currentInput, value);
         }
 
         private PracticeData practiceData;
         private bool shuffle;
+
+        private List<string> currentWordSequence;
+        private int currentWordIndex = 0;
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -27,6 +44,43 @@ namespace OpenTyping
 
             this.practiceData = practiceData;
             this.shuffle = shuffle;
+
+            CurrentText = "동해물과 백두산이 마르고 닳도록";
+            NextWord();
+        }
+
+        void NextWord()
+        {
+            if (currentWordIndex == currentWordSequence.Count)
+            {
+                return;
+            }
+
+            TextBlock newText = CurrentTextBlock;
+            newText.Inlines.Clear();
+            for (int i = 0; i < currentWordSequence.Count; i++)
+            {
+                var word = new Run(currentWordSequence[i]);
+                if (currentWordIndex == i)
+                {
+                    word.Background = Brushes.LightGreen;
+                }
+
+                newText.Inlines.Add(word);
+                newText.Inlines.Add(new Run(" "));
+            }
+
+            currentWordIndex++;
+        }
+
+        private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Space)
+            {
+                CurrentInput = "";
+                NextWord();
+                e.Handled = true;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
