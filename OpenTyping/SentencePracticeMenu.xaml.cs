@@ -57,6 +57,11 @@ namespace OpenTyping
             SelectedPracticeData = null;
         }
 
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sentencePracticeWindow = new SentencePracticeWindow(selectedPracticeData, IsRandom);
+            sentencePracticeWindow.ShowDialog();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -1,4 +1,5 @@
-﻿<mah:MetroWindow x:Class="OpenTyping.SentencePracticeWindow"
+﻿<mah:MetroWindow Name="SelfWindow"
+                 x:Class="OpenTyping.SentencePracticeWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,10 +8,45 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
                  Title="열린타자"
-                 Width="800"
-                 Height="450">
-    <Grid>
-        
-    </Grid>
+                 Width="700"
+                 Height="400"
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="165" Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Margin="0 0 0 10">
+                <Border Background="GhostWhite" 
+                        BorderBrush="Gainsboro" 
+                        BorderThickness="1"
+                        Margin="0 0 0 15">
+                    <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="17pt"
+                               Text="{Binding CurrentText}"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"/>
+                </Border>
+                <TextBox x:Name="CurrentTextBox"
+                         DataContext="{Binding ElementName=SelfWindow}"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="17pt"
+                         MinWidth="150"
+                         MaxWidth="450"
+                         HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Separator Grid.Row="1"/>
+        </Grid>
+    </ScrollViewer>
 </mah:MetroWindow>
 

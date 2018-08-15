@@ -134,7 +134,8 @@
                                   Margin="0 1 0 0"/>
             </StackPanel>
             <Button x:Name="StartButton"
-                    DockPanel.Dock="Right">
+                    DockPanel.Dock="Right"
+                    Click="StartButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
                                Height="15" 
