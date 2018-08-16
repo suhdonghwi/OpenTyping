@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -20,10 +21,18 @@ namespace OpenTyping
             get => currentText;
             set
             {
-                SetField(ref currentText, value);
-                currentWordSequence = new List<string>(currentText.Split(' '));
+                currentText = value;
+                currentWordCount = currentText.Split(' ').Count();
+
+                CurrentTextBlock.Inlines.Clear();
+                foreach (char ch in value)
+                {
+                    CurrentTextBlock.Inlines.Add(new Run(ch.ToString()));
+                }
             }
         }
+
+        private int currentWordCount = 0;
 
         private string currentInput;
         public string CurrentInput
@@ -35,8 +44,8 @@ namespace OpenTyping
         private PracticeData practiceData;
         private bool shuffle;
 
-        private List<string> currentWordSequence;
         private int currentWordIndex = 0;
+        private readonly Brush currentWordBack = Brushes.LightGreen;
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -49,25 +58,31 @@ namespace OpenTyping
             NextWord();
         }
 
-        void NextWord()
+        private void NextWord()
         {
-            if (currentWordIndex == currentWordSequence.Count)
+            if (currentWordIndex == currentWordCount)
             {
                 return;
             }
 
-            TextBlock newText = CurrentTextBlock;
-            newText.Inlines.Clear();
-            for (int i = 0; i < currentWordSequence.Count; i++)
-            {
-                var word = new Run(currentWordSequence[i]);
-                if (currentWordIndex == i)
-                {
-                    word.Background = Brushes.LightGreen;
-                }
+            var currentInlines = new List<Inline>(CurrentTextBlock.Inlines);
+            CurrentTextBlock.Inlines.Clear();
 
-                newText.Inlines.Add(word);
-                newText.Inlines.Add(new Run(" "));
+            string tempCurrentText = currentText;
+            for (int i = 0, wordIndex = 0; i < currentInlines.Count; i++)
+            {
+                if (((Run)currentInlines[i]).Text == " ")
+                {
+                    wordIndex++;
+                    CurrentTextBlock.Inlines.Add(new Run(" "));
+                }
+                else
+                {
+                    CurrentTextBlock.Inlines.Add(new Run(tempCurrentText[i].ToString())
+                    {
+                        Background = wordIndex == currentWordIndex ? currentWordBack : Brushes.Transparent
+                    });
+                }
             }
 
             currentWordIndex++;

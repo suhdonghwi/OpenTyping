@@ -32,7 +32,6 @@
                                DataContext="{Binding ElementName=SelfWindow}"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                FontSize="17pt"
-                               Text="{Binding Path=CurrentText}"
                                Margin="5"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"/>
