@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -90,14 +91,27 @@ namespace OpenTyping
                 {
                     string currentWord = currentInputHistory[i];
 
-                    int wordLength = Math.Min(targetWord.Length, currentWord.Length);
                     int j = 0;
-                    for (; j < wordLength; j++)
+                    for (; j < currentWord.Length; j++)
                     {
-                        var newRun = new Run(targetWord[j].ToString())
+                        Run newRun;
+
+                        if (j >= targetWord.Length)
                         {
-                            Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
-                        };
+                            newRun = new Run(currentWord[j].ToString())
+                            {
+                                Foreground = incorrectForeground,
+                                TextDecorations = TextDecorations.Underline
+                            };
+                        }
+                        else
+                        {
+                            newRun = new Run(currentWord[j].ToString())
+                            {
+                                Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
+                            };
+                        }
+
                         CurrentTextBlock.Inlines.Add(newRun);
                     }
 
@@ -105,7 +119,8 @@ namespace OpenTyping
                     {
                         var newRun = new Run(targetWord[j].ToString())
                         {
-                            Foreground = incorrectForeground
+                            Foreground = incorrectForeground,
+                            TextDecorations = TextDecorations.Strikethrough
                         };
                         CurrentTextBlock.Inlines.Add(newRun);
                     }
