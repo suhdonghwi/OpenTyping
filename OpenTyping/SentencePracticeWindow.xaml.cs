@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace OpenTyping
             set
             {
                 currentText = value;
-                currentWordCount = currentText.Split(' ').Count();
+                currentWordSequence = new List<string>(currentText.Split(' '));
 
                 CurrentTextBlock.Inlines.Clear();
                 foreach (char ch in value)
@@ -32,7 +33,8 @@ namespace OpenTyping
             }
         }
 
-        private int currentWordCount = 0;
+        private List<string> currentWordSequence = new List<string>();
+        private readonly List<string> currentInputHistory = new List<string>();
 
         private string currentInput;
         public string CurrentInput
@@ -44,8 +46,10 @@ namespace OpenTyping
         private PracticeData practiceData;
         private bool shuffle;
 
-        private int currentWordIndex = 0;
+        private int currentWordIndex = -1;
         private readonly Brush currentWordBack = Brushes.LightGreen;
+        private readonly Brush correctForeground = Brushes.Green;
+        private readonly Brush incorrectForeground = Brushes.Red;
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -60,40 +64,68 @@ namespace OpenTyping
 
         private void NextWord()
         {
-            if (currentWordIndex == currentWordCount)
+            if (currentWordIndex + 1 == currentWordSequence.Count)
             {
                 return;
             }
 
-            var currentInlines = new List<Inline>(CurrentTextBlock.Inlines);
-            CurrentTextBlock.Inlines.Clear();
+            currentWordIndex++;
+            if (CurrentInput != null) currentInputHistory.Add(CurrentInput);
 
-            string tempCurrentText = currentText;
-            for (int i = 0, wordIndex = 0; i < currentInlines.Count; i++)
+            CurrentTextBlock.Inlines.Clear();
+            for (int i = 0; i < currentWordSequence.Count; i++)
             {
-                if (((Run)currentInlines[i]).Text == " ")
+                string targetWord = currentWordSequence[i];
+
+                if (i == currentWordIndex)
                 {
-                    wordIndex++;
-                    CurrentTextBlock.Inlines.Add(new Run(" "));
+                    var newRun = new Run(targetWord)
+                    {
+                        Background = currentWordBack
+                    };
+
+                    CurrentTextBlock.Inlines.Add(newRun);
+                }
+                else if (i < currentWordIndex)
+                {
+                    string currentWord = currentInputHistory[i];
+
+                    int wordLength = Math.Min(targetWord.Length, currentWord.Length);
+                    int j = 0;
+                    for (; j < wordLength; j++)
+                    {
+                        var newRun = new Run(targetWord[j].ToString())
+                        {
+                            Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
+                        };
+                        CurrentTextBlock.Inlines.Add(newRun);
+                    }
+
+                    for (; j < targetWord.Length; j++)
+                    {
+                        var newRun = new Run(targetWord[j].ToString())
+                        {
+                            Foreground = incorrectForeground
+                        };
+                        CurrentTextBlock.Inlines.Add(newRun);
+                    }
                 }
                 else
                 {
-                    CurrentTextBlock.Inlines.Add(new Run(tempCurrentText[i].ToString())
-                    {
-                        Background = wordIndex == currentWordIndex ? currentWordBack : Brushes.Transparent
-                    });
+                    var newRun = new Run(currentWordSequence[i]);
+                    CurrentTextBlock.Inlines.Add(newRun);
                 }
-            }
 
-            currentWordIndex++;
+               CurrentTextBlock.Inlines.Add(new Run(" "));
+            }
         }
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Space)
             {
-                CurrentInput = "";
                 NextWord();
+                CurrentInput = "";
                 e.Handled = true;
             }
         }
