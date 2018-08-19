@@ -85,7 +85,7 @@ namespace OpenTyping
             }
             
             InitializeComponent();
-            this.Closed += MainWindow_Closed;
+            Closed += MainWindow_Closed;
         }
 
         private static void SaveKeyLayout()

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Markup;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
 
@@ -40,7 +34,7 @@ namespace OpenTyping
         private List<string> currentWordSequence = new List<string>();
         private readonly List<string> currentInputHistory = new List<string>();
 
-        private string currentInput;
+        private string currentInput = "";
         public string CurrentInput
         {
             get => currentInput;
@@ -114,10 +108,21 @@ namespace OpenTyping
             currentInputHistory.Clear();
         }
 
+        private void PreviousWord()
+        {
+            if (currentWordIndex <= 0) return;
+
+            currentWordIndex -= 2;
+            CurrentInput = currentInputHistory[currentWordIndex + 1];
+            CurrentTextBox.CaretIndex = CurrentInput.Length;
+            currentInputHistory.RemoveAt(currentInputHistory.Count - 1);
+
+            NextWord();
+        }
+
         private void NextWord()
         {
             currentWordIndex++;
-            if (CurrentInput != null) currentInputHistory.Add(CurrentInput);
 
             CurrentTextBlock.Inlines.Clear();
             for (int i = 0; i < currentWordSequence.Count; i++)
@@ -190,9 +195,22 @@ namespace OpenTyping
         {
             if (e.Key == System.Windows.Input.Key.Space)
             {
-                NextWord();
-                CurrentInput = "";
+                if (!string.IsNullOrEmpty(CurrentInput))
+                {
+                    currentInputHistory.Add(CurrentInput);
+                    NextWord();
+                    CurrentInput = "";
+                }
+
                 e.Handled = true;
+            }
+            else if (e.Key == System.Windows.Input.Key.Back || e.ImeProcessedKey == System.Windows.Input.Key.Back)
+            {
+                if (CurrentTextBox.Text == "")
+                {
+                    PreviousWord();
+                    e.Handled = true;
+                }
             }
         }
 

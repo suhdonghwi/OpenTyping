@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -89,7 +88,7 @@ namespace OpenTyping
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
-            this.KeyDown += KeyPracticeWindow_KeyDown;
+            KeyDown += KeyPracticeWindow_KeyDown;
 
             double shakiness = 30;
             const double shakeDiff = 3;
@@ -132,7 +131,7 @@ namespace OpenTyping
 
             ShakeAnimation.KeyFrames = keyFrames;
 
-            this.Closed += KeyPracticeWindow_Closed;
+            Closed += KeyPracticeWindow_Closed;
 
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
             {
@@ -221,7 +220,7 @@ namespace OpenTyping
                 else incorrectStats[CurrentKey.Pos]++;
 
                 KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
-                this.Dispatcher.Invoke(async () =>
+                Dispatcher.Invoke(async () =>
                 {
                     KeyLayoutBox.PressKey(pos, WrongKeyColor, WrongKeyShadowColor);
                     if (isLShift) KeyLayoutBox.LShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);

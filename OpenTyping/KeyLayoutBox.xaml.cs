@@ -33,7 +33,7 @@ namespace OpenTyping
         public KeyLayoutBox()
         {
             InitializeComponent();
-            this.Loaded += KeyLayoutBox_Loaded; 
+            Loaded += KeyLayoutBox_Loaded; 
         }
 
         private void KeyLayoutBox_Loaded(object sender, RoutedEventArgs e)
