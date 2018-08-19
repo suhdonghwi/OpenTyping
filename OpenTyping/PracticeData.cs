@@ -21,12 +21,16 @@ namespace OpenTyping
 
         public string Name { get; }
         public string Author { get; }
-        public IList<string> TextData { get; }
+        public IList<string> TextData { get; set; }
         public string Character { get; }
 
         [JsonIgnore]
         public string Location { get; set; }
 
+        public void RemoveDuplicates()
+        {
+            TextData = TextData.Distinct().ToList();
+        }
         public static PracticeData Parse(string data)
         {
             PracticeData practiceData = JsonConvert.DeserializeObject<PracticeData>(data);

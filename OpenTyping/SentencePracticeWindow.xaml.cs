@@ -62,6 +62,8 @@ namespace OpenTyping
             this.practiceData = practiceData;
             this.shuffle = shuffle;
 
+            if (shuffle) this.practiceData.RemoveDuplicates();
+
             NextSentence();
         }
 
