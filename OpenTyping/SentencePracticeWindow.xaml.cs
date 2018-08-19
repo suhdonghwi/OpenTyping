@@ -92,13 +92,17 @@ namespace OpenTyping
             }
 
             PreviousTextBlock.Inlines.Clear();
-            foreach (Inline inline in CurrentTextBlock.Inlines)
+            foreach (var inline in CurrentTextBlock.Inlines)
             {
-                string temp = XamlWriter.Save(inline);
-                Stream s = new MemoryStream(Encoding.UTF8.GetBytes(temp));
+                var run = (Run)inline;
+                Run newRun = new Run
+                {
+                    Text = run.Text,
+                    Foreground = run.Foreground,
+                    TextDecorations = run.TextDecorations
+                };
 
-                Inline newInline = XamlReader.Load(s) as Inline;
-                PreviousTextBlock.Inlines.Add(newInline);
+                PreviousTextBlock.Inlines.Add(newRun);
             }
 
             string nextSentence = practiceData.TextData[currentSentenceIndex.Value];
