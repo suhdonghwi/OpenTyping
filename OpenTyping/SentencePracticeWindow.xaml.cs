@@ -140,36 +140,53 @@ namespace OpenTyping
                 }
                 else if (i < currentWordIndex)
                 {
-                    string currentWord = currentInputHistory[i];
+                    string inputWord = currentInputHistory[i];
+                    int length = Math.Min(inputWord.Length, targetWord.Length);
 
+                    string tempString = "";
+                    bool correct = inputWord[0] == targetWord[0];
                     int j = 0;
-                    for (; j < currentWord.Length; j++)
+                    for (; j < length; j++)
                     {
-                        if (j == targetWord.Length)
+                        char inputChar = inputWord[j];
+                        if ((inputChar == targetWord[j]) == correct)
                         {
-                            CurrentTextBlock.Inlines.Add(new Run(currentWord.Substring(j))
-                            {
-                                Foreground = incorrectForeground,
-                                TextDecorations = TextDecorations.Underline
-                            });
-
-                            break;
+                            tempString += inputChar;
                         }
-
-                        CurrentTextBlock.Inlines.Add(new Run(currentWord[j].ToString())
+                        else
                         {
-                            Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
+                            CurrentTextBlock.Inlines.Add(new Run(tempString)
+                            {
+                                Foreground = correct ? correctForeground : incorrectForeground
+                            });
+                            correct = !correct;
+                            tempString = inputChar.ToString();
+                        }
+                    }
+
+                    if (tempString != "")
+                    {
+                        CurrentTextBlock.Inlines.Add(new Run(tempString)
+                        {
+                            Foreground = correct ? correctForeground : incorrectForeground
                         });
                     }
 
-                    if (j < targetWord.Length)
+                    if (j < inputWord.Length)
                     {
-                        var newRun = new Run(targetWord.Substring(j))
+                        CurrentTextBlock.Inlines.Add(new Run(inputWord.Substring(j))
+                        {
+                            Foreground = incorrectForeground,
+                            TextDecorations = TextDecorations.Underline
+                        });
+                    }
+                    else if (j < targetWord.Length)
+                    {
+                        CurrentTextBlock.Inlines.Add(new Run(targetWord.Substring(j))
                         {
                             Foreground = incorrectForeground,
                             TextDecorations = TextDecorations.Strikethrough
-                        };
-                        CurrentTextBlock.Inlines.Add(newRun);
+                        });
                     }
                 }
                 else
