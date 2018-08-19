@@ -1,14 +1,13 @@
 ﻿using System;
-using MahApps.Metro.Controls;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using OpenTyping.Properties;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
+using MahApps.Metro.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using OpenTyping.Properties;
 
 namespace OpenTyping
 {
@@ -63,7 +62,7 @@ namespace OpenTyping
         {
             InitializeComponent();
 
-            this.Closing += this.OnClose;
+            Closing += OnClose;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
 
@@ -112,7 +111,7 @@ namespace OpenTyping
                     SelectedKeyLayout = keyLayout;
                 }
 
-                this.Focus();
+                Focus();
             }
         }
 
@@ -167,7 +166,7 @@ namespace OpenTyping
                 }
             }
 
-            this.Focus();
+            Focus();
         }
 
         private void AddPracticeDataButton_Click(object sender, RoutedEventArgs e)
@@ -200,7 +199,7 @@ namespace OpenTyping
                     PracticeDataList.Add(practiceData);
                 }
 
-                this.Focus();
+                Focus();
             }
         }
 
@@ -254,12 +253,12 @@ namespace OpenTyping
                 }
             }
 
-            this.Focus();
+            Focus();
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnClose(object sender, CancelEventArgs e)

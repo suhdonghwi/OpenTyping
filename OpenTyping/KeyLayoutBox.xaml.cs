@@ -50,11 +50,11 @@ namespace OpenTyping
 
             keyLayout = new List<List<KeyBox>>();
 
-            for (int i = 0; i < MainWindow.CurrentKeyLayout.KeyLayoutData.Count(); i++)
+            for (int i = 0; i < MainWindow.CurrentKeyLayout.KeyLayoutData.Count; i++)
             {
                 var keyBoxes = new List<KeyBox>();
 
-                for (int j = 0; j < MainWindow.CurrentKeyLayout.KeyLayoutData[i].Count(); j++)
+                for (int j = 0; j < MainWindow.CurrentKeyLayout.KeyLayoutData[i].Count; j++)
                 {
                     Key key = MainWindow.CurrentKeyLayout.KeyLayoutData[i][j];
 
@@ -111,9 +111,9 @@ namespace OpenTyping
         {
             List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
 
-            for (int i = 0; i < keyLayout.Count(); i++)
+            for (int i = 0; i < keyLayout.Count; i++)
             {
-                for (int j = 0; j < keyLayout[i].Count(); j++)
+                for (int j = 0; j < keyLayout[i].Count; j++)
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {

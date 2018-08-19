@@ -145,30 +145,26 @@ namespace OpenTyping
                     int j = 0;
                     for (; j < currentWord.Length; j++)
                     {
-                        Run newRun;
-
-                        if (j >= targetWord.Length)
+                        if (j == targetWord.Length)
                         {
-                            newRun = new Run(currentWord[j].ToString())
+                            CurrentTextBlock.Inlines.Add(new Run(currentWord.Substring(j))
                             {
                                 Foreground = incorrectForeground,
                                 TextDecorations = TextDecorations.Underline
-                            };
-                        }
-                        else
-                        {
-                            newRun = new Run(currentWord[j].ToString())
-                            {
-                                Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
-                            };
+                            });
+
+                            break;
                         }
 
-                        CurrentTextBlock.Inlines.Add(newRun);
+                        CurrentTextBlock.Inlines.Add(new Run(currentWord[j].ToString())
+                        {
+                            Foreground = targetWord[j] == currentWord[j] ? correctForeground : incorrectForeground
+                        });
                     }
 
-                    for (; j < targetWord.Length; j++)
+                    if (j < targetWord.Length)
                     {
-                        var newRun = new Run(targetWord[j].ToString())
+                        var newRun = new Run(targetWord.Substring(j))
                         {
                             Foreground = incorrectForeground,
                             TextDecorations = TextDecorations.Strikethrough
