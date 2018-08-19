@@ -44,8 +44,11 @@ namespace OpenTyping
             set => SetField(ref currentInput, value);
         }
 
-        private PracticeData practiceData;
-        private bool shuffle;
+        private readonly PracticeData practiceData;
+        private readonly bool shuffle;
+
+        private int? currentSentenceIndex = null;
+        private static readonly Random SentenceIndexRandom = new Random();
 
         private int currentWordIndex = -1;
         private readonly Brush currentWordBack = Brushes.LightGreen;
@@ -59,17 +62,41 @@ namespace OpenTyping
             this.practiceData = practiceData;
             this.shuffle = shuffle;
 
-            CurrentText = "동해물과 백두산이 마르고 닳도록";
+            NextSentence();
+        }
+
+        private void NextSentence()
+        {
+            if (shuffle)
+            {
+                if (currentSentenceIndex is null)
+                {
+                    currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
+                }
+                else
+                {
+                    int tempIndex = currentSentenceIndex.Value;
+                    while ((currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count)) == tempIndex);
+                }
+            }
+            else
+            {
+                if (currentSentenceIndex is null) currentSentenceIndex = 0;
+                else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0;
+                else currentSentenceIndex++;
+            }
+
+            string nextSentence = practiceData.TextData[currentSentenceIndex.Value];
+            CurrentText = nextSentence;
+
+            currentWordIndex = -1;
             NextWord();
+
+            currentInputHistory.Clear();
         }
 
         private void NextWord()
         {
-            if (currentWordIndex + 1 == currentWordSequence.Count)
-            {
-                return;
-            }
-
             currentWordIndex++;
             if (CurrentInput != null) currentInputHistory.Add(CurrentInput);
 
@@ -132,6 +159,11 @@ namespace OpenTyping
                 }
 
                CurrentTextBlock.Inlines.Add(new Run(" "));
+            }
+
+            if (currentWordIndex == currentWordSequence.Count)
+            {
+                NextSentence();
             }
         }
 
