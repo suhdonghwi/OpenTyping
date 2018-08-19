@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Markup;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
 
@@ -86,6 +89,16 @@ namespace OpenTyping
                 if (currentSentenceIndex is null) currentSentenceIndex = 0;
                 else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0;
                 else currentSentenceIndex++;
+            }
+
+            PreviousTextBlock.Inlines.Clear();
+            foreach (Inline inline in CurrentTextBlock.Inlines)
+            {
+                string temp = XamlWriter.Save(inline);
+                Stream s = new MemoryStream(Encoding.UTF8.GetBytes(temp));
+
+                Inline newInline = XamlReader.Load(s) as Inline;
+                PreviousTextBlock.Inlines.Add(newInline);
             }
 
             string nextSentence = practiceData.TextData[currentSentenceIndex.Value];

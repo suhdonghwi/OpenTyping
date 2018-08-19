@@ -28,8 +28,19 @@
                         BorderBrush="Gainsboro" 
                         BorderThickness="1"
                         Margin="0 0 0 15">
+                    <TextBlock x:Name="PreviousTextBlock"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="17pt"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"/>
+                </Border>
+
+                <Border Background="GhostWhite" 
+                        BorderBrush="Gainsboro" 
+                        BorderThickness="1"
+                        Margin="0 0 0 15">
                     <TextBlock x:Name="CurrentTextBlock"
-                               DataContext="{Binding ElementName=SelfWindow}"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                FontSize="17pt"
                                Margin="5"
