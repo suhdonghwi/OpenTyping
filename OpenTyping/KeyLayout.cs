@@ -31,6 +31,43 @@ namespace OpenTyping
 
         public Key this[KeyPos pos] => KeyLayoutData[pos.Row][pos.Column];
 
+        private const string ChoseongTable = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
+        private const string JungseongTable = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
+        private const string JongseongTable = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+
+        private static IList<char> DecomposeHangul(char hangul)
+        {
+            if (hangul >= (char)0x3131 && hangul <= (char)0x3163) // The character is in Hangul Compatibility Jamo unicode block
+            {
+                return new List<char> { hangul };
+            }
+            if (hangul < (char)0xAC00 || hangul > (char)0xD79F) // The character is not in Hangul Syllables unicode block
+            {
+                return new List<char>();
+            }
+
+            int code = hangul - (char)0xAC00;
+            var result = new List<char>();
+
+            int choseongIndex = code / (21 * 28);
+            result.Add(ChoseongTable[choseongIndex]);
+            code %= 21 * 28;
+
+            int jungseongIndex = code / 28;
+            result.Add(JungseongTable[jungseongIndex]);
+            code %= 28;
+
+            int jongseongIndex = code;
+            if (jongseongIndex != 0) result.Add(JongseongTable[jongseongIndex]);
+
+            return result;
+        }
+
+        public int CountLetter(string text)
+        {
+            throw new NotImplementedException();
+        }
+
         public static KeyLayout Parse(string data)
         {
             KeyLayout keyLayout = JsonConvert.DeserializeObject<KeyLayout>(data);
