@@ -21,12 +21,15 @@ namespace OpenTyping
                 string[] splitedValue = Regex.Split(s, @"(?<!\\)[ ]");
                 splitedValue = splitedValue.Select(str => str.Replace(@"\ ", " ")).ToArray();
 
-                if (splitedValue.Length == 1)
+                switch (splitedValue.Length)
                 {
-                    return new Key(splitedValue[0].Trim());
+                    case 1:
+                        return new Key(splitedValue[0].Trim());
+                    case 2:
+                        return new Key(splitedValue[0].Trim(), splitedValue[1].Trim());
+                    default:
+                        throw new InvalidKeyDataException("잘못된 수의 키 데이터 문자열이 주어졌습니다.");
                 }
-
-                return new Key(splitedValue[0].Trim(), splitedValue[1].Trim());
             }
 
             return base.ConvertFrom(context, culture, value);
