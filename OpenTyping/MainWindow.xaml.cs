@@ -90,7 +90,7 @@ namespace OpenTyping
 
         private static void SaveKeyLayout()
         {
-            File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout));
+            File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout, Formatting.Indented));
         }
 
         private static void MainWindow_Closed(object sender, EventArgs e)
