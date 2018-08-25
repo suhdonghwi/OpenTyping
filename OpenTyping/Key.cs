@@ -1,12 +1,11 @@
-﻿using System.ComponentModel;
-
-namespace OpenTyping
+﻿namespace OpenTyping
 {
-    [TypeConverter(typeof(KeyConverter))]
     public class Key
     {
-        public string KeyData { get; }
-        public string ShiftKeyData { get; }
+        public string KeyData { get; set; }
+        public string ShiftKeyData { get; set; }
+
+        public Key() {}
 
         public Key(string keyData, string shiftKeyData = null)
         {

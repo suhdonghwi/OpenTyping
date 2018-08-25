@@ -50,14 +50,12 @@ namespace OpenTyping
 
             keyLayout = new List<List<KeyBox>>();
 
-            for (int i = 0; i < MainWindow.CurrentKeyLayout.KeyLayoutData.Count; i++)
+            foreach (IList<Key> keyRow in MainWindow.CurrentKeyLayout.KeyLayoutData)
             {
                 var keyBoxes = new List<KeyBox>();
 
-                for (int j = 0; j < MainWindow.CurrentKeyLayout.KeyLayoutData[i].Count; j++)
+                foreach (Key key in keyRow)
                 {
-                    Key key = MainWindow.CurrentKeyLayout.KeyLayoutData[i][j];
-
                     var keyBox = new KeyBox
                     {
                         Key = key,

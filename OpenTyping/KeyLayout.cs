@@ -35,18 +35,24 @@ namespace OpenTyping
         private const string JungseongTable = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
         private const string JongseongTable = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
 
-        private static IList<char> DecomposeHangul(char hangul)
+        private static bool IsHangulCompatibilityJamo(char ch)
+            => ch >= (char)0x3131 || ch <= (char)0x3163;
+
+        private static bool IsHangulSyllable(char ch)
+            => ch >= (char)0xAC00 || ch <= (char)0xD79F;
+
+        private static IEnumerable<char> DecomposeHangul(char ch)
         {
-            if (hangul >= (char)0x3131 && hangul <= (char)0x3163) // The character is in Hangul Compatibility Jamo unicode block
+            if (IsHangulCompatibilityJamo(ch)) // ch is in Hangul Compatibility Jamo unicode block
             {
-                return new List<char> { hangul };
+                return new List<char> { ch };
             }
-            if (hangul < (char)0xAC00 || hangul > (char)0xD79F) // The character is not in Hangul Syllables unicode block
+            if (!IsHangulSyllable(ch)) // ch is not in Hangul Syllables unicode block
             {
                 return new List<char>();
             }
 
-            int code = hangul - (char)0xAC00;
+            int code = ch - (char)0xAC00;
             var result = new List<char>();
 
             int choseongIndex = code / (21 * 28);
@@ -63,10 +69,24 @@ namespace OpenTyping
             return result;
         }
 
-        public int CountLetter(string text)
-        {
-            throw new NotImplementedException();
-        }
+        //public int CountLetter(string text)
+        //{
+        //    int count = 0;
+        //    foreach (char ch in text)
+        //    {
+        //        IList<char> decomposed = DecomposeHangul(ch).ToList();
+
+        //        if (!decomposed.Any()) // ch is not a hangul character
+        //        {
+        //            count++;
+        //            continue;
+        //        }
+
+        //        foreach (char jamo in decomposed)
+        //        {
+        //        }
+        //    }
+        //}
 
         public static KeyLayout Parse(string data)
         {
