@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Documents;
@@ -44,10 +45,19 @@ namespace OpenTyping
         private readonly PracticeData practiceData;
         private readonly bool shuffle;
 
-        private int? currentSentenceIndex = null;
-        private static readonly Random SentenceIndexRandom = new Random();
+        private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
+
+        private int typingSpeed;
+        public int TypingSpeed
+        {
+            get => typingSpeed;
+            private set => SetField(ref typingSpeed, value);
+        }
 
         private int currentWordIndex = -1;
+        private int? currentSentenceIndex;
+        private static readonly Random SentenceIndexRandom = new Random();
+
         private readonly Brush currentWordBack = Brushes.LightGreen;
         private readonly Brush correctForeground = Brushes.Green;
         private readonly Brush incorrectForeground = Brushes.Red;
@@ -66,6 +76,12 @@ namespace OpenTyping
 
         private void NextSentence()
         {
+            if (currentSentenceIndex != null)
+            {
+                string previousSentence = practiceData.TextData[currentSentenceIndex.Value];
+                TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(previousSentence));
+            }
+
             if (shuffle)
             {
                 if (currentSentenceIndex is null)
@@ -224,6 +240,10 @@ namespace OpenTyping
                     PreviousWord();
                     e.Handled = true;
                 }
+            }
+            else if (!currentInputHistory.Any() && CurrentInput == "")
+            {
+                typingMeasurer.Start();
             }
         }
 

@@ -31,62 +31,6 @@ namespace OpenTyping
 
         public Key this[KeyPos pos] => KeyLayoutData[pos.Row][pos.Column];
 
-        private const string ChoseongTable = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
-        private const string JungseongTable = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
-        private const string JongseongTable = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
-
-        private static bool IsHangulCompatibilityJamo(char ch)
-            => ch >= (char)0x3131 || ch <= (char)0x3163;
-
-        private static bool IsHangulSyllable(char ch)
-            => ch >= (char)0xAC00 || ch <= (char)0xD79F;
-
-        private static IEnumerable<char> DecomposeHangul(char ch)
-        {
-            if (IsHangulCompatibilityJamo(ch)) // ch is in Hangul Compatibility Jamo unicode block
-            {
-                return new List<char> { ch };
-            }
-            if (!IsHangulSyllable(ch)) // ch is not in Hangul Syllables unicode block
-            {
-                return new List<char>();
-            }
-
-            int code = ch - (char)0xAC00;
-            var result = new List<char>();
-
-            int choseongIndex = code / (21 * 28);
-            result.Add(ChoseongTable[choseongIndex]);
-            code %= 21 * 28;
-
-            int jungseongIndex = code / 28;
-            result.Add(JungseongTable[jungseongIndex]);
-            code %= 28;
-
-            int jongseongIndex = code;
-            if (jongseongIndex != 0) result.Add(JongseongTable[jongseongIndex]);
-
-            return result;
-        }
-
-        //public int CountLetter(string text)
-        //{
-        //    int count = 0;
-        //    foreach (char ch in text)
-        //    {
-        //        IList<char> decomposed = DecomposeHangul(ch).ToList();
-
-        //        if (!decomposed.Any()) // ch is not a hangul character
-        //        {
-        //            count++;
-        //            continue;
-        //        }
-
-        //        foreach (char jamo in decomposed)
-        //        {
-        //        }
-        //    }
-        //}
 
         public static KeyLayout Parse(string data)
         {

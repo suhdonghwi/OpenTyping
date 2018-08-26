@@ -15,7 +15,8 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition MinHeight="165" Height="Auto"/>
+                <RowDefinition Height="Auto"
+                               MinHeight="165"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -58,6 +59,16 @@
                          MaxWidth="450"
                          HorizontalAlignment="Center"
                          PreviewKeyDown="CurrentTextBox_PreviewKeyDown"/>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                           HorizontalAlignment="Right">
+                    <Run FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="11pt"
+                         Text="타속 : "/>
+                    <Run FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="16pt"
+                         Text="{Binding Path=TypingSpeed,
+                                        Mode=OneWay}"/>
+                </TextBlock>
             </StackPanel>
 
             <Separator Grid.Row="1"/>
