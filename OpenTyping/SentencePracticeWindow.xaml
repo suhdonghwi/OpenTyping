@@ -42,6 +42,8 @@
                         BorderThickness="1"
                         Margin="0 0 0 15">
                     <TextBlock x:Name="CurrentTextBlock"
+                               DataContext="{Binding ElementName=SelfWindow}"
+                               Text="{Binding Path=CurrentText}"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                FontSize="17pt"
                                Margin="5"
@@ -50,15 +52,11 @@
                 </Border>
                 <TextBox x:Name="CurrentTextBox"
                          DataContext="{Binding ElementName=SelfWindow}"
-                         Text="{Binding Path=CurrentInput,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}"
                          FontFamily="{StaticResource NanumBarunGothic}"
                          FontSize="17pt"
-                         MinWidth="150"
-                         MaxWidth="450"
-                         HorizontalAlignment="Center"
-                         PreviewKeyDown="CurrentTextBox_PreviewKeyDown"/>
+                         Margin="0 0 0 10"
+                         PreviewKeyDown="CurrentTextBox_PreviewKeyDown"
+                         TextChanged="CurrentTextBox_TextChanged"/>
                 <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                            HorizontalAlignment="Right">
                     <Run FontFamily="{StaticResource NanumBarunGothic}"
