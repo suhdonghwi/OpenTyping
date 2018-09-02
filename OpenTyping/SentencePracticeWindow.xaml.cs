@@ -87,7 +87,7 @@ namespace OpenTyping
                 Run newRun = new Run
                 {
                     Text = run.Text,
-                    Foreground = run.Foreground,
+                    Background = run.Background,
                     TextDecorations = run.TextDecorations
                 };
 
@@ -98,7 +98,7 @@ namespace OpenTyping
             CurrentText = nextSentence;
         }
 
-        private static IList<char> DecomposeHangul(char hangul)
+        private static IEnumerable<char> DecomposeHangul(char hangul)
         {
             var choseongTable = new List<string>
             {
