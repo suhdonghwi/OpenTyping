@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -37,6 +39,7 @@ namespace OpenTyping
 
         private readonly Brush correctForeground = Brushes.LightGreen;
         private readonly Brush incorrectForeground = Brushes.Pink;
+        private readonly Brush intermidiateForground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -95,12 +98,156 @@ namespace OpenTyping
             CurrentText = nextSentence;
         }
 
+        private static IList<char> DecomposeHangul(char hangul)
+        {
+            var choseongTable = new List<string>
+            {
+                "ㄱ",
+                "ㄱㄱ",
+                "ㄴ",
+                "ㄷ",
+                "ㄷㄷ",
+                "ㄹ",
+                "ㅁ",
+                "ㅂ",
+                "ㅂㅂ",
+                "ㅅ",
+                "ㅅㅅ",
+                "ㅇ",
+                "ㅈ",
+                "ㅈㅈ",
+                "ㅊ",
+                "ㅋ",
+                "ㅌ",
+                "ㅍ",
+                "ㅎ",
+            };
+            var jungseongTable = new List<string>
+            {
+                "ㅏ",
+                "ㅐ",
+                "ㅑ",
+                "ㅒ",
+                "ㅓ",
+                "ㅔ",
+                "ㅕ",
+                "ㅖ",
+                "ㅗ",
+                "ㅗㅏ",
+                "ㅗㅐ",
+                "ㅗㅣ",
+                "ㅛ",
+                "ㅜ",
+                "ㅜㅓ",
+                "ㅜㅔ",
+                "ㅜㅣ",
+                "ㅠ",
+                "ㅡ",
+                "ㅡㅣ",
+                "ㅣ"
+            };
+            var jongseongTable = new List<string>
+            {
+                " ",
+                "ㄱ",
+                "ㄱㄱ",
+                "ㄱㅅ",
+                "ㄴ",
+                "ㄴㅈ",
+                "ㄴㅎ",
+                "ㄷ",
+                "ㄹ",
+                "ㄹㄱ",
+                "ㄹㅁ",
+                "ㄹㅂ",
+                "ㄹㅅ",
+                "ㄹㅌ",
+                "ㄹㅍ",
+                "ㄹㅎ",
+                "ㅁ",
+                "ㅂ",
+                "ㅂㅅ",
+                "ㅅ",
+                "ㅅㅅ",
+                "ㅇ",
+                "ㅈ",
+                "ㅊ",
+                "ㅋ",
+                "ㅌ",
+                "ㅍ",
+                "ㅎ"
+            };
+
+            if (hangul >= (char)0x3131 && hangul <= (char)0x3163) // The character is in Hangul Compatibility Jamo unicode block
+            {
+                return new List<char> { hangul };
+            }
+            if (hangul < (char)0xAC00 || hangul > (char)0xD79F) // The character is not in Hangul Syllables unicode block
+            {
+                return new List<char>();
+            }
+
+            int code = hangul - (char)0xAC00;
+            var result = new List<char>();
+
+            int choseongIndex = code / (21 * 28);
+            result.AddRange(choseongTable[choseongIndex]);
+            code %= 21 * 28;
+
+            int jungseongIndex = code / 28;
+            result.AddRange(jungseongTable[jungseongIndex]);
+            code %= 28;
+
+            int jongseongIndex = code;
+            if (jongseongIndex != 0) result.AddRange(jongseongTable[jongseongIndex]);
+
+            return result;
+        }
+
         private void HighlightDiff()
         {
             string input = CurrentTextBox.Text;
 
             var differ = new Differ();
-            IEnumerable<Differ.DiffData> diffs = differ.Diff(CurrentText.Substring(0, input.Length), CurrentTextBox.Text);
+
+            Differ.DiffData.DiffState Comparer(char ch1, char ch2)
+            {
+                var decomposed1 = new List<char>(DecomposeHangul(ch1));
+                var decomposed2 = new List<char>(DecomposeHangul(ch2));
+
+                if (decomposed1.Any() && decomposed2.Any())
+                {
+                    if (decomposed1.SequenceEqual(decomposed2))
+                    {
+                        return Differ.DiffData.DiffState.Equal;
+                    }
+
+                    if (decomposed1.Count < decomposed2.Count)
+                    {
+                        return decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
+                            ? Differ.DiffData.DiffState.Intermediate
+                            : Differ.DiffData.DiffState.Unequal;
+                    }
+
+                    return decomposed2.SequenceEqual(decomposed1.Take(decomposed2.Count))
+                        ? Differ.DiffData.DiffState.Intermediate
+                        : Differ.DiffData.DiffState.Unequal;
+                }
+
+                return ch1 == ch2 ? Differ.DiffData.DiffState.Equal : Differ.DiffData.DiffState.Unequal;
+            }
+
+            var diffs
+                = new List<Differ.DiffData>(differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)), CurrentTextBox.Text,
+                    Comparer));
+
+            for (int i = 0; i < diffs.Count() - 1; i++)
+            {
+                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                }
+            }
 
             CurrentTextBlock.Inlines.Clear();
             foreach (Differ.DiffData diff in diffs)
@@ -114,12 +261,18 @@ namespace OpenTyping
                     case Differ.DiffData.DiffState.Unequal:
                         run.Background = incorrectForeground;
                         break;
+                    case Differ.DiffData.DiffState.Intermediate:
+                        run.Background = intermidiateForground;
+                        break;
                 }
 
                 CurrentTextBlock.Inlines.Add(run);
             }
 
-            CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
+            if (input.Length < CurrentText.Length)
+            {
+                CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
+            }
         }
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

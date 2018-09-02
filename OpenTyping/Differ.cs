@@ -13,11 +13,12 @@ namespace OpenTyping
             public enum DiffState
             {
                 Equal,
+                Intermediate,
                 Unequal,
             }
 
             public string Text { get; }
-            public DiffState State { get; }
+            public DiffState State { get; set; }
 
             public DiffData(string text, DiffState state)
             {
@@ -26,33 +27,28 @@ namespace OpenTyping
             }
         }
 
-        public IEnumerable<DiffData> Diff(string text1, string text2)
+        public delegate DiffData.DiffState Comparer(char ch1, char ch2);
+
+        public IEnumerable<DiffData> Diff(string text1, string text2, Comparer comparer = null)
         {
             if (string.IsNullOrEmpty(text1) || string.IsNullOrEmpty(text2))
             {
                 return new List<DiffData>();
             }
 
+            if (comparer is null)
+            {
+                comparer += (ch1, ch2) => ch1 == ch2 ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal;
+            }
+
             int length = Math.Min(text1.Length, text2.Length);
-            string temp = "";
-            bool equalState = text1[0] == text2[0];
             var result = new List<DiffData>();
             int i = 0;
             for (; i < length; i++)
             {
-                if (text1[i] == text2[i] == equalState)
-                {
-                    temp += text1[i];
-                }
-                else
-                {
-                    result.Add(new DiffData(temp, equalState ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal));
-                    temp = text1[i].ToString();
-                    equalState = !equalState;
-                }
+                result.Add(new DiffData(text1[i].ToString(), comparer(text1[i], text2[i])));
             }
 
-            result.Add(new DiffData(temp, equalState ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal));
             if (text1.Length == text2.Length) return result;
 
             result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
