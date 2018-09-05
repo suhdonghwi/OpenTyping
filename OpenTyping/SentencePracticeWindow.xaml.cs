@@ -36,6 +36,13 @@ namespace OpenTyping
             private set => SetField(ref typingSpeed, value);
         }
 
+        private int accuracy;
+        public int Accuracy
+        {
+            get => accuracy;
+            private set => SetField(ref accuracy, value);
+        }
+
         public SeriesCollection TypingSpeedCollection { get; set; } = new SeriesCollection
         {
             new LineSeries
@@ -64,6 +71,21 @@ namespace OpenTyping
             SpeedChart.AxisX[0].Separator.Step = 1;
 
             NextSentence();
+        }
+
+        private Brush MapDiffState(Differ.DiffData.DiffState state)
+        {
+            switch (state)
+            {
+                case Differ.DiffData.DiffState.Equal:
+                    return correctBackground;
+                case Differ.DiffData.DiffState.Unequal:
+                    return incorrectBackground;
+                case Differ.DiffData.DiffState.Intermediate:
+                    return intermidiateBackground;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void NextSentence()
@@ -96,17 +118,22 @@ namespace OpenTyping
             }
 
             PreviousTextBlock.Inlines.Clear();
-            foreach (var inline in CurrentTextBlock.Inlines)
+            var diffs = new List<Differ.DiffData>(CalculateDiff(CurrentText, CurrentTextBox.Text));
+            for (int i = 0; i < diffs.Count(); i++)
             {
-                var run = (Run)inline;
-                Run newRun = new Run
+                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
                 {
-                    Text = run.Text,
-                    Background = run.Background,
-                    TextDecorations = run.TextDecorations
-                };
+                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                }
+            }
 
-                PreviousTextBlock.Inlines.Add(newRun);
+            foreach (var diff in diffs)
+            {
+                var run = new Run(diff.Text)
+                {
+                    Background = MapDiffState(diff.State)
+                };
+                PreviousTextBlock.Inlines.Add(run);
             }
 
             string nextSentence = practiceData.TextData[currentSentenceIndex.Value];
@@ -219,10 +246,8 @@ namespace OpenTyping
             return result;
         }
 
-        private void HighlightDiff()
+        private static IEnumerable<Differ.DiffData> CalculateDiff(string str1, string str2)
         {
-            string input = CurrentTextBox.Text;
-
             var differ = new Differ();
 
             Differ.DiffData.DiffState Comparer(char ch1, char ch2)
@@ -253,41 +278,9 @@ namespace OpenTyping
             }
 
             var diffs
-                = new List<Differ.DiffData>(differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)), CurrentTextBox.Text,
-                    Comparer));
+                = new List<Differ.DiffData>(differ.Diff(str1, str2, Comparer));
 
-            for (int i = 0; i < diffs.Count() - 1; i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-
-            CurrentTextBlock.Inlines.Clear();
-            foreach (Differ.DiffData diff in diffs)
-            {
-                var run = new Run(diff.Text);
-                switch (diff.State)
-                {
-                    case Differ.DiffData.DiffState.Equal:
-                        run.Background = correctBackground;
-                        break;
-                    case Differ.DiffData.DiffState.Unequal:
-                        run.Background = incorrectBackground;
-                        break;
-                    case Differ.DiffData.DiffState.Intermediate:
-                        run.Background = intermidiateBackground;
-                        break;
-                }
-
-                CurrentTextBlock.Inlines.Add(run);
-            }
-
-            if (input.Length < CurrentText.Length)
-            {
-                CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
-            }
+            return diffs;
         }
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -308,7 +301,33 @@ namespace OpenTyping
 
         private void CurrentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            HighlightDiff();
+            string input = CurrentTextBox.Text;
+            var diffs
+                = new List<Differ.DiffData>(CalculateDiff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
+                                                          CurrentTextBox.Text));
+
+            for (int i = 0; i < diffs.Count() - 1; i++)
+            {
+                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                }
+            }
+            
+            CurrentTextBlock.Inlines.Clear();
+            foreach (Differ.DiffData diff in diffs)
+            {
+                var run = new Run(diff.Text)
+                {
+                    Background = MapDiffState(diff.State)
+                };
+                CurrentTextBlock.Inlines.Add(run);
+            }
+
+            if (input.Length < CurrentText.Length)
+            {
+                CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

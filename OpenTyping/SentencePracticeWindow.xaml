@@ -67,6 +67,13 @@
                          FontSize="16pt"
                          Text="{Binding Path=TypingSpeed,
                                         Mode=OneWay}"/>
+                    <Run FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="11pt"
+                         Text="|"/>
+                    <Run FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="16pt"
+                         Text="{Binding Path=Accuracy,
+                                        Mode=OneWay}"/>
                 </TextBlock>
             </StackPanel>
 
@@ -78,7 +85,7 @@
                                 DataContext="{Binding ElementName=SelfWindow}"
                                 Series="{Binding Path=TypingSpeedCollection}"
                                 LegendLocation="Bottom"
-                                FontFamily="{StaticResource NanumBarunGothic}"
+                                FontFamily="{StaticResource NanumGothic}"
                                 FontSize="11pt">
                 <lvc:CartesianChart.ChartLegend>
                     <lvc:DefaultLegend Margin="0 5 0 0"/>
