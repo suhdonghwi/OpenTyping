@@ -6,6 +6,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:local="clr-namespace:OpenTyping"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
                  mc:Ignorable="d"
                  Title="열린타자"
                  Width="700"
@@ -69,7 +70,32 @@
                 </TextBlock>
             </StackPanel>
 
-            <Separator Grid.Row="1"/>
+            <Separator Grid.Row="1"
+                       Margin="0 0 0 10"/>
+
+            <lvc:CartesianChart x:Name="SpeedChart"
+                                Grid.Row="2"
+                                DataContext="{Binding ElementName=SelfWindow}"
+                                Series="{Binding Path=TypingSpeedCollection}"
+                                LegendLocation="Bottom"
+                                FontFamily="{StaticResource NanumBarunGothic}"
+                                FontSize="11pt">
+                <lvc:CartesianChart.ChartLegend>
+                    <lvc:DefaultLegend Margin="0 5 0 0"/>
+                </lvc:CartesianChart.ChartLegend>
+
+                <lvc:CartesianChart.DataTooltip>
+                    <lvc:DefaultTooltip ShowTitle="False"/>
+                </lvc:CartesianChart.DataTooltip>
+
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis MinValue="0"/>
+                </lvc:CartesianChart.AxisY>
+
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis ShowLabels="False"/>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
         </Grid>
     </ScrollViewer>
 </mah:MetroWindow>

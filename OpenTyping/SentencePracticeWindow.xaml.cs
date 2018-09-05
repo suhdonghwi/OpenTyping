@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
 using System.Windows.Media;
+using LiveCharts;
+using LiveCharts.Wpf;
 using MahApps.Metro.Controls;
 
 namespace OpenTyping
@@ -34,12 +36,21 @@ namespace OpenTyping
             private set => SetField(ref typingSpeed, value);
         }
 
+        public SeriesCollection TypingSpeedCollection { get; set; } = new SeriesCollection
+        {
+            new LineSeries
+            {
+                Title = "타속",
+                Values = new ChartValues<int>()
+            }
+        };
+
         private int? currentSentenceIndex;
         private static readonly Random SentenceIndexRandom = new Random();
 
-        private readonly Brush correctForeground = Brushes.LightGreen;
-        private readonly Brush incorrectForeground = Brushes.Pink;
-        private readonly Brush intermidiateForground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
+        private readonly Brush correctBackground = Brushes.LightGreen;
+        private readonly Brush incorrectBackground = Brushes.Pink;
+        private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -50,6 +61,8 @@ namespace OpenTyping
 
             if (shuffle) this.practiceData.RemoveDuplicates();
 
+            SpeedChart.AxisX[0].Separator.Step = 1;
+
             NextSentence();
         }
 
@@ -59,6 +72,8 @@ namespace OpenTyping
             {
                 string previousSentence = CurrentTextBox.Text;
                 TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(previousSentence));
+
+                TypingSpeedCollection[0].Values.Add(TypingSpeed);
             }
 
             if (shuffle)
@@ -256,13 +271,13 @@ namespace OpenTyping
                 switch (diff.State)
                 {
                     case Differ.DiffData.DiffState.Equal:
-                        run.Background = correctForeground;
+                        run.Background = correctBackground;
                         break;
                     case Differ.DiffData.DiffState.Unequal:
-                        run.Background = incorrectForeground;
+                        run.Background = incorrectBackground;
                         break;
                     case Differ.DiffData.DiffState.Intermediate:
-                        run.Background = intermidiateForground;
+                        run.Background = intermidiateBackground;
                         break;
                 }
 
