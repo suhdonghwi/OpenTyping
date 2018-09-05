@@ -58,23 +58,29 @@
                          Margin="0 0 0 10"
                          PreviewKeyDown="CurrentTextBox_PreviewKeyDown"
                          TextChanged="CurrentTextBox_TextChanged"/>
-                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
-                           HorizontalAlignment="Right">
-                    <Run FontFamily="{StaticResource NanumBarunGothic}"
-                         FontSize="11pt"
-                         Text="타속 : "/>
-                    <Run FontFamily="{StaticResource NanumBarunGothic}"
-                         FontSize="16pt"
-                         Text="{Binding Path=TypingSpeed,
-                                        Mode=OneWay}"/>
-                    <Run FontFamily="{StaticResource NanumBarunGothic}"
-                         FontSize="11pt"
-                         Text="|"/>
-                    <Run FontFamily="{StaticResource NanumBarunGothic}"
-                         FontSize="16pt"
-                         Text="{Binding Path=Accuracy,
-                                        Mode=OneWay}"/>
-                </TextBlock>
+                <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <TextBlock Margin="0 0 10 0">
+                        <Run FontFamily="{StaticResource NanumBarunGothic}"
+                             FontSize="11pt"
+                             Text="타속 :"/>
+                        <Run FontFamily="{StaticResource NanumBarunGothic}"
+                             FontSize="16pt"
+                             Text="{Binding Path=TypingSpeed,
+                                            Mode=OneWay}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run FontFamily="{StaticResource NanumBarunGothic}"
+                             FontSize="11pt"
+                             Text="정확도 :"/>
+                        <Run FontFamily="{StaticResource NanumBarunGothic}"
+                             FontSize="16pt"
+                             Text="{Binding Path=TypingAccuracy,
+                                            StringFormat={}{0}%,
+                                            Mode=OneWay}"/>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
 
             <Separator Grid.Row="1"

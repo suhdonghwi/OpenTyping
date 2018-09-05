@@ -36,11 +36,11 @@ namespace OpenTyping
             private set => SetField(ref typingSpeed, value);
         }
 
-        private int accuracy;
-        public int Accuracy
+        private int typingAccuracy;
+        public int TypingAccuracy
         {
-            get => accuracy;
-            private set => SetField(ref accuracy, value);
+            get => typingAccuracy;
+            private set => SetField(ref typingAccuracy, value);
         }
 
         public SeriesCollection TypingSpeedCollection { get; set; } = new SeriesCollection
@@ -90,10 +90,33 @@ namespace OpenTyping
 
         private void NextSentence()
         {
-            if (CurrentTextBox.Text != "")
+            if (!string.IsNullOrEmpty(CurrentTextBlock.Text))
             {
+                PreviousTextBlock.Inlines.Clear();
+                var diffs = new List<Differ.DiffData>(CalculateDiff(CurrentText, CurrentTextBox.Text));
+                double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
+                                  (double)diffs.Sum(data => data.Text.Length);
+                TypingAccuracy = Convert.ToInt32(accuracy * 100);
+
+                for (int i = 0; i < diffs.Count(); i++)
+                {
+                    if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
+                    {
+                        diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                    }
+                }
+
+                foreach (var diff in diffs)
+                {
+                    var run = new Run(diff.Text)
+                    {
+                        Background = MapDiffState(diff.State)
+                    };
+                    PreviousTextBlock.Inlines.Add(run);
+                }
+
                 string previousSentence = CurrentTextBox.Text;
-                TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(previousSentence));
+                TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(previousSentence) * accuracy);
 
                 TypingSpeedCollection[0].Values.Add(TypingSpeed);
             }
@@ -117,24 +140,6 @@ namespace OpenTyping
                 else currentSentenceIndex++;
             }
 
-            PreviousTextBlock.Inlines.Clear();
-            var diffs = new List<Differ.DiffData>(CalculateDiff(CurrentText, CurrentTextBox.Text));
-            for (int i = 0; i < diffs.Count(); i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-
-            foreach (var diff in diffs)
-            {
-                var run = new Run(diff.Text)
-                {
-                    Background = MapDiffState(diff.State)
-                };
-                PreviousTextBlock.Inlines.Add(run);
-            }
 
             string nextSentence = practiceData.TextData[currentSentenceIndex.Value];
             CurrentText = nextSentence;
