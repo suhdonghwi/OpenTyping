@@ -27,7 +27,7 @@ namespace OpenTyping
             }
         }
 
-        private static IEnumerable<char> DecomposeHangul(char hangul)
+        private static IEnumerable<char> DecomposeHangul(char ch)
         {
             var choseongTable = new List<string>
             {
@@ -107,16 +107,16 @@ namespace OpenTyping
                 "ㅎ"
             };
 
-            if (hangul >= (char)0x3131 && hangul <= (char)0x3163) // The character is in Hangul Compatibility Jamo unicode block
+            if (ch >= (char)0x3131 && ch <= (char)0x3163) // ch가 Hangul Compatibility Jamo 유니코드 블럭에 있음
             {
-                return new List<char> { hangul };
+                return new List<char> { ch };
             }
-            if (hangul < (char)0xAC00 || hangul > (char)0xD79F) // The character is not in Hangul Syllables unicode block
+            if (ch < (char)0xAC00 || ch > (char)0xD79F) // ch가 Hangul Syllables 유니코드 블럭에 없음
             {
                 return new List<char>();
             }
 
-            int code = hangul - (char)0xAC00;
+            int code = ch - (char)0xAC00;
             var result = new List<char>();
 
             int choseongIndex = code / (21 * 28);
@@ -133,7 +133,7 @@ namespace OpenTyping
             return result;
         }
 
-        public IEnumerable<DiffData> Diff(string text1, string text2)
+        public IEnumerable<DiffData> Diff(string text1, string text2, string originalText1)
         {
             if (string.IsNullOrEmpty(text1) || string.IsNullOrEmpty(text2))
             {
@@ -151,17 +151,29 @@ namespace OpenTyping
 
                 DiffData.DiffState state;
 
-                if (decomposed1.Any() && decomposed2.Any())
+                if (decomposed1.Any() && decomposed2.Any()) // ch1, ch2 둘 다 한글
                 {
                     if (decomposed1.SequenceEqual(decomposed2))
                     {
                         state = DiffData.DiffState.Equal;
                     }
-                    else if (decomposed1.Count < decomposed2.Count)
+                    else if (decomposed1.Count < decomposed2.Count) // 도깨비불 현상의 가능성
                     {
-                        state = decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
-                            ? DiffData.DiffState.Intermediate
-                            : DiffData.DiffState.Unequal;
+                        if (i < originalText1.Length - 1 &&
+                            decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count)) &&
+                            decomposed2.Count >= 3)
+                        {
+                            var nextDecomposed = new List<char>(DecomposeHangul(originalText1[i + 1]));
+                            state = nextDecomposed.Any() && decomposed2.Last() == nextDecomposed[0]
+                                ? DiffData.DiffState.Equal
+                                : DiffData.DiffState.Unequal;
+                        }
+                        else
+                        {
+                            state = decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
+                                ? DiffData.DiffState.Intermediate
+                                : DiffData.DiffState.Unequal;
+                        }
                     }
                     else
                     {

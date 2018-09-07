@@ -59,6 +59,8 @@ namespace OpenTyping
         private readonly Brush incorrectBackground = Brushes.Pink;
         private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
+        private static Differ differ = new Differ();
+
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
             InitializeComponent();
@@ -93,7 +95,7 @@ namespace OpenTyping
             if (!string.IsNullOrEmpty(CurrentTextBlock.Text))
             {
                 PreviousTextBlock.Inlines.Clear();
-                var diffs = new List<Differ.DiffData>(CalculateDiff(CurrentText, CurrentTextBox.Text));
+                var diffs = new List<Differ.DiffData>(differ.Diff(CurrentText, CurrentTextBox.Text, CurrentText));
                 double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
                                   (double)diffs.Sum(data => data.Text.Length);
                 TypingAccuracy = Convert.ToInt32(accuracy * 100);
@@ -145,15 +147,6 @@ namespace OpenTyping
             CurrentText = nextSentence;
         }
 
-
-        private static IEnumerable<Differ.DiffData> CalculateDiff(string str1, string str2)
-        {
-            var differ = new Differ();
-            var diffs = new List<Differ.DiffData>(differ.Diff(str1, str2));
-
-            return diffs;
-        }
-
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -174,8 +167,9 @@ namespace OpenTyping
         {
             string input = CurrentTextBox.Text;
             var diffs
-                = new List<Differ.DiffData>(CalculateDiff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
-                                                          CurrentTextBox.Text));
+                = new List<Differ.DiffData>(differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
+                                                        CurrentTextBox.Text,
+                                                        CurrentText));
 
             for (int i = 0; i < diffs.Count() - 1; i++)
             {
