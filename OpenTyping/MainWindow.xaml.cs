@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -124,6 +125,14 @@ namespace OpenTyping
                 Source = CurrentKeyLayout,
             };
             HomeMenu.AverageTypingSpeed.SetBinding(TextBlock.TextProperty, averageSpeedBinding);
+
+            var averageAccuracyBinding = new Binding
+            {
+                Path = new PropertyPath("Stats.AverageAccuracy"),
+                Source = CurrentKeyLayout,
+                StringFormat = "{0}%"
+            };
+            HomeMenu.AverageAccuracy.SetBinding(TextBlock.TextProperty, averageAccuracyBinding);
 
             SentencePracticeMenu.LoadData();
         }

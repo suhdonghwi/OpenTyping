@@ -66,6 +66,23 @@
                            FontSize="30pt"
                            Foreground="White"/>
             </mah:Tile>
+            <mah:Tile Title="평균 정확도"
+                      TitleFontSize="13"
+                      FontFamily="{StaticResource NanumGothic}"
+                      Background="IndianRed"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Width="150"
+                      Height="110">
+                <TextBlock x:Name="AverageAccuracy"
+                           Text="{Binding Path=Stats.AverageAccuracy,
+                                          Source={x:Static local:MainWindow.CurrentKeyLayout},
+                                          StringFormat={}{0}%}"
+                           FontFamily="{StaticResource NanumBarunGothic}"
+                           FontSize="30pt"
+                           Foreground="White"/>
+            </mah:Tile>
         </StackPanel>
     </StackPanel>
 </UserControl>

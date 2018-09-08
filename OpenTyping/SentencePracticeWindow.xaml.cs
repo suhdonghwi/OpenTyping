@@ -73,11 +73,15 @@ namespace OpenTyping
 
         private void SentencePracticeWindow_Closed(object sender, EventArgs e)
         {
-            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+            if (TypingSpeedList.Count > 0)
             {
-                SentencePracticeCount = TypingSpeedList.Count,
-                AverageTypingSpeed = TypingSpeedList.Count == 0 ? 0 : TypingSpeedList.Sum() / TypingSpeedList.Count
-            });
+                MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+                {
+                    SentencePracticeCount = TypingSpeedList.Count,
+                    AverageTypingSpeed = TypingSpeedList.Sum() / TypingSpeedList.Count,
+                    AverageAccuracy = AccuracyList.Sum() / TypingSpeedList.Count
+                });
+            }
         }
 
         private Brush MapDiffState(Differ.DiffData.DiffState state)

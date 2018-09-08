@@ -26,6 +26,13 @@ namespace OpenTyping
             set => SetField(ref averageTypingSpeed, value);
         }
 
+        private int averageAccuracy;
+        public int AverageAccuracy
+        {
+            get => averageAccuracy;
+            set => SetField(ref averageAccuracy, value);
+        }
+
         private static Dictionary<TK, TV> MergeBy<TK, TV>(IReadOnlyDictionary<TK, TV> lhs, IReadOnlyDictionary<TK, TV> rhs, Func<TV, TV, TV> mergeFunc)
         {
             var result = new Dictionary<TK, TV>();
@@ -56,10 +63,15 @@ namespace OpenTyping
 
             if (other.SentencePracticeCount > 0)
             {
-                int newSum = (AverageTypingSpeed * SentencePracticeCount) +
+                int newSpeedSum = (AverageTypingSpeed * SentencePracticeCount) +
                              (other.AverageTypingSpeed * other.SentencePracticeCount);
+                int newAccuracySum = (AverageAccuracy * SentencePracticeCount) +
+                                     (other.AverageAccuracy * other.SentencePracticeCount);
+
                 SentencePracticeCount = SentencePracticeCount + other.SentencePracticeCount;
-                AverageTypingSpeed = newSum / SentencePracticeCount;
+
+                AverageTypingSpeed = newSpeedSum / SentencePracticeCount;
+                AverageAccuracy = newAccuracySum / SentencePracticeCount;
             }
         }
 
