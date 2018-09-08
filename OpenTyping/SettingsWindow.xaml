@@ -15,8 +15,8 @@
                  Icon="{StaticResource AppIcon}">
     <mah:MetroWindow.Resources>
         <Style x:Key="SettingNameTextBlock" 
-               TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+               TargetType="TextBlock"
+               BasedOn="{StaticResource NormalTextBlock}">
             <Setter Property="FontSize" Value="15pt"/>
             <Setter Property="Margin" Value="0 15 0 10"/>
         </Style>
@@ -38,10 +38,10 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Text="설정"
                            FontSize="30pt"
                            Margin="5 10 0 5"
-                           VerticalAlignment="Center"
-                           Text="설정"/>
+                           VerticalAlignment="Center"/>
             </StackPanel>
 
             <TabControl Margin="0 3 0 0">
@@ -76,20 +76,20 @@
                                                        FontFamily="{StaticResource NanumGothic}"
                                                        FontSize="11pt"
                                                        FontWeight="Bold"
-                                                       VerticalAlignment="Bottom"
-                                                       Foreground="{DynamicResource AccentColorBrush}"/>
+                                                       VerticalAlignment="Center"
+                                                       Foreground="#495057"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button x:Name="AddKeyLayoutButton"
                                     Click="AddKeyLayoutButton_Click"
-                                    Background="LightGreen"
+                                    Background="#8ce99a"
                                     BorderThickness="0"
                                     Margin="0 0 5 0">
                                 <Rectangle Width="12" 
                                            Height="12" 
-                                           Fill="Green">   
+                                           Fill="#2b8a3e">   
                                     <Rectangle.OpacityMask>
                                         <VisualBrush Visual="{iconPacks:Modern add}"/>
                                     </Rectangle.OpacityMask>
@@ -97,11 +97,11 @@
                             </Button>
                             <Button x:Name="RemoveKeyLayoutButton"
                                     Click="RemoveKeyLayoutButton_Click"
-                                    Background="LightPink"
+                                    Background="#ffa8a8"
                                     BorderThickness="0">
                                 <Rectangle Width="13" 
                                            Height="15"
-                                           Fill="Black">
+                                           Fill="#c92a2a">
                                     <Rectangle.OpacityMask>
                                         <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
                                     </Rectangle.OpacityMask>
@@ -154,6 +154,7 @@
                                  BorderThickness="1"
                                  FontFamily="{StaticResource NanumBarunGothic}"
                                  FontSize="14pt"
+                                 Foreground="#212529"
                                  Margin="0 0 0 5"
                                  MaxHeight="105"
                                  SelectedItem="{Binding SelectedPracticeData}"
@@ -178,7 +179,8 @@
                                                    FontFamily="{StaticResource NanumGothic}"
                                                    FontSize="11pt"
                                                    FontWeight="Bold"
-                                                   Foreground="{DynamicResource AccentColorBrush}"/>
+                                                   VerticalAlignment="Center"
+                                                   Foreground="#495057"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -188,39 +190,39 @@
                                     HorizontalAlignment="Right">
                             <Button x:Name="AddPracticeDataButton"
                                     Click="AddPracticeDataButton_Click"
-                                    Background="LightGreen"
+                                    Background="#8ce99a"
                                     BorderThickness="0"
                                     Margin="0 0 5 0">
                                 <StackPanel Orientation="Horizontal">
                                     <Rectangle Width="12" 
                                                Height="12" 
                                                Margin="0 0 3 0"
-                                               Fill="Green">
+                                               Fill="#2b8a3e">
                                         <Rectangle.OpacityMask>
                                             <VisualBrush Visual="{iconPacks:Modern add}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
-                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
-                                               FontSize="10pt"
-                                               Text="추가"/>
+                                    <TextBlock Text="추가"
+                                               FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"/>
                                 </StackPanel>
                             </Button>
                             <Button x:Name="RemovePracticeDataButton"
                                     Click="RemovePracticeDataButton_Click"
-                                    Background="LightPink"
+                                    Background="#ffa8a8"
                                     BorderThickness="0">
                                 <StackPanel Orientation="Horizontal">
                                     <Rectangle Width="13" 
                                                Height="15"
                                                Margin="0 0 3 0"
-                                               Fill="Black">
+                                               Fill="#c92a2a">
                                         <Rectangle.OpacityMask>
                                             <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
-                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
-                                               FontSize="10pt"
-                                               Text="삭제"/>
+                                    <TextBlock Text="삭제"
+                                               FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -263,8 +265,8 @@
                     Click="OkButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
-                               Height="15" 
-                               Fill="Green">
+                               Height="13" 
+                               Fill="#2b8a3e">
                         <Rectangle.OpacityMask>
                             <VisualBrush Visual="{iconPacks:Modern check}"/>
                         </Rectangle.OpacityMask>

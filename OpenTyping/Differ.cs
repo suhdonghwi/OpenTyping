@@ -133,7 +133,7 @@ namespace OpenTyping
             return result;
         }
 
-        public IEnumerable<DiffData> Diff(string text1, string text2, string originalText1, bool preserveText1 = true)
+        public IEnumerable<DiffData> Diff(string text1, string text2, string originalText1)
         {
             if (string.IsNullOrEmpty(text1) || string.IsNullOrEmpty(text2))
             {
@@ -199,7 +199,7 @@ namespace OpenTyping
                 {
                     result.Add(new DiffData(tempString, currentState));
                     currentState = state;
-                    tempString = preserveText1 ? ch1.ToString() : ch2.ToString();
+                    tempString = ch1.ToString();
                 }
             }
 

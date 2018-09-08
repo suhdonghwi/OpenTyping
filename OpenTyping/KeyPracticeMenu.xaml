@@ -23,18 +23,19 @@
                             Margin="0 0 0 2">
                     <Rectangle Width="59" 
                                Height="40"
-                               Margin="0 0 9 0">
-                        <Rectangle.Fill>
+                               Margin="0 0 9 0"
+                               Fill="#212529">
+                        <Rectangle.OpacityMask>
                             <VisualBrush Visual="{iconPacks:FontAwesome Kind=KeyboardRegular}"/>
-                        </Rectangle.Fill>
+                        </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Text="자리연습"
-                               Style="{StaticResource NormalTextBlock}" 
+                    <TextBlock Style="{StaticResource NormalTextBlock}" 
+                               Text="자리연습"
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
-                <TextBlock Text=": 자판 위 글자들 각각의 자리를 연습합니다."
-                           Style="{StaticResource NormalTextBlock}" 
+                <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Text=": 자판 위 글자들 각각의 자리를 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
             <local:KeyLayoutBox x:Name="KeyLayoutBox"
@@ -47,12 +48,12 @@
                 <Rectangle Width="23" 
                            Height="23"
                            Margin="0 0 5 0"
-                           Fill="{DynamicResource AccentColorBrush}">
+                           Fill="#1c7ed6">
                     <Rectangle.OpacityMask>
                         <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
                     </Rectangle.OpacityMask>
                 </Rectangle>
-                <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                <TextBlock Style="{StaticResource NormalTextBlock}"
                            Text="연습하고 싶은 위치의 키를 클릭하여 설정/해제하세요."
                            VerticalAlignment="Bottom"
                            FontSize="14pt"/>
@@ -66,7 +67,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
                                Height="15" 
-                               Fill="Green">
+                               Fill="#2b8a3e">
                         <Rectangle.OpacityMask>
                             <VisualBrush Visual="{iconPacks:Modern Kind=ArrowRight}"/>
                         </Rectangle.OpacityMask>

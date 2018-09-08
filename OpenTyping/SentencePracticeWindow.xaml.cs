@@ -104,7 +104,7 @@ namespace OpenTyping
             if (!string.IsNullOrEmpty(CurrentTextBlock.Text))
             {
                 PreviousTextBlock.Inlines.Clear();
-                var diffs = new List<Differ.DiffData>(Differ.Diff(CurrentText, CurrentTextBox.Text, CurrentText, false));
+                var diffs = new List<Differ.DiffData>(Differ.Diff(CurrentTextBox.Text, CurrentText, CurrentTextBox.Text));
 
                 for (int i = 0; i < diffs.Count(); i++)
                 {

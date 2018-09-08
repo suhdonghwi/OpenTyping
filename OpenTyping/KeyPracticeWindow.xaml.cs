@@ -72,11 +72,11 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
-        private static readonly Brush CurrentKeyColor = Brushes.LightGreen;
-        private static readonly Brush CurrentKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
+        private static readonly Brush CurrentKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
+        private static readonly Brush CurrentKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
 
-        private static readonly Brush WrongKeyColor = new SolidColorBrush(Color.FromRgb(255, 192, 203));
-        private static readonly Brush WrongKeyShadowColor = new SolidColorBrush(Color.FromRgb(211, 148, 159));
+        private static readonly Brush WrongKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
+        private static readonly Brush WrongKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
 
         public KeyPracticeWindow(IList<KeyPos> keyList)
         {

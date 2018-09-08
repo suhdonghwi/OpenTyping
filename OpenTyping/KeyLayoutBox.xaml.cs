@@ -25,10 +25,10 @@ namespace OpenTyping
             DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
 
         private static readonly Brush DefaultKeyColor = Brushes.White;
-        private static readonly Brush DefaultKeyShadowColor = Brushes.LightGray;
+        private static readonly Brush DefaultKeyShadowColor = new SolidColorBrush(Color.FromRgb(206, 212, 218));
 
-        private static readonly Brush PressedKeyColor = Brushes.LightGreen;
-        private static readonly Brush PressedKeyShadowColor = new SolidColorBrush(Color.FromRgb(100, 198, 100));
+        private static readonly Brush PressedKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
+        private static readonly Brush PressedKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
 
         public KeyLayoutBox()
         {
