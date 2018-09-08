@@ -143,6 +143,8 @@ namespace OpenTyping
             int length = Math.Min(text1.Length, text2.Length);
             var result = new List<DiffData>();
             int i = 0;
+            DiffData.DiffState currentState = DiffData.DiffState.Unequal;
+            string tempString = "";
             for (; i < length; i++)
             {
                 char ch1 = text1[i], ch2 = text2[i];
@@ -187,9 +189,24 @@ namespace OpenTyping
                     state = ch1 == ch2 ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal;
                 }
 
-                result.Add(new DiffData(text1[i].ToString(), state));
+                if (i == 0) currentState = state;
+
+                if (state == currentState)
+                {
+                    tempString += ch1;
+                }
+                else
+                {
+                    result.Add(new DiffData(tempString, currentState));
+                    currentState = state;
+                    tempString = ch1.ToString();
+                }
             }
 
+            if (tempString != "")
+            {
+                result.Add(new DiffData(tempString, currentState));
+            }
             if (text1.Length == text2.Length) return result;
 
             result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
