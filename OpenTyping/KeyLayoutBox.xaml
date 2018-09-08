@@ -12,9 +12,9 @@
                TargetType="local:KeyBox">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="0 0 2 0"/>
-            <Setter Property="KeyColor" Value="LightGray"/>
-            <Setter Property="ShadowColor" Value="#a7a7a7"/>
+            <Setter Property="Margin" Value="0 0 2 2"/>
+            <Setter Property="KeyColor" Value="#dee2e6"/>
+            <Setter Property="ShadowColor" Value="#adb5bd"/>
         </Style>
         <Style x:Key="KeyRowStyle"
                TargetType="StackPanel">

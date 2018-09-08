@@ -9,8 +9,8 @@
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  Title="열린타자"
-                 Width="800" 
-                 Height="400"
+                 Width="810" 
+                 Height="390"
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
     <StackPanel Orientation="Vertical">
@@ -26,10 +26,10 @@
 
             <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="0"
+                       Style="{StaticResource NormalTextBlock}"
                        Text="{Binding PreviousKey.KeyData}"
                        FontSize="30pt"
-                       FontFamily="{StaticResource NanumBarunGothic}"
-                       Foreground="DarkGray"
+                       Foreground="#adb5bd"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"/>
             <Rectangle Grid.Column="1"
@@ -37,12 +37,12 @@
                        SnapsToDevicePixels="True"
                        Height="60"
                        Margin="10 0 15 0"
-                       Stroke="Gray"/>
+                       Stroke="#868e96"/>
             <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="2"
+                       Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CurrentKey.KeyData}"
                        FontSize="60pt"
-                       FontFamily="{StaticResource NanumBarunGothic}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
             <Rectangle Grid.Column="3"
@@ -50,29 +50,29 @@
                        SnapsToDevicePixels="True"
                        Height="60"
                        Margin="15 0 10 0" 
-                       Stroke="Gray"/>
+                       Stroke="#868e96"/>
             <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="4"
+                       Style="{StaticResource NormalTextBlock}"
                        Text="{Binding NextKey.KeyData}"
                        FontSize="30pt"
-                       FontFamily="{StaticResource NanumBarunGothic}"
-                       Foreground="DarkGray"
+                       Foreground="#adb5bd"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal"
-                    Margin="10 0 0 10">
+                    Margin="20 0 0 10">
             <Rectangle Width="23" 
                        Height="23"
                        Margin="0 0 5 0"
-                       Fill="LimeGreen">
+                       Fill="#37b24d">
                 <Rectangle.OpacityMask>
                     <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
             <TextBlock DataContext="{Binding ElementName=SelfWindow}"
-                       FontFamily="{StaticResource NanumBarunGothic}"
+                       Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>
@@ -86,13 +86,13 @@
             <Rectangle Width="23" 
                        Height="23"
                        Margin="0 0 5 0"
-                       Fill="Red">
+                       Fill="#f03e3e">
                 <Rectangle.OpacityMask>
                     <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
             <TextBlock DataContext="{Binding ElementName=SelfWindow}"
-                       FontFamily="{StaticResource NanumBarunGothic}"
+                       Style="{StaticResource NormalTextBlock}"
                        Text="{Binding IncorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>

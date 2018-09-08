@@ -23,7 +23,7 @@ namespace OpenTyping
             set => SetValue(ShadowColorProperty, value);
         }
         public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.LightGray));
+            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(206, 212, 218))));
 
         public Key Key
         {

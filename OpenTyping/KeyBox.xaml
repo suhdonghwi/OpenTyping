@@ -13,7 +13,7 @@
                 Panel.ZIndex="1"
                 CornerRadius="5"
                 Background="{Binding ShadowColor}"
-                BorderBrush="Black"
+                BorderBrush="#212529"
                 BorderThickness="2"
                 Width="{Binding ActualWidth}"
                 Height="50">
@@ -24,7 +24,7 @@
                 CornerRadius="5"
                 Background="{Binding KeyColor}"
                 VerticalAlignment="Top"
-                BorderBrush="Black"
+                BorderBrush="#212529"
                 BorderThickness="2 2 2 1"
                 Width="{Binding ActualWidth}"
                 Height="43">

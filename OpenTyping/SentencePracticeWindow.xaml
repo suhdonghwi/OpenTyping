@@ -63,7 +63,7 @@
                 <StackPanel DataContext="{Binding ElementName=SelfWindow}"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <Border Background="DodgerBlue"
+                    <Border Background="#1c7ed6"
                             Margin="0 0 5 0">
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">
@@ -81,7 +81,7 @@
                                        Margin="0 3 0 0"/>
                         </StackPanel>
                     </Border>
-                    <Border Background="IndianRed">
+                    <Border Background="#f03e3e">
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">
                             <TextBlock Text="정확도 "
@@ -122,10 +122,10 @@
 
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis MinValue="0"
-                              Foreground="DodgerBlue"/>
+                              Foreground="#1c7ed6"/>
                     <lvc:Axis MinValue="0" MaxValue="100"
                               Position="RightTop"
-                              Foreground="IndianRed">
+                              Foreground="#f03e3e">
                         <lvc:Axis.Separator>
                             <lvc:Separator IsEnabled="False"/>
                         </lvc:Axis.Separator>
@@ -139,10 +139,10 @@
                 <lvc:CartesianChart.Series>
                     <lvc:LineSeries Values="{Binding Path=TypingSpeedList}"
                                     Title="타속"
-                                    Foreground="DodgerBlue"/>
+                                    Foreground="#1c7ed6"/>
                     <lvc:LineSeries Values="{Binding Path=AccuracyList}"
                                     Title="정확도"
-                                    Foreground="IndianRed"
+                                    Foreground="#f03e3e"
                                     Fill="Transparent"
                                     ScalesYAt="1"/>
                 </lvc:CartesianChart.Series>

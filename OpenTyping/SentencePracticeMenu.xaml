@@ -24,18 +24,19 @@
                             Margin="0 0 0 2">
                     <Rectangle Width="40" 
                                Height="40"
-                               Margin="0 0 9 0">
-                        <Rectangle.Fill>
+                               Margin="0 0 9 0"
+                               Fill="#212529">
+                        <Rectangle.OpacityMask>
                             <VisualBrush Visual="{iconPacks:FontAwesome Kind=PencilAltSolid}"/>
-                        </Rectangle.Fill>
+                        </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Text="문장연습"
-                               Style="{StaticResource NormalTextBlock}" 
+                    <TextBlock Style="{StaticResource NormalTextBlock}" 
+                               Text="문장연습"
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
-                <TextBlock Text=": 짧은 길이의 문장으로 나누어서 연습합니다."
-                           Style="{StaticResource NormalTextBlock}" 
+                <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Text=": 짧은 길이의 문장으로 나누어서 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
             <Grid DockPanel.Dock="Bottom">
@@ -50,6 +51,7 @@
                          BorderThickness="1"
                          FontFamily="{StaticResource NanumBarunGothic}"
                          FontSize="14pt"
+                         Foreground="#212529"
                          Margin="0 0 0 5"
                          SelectedItem="{Binding SelectedPracticeData}"
                          ItemContainerStyle="{StaticResource ListBoxItemStyle}"
@@ -63,7 +65,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="18" 
                                            Height="13"
-                                           Fill="Green"
+                                           Fill="#2b8a3e"
                                            Visibility="{Binding Converter={StaticResource BoolToVis},
                                                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                                                                                AncestorType={x:Type ListBoxItem}},
@@ -91,7 +93,7 @@
                     <Rectangle Width="23" 
                                Height="23"
                                Margin="0 0 5 0"
-                               Fill="{DynamicResource AccentColorBrush}">
+                               Fill="#1c7ed6">
                         <Rectangle.OpacityMask>
                             <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
                         </Rectangle.OpacityMask>
@@ -113,21 +115,24 @@
                         Margin="5 0 0 0">
                 <Rectangle Width="18" 
                            Height="18"
-                           Margin="0 0 6 0">
-                    <Rectangle.Fill>
+                           Margin="0 0 6 0"
+                           Fill="#212529">
+                    <Rectangle.OpacityMask>
                         <VisualBrush Visual="{iconPacks:FontAwesome Kind=RandomSolid}"/>
-                    </Rectangle.Fill>
+                    </Rectangle.OpacityMask>
                 </Rectangle>
-                <TextBlock FontFamily="{StaticResource NanumGothic}"
+                <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Text="문장 무작위 배열"
+                           FontFamily="{StaticResource NanumGothic}"
                            FontWeight="Bold"
                            FontSize="13pt"
                            VerticalAlignment="Center"
-                           Text="문장 무작위 배열"
                            Margin="0 0 5 0"/>
                 <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Center"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                  Foreground="#212529"
                                   OnLabel="" OffLabel=""
                                   IsChecked="{Binding Path=IsRandom,
                                                       Mode=OneWayToSource}"
