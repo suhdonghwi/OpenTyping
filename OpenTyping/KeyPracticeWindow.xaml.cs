@@ -147,13 +147,6 @@ namespace OpenTyping
             }
         }
 
-        private void KeyPracticeWindow_Closed(object sender, EventArgs e)
-        {
-            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
-            {
-                KeyIncorrectCount = incorrectStats
-            });
-        }
 
         private KeyInfo RandomKey()
         {
@@ -249,6 +242,14 @@ namespace OpenTyping
                     }
                 });
             }
+        }
+
+        private void KeyPracticeWindow_Closed(object sender, EventArgs e)
+        {
+            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+            {
+                KeyIncorrectCount = incorrectStats
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

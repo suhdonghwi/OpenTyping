@@ -67,6 +67,17 @@ namespace OpenTyping
             SpeedChart.AxisX[0].Separator.Step = 1;
 
             NextSentence();
+
+            Closed += SentencePracticeWindow_Closed;
+        }
+
+        private void SentencePracticeWindow_Closed(object sender, EventArgs e)
+        {
+            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+            {
+                SentencePracticeCount = TypingSpeedList.Count,
+                AverageTypingSpeed = TypingSpeedList.Count == 0 ? 0 : TypingSpeedList.Sum() / TypingSpeedList.Count
+            });
         }
 
         private Brush MapDiffState(Differ.DiffData.DiffState state)

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using MahApps.Metro.Controls;
 using Newtonsoft.Json;
@@ -109,13 +110,20 @@ namespace OpenTyping
 
             KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
 
-            var binding = new Binding
+            var mostIncorrectBinding = new Binding
             {
                 Path = new PropertyPath("Stats.MostIncorrect.Key"),
                 Source = CurrentKeyLayout,
                 Converter = new KeyPosToKeyConverter()
             };
-            HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, binding);
+            HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, mostIncorrectBinding);
+
+            var averageSpeedBinding = new Binding
+            {
+                Path = new PropertyPath("Stats.AverageTypingSpeed"),
+                Source = CurrentKeyLayout,
+            };
+            HomeMenu.AverageTypingSpeed.SetBinding(TextBlock.TextProperty, averageSpeedBinding);
 
             SentencePracticeMenu.LoadData();
         }
