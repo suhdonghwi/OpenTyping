@@ -43,14 +43,8 @@ namespace OpenTyping
             private set => SetField(ref typingAccuracy, value);
         }
 
-        public SeriesCollection TypingSpeedCollection { get; set; } = new SeriesCollection
-        {
-            new LineSeries
-            {
-                Title = "타속",
-                Values = new ChartValues<int>()
-            }
-        };
+        public ChartValues<int> TypingSpeedList { get; set; } = new ChartValues<int>();
+        public ChartValues<int> AccuracyList { get; set; } = new ChartValues<int>();
 
         private int? currentSentenceIndex;
         private static readonly Random SentenceIndexRandom = new Random();
@@ -59,7 +53,7 @@ namespace OpenTyping
         private readonly Brush incorrectBackground = Brushes.Pink;
         private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
-        private static Differ differ = new Differ();
+        private static readonly Differ Differ = new Differ();
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -95,10 +89,7 @@ namespace OpenTyping
             if (!string.IsNullOrEmpty(CurrentTextBlock.Text))
             {
                 PreviousTextBlock.Inlines.Clear();
-                var diffs = new List<Differ.DiffData>(differ.Diff(CurrentText, CurrentTextBox.Text, CurrentText));
-                double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
-                                  (double)diffs.Sum(data => data.Text.Length);
-                TypingAccuracy = Convert.ToInt32(accuracy * 100);
+                var diffs = new List<Differ.DiffData>(Differ.Diff(CurrentText, CurrentTextBox.Text, CurrentText));
 
                 for (int i = 0; i < diffs.Count(); i++)
                 {
@@ -117,10 +108,13 @@ namespace OpenTyping
                     PreviousTextBlock.Inlines.Add(run);
                 }
 
-                string previousSentence = CurrentTextBox.Text;
-                TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(previousSentence) * accuracy);
+                double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
+                                  (double)diffs.Sum(data => data.Text.Length);
+                TypingAccuracy = Convert.ToInt32(accuracy * 100);
+                AccuracyList.Add(TypingAccuracy);
 
-                TypingSpeedCollection[0].Values.Add(TypingSpeed);
+                TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(CurrentTextBox.Text) * accuracy);
+                TypingSpeedList.Add(TypingSpeed);
             }
 
             if (shuffle)
@@ -167,7 +161,7 @@ namespace OpenTyping
         {
             string input = CurrentTextBox.Text;
             var diffs
-                = new List<Differ.DiffData>(differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
+                = new List<Differ.DiffData>(Differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
                                                         CurrentTextBox.Text,
                                                         CurrentText));
 
