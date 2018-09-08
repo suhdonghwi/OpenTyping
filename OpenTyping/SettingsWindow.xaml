@@ -77,7 +77,7 @@
                                                        FontSize="11pt"
                                                        FontWeight="Bold"
                                                        VerticalAlignment="Center"
-                                                       Foreground="#adb5bd"/>
+                                                       Foreground="#495057"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
@@ -180,7 +180,7 @@
                                                    FontSize="11pt"
                                                    FontWeight="Bold"
                                                    VerticalAlignment="Center"
-                                                   Foreground="#adb5bd"/>
+                                                   Foreground="#495057"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
