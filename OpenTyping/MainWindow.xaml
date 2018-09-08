@@ -1,19 +1,19 @@
-﻿<controls:MetroWindow x:Class="OpenTyping.MainWindow"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:local="clr-namespace:OpenTyping"
-                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      mc:Ignorable="d"
-                      Title="열린타자"
-                      Width="800" 
-                      Height="450" 
-                      ResizeMode="CanMinimize"
-                      Icon="{StaticResource AppIcon}">
-    <controls:MetroWindow.RightWindowCommands>
-        <controls:WindowCommands>
+﻿<mah:MetroWindow x:Class="OpenTyping.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:OpenTyping"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 mc:Ignorable="d"
+                 Title="열린타자"
+                 Width="800" 
+                 Height="450" 
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}">
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
             <Button x:Name="SettingsButton" 
                     Click="SettingsButton_Click">
                 <StackPanel Orientation="Horizontal">
@@ -32,8 +32,8 @@
                                Text="설정"/>
                 </StackPanel>
             </Button>
-        </controls:WindowCommands>
-    </controls:MetroWindow.RightWindowCommands>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
     <TabControl>
         <TabItem>
             <TabItem.Header>
@@ -103,4 +103,4 @@
             </TabItem.Header>
         </TabItem>
     </TabControl>
-</controls:MetroWindow>
+</mah:MetroWindow>

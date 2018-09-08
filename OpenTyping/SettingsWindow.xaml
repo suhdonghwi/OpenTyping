@@ -1,24 +1,26 @@
-﻿<controls:MetroWindow x:Class="OpenTyping.SettingsWindow"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      mc:Ignorable="d"
-                      Title="설정" 
-                      Width="500" 
-                      Height="450"
-                      ResizeMode="CanMinimize"
-                      Icon="{StaticResource AppIcon}">
-    <controls:MetroWindow.Resources>
+﻿<mah:MetroWindow x:Name="SelfWindow"
+                 x:Class="OpenTyping.SettingsWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:local="clr-namespace:OpenTyping"
+                 mc:Ignorable="d"
+                 Title="설정" 
+                 Width="500" 
+                 Height="500"
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}">
+    <mah:MetroWindow.Resources>
         <Style x:Key="SettingNameTextBlock" 
                TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
             <Setter Property="FontSize" Value="15pt"/>
             <Setter Property="Margin" Value="0 15 0 10"/>
         </Style>
-    </controls:MetroWindow.Resources>
+    </mah:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -56,18 +58,35 @@
                         </TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <ComboBox x:Name="KeyLayoutsCombo"
+                                      DataContext="{Binding ElementName=SelfWindow}"
                                       Width="200" 
                                       Margin="0 0 5 0"
                                       FontFamily="{StaticResource NanumGothic}"
-                                      FontSize="11pt"
+                                      FontSize="12pt"
                                       HorizontalAlignment="Left"
                                       SelectedItem="{Binding SelectedKeyLayout, Mode=TwoWay}"
-                                      DisplayMemberPath="Name"/>
+                                      ItemsSource="{Binding KeyLayouts}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Path=Character}"
+                                                       FontFamily="{StaticResource NanumGothic}"
+                                                       FontSize="11pt"
+                                                       FontWeight="Bold"
+                                                       VerticalAlignment="Bottom"
+                                                       Foreground="{DynamicResource AccentColorBrush}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button x:Name="AddKeyLayoutButton"
+                                    Click="AddKeyLayoutButton_Click"
                                     Background="LightGreen"
                                     BorderThickness="0"
-                                    Margin="0 0 5 0"
-                                    Click="AddKeyLayoutButton_Click">
+                                    Margin="0 0 5 0">
                                 <Rectangle Width="12" 
                                            Height="12" 
                                            Fill="Green">   
@@ -100,7 +119,7 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="KeyLayoutDataDirTxt"
+                            <TextBox DataContext="{Binding ElementName=SelfWindow}"
                                      Grid.Column="0"
                                      Text="{Binding Path=KeyLayoutDataDir, 
                                                     Mode=OneWay}"
@@ -108,7 +127,123 @@
                                      Margin="0 0 5 0"/>
                             <Button x:Name="KeyLayoutDataDirButton" 
                                     Grid.Column="1" 
-                                    Click="KeyLayoutDataDirButton_OnClick">
+                                    Click="KeyLayoutDataDirButton_Click">
+                                <Rectangle Width="12"
+                                           Height="12">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{iconPacks:Modern folder}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Style="{StaticResource TabItemLabel}">
+                            연습 데이터
+                        </Label>
+                    </TabItem.Header>
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            현재 연습 데이터
+                        </TextBlock>
+
+                        <ListBox DataContext="{Binding ElementName=SelfWindow}"
+                                 BorderThickness="1"
+                                 FontFamily="{StaticResource NanumBarunGothic}"
+                                 FontSize="14pt"
+                                 Margin="0 0 0 5"
+                                 MaxHeight="105"
+                                 SelectedItem="{Binding SelectedPracticeData}"
+                                 ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                                 ItemsSource="{Binding PracticeDataList}">
+                            <ListBox.Resources>
+                                <local:NullToVisibilityConverter x:Key="NullToVis"/>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                        <TextBlock Text=" "/>
+                                        <TextBlock Text="{Binding Path=Author}"
+                                                   FontFamily="{StaticResource NanumGothic}"
+                                                   FontSize="10pt"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0 0 3 0"
+                                                   Visibility="{Binding Converter={StaticResource NullToVis},
+                                                                        Path=Author}"/>
+                                        <TextBlock Text="{Binding Path=Character}"
+                                                   FontFamily="{StaticResource NanumGothic}"
+                                                   FontSize="11pt"
+                                                   FontWeight="Bold"
+                                                   Foreground="{DynamicResource AccentColorBrush}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <Button x:Name="AddPracticeDataButton"
+                                    Click="AddPracticeDataButton_Click"
+                                    Background="LightGreen"
+                                    BorderThickness="0"
+                                    Margin="0 0 5 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="12" 
+                                               Height="12" 
+                                               Margin="0 0 3 0"
+                                               Fill="Green">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{iconPacks:Modern add}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"
+                                               Text="추가"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="RemovePracticeDataButton"
+                                    Click="RemovePracticeDataButton_Click"
+                                    Background="LightPink"
+                                    BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="13" 
+                                               Height="15"
+                                               Margin="0 0 3 0"
+                                               Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="10pt"
+                                               Text="삭제"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
+                            연습 데이터 경로
+                        </TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox DataContext="{Binding ElementName=SelfWindow}"
+                                     Grid.Column="0"
+                                     Text="{Binding Path=PracticeDataDir, 
+                                                    Mode=OneWay}"
+                                     IsReadOnly="True"
+                                     Margin="0 0 5 0"/>
+                            <Button x:Name="PracticeDataDirButton" 
+                                    Grid.Column="1" 
+                                    Click="PracticeDataDirButton_Click">
                                 <Rectangle Width="12"
                                            Height="12">
                                     <Rectangle.Fill>
@@ -140,4 +275,4 @@
             </Button>
         </StackPanel>
     </Grid>
-</controls:MetroWindow>
+</mah:MetroWindow>

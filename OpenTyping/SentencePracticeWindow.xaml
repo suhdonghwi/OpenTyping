@@ -1,0 +1,153 @@
+﻿<mah:MetroWindow Name="SelfWindow"
+                 x:Class="OpenTyping.SentencePracticeWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:OpenTyping"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+                 mc:Ignorable="d"
+                 Title="열린타자"
+                 Width="700"
+                 Height="400"
+                 MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
+                 SizeToContent="Height"
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"
+                               MinHeight="165"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Margin="0 0 0 10">
+                <Border Background="GhostWhite" 
+                        BorderBrush="Gainsboro" 
+                        BorderThickness="1"
+                        Margin="0 0 0 15">
+                    <TextBlock x:Name="PreviousTextBlock"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="17pt"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"/>
+                </Border>
+
+                <Border Background="GhostWhite" 
+                        BorderBrush="Gainsboro" 
+                        BorderThickness="1"
+                        Margin="0 0 0 15">
+                    <TextBlock x:Name="CurrentTextBlock"
+                               DataContext="{Binding ElementName=SelfWindow}"
+                               Text="{Binding Path=CurrentText}"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="17pt"
+                               Margin="5"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"/>
+                </Border>
+                <TextBox x:Name="CurrentTextBox"
+                         DataContext="{Binding ElementName=SelfWindow}"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="17pt"
+                         Margin="0 0 0 10"
+                         PreviewKeyDown="CurrentTextBox_PreviewKeyDown"
+                         TextChanged="CurrentTextBox_TextChanged"/>
+                <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Border Background="DodgerBlue"
+                            Margin="0 0 5 0">
+                        <StackPanel Margin="5 2 5 2"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="타속 "
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumGothic}"
+                                       FontSize="11pt"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=TypingSpeed,
+                                                      Mode=OneWay}"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumBarunGothic}"
+                                       FontSize="16pt"
+                                       VerticalAlignment="Center"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="IndianRed">
+                        <StackPanel Margin="5 2 5 2"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="정확도 "
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumGothic}"
+                                       FontSize="11pt"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=TypingAccuracy,
+                                                      StringFormat={}{0}%,
+                                                      Mode=OneWay}"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumBarunGothic}"
+                                       FontSize="16pt"
+                                       VerticalAlignment="Center"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+            <Separator Grid.Row="1"
+                       Margin="0 0 0 10"/>
+
+            <lvc:CartesianChart x:Name="SpeedChart"
+                                Grid.Row="2"
+                                DataContext="{Binding ElementName=SelfWindow}"
+                                LegendLocation="Bottom"
+                                FontFamily="{StaticResource NanumGothic}"
+                                FontSize="11pt"
+                                Height="125">
+                <lvc:CartesianChart.ChartLegend>
+                    <lvc:DefaultLegend Margin="0 5 0 0"/>
+                </lvc:CartesianChart.ChartLegend>
+
+                <lvc:CartesianChart.DataTooltip>
+                    <lvc:DefaultTooltip ShowTitle="False"/>
+                </lvc:CartesianChart.DataTooltip>
+
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis MinValue="0"
+                              Foreground="DodgerBlue"/>
+                    <lvc:Axis MinValue="0" MaxValue="100"
+                              Position="RightTop"
+                              Foreground="IndianRed">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator IsEnabled="False"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis ShowLabels="False"/>
+                </lvc:CartesianChart.AxisX>
+
+                <lvc:CartesianChart.Series>
+                    <lvc:LineSeries Values="{Binding Path=TypingSpeedList}"
+                                    Title="타속"
+                                    Foreground="DodgerBlue"/>
+                    <lvc:LineSeries Values="{Binding Path=AccuracyList}"
+                                    Title="정확도"
+                                    Foreground="IndianRed"
+                                    Fill="Transparent"
+                                    ScalesYAt="1"/>
+                </lvc:CartesianChart.Series>
+            </lvc:CartesianChart>
+        </Grid>
+    </ScrollViewer>
+</mah:MetroWindow>
+

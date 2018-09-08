@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
+using OpenTyping.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Windows;
-using Newtonsoft.Json.Converters;
 
 namespace OpenTyping
 {
@@ -33,6 +31,7 @@ namespace OpenTyping
 
         public Key this[KeyPos pos] => KeyLayoutData[pos.Row][pos.Column];
 
+
         public static KeyLayout Parse(string data)
         {
             KeyLayout keyLayout = JsonConvert.DeserializeObject<KeyLayout>(data);
@@ -41,6 +40,23 @@ namespace OpenTyping
             {
                 const string message = "자판 데이터의 이름(Name 필드)이 주어지지 않았습니다.";
                 throw new InvalidKeyLayoutDataException(message);
+            }
+
+            if (keyLayout.KeyLayoutData is null)
+            {
+                const string message = "자판 데이터(KeyLayoutData 필드)가 주어지지 않았습니다.";
+                throw new InvalidKeyLayoutDataException(message);
+            }
+
+            if (string.IsNullOrEmpty(keyLayout.Character))
+            {
+                const string message = "자판 데이터의 문자 종류(Character 필드)가 주어지지 않았습니다.";
+                throw new InvalidKeyLayoutDataException(message);
+            }
+
+            if (keyLayout.DefaultKeys is null)
+            {
+                keyLayout.DefaultKeys = new List<KeyPos>();
             }
 
             var rowNumberData = new List<Tuple<string, int>>
@@ -67,44 +83,44 @@ namespace OpenTyping
         public static KeyLayout Load(string dataFileLocation)
         {
             string keyLayoutLines = File.ReadAllText(dataFileLocation, Encoding.UTF8);
-            KeyLayout keyLayout = null;
 
             try
             {
-                keyLayout = Parse(keyLayoutLines);         
+                KeyLayout keyLayout = Parse(keyLayoutLines);
+                keyLayout.Location = dataFileLocation;
+
+                return keyLayout;
             }
             catch (InvalidKeyLayoutDataException ex)
             {
-                MessageBox.Show(dataFileLocation + " : " + ex.Message, 
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                Environment.Exit(-1);
+                throw new InvalidKeyLayoutDataException(dataFileLocation + " : " + ex.Message, ex);
             }
-
-            keyLayout.Location = dataFileLocation;
-
-            return keyLayout;
         }
 
-        public static IList<KeyLayout> LoadKeyLayouts(string layoutsDirectory)
+        public static IList<KeyLayout> LoadFromDirectory(string layoutsDirectory)
         {
             var keyLayouts = new List<KeyLayout>();
 
             Directory.CreateDirectory(layoutsDirectory);
             string[] keyLayoutFiles = Directory.GetFiles(layoutsDirectory, "*.json");
 
+            if (!keyLayoutFiles.Any())
+            {
+                string message = "경로 " + (string) Settings.Default[MainWindow.KeyLayoutDataDir] +
+                                 "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.";
+                throw new KeyLayoutLoadFail(message);
+            }
+
             foreach (string keyLayoutFile in keyLayoutFiles)
             {
                 KeyLayout keyLayout = Load(keyLayoutFile);
+                KeyLayout duplicate = keyLayouts.Find(kl => kl.Name == keyLayout.Name);
 
-                if (keyLayouts.Any(kl => kl.Name == keyLayout.Name))
+                if (duplicate != null)
                 {
-                    MessageBox.Show("자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.",
-                                    "열린타자",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
-                    Environment.Exit(-1);
+                    string message = "자판 이름 \"" + keyLayout.Name + "\" 이 중복되게 존재합니다.\n" +
+                                     keyLayout.Location + "\n" + duplicate.Location;
+                    throw new KeyLayoutLoadFail(message);
                 }
                 keyLayouts.Add(keyLayout);
             }

@@ -1,58 +1,73 @@
 ﻿using System;
-using MahApps.Metro.Controls;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using OpenTyping.Properties;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
+using MahApps.Metro.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using OpenTyping.Properties;
 
 namespace OpenTyping
 {
     /// <summary>
     ///     SettingWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SettingsWindow : MetroWindow
+    public partial class SettingsWindow : MetroWindow, INotifyPropertyChanged
     {
-        public ObservableCollection<KeyLayout> KeyLayouts { get; }
+        private ObservableCollection<KeyLayout> keyLayouts;
+        public ObservableCollection<KeyLayout> KeyLayouts
+        {
+            get => keyLayouts;
+            private set => SetField(ref keyLayouts, value);
+        }
 
-        public string keyLayoutDataDir = (string)Settings.Default["KeyLayoutDataDir"];
-
+        private string keyLayoutDataDir = (string)Settings.Default[MainWindow.KeyLayoutDataDir];
         public string KeyLayoutDataDir
         {
             get => keyLayoutDataDir;
-            private set
-            {
-                keyLayoutDataDir = value;
-                KeyLayoutDataDirTxt.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
-            }
+            private set => SetField(ref keyLayoutDataDir, value);
+        }
+
+        private ObservableCollection<PracticeData> practiceDataList;
+        public ObservableCollection<PracticeData> PracticeDataList
+        {
+            get => practiceDataList;
+            private set => SetField(ref practiceDataList, value);
+        }
+
+        private string practiceDataDir = (string)Settings.Default[MainWindow.PracticeDataDir];
+        public string PracticeDataDir
+        {
+            get => practiceDataDir;
+            private set => SetField(ref practiceDataDir, value);
         } 
 
         private KeyLayout selectedKeyLayout;
         public KeyLayout SelectedKeyLayout
         {
             get => selectedKeyLayout;
-            set
-            {
-                selectedKeyLayout = value;
-                KeyLayoutsCombo.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateTarget();
-            }
+            set => SetField(ref selectedKeyLayout, value);
         }
 
-        public SettingsWindow(IEnumerable<KeyLayout> keyLayouts)
+        private PracticeData selectedPracticeData;
+        public PracticeData SelectedPracticeData
+        {
+            get => selectedPracticeData;
+            set => SetField(ref selectedPracticeData, value);
+        }
+
+        public SettingsWindow()
         {
             InitializeComponent();
 
-            this.Closing += this.OnClose;
-            this.DataContext = this;
+            Closing += OnClose;
 
-            KeyLayouts = new ObservableCollection<KeyLayout>(keyLayouts);
-            KeyLayoutsCombo.ItemsSource = KeyLayouts;
+            KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
 
-            var currentKeyLayout = (string)Settings.Default["KeyLayout"];
-            foreach (KeyLayout item in KeyLayoutsCombo.Items)
+            var currentKeyLayout = (string)Settings.Default[MainWindow.KeyLayout];
+            foreach (KeyLayout item in KeyLayouts)
             {
                 if (item.Name == currentKeyLayout)
                 {
@@ -60,11 +75,14 @@ namespace OpenTyping
                     break;
                 }
             }
+
+            PracticeDataList = new ObservableCollection<PracticeData>(PracticeData.LoadFromDirectory(PracticeDataDir));
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDialog = new CommonOpenFileDialog();
+                SelectedKeyLayout = KeyLayouts[0];
 
             dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
             dataFileDialog.Multiselect = false;
@@ -76,25 +94,24 @@ namespace OpenTyping
                 string dataFileLocation = dataFileDialog.FileName;
                 string dataFileName = Path.GetFileName(dataFileLocation);
                 string destLocation =
-                    Path.Combine((string)Settings.Default["KeyLayoutDataDir"], dataFileName);
+                    Path.Combine(KeyLayoutDataDir, dataFileName);
 
                 if (File.Exists(destLocation))
                 {
                     MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.",
-                        "열린타자",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                 }
                 else
                 {
                     File.Copy(dataFileLocation, destLocation);
-
                     KeyLayout keyLayout = KeyLayout.Load(destLocation);
                     KeyLayouts.Add(keyLayout);
                     SelectedKeyLayout = keyLayout;
                 }
 
-                this.Focus();
+                Focus();
             }
         }
 
@@ -122,7 +139,7 @@ namespace OpenTyping
             }
         }
 
-        private void KeyLayoutDataDirButton_OnClick(object sender, RoutedEventArgs e)
+        private void KeyLayoutDataDirButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDirDialog = new CommonOpenFileDialog
             {
@@ -132,44 +149,140 @@ namespace OpenTyping
 
             if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                IList<KeyLayout> keyLayouts = KeyLayout.LoadKeyLayouts(dataFileDirDialog.FileName);
-
-                if (keyLayouts.Count == 0)
+                try
                 {
-                    MessageBox.Show("경로 " + (string)Settings.Default["KeyLayoutDataDir"] +
-                                "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.",
-                                "열린타자",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                }
-                else
-                {
+                    KeyLayouts =
+                        new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(dataFileDirDialog.FileName));
                     KeyLayoutDataDir = dataFileDirDialog.FileName;
-                    KeyLayouts.Clear();
-
-                    foreach (KeyLayout keyLayout in keyLayouts)
-                    {
-                        KeyLayouts.Add(keyLayout);
-                    }
-
                     SelectedKeyLayout = KeyLayouts[0];
+                }
+                catch (Exception ex)
+                {
+                    if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
+                    {
+                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else throw;
                 }
             }
 
-            this.Focus();
+            Focus();
+        }
+
+        private void AddPracticeDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataFileDialog = new CommonOpenFileDialog();
+
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter("연습 데이터 파일", "*.json"));
+            dataFileDialog.Multiselect = false;
+            dataFileDialog.EnsureFileExists = true;
+            dataFileDialog.EnsurePathExists = true;
+
+            if (dataFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                string dataFileLocation = dataFileDialog.FileName;
+                string dataFileName = Path.GetFileName(dataFileLocation);
+                string destLocation =
+                    Path.Combine(PracticeDataDir, dataFileName);
+
+                if (File.Exists(destLocation))
+                {
+                    MessageBox.Show("같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다.",
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
+                else
+                {
+                    File.Copy(dataFileLocation, destLocation);
+                    PracticeData practiceData = PracticeData.Load(destLocation);
+                    PracticeDataList.Add(practiceData);
+                }
+
+                Focus();
+            }
+        }
+
+        private void RemovePracticeDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PracticeDataList.Count == 1)
+            {
+                MessageBox.Show("연습 데이터가 한 개 존재하여 삭제할 수 없습니다.",
+                                "열린타자",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBoxResult result 
+                = MessageBox.Show("선택된 연습 데이터 \"" + SelectedPracticeData.Name + "\" 를 삭제하시겠습니까?",
+                                  "열린타자",
+                                  MessageBoxButton.OKCancel,
+                                  MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                File.Delete(SelectedPracticeData.Location);
+                PracticeDataList.Remove(SelectedPracticeData);
+                SelectedPracticeData = null;
+            }
+        }
+
+        private void PracticeDataDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataFileDirDialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Multiselect = false
+            };
+
+            if (dataFileDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                try
+                {
+                    PracticeDataList =
+                        new ObservableCollection<PracticeData>(
+                            PracticeData.LoadFromDirectory(dataFileDirDialog.FileName));
+                    PracticeDataDir = dataFileDirDialog.FileName;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is PracticeDataLoadFail || ex is InvalidPracticeDataException)
+                    {
+                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+
+            Focus();
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnClose(object sender, CancelEventArgs e)
         {
-            Settings.Default["KeyLayout"] = SelectedKeyLayout.Name;
-            Settings.Default["KeyLayoutDataDir"] = KeyLayoutDataDir;
+            Settings.Default[MainWindow.KeyLayout] = SelectedKeyLayout.Name;
+            Settings.Default[MainWindow.KeyLayoutDataDir] = KeyLayoutDataDir;
+            Settings.Default[MainWindow.PracticeDataDir] = PracticeDataDir;
 
             Settings.Default.Save();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }

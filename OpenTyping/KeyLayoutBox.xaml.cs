@@ -33,7 +33,7 @@ namespace OpenTyping
         public KeyLayoutBox()
         {
             InitializeComponent();
-            this.Loaded += KeyLayoutBox_Loaded; 
+            Loaded += KeyLayoutBox_Loaded; 
         }
 
         private void KeyLayoutBox_Loaded(object sender, RoutedEventArgs e)
@@ -50,14 +50,12 @@ namespace OpenTyping
 
             keyLayout = new List<List<KeyBox>>();
 
-            for (int i = 0; i < MainWindow.CurrentKeyLayout.KeyLayoutData.Count(); i++)
+            foreach (IList<Key> keyRow in MainWindow.CurrentKeyLayout.KeyLayoutData)
             {
                 var keyBoxes = new List<KeyBox>();
 
-                for (int j = 0; j < MainWindow.CurrentKeyLayout.KeyLayoutData[i].Count(); j++)
+                foreach (Key key in keyRow)
                 {
-                    Key key = MainWindow.CurrentKeyLayout.KeyLayoutData[i][j];
-
                     var keyBox = new KeyBox
                     {
                         Key = key,
@@ -111,9 +109,9 @@ namespace OpenTyping
         {
             List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
 
-            for (int i = 0; i < keyLayout.Count(); i++)
+            for (int i = 0; i < keyLayout.Count; i++)
             {
-                for (int j = 0; j < keyLayout[i].Count(); j++)
+                for (int j = 0; j < keyLayout[i].Count; j++)
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {

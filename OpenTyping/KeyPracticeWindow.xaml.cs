@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -83,14 +82,13 @@ namespace OpenTyping
         {
             InitializeComponent();
 
-            this.DataContext = this;
             this.keyList = keyList;
 
             NextKey = RandomKey();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
-            this.KeyDown += KeyPracticeWindow_KeyDown;
+            KeyDown += KeyPracticeWindow_KeyDown;
 
             double shakiness = 30;
             const double shakeDiff = 3;
@@ -133,7 +131,7 @@ namespace OpenTyping
 
             ShakeAnimation.KeyFrames = keyFrames;
 
-            this.Closed += KeyPracticeWindow_Closed;
+            Closed += KeyPracticeWindow_Closed;
 
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
             {
@@ -149,13 +147,6 @@ namespace OpenTyping
             }
         }
 
-        private void KeyPracticeWindow_Closed(object sender, EventArgs e)
-        {
-            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
-            {
-                KeyIncorrectCount = incorrectStats
-            });
-        }
 
         private KeyInfo RandomKey()
         {
@@ -222,7 +213,7 @@ namespace OpenTyping
                 else incorrectStats[CurrentKey.Pos]++;
 
                 KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
-                this.Dispatcher.Invoke(async () =>
+                Dispatcher.Invoke(async () =>
                 {
                     KeyLayoutBox.PressKey(pos, WrongKeyColor, WrongKeyShadowColor);
                     if (isLShift) KeyLayoutBox.LShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);
@@ -251,6 +242,14 @@ namespace OpenTyping
                     }
                 });
             }
+        }
+
+        private void KeyPracticeWindow_Closed(object sender, EventArgs e)
+        {
+            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+            {
+                KeyIncorrectCount = incorrectStats
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

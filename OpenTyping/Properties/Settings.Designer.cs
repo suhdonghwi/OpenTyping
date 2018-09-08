@@ -46,5 +46,17 @@ namespace OpenTyping.Properties {
                 this["KeyLayoutDataDir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PracticeDataDir {
+            get {
+                return ((string)(this["PracticeDataDir"]));
+            }
+            set {
+                this["PracticeDataDir"] = value;
+            }
+        }
     }
 }

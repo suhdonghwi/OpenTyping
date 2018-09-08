@@ -1,9 +1,12 @@
-﻿<UserControl x:Class="OpenTyping.SentencePracticeMenu"
+﻿<UserControl x:Name="SelfControl"
+             x:Class="OpenTyping.SentencePracticeMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -12,11 +15,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    Orientation="Vertical"
-                    Margin="5">
-            <StackPanel Orientation="Vertical"
-                        Margin="9 0 0 12">
+        <DockPanel Grid.Row="0"
+                   Margin="14 5 14 5">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Vertical"
+                        Margin="0 0 0 12">
                 <StackPanel Orientation="Horizontal"
                             Margin="0 0 0 2">
                     <Rectangle Width="40" 
@@ -31,10 +34,120 @@
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
-                <TextBlock Text=": 짧은 길이의 문장들을 대상으로 연습합니다."
+                <TextBlock Text=": 짧은 길이의 문장으로 나누어서 연습합니다."
                            Style="{StaticResource NormalTextBlock}" 
                            FontSize="14pt"/>
             </StackPanel>
-        </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="PracticeDataListBox"
+                         DataContext="{Binding ElementName=SelfControl}"
+                         Grid.Row="1"
+                         BorderThickness="1"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="14pt"
+                         Margin="0 0 0 5"
+                         SelectedItem="{Binding SelectedPracticeData}"
+                         ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                         ItemsSource="{Binding PracticeDataList}">
+                    <ListBox.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+                        <local:NullToVisibilityConverter x:Key="NullToVis"/>
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" 
+                                           Height="13"
+                                           Fill="Green"
+                                           Visibility="{Binding Converter={StaticResource BoolToVis},
+                                                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                               AncestorType={x:Type ListBoxItem}},
+                                                                                               Path=IsSelected}"
+                                           Margin="0 0 5 1">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckSolid}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+
+                                <TextBlock Text="{Binding Path=Name}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding Path=Author}"
+                                           FontFamily="{StaticResource NanumGothic}"
+                                           FontSize="10pt"
+                                           VerticalAlignment="Center"
+                                           Visibility="{Binding Converter={StaticResource NullToVis},
+                                                                Path=Author}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal">
+                    <Rectangle Width="23" 
+                               Height="23"
+                               Margin="0 0 5 0"
+                               Fill="{DynamicResource AccentColorBrush}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                               Text="연습하고 싶은 글을 클릭하여 선택하세요."
+                               VerticalAlignment="Bottom"
+                               FontSize="14pt"/>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1"
+                   LastChildFill="False"
+                   Margin="10 0 10 10">
+            <StackPanel DockPanel.Dock="Left"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="5 0 0 0">
+                <Rectangle Width="18" 
+                           Height="18"
+                           Margin="0 0 6 0">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=RandomSolid}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock FontFamily="{StaticResource NanumGothic}"
+                           FontWeight="Bold"
+                           FontSize="13pt"
+                           VerticalAlignment="Center"
+                           Text="문장 무작위 배열"
+                           Margin="0 0 5 0"/>
+                <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                  OnLabel="" OffLabel=""
+                                  IsChecked="{Binding Path=IsRandom,
+                                                      Mode=OneWayToSource}"
+                                  Margin="0 1 0 0"/>
+            </StackPanel>
+            <Button x:Name="StartButton"
+                    DockPanel.Dock="Right"
+                    Click="StartButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18"
+                               Height="15" 
+                               Fill="Green">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:Modern Kind=ArrowRight}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource ControlButtonText}"
+                               Text="연습 시작"/>
+                </StackPanel>
+            </Button>
+        </DockPanel>
     </Grid>
 </UserControl>
