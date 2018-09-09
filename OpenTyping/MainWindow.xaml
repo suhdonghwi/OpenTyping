@@ -8,6 +8,8 @@
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  Title="열린타자"
+                 Style="{StaticResource WindowTitleStyle}"
+                 FontFamily="{StaticResource NanumGothic}"
                  Width="800" 
                  Height="450" 
                  ResizeMode="CanMinimize"
@@ -17,8 +19,8 @@
             <Button x:Name="SettingsButton" 
                     Click="SettingsButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Rectangle Width="18"
-                               Height="18"
+                    <Rectangle Width="19"
+                               Height="19"
                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, 
                                               Path=Foreground}">
                         <Rectangle.OpacityMask>
@@ -26,10 +28,13 @@
                                          Visual="{iconPacks:Modern Cog}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Margin="4 0 0 0"
-                               VerticalAlignment="Center"
+                    <TextBlock FontFamily="{StaticResource NanumGothic}"
+                               Text="설정"
                                FontSize="13pt"
-                               Text="설정"/>
+                               FontWeight="SemiBold"
+                               Foreground="White"
+                               Margin="4 0 0 0"
+                               VerticalAlignment="Top"/>
                 </StackPanel>
             </Button>
         </mah:WindowCommands>

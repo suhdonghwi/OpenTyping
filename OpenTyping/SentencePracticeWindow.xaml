@@ -9,6 +9,7 @@
                  xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
                  mc:Ignorable="d"
                  Title="열린타자"
+                 Style="{StaticResource WindowTitleStyle}"
                  Width="700"
                  Height="400"
                  MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"

@@ -9,6 +9,7 @@
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  Title="열린타자"
+                 Style="{StaticResource WindowTitleStyle}"
                  Width="810" 
                  Height="390"
                  ResizeMode="CanMinimize"
