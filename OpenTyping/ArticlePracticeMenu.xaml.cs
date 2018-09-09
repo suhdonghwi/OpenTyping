@@ -32,7 +32,7 @@ namespace OpenTyping
                 return;
             }
 
-            var articlePracticeWindow = new ArticlePracticeWindow();
+            var articlePracticeWindow = new ArticlePracticeWindow(selectedPracticeData);
             articlePracticeWindow.ShowDialog();
         }
     }

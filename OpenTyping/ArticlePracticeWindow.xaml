@@ -35,6 +35,8 @@
             <Setter Property="FontSize" Value="17pt"/>
             <Setter Property="Margin" Value="0 0 0 10"/>
             <Setter Property="Padding" Value="3"/>
+            <EventSetter Event="PreviewKeyDown" Handler="LineTextBox_PreviewKeyDown"/>
+            <EventSetter Event="TextChanged" Handler="LineTextBox_TextChanged"/>
             <EventSetter Event="CommandManager.PreviewExecuted" Handler="LineTextBox_PreviewExcuted"/>
         </Style>
     </mah:MetroWindow.Resources>
