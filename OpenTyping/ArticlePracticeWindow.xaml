@@ -80,47 +80,76 @@
                      Style="{StaticResource LineTextBoxStyle}"
                      ContextMenu="{x:Null}"/>
         </StackPanel>
-        <StackPanel Grid.Row="3"
-                    DataContext="{Binding ElementName=SelfWindow}"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Border Background="#1c7ed6"
-                    Margin="0 0 5 0">
-                <StackPanel Margin="5 2 5 2"
-                            Orientation="Horizontal">
-                    <TextBlock Text="타속 "
-                               Foreground="White"
-                               FontFamily="{StaticResource NanumGothic}"
-                               FontSize="11pt"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding Path=TypingSpeed,
+        <Grid Grid.Row="3"
+              DataContext="{Binding ElementName=SelfWindow}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Border Background="#1c7ed6"
+                        Margin="0 0 5 0">
+                    <StackPanel Margin="5 2 5 2"
+                                Orientation="Horizontal">
+                        <TextBlock Text="타속 "
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumGothic}"
+                                   FontSize="11pt"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=TypingSpeed,
+                                                  Mode=OneWay}"
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   FontSize="16pt"
+                                   VerticalAlignment="Center"
+                                   Margin="0 3 0 0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#f03e3e">
+                    <StackPanel Margin="5 2 5 2"
+                                Orientation="Horizontal">
+                        <TextBlock Text="정확도 "
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumGothic}"
+                                   FontSize="11pt"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=TypingAccuracy,
+                                                  StringFormat={}{0}%,
+                                                  Mode=OneWay}"
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   FontSize="16pt"
+                                   VerticalAlignment="Center"
+                                   Margin="0 3 0 0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border HorizontalAlignment="Center"
+                    Background="#2b8a3e">
+                <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="5 2 5 2">
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="{Binding Path=TotalPage,
                                               Mode=OneWay}"
-                               Foreground="White"
-                               FontFamily="{StaticResource NanumBarunGothic}"
                                FontSize="16pt"
-                               VerticalAlignment="Center"
-                               Margin="0 3 0 0"/>
+                               Foreground="White"
+                               Margin="0 2 7 0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="페이지 중"
+                               FontSize="11pt"
+                               Foreground="White"
+                               Margin="0 1 7 0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="{Binding Path=CurrentPage,
+                                              Mode=OneWay}"
+                               FontSize="16pt"
+                               Foreground="White"
+                               Margin="0 2 0 0"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
-            <Border Background="#f03e3e">
-                <StackPanel Margin="5 2 5 2"
-                            Orientation="Horizontal">
-                    <TextBlock Text="정확도 "
-                               Foreground="White"
-                               FontFamily="{StaticResource NanumGothic}"
-                               FontSize="11pt"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding Path=TypingAccuracy,
-                                              StringFormat={}{0}%,
-                                              Mode=OneWay}"
-                               Foreground="White"
-                               FontFamily="{StaticResource NanumBarunGothic}"
-                               FontSize="16pt"
-                               VerticalAlignment="Center"
-                               Margin="0 3 0 0"/>
-                </StackPanel>
-            </Border>
-        </StackPanel>
+        </Grid>
     </Grid>
 </mah:MetroWindow>
 

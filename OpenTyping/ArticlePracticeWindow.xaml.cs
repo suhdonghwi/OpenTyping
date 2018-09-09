@@ -20,6 +20,20 @@ namespace OpenTyping
         private readonly PracticeData practiceData;
         private int currentSentenceIndex = 0;
 
+        private int currentPage = 1;
+        public int CurrentPage
+        {
+            get => currentPage;
+            private set => SetField(ref currentPage, value);
+        }
+
+        private int totalPage;
+        public int TotalPage
+        {
+            get => totalPage;
+            private set => SetField(ref totalPage, value);
+        }
+
         private int currentLine = 0;
 
         private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
@@ -60,7 +74,8 @@ namespace OpenTyping
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
 
             this.practiceData = practiceData;
-
+            TotalPage = (practiceData.TextData.Count / 3) + 1;
+            
             for (int i = 0; i < 3; i++)
             {
                 if (currentSentenceIndex + i == practiceData.TextData.Count) break;
@@ -139,6 +154,8 @@ namespace OpenTyping
                 currentLine = 0;
                 currentSentenceIndex++;
                 if (currentSentenceIndex == practiceData.TextData.Count) FinishPracticeAsync();
+
+                CurrentPage++;
 
                 foreach (TextBox box in inputTextBoxes) box.Text = "";
                 foreach (TextBlock block in targetTextBlocks) block.Text = "";
