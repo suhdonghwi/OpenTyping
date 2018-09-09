@@ -136,6 +136,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ArticlePracticeWindow.xaml.cs">
+      <DependentUpon>ArticlePracticeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Differ.cs" />
     <Compile Include="InvalidKeyDataException.cs" />
     <Compile Include="InvalidPracticeDataException.cs" />
@@ -173,6 +176,10 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TypingMeasurer.cs" />
+    <Page Include="ArticlePracticeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -32,8 +32,8 @@ namespace OpenTyping
                 return;
             }
 
-            var sentencePracticeWindow = new SentencePracticeWindow(selectedPracticeData, IsRandom);
-            sentencePracticeWindow.ShowDialog();
+            var articlePracticeWindow = new ArticlePracticeWindow();
+            articlePracticeWindow.ShowDialog();
         }
     }
 }

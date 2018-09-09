@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -199,6 +200,16 @@ namespace OpenTyping
             if (input.Length < CurrentText.Length)
             {
                 CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
+            }
+        }
+
+        private void CurrentTextBox_PreviewExecuted(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Copy ||
+                e.Command == ApplicationCommands.Cut ||
+                e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
             }
         }
 
