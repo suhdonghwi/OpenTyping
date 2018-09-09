@@ -70,6 +70,19 @@ namespace OpenTyping
             for (int i = 0; i < 3; i++) inputTextBoxes[i].IsEnabled = i == currentLine;
         }
 
+        private void ArticlePracticeWindow_Closed(object sender, EventArgs e)
+        {
+            if (typingSpeedList.Count > 0)
+            {
+                MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
+                {
+                    SentencePracticeCount = typingSpeedList.Count,
+                    AverageTypingSpeed = Convert.ToInt32(typingSpeedList.Average()),
+                    AverageAccuracy = Convert.ToInt32(accuracyList.Average())
+                });
+            }
+        }
+
         private Brush MapDiffState(Differ.DiffData.DiffState state)
         {
             switch (state)
@@ -151,8 +164,10 @@ namespace OpenTyping
         private async void FinishPracticeAsync()
         {
             freeze = true;
-            MessageDialogResult result = await this.ShowMessageAsync("연습이 끝났습니다.",
-                                                                     "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + " 입니다.");
+            await this.ShowMessageAsync("연습이 끝났습니다.",
+                                        "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + " 입니다.",
+                                         MessageDialogStyle.Affirmative,
+                                         new MetroDialogSettings{ AnimateShow = false, AnimateHide = false });
 
             this.Close();
         }

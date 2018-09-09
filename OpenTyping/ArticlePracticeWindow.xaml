@@ -11,7 +11,8 @@
                  Style="{StaticResource WindowTitleStyle}"
                  Height="400" 
                  Width="700"
-                 Icon="{StaticResource AppIcon}">
+                 Icon="{StaticResource AppIcon}"
+                 Closed="ArticlePracticeWindow_Closed">
     <mah:MetroWindow.Resources>
         <Style x:Key="LineBorderStyle" TargetType="Border">
             <Setter Property="Background" Value="GhostWhite"/>
