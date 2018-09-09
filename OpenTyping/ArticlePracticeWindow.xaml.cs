@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace OpenTyping
 {
@@ -42,6 +43,8 @@ namespace OpenTyping
 
         private readonly IList<TextBox> inputTextBoxes;
         private readonly IList<TextBlock> targetTextBlocks;
+
+        private bool freeze = false;
 
         private readonly Brush correctBackground = Brushes.LightGreen;
         private readonly Brush incorrectBackground = Brushes.Pink;
@@ -122,6 +125,7 @@ namespace OpenTyping
             {
                 currentLine = 0;
                 currentSentenceIndex++;
+                if (currentSentenceIndex == practiceData.TextData.Count) FinishPracticeAsync();
 
                 foreach (TextBox box in inputTextBoxes) box.Text = "";
                 foreach (TextBlock block in targetTextBlocks) block.Text = "";
@@ -136,6 +140,7 @@ namespace OpenTyping
             {
                 currentLine++;
                 currentSentenceIndex++;
+                if (currentSentenceIndex == practiceData.TextData.Count) FinishPracticeAsync();
             }
 
             for (int i = 0; i < 3; i++) inputTextBoxes[i].IsEnabled = i == currentLine;
@@ -143,8 +148,22 @@ namespace OpenTyping
             inputTextBoxes[currentLine].Focus();
         }
 
+        private async void FinishPracticeAsync()
+        {
+            freeze = true;
+            MessageDialogResult result = await this.ShowMessageAsync("연습이 끝났습니다.",
+                                                                     "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + " 입니다.");
+
+            this.Close();
+        }
+
         private void LineTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if (freeze)
+            {
+                e.Handled = true;
+                return;
+            }
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 NextLine();
@@ -169,6 +188,12 @@ namespace OpenTyping
 
         private void LineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (freeze)
+            {
+                e.Handled = true;
+                return;
+            }
+
             var currentTextBox = inputTextBoxes[currentLine];
             var currentTextBlock = targetTextBlocks[currentLine];
             string input = currentTextBox.Text;
