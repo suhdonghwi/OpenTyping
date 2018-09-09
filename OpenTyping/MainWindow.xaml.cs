@@ -103,38 +103,49 @@ namespace OpenTyping
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            string oldKeyLayout = (string)Settings.Default[KeyLayout];
+            string oldKeyLayoutDataDir = (string)Settings.Default[KeyLayoutDataDir];
+            string oldPracticeDataDir = (string)Settings.Default[PracticeDataDir];
+            
             var settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
 
-            SaveKeyLayout();
-            CurrentKeyLayout = settingsWindow.SelectedKeyLayout;
+            string newKeyLayout = (string)Settings.Default[KeyLayout];
+            string newKeyLayoutDataDir = (string)Settings.Default[KeyLayoutDataDir];
+            string newPracticeDataDir = (string)Settings.Default[PracticeDataDir];
 
-            KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
-
-            var mostIncorrectBinding = new Binding
+            if (oldKeyLayout != newKeyLayout || oldKeyLayoutDataDir != newKeyLayoutDataDir)
             {
-                Path = new PropertyPath("Stats.MostIncorrect.Key"),
-                Source = CurrentKeyLayout,
-                Converter = new KeyPosToKeyConverter()
-            };
-            HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, mostIncorrectBinding);
+                SaveKeyLayout();
+                CurrentKeyLayout = settingsWindow.SelectedKeyLayout;
 
-            var averageSpeedBinding = new Binding
-            {
-                Path = new PropertyPath("Stats.AverageTypingSpeed"),
-                Source = CurrentKeyLayout,
-            };
-            HomeMenu.AverageTypingSpeed.SetBinding(TextBlock.TextProperty, averageSpeedBinding);
+                KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
 
-            var averageAccuracyBinding = new Binding
-            {
-                Path = new PropertyPath("Stats.AverageAccuracy"),
-                Source = CurrentKeyLayout,
-                StringFormat = "{0}%"
-            };
-            HomeMenu.AverageAccuracy.SetBinding(TextBlock.TextProperty, averageAccuracyBinding);
+                var mostIncorrectBinding = new Binding
+                {
+                    Path = new PropertyPath("Stats.MostIncorrect.Key"),
+                    Source = CurrentKeyLayout,
+                    Converter = new KeyPosToKeyConverter()
+                };
+                HomeMenu.MostIncorrectKey.SetBinding(KeyBox.KeyProperty, mostIncorrectBinding);
 
-            SentencePracticeMenu.LoadData();
+                var averageSpeedBinding = new Binding
+                {
+                    Path = new PropertyPath("Stats.AverageTypingSpeed"),
+                    Source = CurrentKeyLayout,
+                };
+                HomeMenu.AverageTypingSpeed.SetBinding(TextBlock.TextProperty, averageSpeedBinding);
+
+                var averageAccuracyBinding = new Binding
+                {
+                    Path = new PropertyPath("Stats.AverageAccuracy"),
+                    Source = CurrentKeyLayout,
+                    StringFormat = "{0}%"
+                };
+                HomeMenu.AverageAccuracy.SetBinding(TextBlock.TextProperty, averageAccuracyBinding);
+            }
+
+            if (oldPracticeDataDir != newPracticeDataDir) SentencePracticeMenu.LoadData();
         }
     }
 }
