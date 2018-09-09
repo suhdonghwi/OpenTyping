@@ -12,11 +12,11 @@ namespace OpenTyping
     /// <summary>
     /// SentencePracticeMenu.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SentencePracticeMenu : PracticeMenuBase
+    public partial class ArticlePracticeMenu : PracticeMenuBase
     {
         public bool IsRandom { get; set; }
 
-        public SentencePracticeMenu()
+        public ArticlePracticeMenu()
         {
             InitializeComponent();
         }

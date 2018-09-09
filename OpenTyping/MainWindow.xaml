@@ -106,6 +106,7 @@
                            Content="긴글연습"/>
                 </StackPanel>
             </TabItem.Header>
+            <local:ArticlePracticeMenu x:Name="ArticlePracticeMenu"/>
         </TabItem>
     </TabControl>
 </mah:MetroWindow>

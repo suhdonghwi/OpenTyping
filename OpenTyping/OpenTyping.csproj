@@ -160,6 +160,9 @@
     <Compile Include="PracticeData.cs" />
     <Compile Include="PracticeMenuBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ArticlePracticeMenu.xaml.cs">
+      <DependentUpon>ArticlePracticeMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SentencePracticeMenu.xaml.cs">
       <DependentUpon>SentencePracticeMenu.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ArticlePracticeMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SentencePracticeMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
