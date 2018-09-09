@@ -67,8 +67,6 @@ namespace OpenTyping
             SpeedChart.AxisX[0].Separator.Step = 1;
 
             NextSentence();
-
-            Closed += SentencePracticeWindow_Closed;
         }
 
         private void SentencePracticeWindow_Closed(object sender, EventArgs e)

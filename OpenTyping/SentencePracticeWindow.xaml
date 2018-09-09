@@ -15,7 +15,8 @@
                  MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
                  SizeToContent="Height"
                  ResizeMode="CanMinimize"
-                 Icon="{StaticResource AppIcon}">
+                 Icon="{StaticResource AppIcon}"
+                 Closed="SentencePracticeWindow_Closed">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20">
             <Grid.RowDefinitions>

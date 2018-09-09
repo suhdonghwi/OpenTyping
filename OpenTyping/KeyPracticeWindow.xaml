@@ -13,7 +13,8 @@
                  Width="810" 
                  Height="390"
                  ResizeMode="CanMinimize"
-                 Icon="{StaticResource AppIcon}">
+                 Icon="{StaticResource AppIcon}"
+                 Closed="KeyPracticeWindow_Closed">
     <StackPanel Orientation="Vertical">
         <Grid x:Name="KeyGrid"
               Margin="0 10 0 0">
