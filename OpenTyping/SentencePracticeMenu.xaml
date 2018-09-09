@@ -112,7 +112,7 @@
             <StackPanel DockPanel.Dock="Left"
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
-                        Margin="5 0 0 0">
+                        Margin="5 5 0 0">
                 <Rectangle Width="18" 
                            Height="18"
                            Margin="0 0 6 0"
@@ -135,8 +135,7 @@
                                   Foreground="#212529"
                                   OnLabel="" OffLabel=""
                                   IsChecked="{Binding Path=IsRandom,
-                                                      Mode=OneWayToSource}"
-                                  Margin="0 1 0 0"/>
+                                                      Mode=OneWayToSource}"/>
             </StackPanel>
             <Button x:Name="StartButton"
                     DockPanel.Dock="Right"

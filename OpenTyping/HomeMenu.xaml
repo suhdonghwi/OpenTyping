@@ -11,6 +11,16 @@
              d:DesignWidth="800">
     <UserControl.Resources>
         <local:KeyPosToKeyConverter x:Key="KeyPosToKeyDataConverter"/>
+        <Style x:Key="StatTile" TargetType="mah:Tile">
+            <Setter Property="TitleFontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="110"/>
+            <Setter Property="Margin" Value="0 0 7 0"/>
+        </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" 
                 Margin="10 0 5 5">
@@ -33,33 +43,10 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
-                    Margin="5 0 0 5">
-            <Rectangle Width="30" 
-                       Height="30"
-                       Margin="0 0 9 0"
-                       Fill="{DynamicResource AccentColorBrush}">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=ChartBarSolid}"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <TextBlock Text="한 눈에 보는 통계"
-                       Style="{StaticResource NormalTextBlock}" 
-                       FontSize="21pt"
-                       Margin="0 2 0 0"/>
-        </StackPanel>
-        <Separator Margin="0 0 0 10"/>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center">
-            <mah:Tile Title="가장 많이 틀린 키"
-                      TitleFontSize="13"
-                      FontFamily="{StaticResource NanumGothic}"
-                      Background="#f03e3e"
-                      HorizontalContentAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      HorizontalAlignment="Left"
-                      Width="150"
-                      Height="110"
-                      Margin="0 0 7 0">
+                    Margin="4 0 0 0">
+            <mah:Tile Style="{StaticResource StatTile}"
+                      Title="가장 많이 틀린 키"
+                      Background="#f03e3e">
                 <local:KeyBox x:Name="MostIncorrectKey"
                               Key="{Binding Path=Stats.MostIncorrect.Key, 
                                             Source={x:Static local:MainWindow.CurrentKeyLayout},
@@ -68,16 +55,9 @@
                               Width="50"
                               Margin="0 0 0 60"/>
             </mah:Tile>
-            <mah:Tile Title="평균 타속"
-                      TitleFontSize="13"
-                      FontFamily="{StaticResource NanumGothic}"
-                      Background="#1c7ed6"
-                      HorizontalContentAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      HorizontalAlignment="Left"
-                      Width="150"
-                      Height="110"
-                      Margin="0 0 7 0">
+            <mah:Tile Style="{StaticResource StatTile}"
+                      Title="평균 타속"
+                      Background="#1c7ed6">
                 <TextBlock x:Name="AverageTypingSpeed"
                            Text="{Binding Path=Stats.AverageTypingSpeed,
                                           Source={x:Static local:MainWindow.CurrentKeyLayout}}"
@@ -85,16 +65,9 @@
                            FontSize="30pt"
                            Foreground="White"/>
             </mah:Tile>
-            <mah:Tile Title="평균 정확도"
-                      TitleFontSize="13"
-                      FontFamily="{StaticResource NanumGothic}"
-                      Background="#37b24d"
-                      HorizontalContentAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      HorizontalAlignment="Left"
-                      Width="150"
-                      Height="110"
-                      Margin="0 0 7 0">
+            <mah:Tile Style="{StaticResource StatTile}"
+                      Title="평균 정확도"
+                      Background="#37b24d">
                 <TextBlock x:Name="AverageAccuracy"
                            Text="{Binding Path=Stats.AverageAccuracy,
                                           Source={x:Static local:MainWindow.CurrentKeyLayout},

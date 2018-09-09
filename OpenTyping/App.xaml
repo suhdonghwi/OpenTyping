@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:OpenTyping"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -18,9 +19,26 @@
             </ResourceDictionary.MergedDictionaries>
 
             <BitmapImage x:Key="AppIcon">pack://application:,,,/Resources/icon.png</BitmapImage>
+            <BitmapImage x:Key="AppLogo">pack://application:,,,/Resources/logo.png</BitmapImage>
 
             <FontFamily x:Key="NanumBarunGothic">pack://application:,,,/Resources/Fonts/#나눔바른고딕</FontFamily>
             <FontFamily x:Key="NanumGothic">pack://application:,,,/Resources/Fonts/#나눔고딕</FontFamily>
+
+            <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
+                <Setter Property="TitleTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       TextTrimming="CharacterEllipsis"
+                                       VerticalAlignment="Center"
+                                       Margin="5 -1 8 0"
+                                       FontWeight="Light"
+                                       FontSize="{DynamicResource WindowTitleFontSize}"
+                                       FontFamily="{StaticResource NanumGothic}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
             <Style x:Key="TabItemLabel" TargetType="Label" BasedOn="{StaticResource MetroLabel}">
                 <Setter Property="Padding" Value="0" />

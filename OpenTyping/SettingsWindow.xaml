@@ -9,6 +9,7 @@
                  xmlns:local="clr-namespace:OpenTyping"
                  mc:Ignorable="d"
                  Title="설정" 
+                 Style="{StaticResource WindowTitleStyle}"
                  Width="500" 
                  Height="500"
                  ResizeMode="CanMinimize"
