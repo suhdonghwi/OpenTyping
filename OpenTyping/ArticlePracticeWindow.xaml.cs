@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,12 +14,31 @@ namespace OpenTyping
     /// <summary>
     /// ArticlePracticeWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ArticlePracticeWindow : MetroWindow
+    public partial class ArticlePracticeWindow : MetroWindow, INotifyPropertyChanged
     {
         private readonly PracticeData practiceData;
         private int currentSentenceIndex = 0;
 
         private int currentLine = 0;
+
+        private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
+
+        private int typingSpeed;
+        public int TypingSpeed
+        {
+            get => typingSpeed;
+            private set => SetField(ref typingSpeed, value);
+        }
+
+        private int typingAccuracy;
+        public int TypingAccuracy
+        {
+            get => typingAccuracy;
+            private set => SetField(ref typingAccuracy, value);
+        }
+
+        private readonly List<int> typingSpeedList = new List<int>();
+        private readonly List<int> accuracyList = new List<int>();
 
         private readonly IList<TextBox> inputTextBoxes;
         private readonly IList<TextBlock> targetTextBlocks;
@@ -63,6 +84,40 @@ namespace OpenTyping
 
         private void NextLine()
         {
+            if (string.IsNullOrEmpty(inputTextBoxes[currentLine].Text)) return;
+
+            var currentTextBox = inputTextBoxes[currentLine];
+            var currentTextBlock = targetTextBlocks[currentLine];
+            string currentText = currentTextBlock.Text;
+
+            currentTextBlock.Inlines.Clear();
+            var diffs = new List<Differ.DiffData>(Differ.Diff(currentTextBox.Text, currentText, currentTextBox.Text));
+
+            for (int i = 0; i < diffs.Count(); i++)
+            {
+                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                }
+            }
+
+            foreach (var diff in diffs)
+            {
+                var run = new Run(diff.Text)
+                {
+                    Background = MapDiffState(diff.State)
+                };
+                currentTextBlock.Inlines.Add(run);
+            }
+
+            double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
+                              (double)diffs.Sum(data => data.Text.Length);
+            accuracyList.Add(Convert.ToInt32(accuracy * 100));
+            typingSpeedList.Add(Convert.ToInt32(typingMeasurer.Finish(currentTextBox.Text) * accuracy));
+
+            TypingAccuracy = Convert.ToInt32(accuracyList.Average());
+            TypingSpeed = Convert.ToInt32(typingSpeedList.Average());
+
             if (currentLine == 2) // 다음 페이지로 이동
             {
                 currentLine = 0;
@@ -94,6 +149,11 @@ namespace OpenTyping
             {
                 NextLine();
                 e.Handled = true;
+                return;
+            }
+            if (((TextBox)sender).Text == "")
+            {
+                typingMeasurer.Start();
             }
         }
 
@@ -111,9 +171,8 @@ namespace OpenTyping
         {
             var currentTextBox = inputTextBoxes[currentLine];
             var currentTextBlock = targetTextBlocks[currentLine];
-
             string input = currentTextBox.Text;
-            string currentText = currentTextBlock.Text;
+            string currentText = practiceData.TextData[currentSentenceIndex];
 
             var diffs
                 = new List<Differ.DiffData>(Differ.Diff(currentText.Substring(0, Math.Min(input.Length, currentText.Length)),
@@ -142,6 +201,21 @@ namespace OpenTyping
             {
                 currentTextBlock.Inlines.Add(new Run(currentText.Substring(input.Length)));
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
