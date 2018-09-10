@@ -143,6 +143,13 @@ namespace OpenTyping
                     StringFormat = "{0}%"
                 };
                 HomeMenu.AverageAccuracy.SetBinding(TextBlock.TextProperty, averageAccuracyBinding);
+
+                var sentencePracticeCountBinding = new Binding
+                {
+                    Path = new PropertyPath("Stats.SentencePracticeCount"),
+                    Source = CurrentKeyLayout,
+                };
+                HomeMenu.SentencePracticeCount.SetBinding(TextBlock.TextProperty, sentencePracticeCountBinding);
             }
 
             if (oldPracticeDataDir != newPracticeDataDir) SentencePracticeMenu.LoadData();
