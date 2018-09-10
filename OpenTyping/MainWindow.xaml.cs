@@ -152,7 +152,8 @@ namespace OpenTyping
                 HomeMenu.SentencePracticeCount.SetBinding(TextBlock.TextProperty, sentencePracticeCountBinding);
             }
 
-            if (oldPracticeDataDir != newPracticeDataDir) SentencePracticeMenu.LoadData();
+            SentencePracticeMenu.LoadData();
+            ArticlePracticeMenu.LoadData();
         }
     }
 }

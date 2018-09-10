@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -17,7 +19,7 @@ namespace OpenTyping
     /// </summary>
     public partial class ArticlePracticeWindow : MetroWindow, INotifyPropertyChanged
     {
-        private readonly PracticeData practiceData;
+        private PracticeData practiceData;
         private int currentSentenceIndex = 0;
 
         private int currentPage = 1;
@@ -66,6 +68,60 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        private PracticeData FitPracticeData(PracticeData oldData)
+        {
+            PracticeData newData = new PracticeData()
+            {
+                Name = oldData.Name,
+                Author = oldData.Author,
+                Character = oldData.Character,
+            };
+
+            var newTextData = new List<string>();
+
+            IList<string> FitLine(string line)
+            {
+                IList<string> splited = line.Split(' ').ToList();
+                if (splited.Count == 1) return splited;
+
+                for (int i = 1; i <= splited.Count; i++)
+                {
+                    var formattedText = new FormattedText(
+                        string.Join(" ", splited.Take(i)),
+                        CultureInfo.CurrentCulture,
+                        System.Windows.FlowDirection.LeftToRight,
+                        new Typeface(TargetTextBlock0.FontFamily,
+                            TargetTextBlock0.FontStyle,
+                            TargetTextBlock0.FontWeight,
+                            TargetTextBlock0.FontStretch),
+                        TargetTextBlock0.FontSize,
+                        Brushes.Black,
+                        new NumberSubstitution(),
+                        TextFormattingMode.Display);
+
+                    if (formattedText.Width > TargetTextBlock0.ActualWidth - 10)
+                    {
+                        var result = new List<string>();
+
+                        result.Add(string.Join(" ", splited.Take(i - 1)));
+                        result.AddRange(FitLine(string.Join(" ", splited.Skip(i - 1))));
+
+                        return result;
+                    }
+                }
+
+                return new List<string> { line };
+            }
+
+            foreach (string line in oldData.TextData)
+            {
+                newTextData.AddRange(FitLine(line));
+            }
+
+            newData.TextData = newTextData;
+            return newData;
+        }
+
         public ArticlePracticeWindow(PracticeData practiceData)
         {
             InitializeComponent();
@@ -74,6 +130,12 @@ namespace OpenTyping
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
 
             this.practiceData = practiceData;
+            this.Loaded += ArticlePracticeWindow_Loaded;
+        }
+
+        private void ArticlePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.practiceData = FitPracticeData(practiceData);
             TotalPage = (practiceData.TextData.Count / 3) + 1;
             
             for (int i = 0; i < 3; i++)

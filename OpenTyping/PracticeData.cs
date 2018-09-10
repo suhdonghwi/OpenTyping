@@ -9,18 +9,12 @@ namespace OpenTyping
 {
     public class PracticeData
     {
-        public PracticeData(string name, string author, IList<string> textData, string character)
-        {
-            Name = name;
-            Author = author;
-            TextData = textData;
-            Character = character;
-        }
+        public PracticeData() {}
 
-        public string Name { get; }
-        public string Author { get; }
+        public string Name { get; set; }
+        public string Author { get; set; }
         public IList<string> TextData { get; set; }
-        public string Character { get; }
+        public string Character { get; set; }
 
         [JsonIgnore]
         public string Location { get; set; }

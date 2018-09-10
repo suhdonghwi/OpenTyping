@@ -132,6 +132,7 @@ namespace OpenTyping
             {
                 result.Add(new DiffData(tempString, currentState));
             }
+
             if (text1.Length == text2.Length) return result;
 
             result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
