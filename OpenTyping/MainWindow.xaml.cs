@@ -20,9 +20,9 @@ namespace OpenTyping
     {
         public static KeyLayout CurrentKeyLayout { get; private set; }
 
-        public const string KeyLayoutDataDir = "KeyLayoutDataDir";
-        public const string KeyLayout = "KeyLayout";
-        public const string PracticeDataDir = "PracticeDataDir";
+        public const string KeyLayoutDataDirStr = "KeyLayoutDataDir";
+        public const string KeyLayoutStr = "KeyLayout";
+        public const string PracticeDataDirStr = "PracticeDataDir";
 
         public MainWindow()
         {
@@ -36,19 +36,19 @@ namespace OpenTyping
                 Environment.Exit(-1);
             }
 
-            if (string.IsNullOrEmpty((string)Settings.Default[KeyLayoutDataDir]))
+            if (string.IsNullOrEmpty((string)Settings.Default[KeyLayoutDataDirStr]))
             {
                 string layoutsDirectory = Path.Combine(exeDirectory, "layouts");
-                Settings.Default[KeyLayoutDataDir] = layoutsDirectory;
+                Settings.Default[KeyLayoutDataDirStr] = layoutsDirectory;
             }
 
             try
             {
                 var keyLayouts =
                     new List<KeyLayout>(
-                        OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDir]));
+                        OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDirStr]));
 
-                var layoutName = (string)Settings.Default[KeyLayout];
+                var layoutName = (string)Settings.Default[KeyLayoutStr];
                 KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
 
                 if (currentKeylayout == null)
@@ -57,12 +57,12 @@ namespace OpenTyping
 
                     if (dubeolsikLayout != null)
                     {
-                        Settings.Default[KeyLayout] = dubeolsikLayout.Name;
+                        Settings.Default[KeyLayoutStr] = dubeolsikLayout.Name;
                         CurrentKeyLayout = dubeolsikLayout;
                     }
                     else
                     {
-                        Settings.Default[KeyLayout] = keyLayouts[0].Name;
+                        Settings.Default[KeyLayoutStr] = keyLayouts[0].Name;
                         CurrentKeyLayout = keyLayouts[0];
                     }
                 }
@@ -80,43 +80,31 @@ namespace OpenTyping
                 }
             }
 
-            if (string.IsNullOrEmpty((string)Settings.Default[PracticeDataDir]))
+            if (string.IsNullOrEmpty((string)Settings.Default[PracticeDataDirStr]))
             {
                 string dataDirectory = Path.Combine(exeDirectory, "data");
-                Settings.Default[PracticeDataDir] = dataDirectory;
+                Settings.Default[PracticeDataDirStr] = dataDirectory;
             }
             
             InitializeComponent();
             Closed += MainWindow_Closed;
         }
 
-        private static void SaveKeyLayout()
-        {
-            File.WriteAllText(CurrentKeyLayout.Location, JsonConvert.SerializeObject(CurrentKeyLayout, Formatting.Indented));
-        }
-
         private static void MainWindow_Closed(object sender, EventArgs e)
         {
-            SaveKeyLayout();
+            KeyLayout.SaveKeyLayout(CurrentKeyLayout);
             Settings.Default.Save();
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            string oldKeyLayout = (string)Settings.Default[KeyLayout];
-            string oldKeyLayoutDataDir = (string)Settings.Default[KeyLayoutDataDir];
-            string oldPracticeDataDir = (string)Settings.Default[PracticeDataDir];
-            
+            KeyLayout.SaveKeyLayout(CurrentKeyLayout);
+
             var settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
 
-            string newKeyLayout = (string)Settings.Default[KeyLayout];
-            string newKeyLayoutDataDir = (string)Settings.Default[KeyLayoutDataDir];
-            string newPracticeDataDir = (string)Settings.Default[PracticeDataDir];
-
-            if (oldKeyLayout != newKeyLayout || oldKeyLayoutDataDir != newKeyLayoutDataDir)
+            if (settingsWindow.KeyLayoutUpdated || settingsWindow.KeyLayoutDataDirUpdated)
             {
-                SaveKeyLayout();
                 CurrentKeyLayout = settingsWindow.SelectedKeyLayout;
 
                 KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
@@ -143,9 +131,17 @@ namespace OpenTyping
                     StringFormat = "{0}%"
                 };
                 HomeMenu.AverageAccuracy.SetBinding(TextBlock.TextProperty, averageAccuracyBinding);
+
+                var sentencePracticeCountBinding = new Binding
+                {
+                    Path = new PropertyPath("Stats.SentencePracticeCount"),
+                    Source = CurrentKeyLayout,
+                };
+                HomeMenu.SentencePracticeCount.SetBinding(TextBlock.TextProperty, sentencePracticeCountBinding);
             }
 
-            if (oldPracticeDataDir != newPracticeDataDir) SentencePracticeMenu.LoadData();
+            SentencePracticeMenu.LoadData();
+            ArticlePracticeMenu.LoadData();
         }
     }
 }

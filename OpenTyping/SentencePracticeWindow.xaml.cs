@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -67,8 +68,6 @@ namespace OpenTyping
             SpeedChart.AxisX[0].Separator.Step = 1;
 
             NextSentence();
-
-            Closed += SentencePracticeWindow_Closed;
         }
 
         private void SentencePracticeWindow_Closed(object sender, EventArgs e)
@@ -78,8 +77,8 @@ namespace OpenTyping
                 MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
                 {
                     SentencePracticeCount = TypingSpeedList.Count,
-                    AverageTypingSpeed = TypingSpeedList.Sum() / TypingSpeedList.Count,
-                    AverageAccuracy = AccuracyList.Sum() / TypingSpeedList.Count
+                    AverageTypingSpeed = Convert.ToInt32(TypingSpeedList.Average()),
+                    AverageAccuracy = Convert.ToInt32(AccuracyList.Average())
                 });
             }
         }
@@ -201,6 +200,16 @@ namespace OpenTyping
             if (input.Length < CurrentText.Length)
             {
                 CurrentTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
+            }
+        }
+
+        private void CurrentTextBox_PreviewExecuted(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Copy ||
+                e.Command == ApplicationCommands.Cut ||
+                e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
             }
         }
 

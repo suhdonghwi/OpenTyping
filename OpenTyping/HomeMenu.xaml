@@ -76,6 +76,16 @@
                            FontSize="30pt"
                            Foreground="White"/>
             </mah:Tile>
+            <mah:Tile Style="{StaticResource StatTile}"
+                      Title="연습한 문장 수"
+                      Background="#f76707">
+                <TextBlock x:Name="SentencePracticeCount"
+                           Text="{Binding Path=Stats.SentencePracticeCount,
+                                          Source={x:Static local:MainWindow.CurrentKeyLayout}}"
+                           FontFamily="{StaticResource NanumBarunGothic}"
+                           FontSize="30pt"
+                           Foreground="White"/>
+            </mah:Tile>
         </StackPanel>
     </StackPanel>
 </UserControl>

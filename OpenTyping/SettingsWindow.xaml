@@ -57,7 +57,8 @@
                         <TextBlock Style="{StaticResource SettingNameTextBlock}">
                             현재 자판
                         </TextBlock>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 0 0 8">
                             <ComboBox x:Name="KeyLayoutsCombo"
                                       DataContext="{Binding ElementName=SelfWindow}"
                                       Width="200" 
@@ -107,6 +108,27 @@
                                         <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ClearStatButton"
+                                    Click="ClearStatButton_Click"
+                                    Background="#ffa8a8"
+                                    BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="15" 
+                                               Height="17"
+                                               Margin="0 0 4 0"
+                                               Fill="#c92a2a">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Text="통계 정보 초기화"
+                                               FontFamily="{StaticResource NanumGothic}"
+                                               FontSize="12pt"/>
+                                </StackPanel>
                             </Button>
                         </StackPanel>
 

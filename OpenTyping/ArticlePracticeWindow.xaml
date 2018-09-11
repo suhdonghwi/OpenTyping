@@ -1,0 +1,155 @@
+﻿<mah:MetroWindow x:Name="SelfWindow"
+                 x:Class="OpenTyping.ArticlePracticeWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:OpenTyping"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d"
+                 Title="열린타자" 
+                 Style="{StaticResource WindowTitleStyle}"
+                 Height="400" 
+                 Width="700"
+                 Icon="{StaticResource AppIcon}"
+                 Closed="ArticlePracticeWindow_Closed">
+    <mah:MetroWindow.Resources>
+        <Style x:Key="LineBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="BorderBrush" Value="Gainsboro"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+        </Style>
+
+        <Style x:Key="LineTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="DataContext" Value="{Binding ElementName=SelfWindow}"/>
+            <Setter Property="Text" Value="{Binding Path=CurrentText}"/>
+            <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+            <Setter Property="FontSize" Value="17pt"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+        </Style>
+
+        <Style x:Key="LineTextBoxStyle" TargetType="TextBox">
+            <Setter Property="DataContext" Value="{Binding ElementName=SelfWindow}"/>
+            <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+            <Setter Property="FontSize" Value="17pt"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Setter Property="Padding" Value="3"/>
+            <EventSetter Event="PreviewKeyDown" Handler="LineTextBox_PreviewKeyDown"/>
+            <EventSetter Event="TextChanged" Handler="LineTextBox_TextChanged"/>
+            <EventSetter Event="CommandManager.PreviewExecuted" Handler="LineTextBox_PreviewExcuted"/>
+        </Style>
+    </mah:MetroWindow.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Vertical">
+            <Border Style="{StaticResource LineBorderStyle}">
+                <TextBlock x:Name="TargetTextBlock0"
+                           Style="{StaticResource LineTextBlockStyle}"/>
+            </Border>
+            <TextBox x:Name="InputTextBox0"
+                     Style="{StaticResource LineTextBoxStyle}"
+                     ContextMenu="{x:Null}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Vertical">
+            <Border Style="{StaticResource LineBorderStyle}">
+                <TextBlock x:Name="TargetTextBlock1"
+                           Style="{StaticResource LineTextBlockStyle}"/>
+            </Border>
+            <TextBox x:Name="InputTextBox1"
+                     Style="{StaticResource LineTextBoxStyle}"
+                     ContextMenu="{x:Null}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical">
+            <Border Style="{StaticResource LineBorderStyle}">
+                <TextBlock x:Name="TargetTextBlock2"
+                           Style="{StaticResource LineTextBlockStyle}"/>
+            </Border>
+            <TextBox x:Name="InputTextBox2"
+                     Style="{StaticResource LineTextBoxStyle}"
+                     ContextMenu="{x:Null}"/>
+        </StackPanel>
+        <Grid Grid.Row="3"
+              DataContext="{Binding ElementName=SelfWindow}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Border Background="#1c7ed6"
+                        Margin="0 0 5 0">
+                    <StackPanel Margin="5 2 5 2"
+                                Orientation="Horizontal">
+                        <TextBlock Text="타속 "
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumGothic}"
+                                   FontSize="11pt"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=TypingSpeed,
+                                                  Mode=OneWay}"
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   FontSize="16pt"
+                                   VerticalAlignment="Center"
+                                   Margin="0 3 0 0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#f03e3e">
+                    <StackPanel Margin="5 2 5 2"
+                                Orientation="Horizontal">
+                        <TextBlock Text="정확도 "
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumGothic}"
+                                   FontSize="11pt"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=TypingAccuracy,
+                                                  StringFormat={}{0}%,
+                                                  Mode=OneWay}"
+                                   Foreground="White"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   FontSize="16pt"
+                                   VerticalAlignment="Center"
+                                   Margin="0 3 0 0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border HorizontalAlignment="Center"
+                    Background="#2b8a3e">
+                <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="5 2 5 2">
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="{Binding Path=TotalPage,
+                                              Mode=OneWay}"
+                               FontSize="16pt"
+                               Foreground="White"
+                               Margin="0 2 7 0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="페이지 중"
+                               FontSize="11pt"
+                               Foreground="White"
+                               Margin="0 1 7 0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Text="{Binding Path=CurrentPage,
+                                              Mode=OneWay}"
+                               FontSize="16pt"
+                               Foreground="White"
+                               Margin="0 2 0 0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</mah:MetroWindow>
+

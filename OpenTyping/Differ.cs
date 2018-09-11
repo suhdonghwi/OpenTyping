@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenTyping
 {
@@ -29,87 +27,14 @@ namespace OpenTyping
 
         private static IEnumerable<char> DecomposeHangul(char ch)
         {
-            var choseongTable = new List<string>
-            {
-                "ㄱ",
-                "ㄱㄱ",
-                "ㄴ",
-                "ㄷ",
-                "ㄷㄷ",
-                "ㄹ",
-                "ㅁ",
-                "ㅂ",
-                "ㅂㅂ",
-                "ㅅ",
-                "ㅅㅅ",
-                "ㅇ",
-                "ㅈ",
-                "ㅈㅈ",
-                "ㅊ",
-                "ㅋ",
-                "ㅌ",
-                "ㅍ",
-                "ㅎ",
-            };
-            var jungseongTable = new List<string>
-            {
-                "ㅏ",
-                "ㅐ",
-                "ㅑ",
-                "ㅒ",
-                "ㅓ",
-                "ㅔ",
-                "ㅕ",
-                "ㅖ",
-                "ㅗ",
-                "ㅗㅏ",
-                "ㅗㅐ",
-                "ㅗㅣ",
-                "ㅛ",
-                "ㅜ",
-                "ㅜㅓ",
-                "ㅜㅔ",
-                "ㅜㅣ",
-                "ㅠ",
-                "ㅡ",
-                "ㅡㅣ",
-                "ㅣ"
-            };
-            var jongseongTable = new List<string>
-            {
-                " ",
-                "ㄱ",
-                "ㄱㄱ",
-                "ㄱㅅ",
-                "ㄴ",
-                "ㄴㅈ",
-                "ㄴㅎ",
-                "ㄷ",
-                "ㄹ",
-                "ㄹㄱ",
-                "ㄹㅁ",
-                "ㄹㅂ",
-                "ㄹㅅ",
-                "ㄹㅌ",
-                "ㄹㅍ",
-                "ㄹㅎ",
-                "ㅁ",
-                "ㅂ",
-                "ㅂㅅ",
-                "ㅅ",
-                "ㅅㅅ",
-                "ㅇ",
-                "ㅈ",
-                "ㅊ",
-                "ㅋ",
-                "ㅌ",
-                "ㅍ",
-                "ㅎ"
-            };
+            var choseongTable = new List<string> { "ㄱ", "ㄱㄱ", "ㄴ", "ㄷ", "ㄷㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅂㅂ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅈㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+            var jungseongTable = new List<string> { "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅗㅏ", "ㅗㅐ", "ㅗㅣ", "ㅛ", "ㅜ", "ㅜㅓ", "ㅜㅔ", "ㅜㅣ", "ㅠ", "ㅡ", "ㅡㅣ", "ㅣ" };
+            var jongseongTable = new List<string> { " ", "ㄱ", "ㄱㄱ", "ㄱㅅ", "ㄴ", "ㄴㅈ", "ㄴㅎ", "ㄷ", "ㄹ", "ㄹㄱ", "ㄹㅁ", "ㄹㅂ", "ㄹㅅ", "ㄹㅌ", "ㄹㅍ", "ㄹㅎ", "ㅁ", "ㅂ", "ㅂㅅ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+            var hangulCompatJamoTable = new List<string> { "ㄱ", "ㄱㄱ", "ㄱㅅ", "ㄴ", "ㄴㅈ", "ㄴㅎ", "ㄷ", "ㄷㄷ", "ㄹ", "ㄹㄱ", "ㄹㅁ", "ㄹㅂ", "ㄹㅅ", "ㄹㅌ", "ㄹㅍ", "ㄹㅎ", "ㅁ", "ㅂ", "ㅂㅂ", "ㅂㅅ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅈㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ", "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅗㅏ", "ㅗㅐ", "ㅗㅣ", "ㅛ", "ㅜ", "ㅜㅓ", "ㅜㅔ", "ㅜㅣ", "ㅠ", "ㅡ", "ㅡㅣ", "ㅣ" };
 
             if (ch >= (char)0x3131 && ch <= (char)0x3163) // ch가 Hangul Compatibility Jamo 유니코드 블럭에 있음
             {
-                return new List<char> { ch };
+                return hangulCompatJamoTable[ch - (char)0x3131];
             }
             if (ch < (char)0xAC00 || ch > (char)0xD79F) // ch가 Hangul Syllables 유니코드 블럭에 없음
             {
@@ -207,6 +132,7 @@ namespace OpenTyping
             {
                 result.Add(new DiffData(tempString, currentState));
             }
+
             if (text1.Length == text2.Length) return result;
 
             result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),

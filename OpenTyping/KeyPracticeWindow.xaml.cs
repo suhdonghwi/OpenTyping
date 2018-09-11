@@ -131,8 +131,6 @@ namespace OpenTyping
 
             ShakeAnimation.KeyFrames = keyFrames;
 
-            Closed += KeyPracticeWindow_Closed;
-
             foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
             {
                 if (lang.LayoutName == "English")

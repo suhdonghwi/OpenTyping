@@ -8,7 +8,7 @@ namespace OpenTyping
 {
     public class KeyLayoutStats : INotifyPropertyChanged
     {
-        public Dictionary<KeyPos, int> KeyIncorrectCount { get; set; }
+        public Dictionary<KeyPos, int> KeyIncorrectCount { get; set; } = new Dictionary<KeyPos, int>();
 
         private KeyValuePair<KeyPos, int> mostIncorrect;
         public KeyValuePair<KeyPos, int> MostIncorrect
@@ -17,7 +17,12 @@ namespace OpenTyping
             set => SetField(ref mostIncorrect, value);
         }
 
-        public int SentencePracticeCount { get; set; } = 0;
+        private int sentencePracticeCount;
+        public int SentencePracticeCount
+        {
+            get => sentencePracticeCount;
+            set => SetField(ref sentencePracticeCount, value);
+        }
 
         private int averageTypingSpeed;
         public int AverageTypingSpeed
@@ -27,6 +32,7 @@ namespace OpenTyping
         }
 
         private int averageAccuracy;
+
         public int AverageAccuracy
         {
             get => averageAccuracy;

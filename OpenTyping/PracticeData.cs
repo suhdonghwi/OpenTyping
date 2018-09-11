@@ -9,18 +9,12 @@ namespace OpenTyping
 {
     public class PracticeData
     {
-        public PracticeData(string name, string author, IList<string> textData, string character)
-        {
-            Name = name;
-            Author = author;
-            TextData = textData;
-            Character = character;
-        }
+        public PracticeData() {}
 
-        public string Name { get; }
-        public string Author { get; }
+        public string Name { get; set; }
+        public string Author { get; set; }
         public IList<string> TextData { get; set; }
-        public string Character { get; }
+        public string Character { get; set; }
 
         [JsonIgnore]
         public string Location { get; set; }
@@ -86,7 +80,7 @@ namespace OpenTyping
 
             if (!practiceDataFiles.Any())
             {
-                string message = "경로 " + (string) Settings.Default[MainWindow.PracticeDataDir] +
+                string message = "경로 " + (string) Settings.Default[MainWindow.PracticeDataDirStr] +
                                  "에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요.";
                 throw new PracticeDataLoadFail(message);
             }

@@ -28,10 +28,10 @@ namespace OpenTyping.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string KeyLayout {
             get {
-                return ((string)(this["KeyLayout"]));
+                return ((string)(this["KeyLayoutStr"]));
             }
             set {
-                this["KeyLayout"] = value;
+                this["KeyLayoutStr"] = value;
             }
         }
         
@@ -40,10 +40,10 @@ namespace OpenTyping.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string KeyLayoutDataDir {
             get {
-                return ((string)(this["KeyLayoutDataDir"]));
+                return ((string)(this["KeyLayoutDataDirStr"]));
             }
             set {
-                this["KeyLayoutDataDir"] = value;
+                this["KeyLayoutDataDirStr"] = value;
             }
         }
         
@@ -52,10 +52,10 @@ namespace OpenTyping.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string PracticeDataDir {
             get {
-                return ((string)(this["PracticeDataDir"]));
+                return ((string)(this["PracticeDataDirStr"]));
             }
             set {
-                this["PracticeDataDir"] = value;
+                this["PracticeDataDirStr"] = value;
             }
         }
     }
