@@ -8,7 +8,7 @@ namespace OpenTyping
 {
     public class KeyLayoutStats : INotifyPropertyChanged
     {
-        public Dictionary<KeyPos, int> KeyIncorrectCount { get; set; }
+        public Dictionary<KeyPos, int> KeyIncorrectCount { get; set; } = new Dictionary<KeyPos, int>();
 
         private KeyValuePair<KeyPos, int> mostIncorrect;
         public KeyValuePair<KeyPos, int> MostIncorrect
