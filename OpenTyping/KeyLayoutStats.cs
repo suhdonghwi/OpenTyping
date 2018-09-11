@@ -43,10 +43,13 @@ namespace OpenTyping
         {
             var result = new Dictionary<TK, TV>();
 
-            foreach (KeyValuePair<TK, TV> kvPair in lhs)
+            if (lhs != null)
             {
-                result[kvPair.Key] 
-                    = rhs.ContainsKey(kvPair.Key) ? mergeFunc(lhs[kvPair.Key], rhs[kvPair.Key]) : kvPair.Value;
+                foreach (KeyValuePair<TK, TV> kvPair in lhs)
+                {
+                    result[kvPair.Key] 
+                        = rhs.ContainsKey(kvPair.Key) ? mergeFunc(lhs[kvPair.Key], rhs[kvPair.Key]) : kvPair.Value;
+                }
             }
 
             foreach (KeyValuePair<TK, TV> kvPair in rhs)
