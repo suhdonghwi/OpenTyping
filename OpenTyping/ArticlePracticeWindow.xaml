@@ -11,6 +11,7 @@
                  Style="{StaticResource WindowTitleStyle}"
                  Height="400" 
                  Width="700"
+                 ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}"
                  Closed="ArticlePracticeWindow_Closed">
     <mah:MetroWindow.Resources>
