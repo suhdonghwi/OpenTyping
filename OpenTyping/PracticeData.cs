@@ -80,7 +80,7 @@ namespace OpenTyping
 
             if (!practiceDataFiles.Any())
             {
-                string message = "경로 " + (string) Settings.Default[MainWindow.PracticeDataDir] +
+                string message = "경로 " + (string) Settings.Default[MainWindow.PracticeDataDirStr] +
                                  "에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요.";
                 throw new PracticeDataLoadFail(message);
             }

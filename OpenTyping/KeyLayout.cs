@@ -24,13 +24,17 @@ namespace OpenTyping
         public List<KeyPos> DefaultKeys { get; set; }
 
         [JsonProperty]
-        public KeyLayoutStats Stats { get; private set; } = new KeyLayoutStats();
+        public KeyLayoutStats Stats { get; set; } = new KeyLayoutStats();
 
         [JsonIgnore]
         public string Location { get; set; } = "";
 
         public Key this[KeyPos pos] => KeyLayoutData[pos.Row][pos.Column];
 
+        public static void SaveKeyLayout(KeyLayout keyLayout)
+        {
+            File.WriteAllText(keyLayout.Location, JsonConvert.SerializeObject(keyLayout, Formatting.Indented));
+        }
 
         public static KeyLayout Parse(string data)
         {
@@ -106,7 +110,7 @@ namespace OpenTyping
 
             if (!keyLayoutFiles.Any())
             {
-                string message = "경로 " + (string) Settings.Default[MainWindow.KeyLayoutDataDir] +
+                string message = "경로 " + (string) Settings.Default[MainWindow.KeyLayoutDataDirStr] +
                                  "에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.";
                 throw new KeyLayoutLoadFail(message);
             }

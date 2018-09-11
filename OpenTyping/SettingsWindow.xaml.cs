@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Newtonsoft.Json;
 using OpenTyping.Properties;
 
 namespace OpenTyping
@@ -23,7 +24,7 @@ namespace OpenTyping
             private set => SetField(ref keyLayouts, value);
         }
 
-        private string keyLayoutDataDir = (string)Settings.Default[MainWindow.KeyLayoutDataDir];
+        private string keyLayoutDataDir = (string)Settings.Default[MainWindow.KeyLayoutDataDirStr];
         public string KeyLayoutDataDir
         {
             get => keyLayoutDataDir;
@@ -37,7 +38,7 @@ namespace OpenTyping
             private set => SetField(ref practiceDataList, value);
         }
 
-        private string practiceDataDir = (string)Settings.Default[MainWindow.PracticeDataDir];
+        private string practiceDataDir = (string)Settings.Default[MainWindow.PracticeDataDirStr];
         public string PracticeDataDir
         {
             get => practiceDataDir;
@@ -58,6 +59,9 @@ namespace OpenTyping
             set => SetField(ref selectedPracticeData, value);
         }
 
+        public bool KeyLayoutUpdated { get; set; } = false;
+        public bool KeyLayoutDataDirUpdated { get; set; } = false;
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -66,7 +70,7 @@ namespace OpenTyping
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
 
-            var currentKeyLayout = (string)Settings.Default[MainWindow.KeyLayout];
+            var currentKeyLayout = (string)Settings.Default[MainWindow.KeyLayoutStr];
             foreach (KeyLayout item in KeyLayouts)
             {
                 if (item.Name == currentKeyLayout)
@@ -136,6 +140,22 @@ namespace OpenTyping
                 File.Delete(SelectedKeyLayout.Location);
                 KeyLayouts.Remove(SelectedKeyLayout);
                 SelectedKeyLayout = KeyLayouts[0];
+            }
+        }
+
+        private void ClearStatButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result 
+                = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 의 통계 정보를 삭제하시겠습니까?",
+                                  "열린타자",
+                                  MessageBoxButton.OKCancel,
+                                  MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                SelectedKeyLayout.Stats = new KeyLayoutStats();
+                KeyLayout.SaveKeyLayout(SelectedKeyLayout);
+
+                KeyLayoutUpdated = true;
             }
         }
 
@@ -263,9 +283,19 @@ namespace OpenTyping
 
         private void OnClose(object sender, CancelEventArgs e)
         {
-            Settings.Default[MainWindow.KeyLayout] = SelectedKeyLayout.Name;
-            Settings.Default[MainWindow.KeyLayoutDataDir] = KeyLayoutDataDir;
-            Settings.Default[MainWindow.PracticeDataDir] = PracticeDataDir;
+            if ((string)Settings.Default[MainWindow.KeyLayoutStr] != SelectedKeyLayout.Name)
+            {
+                Settings.Default[MainWindow.KeyLayoutStr] = SelectedKeyLayout.Name;
+                KeyLayoutUpdated = true;
+            }
+
+            if ((string)Settings.Default[MainWindow.KeyLayoutDataDirStr] != KeyLayoutDataDir)
+            {
+                Settings.Default[MainWindow.KeyLayoutDataDirStr] = KeyLayoutDataDir;
+                KeyLayoutDataDirUpdated = true;
+            }
+
+            Settings.Default[MainWindow.PracticeDataDirStr] = PracticeDataDir;
 
             Settings.Default.Save();
         }
