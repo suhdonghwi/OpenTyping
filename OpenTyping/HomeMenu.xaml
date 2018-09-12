@@ -22,70 +22,144 @@
             <Setter Property="Margin" Value="0 0 7 0"/>
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical" 
-                Margin="10 0 5 5">
-        <StackPanel Orientation="Horizontal"
-                    Margin="0 0 0 10">
-            <Image Source="{StaticResource AppIcon}" 
-                   Height="110"
-                   Margin="-5 0 0 0"/>
-            <StackPanel Orientation="Vertical" 
-                        Margin="7 0 0 0" 
-                        VerticalAlignment="Center">
-                <TextBlock Text="열린타자"
-                           Style="{StaticResource NormalTextBlock}" 
-                           FontWeight="Light" 
-                           FontSize="42pt"/>
-                <TextBlock Text=": 현대적인 오픈 소스 타자 연습 프로그램"
-                           Style="{StaticResource NormalTextBlock}"
-                           FontSize="15pt"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Orientation="Vertical" 
+                    Margin="10 0 5 5">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10">
+                <Image Source="{StaticResource AppIcon}" 
+                       Height="110"
+                       Margin="-5 0 0 0"/>
+                <StackPanel Orientation="Vertical" 
+                            Margin="7 0 0 0" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="열린타자"
+                               Style="{StaticResource NormalTextBlock}" 
+                               FontWeight="Light" 
+                               FontSize="42pt"/>
+                    <TextBlock Text=": 현대적인 오픈 소스 타자 연습 프로그램"
+                               Style="{StaticResource NormalTextBlock}"
+                               FontSize="15pt"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="4 0 0 0">
-            <mah:Tile Style="{StaticResource StatTile}"
-                      Title="가장 많이 틀린 키"
-                      Background="#f03e3e">
-                <local:KeyBox x:Name="MostIncorrectKey"
-                              Key="{Binding Path=Stats.MostIncorrect.Key, 
-                                            Source={x:Static local:MainWindow.CurrentKeyLayout},
-                                            Converter={StaticResource KeyPosToKeyDataConverter}}"
-                              Foreground="Black"
-                              Width="50"
-                              Margin="0 0 0 60"/>
-            </mah:Tile>
-            <mah:Tile Style="{StaticResource StatTile}"
-                      Title="평균 타속"
-                      Background="#1c7ed6">
-                <TextBlock x:Name="AverageTypingSpeed"
-                           Text="{Binding Path=Stats.AverageTypingSpeed,
-                                          Source={x:Static local:MainWindow.CurrentKeyLayout}}"
-                           FontFamily="{StaticResource NanumBarunGothic}"
-                           FontSize="30pt"
-                           Foreground="White"/>
-            </mah:Tile>
-            <mah:Tile Style="{StaticResource StatTile}"
-                      Title="평균 정확도"
-                      Background="#37b24d">
-                <TextBlock x:Name="AverageAccuracy"
-                           Text="{Binding Path=Stats.AverageAccuracy,
-                                          Source={x:Static local:MainWindow.CurrentKeyLayout},
-                                          StringFormat={}{0}%}"
-                           FontFamily="{StaticResource NanumBarunGothic}"
-                           FontSize="30pt"
-                           Foreground="White"/>
-            </mah:Tile>
-            <mah:Tile Style="{StaticResource StatTile}"
-                      Title="연습한 문장 수"
-                      Background="#f76707">
-                <TextBlock x:Name="SentencePracticeCount"
-                           Text="{Binding Path=Stats.SentencePracticeCount,
-                                          Source={x:Static local:MainWindow.CurrentKeyLayout}}"
-                           FontFamily="{StaticResource NanumBarunGothic}"
-                           FontSize="30pt"
-                           Foreground="White"/>
-            </mah:Tile>
+        <Border Grid.Row="1"
+                BorderThickness="1"
+                BorderBrush="#ced4da"
+                Background="#f1f3f5"
+                CornerRadius="5"
+                Margin="20 0 20 20">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <mah:Tile Style="{StaticResource StatTile}"
+                          Title="가장 많이 틀린 키"
+                          Background="#f03e3e">
+                    <local:KeyBox x:Name="MostIncorrectKey"
+                                  Key="{Binding Path=Stats.MostIncorrect.Key, 
+                                                Source={x:Static local:MainWindow.CurrentKeyLayout},
+                                                Converter={StaticResource KeyPosToKeyDataConverter}}"
+                                  Foreground="Black"
+                                  Width="50"
+                                  Margin="0 0 0 60"/>
+                </mah:Tile>
+                <mah:Tile Style="{StaticResource StatTile}"
+                          Title="평균 타속"
+                          Background="#1c7ed6">
+                    <TextBlock x:Name="AverageTypingSpeed"
+                               Text="{Binding Path=Stats.AverageTypingSpeed,
+                                              Source={x:Static local:MainWindow.CurrentKeyLayout}}"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="30pt"
+                               Foreground="White"/>
+                </mah:Tile>
+                <mah:Tile Style="{StaticResource StatTile}"
+                          Title="평균 정확도"
+                          Background="#37b24d">
+                    <TextBlock x:Name="AverageAccuracy"
+                               Text="{Binding Path=Stats.AverageAccuracy,
+                                              Source={x:Static local:MainWindow.CurrentKeyLayout},
+                                              StringFormat={}{0}%}"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="30pt"
+                               Foreground="White"/>
+                </mah:Tile>
+                <mah:Tile Style="{StaticResource StatTile}"
+                          Title="연습한 문장 수"
+                          Background="#f76707">
+                    <TextBlock x:Name="SentencePracticeCount"
+                               Text="{Binding Path=Stats.SentencePracticeCount,
+                                              Source={x:Static local:MainWindow.CurrentKeyLayout}}"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="30pt"
+                               Foreground="White"/>
+                </mah:Tile>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="3"
+                    HorizontalAlignment="Right">
+            <Border Background="#4263eb"
+                    CornerRadius="5"
+                    HorizontalAlignment="Left"
+                    Margin="3 0 0 0"
+                    Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="35" 
+                               Height="22"
+                               Fill="White"
+                               VerticalAlignment="Center">
+                    <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome KeyboardSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock x:Name="CurrentKeyLayoutName"
+                               Text="{Binding Path=Name,
+                                              Source={x:Static local:MainWindow.CurrentKeyLayout}}"
+                               Foreground="White"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="14pt"
+                               Margin="5 0 0 0"
+                               VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Border>
+            <Border Background="#37b24d"
+                    CornerRadius="5"
+                    HorizontalAlignment="Left"
+                    Margin="7 0 0 0"
+                    Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="47" 
+                               Height="22"
+                               Fill="White"
+                               VerticalAlignment="Center">
+                    <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome LanguageSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock x:Name="CurrentKeyLayoutChar"
+                               Text="{Binding Path=Character,
+                                              Source={x:Static local:MainWindow.CurrentKeyLayout}}"
+                               Foreground="White"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="14pt"
+                               Margin="5 0 0 0"
+                               VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Border>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>

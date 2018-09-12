@@ -109,6 +109,20 @@ namespace OpenTyping
 
                 KeyPracticeMenu.KeyLayoutBox.LoadKeyLayout();
 
+                var currentKeyLayoutNameBinding = new Binding
+                {
+                    Path = new PropertyPath("Name"),
+                    Source = CurrentKeyLayout,
+                };
+                HomeMenu.CurrentKeyLayoutName.SetBinding(TextBlock.TextProperty, currentKeyLayoutNameBinding);
+
+                var currentKeyLayoutCharBinding = new Binding
+                {
+                    Path = new PropertyPath("Character"),
+                    Source = CurrentKeyLayout,
+                };
+                HomeMenu.CurrentKeyLayoutChar.SetBinding(TextBlock.TextProperty, currentKeyLayoutCharBinding);
+
                 var mostIncorrectBinding = new Binding
                 {
                     Path = new PropertyPath("Stats.MostIncorrect.Key"),
