@@ -88,7 +88,7 @@ namespace OpenTyping
 
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
-            KeyDown += KeyPracticeWindow_KeyDown;
+            PreviewKeyDown += KeyPracticeWindow_PreviewKeyDown;
 
             double shakiness = 30;
             const double shakeDiff = 3;
@@ -130,19 +130,6 @@ namespace OpenTyping
             }
 
             ShakeAnimation.KeyFrames = keyFrames;
-
-            foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
-            {
-                if (lang.LayoutName == "English")
-                {
-                    System.Windows.Forms.InputLanguage.CurrentInputLanguage = lang;
-
-                    if (InputMethod.Current != null)
-                    {
-                        InputMethod.Current.ImeState = InputMethodState.On;
-                    }
-                }
-            }
         }
 
 
@@ -184,11 +171,11 @@ namespace OpenTyping
             NextKey = RandomKey();
         }
 
-        private void KeyPracticeWindow_KeyDown(object sender, KeyEventArgs e)
+        private void KeyPracticeWindow_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.IsRepeat) return;
 
-            KeyPos pos = KeyPos.FromKeyCode(e.Key);
+            KeyPos pos = KeyPos.FromKeyCode(e.Key == System.Windows.Input.Key.ImeProcessed ? e.ImeProcessedKey : e.Key);
 
             if (e.Key == System.Windows.Input.Key.LeftShift || 
                 e.Key == System.Windows.Input.Key.RightShift || 
