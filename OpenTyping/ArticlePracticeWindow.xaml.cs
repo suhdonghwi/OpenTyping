@@ -136,7 +136,7 @@ namespace OpenTyping
         private void ArticlePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             this.practiceData = FitPracticeData(practiceData);
-            TotalPage = (practiceData.TextData.Count / 3) + 1;
+            TotalPage = practiceData.TextData.Count % 3 == 0 ? practiceData.TextData.Count / 3 : practiceData.TextData.Count / 3 + 1;
             
             for (int i = 0; i < 3; i++)
             {
@@ -215,7 +215,11 @@ namespace OpenTyping
             {
                 currentLine = 0;
                 currentSentenceIndex++;
-                if (currentSentenceIndex == practiceData.TextData.Count) FinishPracticeAsync();
+                if (currentSentenceIndex == practiceData.TextData.Count)
+                {
+                    FinishPracticeAsync();
+                    return;
+                }
 
                 CurrentPage++;
 
@@ -232,7 +236,11 @@ namespace OpenTyping
             {
                 currentLine++;
                 currentSentenceIndex++;
-                if (currentSentenceIndex == practiceData.TextData.Count) FinishPracticeAsync();
+                if (currentSentenceIndex == practiceData.TextData.Count)
+                {
+                    FinishPracticeAsync();
+                    return;
+                }
             }
 
             for (int i = 0; i < 3; i++) inputTextBoxes[i].IsEnabled = i == currentLine;
