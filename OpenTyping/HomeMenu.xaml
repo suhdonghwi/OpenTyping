@@ -18,44 +18,53 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="110"/>
+            <Setter Property="Height" Value="120"/>
             <Setter Property="Margin" Value="0 0 7 0"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="15 5 15 5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"
-                    Orientation="Vertical" 
-                    Margin="10 0 5 5">
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <Image Source="{StaticResource AppIcon}" 
-                       Height="110"
-                       Margin="-5 0 0 0"/>
-                <StackPanel Orientation="Vertical" 
-                            Margin="7 0 0 0" 
-                            VerticalAlignment="Center">
-                    <TextBlock Text="열린타자"
-                               Style="{StaticResource NormalTextBlock}" 
-                               FontWeight="Light" 
-                               FontSize="42pt"/>
-                    <TextBlock Text=": 현대적인 오픈 소스 타자 연습 프로그램"
-                               Style="{StaticResource NormalTextBlock}"
-                               FontSize="15pt"/>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
+
+        <Grid Grid.Row="0"
+              Margin="0 0 0 15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.RowSpan="2"
+                   Source="{StaticResource AppLogo}"
+                   Height="85"
+                   Margin="0 0 9 0"/>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       Text="열린타자"
+                       Style="{StaticResource NormalTextBlock}" 
+                       FontWeight="Light" 
+                       FontSize="42pt"/>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="1"
+                       Text=": 현대적인 오픈 소스 타자 연습 프로그램"
+                       Style="{StaticResource NormalTextBlock}"
+                       FontSize="15pt"/>
+        </Grid>
 
         <Border Grid.Row="1"
                 BorderThickness="1"
                 BorderBrush="#ced4da"
                 Background="#f1f3f5"
                 CornerRadius="5"
-                Margin="20 0 20 20">
+                Margin="0 0 0 20">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <mah:Tile Style="{StaticResource StatTile}"
@@ -104,7 +113,6 @@
         </Border>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    Margin="3"
                     HorizontalAlignment="Right">
             <Border Background="#4263eb"
                     CornerRadius="5"
