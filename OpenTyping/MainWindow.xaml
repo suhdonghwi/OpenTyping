@@ -12,6 +12,7 @@
                  FontFamily="{StaticResource NanumGothic}"
                  Width="800" 
                  Height="450" 
+                 ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
