@@ -79,7 +79,7 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
-                           Text="윗글쇠(Shift) 연습 안하기"
+                           Text="윗글쇠(Shift) 연습 제외"
                            FontFamily="{StaticResource NanumGothic}"
                            FontWeight="Bold"
                            FontSize="13pt"
