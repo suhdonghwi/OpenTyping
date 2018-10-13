@@ -9,6 +9,8 @@ namespace OpenTyping
     /// </summary>
     public partial class KeyPracticeMenu : UserControl
     {
+        public bool NoShiftMode { get; set; }
+
         public KeyPracticeMenu()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace OpenTyping
                 return;
             }
 
-            var keyPracticeWindow = new KeyPracticeWindow(pressedKeys);
+            var keyPracticeWindow = new KeyPracticeWindow(pressedKeys, NoShiftMode);
             keyPracticeWindow.ShowDialog();
         }
     }

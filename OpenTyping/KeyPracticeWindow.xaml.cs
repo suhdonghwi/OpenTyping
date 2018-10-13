@@ -32,6 +32,7 @@ namespace OpenTyping
         }
 
         private readonly IList<KeyPos> keyList;
+        private bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
 
         private KeyInfo previousKey;
@@ -78,11 +79,12 @@ namespace OpenTyping
         private static readonly Brush WrongKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
         private static readonly Brush WrongKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
 
-        public KeyPracticeWindow(IList<KeyPos> keyList)
+        public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
             InitializeComponent();
 
             this.keyList = keyList;
+            this.noShiftMode = noShiftMode;
 
             NextKey = RandomKey();
 
@@ -138,7 +140,7 @@ namespace OpenTyping
             KeyPos keyPos = keyList[Randomizer.Next(0, keyList.Count)];
             Key key = MainWindow.CurrentKeyLayout[keyPos];
 
-            if (string.IsNullOrEmpty(key.ShiftKeyData))
+            if (noShiftMode || string.IsNullOrEmpty(key.ShiftKeyData))
             {
                 return new KeyInfo(key.KeyData, keyPos, false);
             }
