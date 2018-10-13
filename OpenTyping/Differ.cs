@@ -73,45 +73,45 @@ namespace OpenTyping
             for (; i < length; i++)
             {
                 char ch1 = text1[i], ch2 = text2[i];
-                var decomposed1 = new List<char>(DecomposeHangul(ch1));
-                var decomposed2 = new List<char>(DecomposeHangul(ch2));
 
-                DiffData.DiffState state;
+                DiffData.DiffState state = ch1 == ch2 ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal;
 
-                if (decomposed1.Any() && decomposed2.Any()) // ch1, ch2 둘 다 한글
+                if (i == length - 1)
                 {
-                    if (decomposed1.SequenceEqual(decomposed2))
+                    var decomposed1 = new List<char>(DecomposeHangul(ch1));
+                    var decomposed2 = new List<char>(DecomposeHangul(ch2));
+
+                    if (decomposed1.Any() && decomposed2.Any()) // ch1, ch2 둘 다 한글
                     {
-                        state = DiffData.DiffState.Equal;
-                    }
-                    else if (decomposed1.Count < decomposed2.Count) // 도깨비불 현상의 가능성
-                    {
-                        if (i < originalText1.Length - 1 &&
-                            decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count)) &&
-                            decomposed2.Count >= 3)
+                        if (decomposed1.SequenceEqual(decomposed2))
                         {
-                            var nextDecomposed = new List<char>(DecomposeHangul(originalText1[i + 1]));
-                            state = nextDecomposed.Any() && decomposed2.Last() == nextDecomposed[0]
-                                ? DiffData.DiffState.Equal
-                                : DiffData.DiffState.Unequal;
+                            state = DiffData.DiffState.Equal;
+                        }
+                        else if (decomposed1.Count < decomposed2.Count) // 도깨비불 현상의 가능성
+                        {
+                            if (i < originalText1.Length - 1 &&
+                                decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count)) &&
+                                decomposed2.Count >= 3)
+                            {
+                                var nextDecomposed = new List<char>(DecomposeHangul(originalText1[i + 1]));
+                                state = nextDecomposed.Any() && decomposed2.Last() == nextDecomposed[0]
+                                    ? DiffData.DiffState.Equal
+                                    : DiffData.DiffState.Unequal;
+                            }
+                            else
+                            {
+                                state = decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
+                                    ? DiffData.DiffState.Intermediate
+                                    : DiffData.DiffState.Unequal;
+                            }
                         }
                         else
                         {
-                            state = decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
+                            state = decomposed2.SequenceEqual(decomposed1.Take(decomposed2.Count))
                                 ? DiffData.DiffState.Intermediate
                                 : DiffData.DiffState.Unequal;
                         }
                     }
-                    else
-                    {
-                        state = decomposed2.SequenceEqual(decomposed1.Take(decomposed2.Count))
-                            ? DiffData.DiffState.Intermediate
-                            : DiffData.DiffState.Unequal;
-                    }
-                }
-                else
-                {
-                    state = ch1 == ch2 ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal;
                 }
 
                 if (i == 0) currentState = state;
