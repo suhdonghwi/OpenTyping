@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -254,7 +253,7 @@ namespace OpenTyping
             await this.ShowMessageAsync("연습이 끝났습니다.",
                                         "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + "% 입니다.",
                                          MessageDialogStyle.Affirmative,
-                                         new MetroDialogSettings{ AnimateShow = false, AnimateHide = false });
+                                         new MetroDialogSettings{ AnimateHide = false });
 
             this.Close();
         }
