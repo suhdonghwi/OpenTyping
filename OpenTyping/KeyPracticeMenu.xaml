@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:OpenTyping"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="800"
              d:DesignHeight="450">
@@ -60,9 +61,40 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="1"
-                    Style="{StaticResource ControlButtonStackPanel}">
+        <DockPanel Grid.Row="1"
+                   LastChildFill="False"
+                   Margin="10 0 10 10">
+            <StackPanel DockPanel.Dock="Left"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0 5 0 0">
+                <Rectangle Width="22" 
+                           Height="22"
+                           Margin="0 1 5 0"
+                           VerticalAlignment="Center"
+                           Fill="#212529">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Text="윗글쇠(Shift) 연습 안하기"
+                           FontFamily="{StaticResource NanumGothic}"
+                           FontWeight="Bold"
+                           FontSize="13pt"
+                           VerticalAlignment="Center"
+                           Margin="0 0 5 0"/>
+                <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                  Foreground="#212529"
+                                  OnLabel="" OffLabel=""
+                                  IsChecked="{Binding Path=IsRandom,
+                                                      Mode=OneWayToSource}"/>
+            </StackPanel>
             <Button x:Name="StartButton"
+                    DockPanel.Dock="Right"
                     Click="StartButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18"
@@ -76,6 +108,6 @@
                                Text="연습 시작"/>
                 </StackPanel>
             </Button>
-        </StackPanel>
+        </DockPanel>
     </Grid>
 </UserControl>
