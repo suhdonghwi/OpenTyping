@@ -85,6 +85,24 @@
                                        Margin="0 3 0 0"/>
                         </StackPanel>
                     </Border>
+                    <Border Background="#37b24d"
+                            Margin="0 0 5 0">
+                        <StackPanel Margin="5 2 5 2"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="평균 타속 "
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumGothic}"
+                                       FontSize="11pt"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path=AverageTypingSpeed,
+                                                      Mode=OneWay}"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumBarunGothic}"
+                                       FontSize="16pt"
+                                       VerticalAlignment="Center"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Border>
                     <Border Background="#f03e3e">
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">

@@ -37,6 +37,13 @@ namespace OpenTyping
             private set => SetField(ref typingSpeed, value);
         }
 
+        private int averageTypingSpeed;
+        public int AverageTypingSpeed
+        {
+            get => averageTypingSpeed;
+            private set => SetField(ref averageTypingSpeed, value);
+        }
+
         private int typingAccuracy;
         public int TypingAccuracy
         {
@@ -129,6 +136,7 @@ namespace OpenTyping
 
                 TypingSpeed = Convert.ToInt32(typingMeasurer.Finish(CurrentTextBox.Text) * accuracy);
                 TypingSpeedList.Add(TypingSpeed);
+                AverageTypingSpeed = Convert.ToInt32(TypingSpeedList.Average());
             }
 
             if (shuffle)
