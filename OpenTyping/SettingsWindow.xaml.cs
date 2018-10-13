@@ -59,8 +59,8 @@ namespace OpenTyping
             set => SetField(ref selectedPracticeData, value);
         }
 
-        public bool KeyLayoutUpdated { get; set; } = false;
-        public bool KeyLayoutDataDirUpdated { get; set; } = false;
+        public bool KeyLayoutUpdated { get; set; }
+        public bool KeyLayoutDataDirUpdated { get; set; }
 
         public SettingsWindow()
         {

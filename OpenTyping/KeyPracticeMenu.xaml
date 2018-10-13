@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="OpenTyping.KeyPracticeMenu"
+﻿<UserControl x:Name="SelfControl"
+             x:Class="OpenTyping.KeyPracticeMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -90,7 +91,7 @@
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                                   Foreground="#212529"
                                   OnLabel="" OffLabel=""
-                                  IsChecked="{Binding Path=IsRandom,
+                                  IsChecked="{Binding Path=NoShiftMode,
                                                       Mode=OneWayToSource}"/>
             </StackPanel>
             <Button x:Name="StartButton"
