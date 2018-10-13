@@ -78,16 +78,17 @@
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <Grid Margin="2 0 6 0">
+                        <TextBlock FontSize="14pt"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 2 0 0">가</TextBlock>
                         <Border Width="26"
                                 Height="26"
                                 CornerRadius="3"
-                                Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"/>
-                        <TextBlock FontSize="15pt"
-                                   FontFamily="{StaticResource NanumBarunGothic}"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="0 1 0 0">가</TextBlock>
+                                BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                                BorderThickness="2"/>
                     </Grid>
                     <Label Style="{StaticResource TabItemLabel}"
                            Content="음절연습"/>
