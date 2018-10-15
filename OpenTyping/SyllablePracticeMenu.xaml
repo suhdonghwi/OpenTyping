@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"
@@ -45,25 +46,25 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Margin="0 0 0 30">
-        <StackPanel.Resources>
-                <Style x:Key="TileNumberBorder" TargetType="Border">
-                    <Setter Property="CornerRadius" Value="50"/>
-                    <Setter Property="Width" Value="35"/>
-                    <Setter Property="Height" Value="35"/>
-                    <Setter Property="Background" Value="#495057"/>
-                    <Setter Property="BorderThickness" Value="3"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="Margin" Value="0 0 0 3"/>
-                </Style>
-                <Style x:Key="TileNumberTextBlock" TargetType="TextBlock">
-                    <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
-                    <Setter Property="FontSize" Value="16pt"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                </Style>
-        </StackPanel.Resources>
+                    Margin="0 15 0 30">
+            <StackPanel.Resources>
+                    <Style x:Key="TileNumberBorder" TargetType="Border">
+                        <Setter Property="CornerRadius" Value="50"/>
+                        <Setter Property="Width" Value="35"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="Background" Value="#495057"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0 0 0 3"/>
+                    </Style>
+                    <Style x:Key="TileNumberTextBlock" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
+                        <Setter Property="FontSize" Value="16pt"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+            </StackPanel.Resources>
             <StackPanel Orientation="Vertical"
                         Margin="0 0 15 0">
                 <Border Style="{StaticResource TileNumberBorder}">
@@ -71,7 +72,7 @@
                 </Border>
                 <mah:Tile Title="2350자"
                           Background="#37b24d"
-                          Height="175">
+                          Height="170">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -88,7 +89,7 @@
                 <mah:Tile Title="현대 한글 11172자"
                           Background="#f59f00"
                           TitleFontSize="14"
-                          Height="175">
+                          Height="170">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -105,7 +106,7 @@
                 </Border>
                 <mah:Tile Title="사용자 정의"
                           Background="#1c7ed6"
-                          Height="175">
+                          Height="170">
                     <TextBlock FontSize="40pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -115,6 +116,22 @@
                                Text="..."/>
                 </mah:Tile>
             </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 10">
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="#1c7ed6">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock Style="{StaticResource NormalTextBlock}"
+                       Text="2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다."
+                       VerticalAlignment="Bottom"
+                       FontSize="14pt"/>
         </StackPanel>
     </Grid>
 </UserControl>
