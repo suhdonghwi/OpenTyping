@@ -24,5 +24,20 @@ namespace OpenTyping
         {
             InitializeComponent();
         }
+
+        private void Start2350Tile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartModernHangulTile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartCustomTile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

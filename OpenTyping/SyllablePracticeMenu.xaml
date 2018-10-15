@@ -70,9 +70,11 @@
                 <Border Style="{StaticResource TileNumberBorder}">
                     <TextBlock Style="{StaticResource TileNumberTextBlock}">1</TextBlock>
                 </Border>
-                <mah:Tile Title="2350자"
+                <mah:Tile x:Name="Start2350Tile"
+                          Title="2350자"
                           Background="#37b24d"
-                          Height="170">
+                          Height="170"
+                          Click="Start2350Tile_Click">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -86,10 +88,12 @@
                 <Border Style="{StaticResource TileNumberBorder}">
                     <TextBlock Style="{StaticResource TileNumberTextBlock}">2</TextBlock>
                 </Border>
-                <mah:Tile Title="현대 한글 11172자"
+                <mah:Tile x:Name="StartModernHangulTile"
+                          Title="현대 한글 11172자"
                           Background="#f59f00"
                           TitleFontSize="14"
-                          Height="170">
+                          Height="170"
+                          Click="StartModernHangulTile_Click">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -104,9 +108,11 @@
                 <Border Style="{StaticResource TileNumberBorder}">
                     <TextBlock Style="{StaticResource TileNumberTextBlock}">3</TextBlock>
                 </Border>
-                <mah:Tile Title="사용자 정의"
+                <mah:Tile x:Name="StartCustomTile"
+                          Title="사용자 정의"
                           Background="#1c7ed6"
-                          Height="170">
+                          Height="170"
+                          Click="StartCustomTile_Click">
                     <TextBlock FontSize="40pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
