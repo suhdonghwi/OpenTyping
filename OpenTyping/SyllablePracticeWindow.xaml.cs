@@ -25,6 +25,10 @@ namespace OpenTyping
         {
             InitializeComponent();
 
+            void FocusCurrentTextBox(object sender, System.Windows.RoutedEventArgs e) { CurrentTextBox.Focus(); }
+            this.Loaded += FocusCurrentTextBox;
+            CurrentTextBox.LostFocus += FocusCurrentTextBox;
+
             this.syllablesList = syllablesList;
             NextSyllable();
         }
