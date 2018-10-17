@@ -12,9 +12,9 @@
                  Width="700"
                  ResizeMode="CanMinimize">
     <Grid>
-        <Border BorderBrush="#495057"
+        <Border BorderBrush="#868e96"
                 BorderThickness="2"
-                Background="#dee2e6"
+                Background="#f1f3f5"
                 CornerRadius="5"
                 Padding="20 7 15 8"
                 VerticalAlignment="Center"
@@ -30,7 +30,8 @@
                          FontSize="80pt"
                          Background="#f8f9fa"
                          Width="110"
-                         Height="125"/>
+                         Height="125"
+                         SelectionBrush="Transparent"/>
             </StackPanel>
         </Border>
     </Grid>
