@@ -32,7 +32,7 @@ namespace OpenTyping
         }
 
         private readonly IList<KeyPos> keyList;
-        private bool noShiftMode;
+        private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
 
         private KeyInfo previousKey;

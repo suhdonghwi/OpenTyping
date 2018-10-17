@@ -7,11 +7,31 @@
                  xmlns:local="clr-namespace:OpenTyping"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
-                 Title="SyllablePracticeWindow"
+                 Title="열린타자"
                  Height="450"
                  Width="800">
     <Grid>
-        
+        <Border BorderBrush="#495057"
+                BorderThickness="2"
+                Background="#dee2e6"
+                CornerRadius="5"
+                Padding="20 7 15 8"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                        Orientation="Horizontal">
+                <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                           FontSize="80pt"
+                           Margin="0 8 30 0"
+                           Text="{Binding Path=CurrentSyllable}"/>
+                <TextBox x:Name="CurrentTextBox"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="80pt"
+                         Background="#f8f9fa"
+                         Width="110"
+                         Height="125"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </mah:MetroWindow>
 
