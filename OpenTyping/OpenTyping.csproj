@@ -181,6 +181,9 @@
     <Compile Include="SyllablePracticeMenu.xaml.cs">
       <DependentUpon>SyllablePracticeMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SyllablePracticeWindow.xaml.cs">
+      <DependentUpon>SyllablePracticeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TypingMeasurer.cs" />
     <Page Include="ArticlePracticeWindow.xaml">
       <SubType>Designer</SubType>
@@ -241,6 +244,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SyllablePracticeMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SyllablePracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
