@@ -8,8 +8,9 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
                  Title="열린타자"
-                 Height="450"
-                 Width="800">
+                 Height="400"
+                 Width="700"
+                 ResizeMode="CanMinimize">
     <Grid>
         <Border BorderBrush="#495057"
                 BorderThickness="2"
