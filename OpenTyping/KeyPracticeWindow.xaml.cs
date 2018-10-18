@@ -96,7 +96,7 @@ namespace OpenTyping
             const double shakeDiff = 3;
             var keyFrames = new ThicknessKeyFrameCollection();
 
-            for(int timeSpan = 5; shakiness > 0;)
+            for (int timeSpan = 5; shakiness > 0;)
             {
                 keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(0, 10, 0, 0))
                 {

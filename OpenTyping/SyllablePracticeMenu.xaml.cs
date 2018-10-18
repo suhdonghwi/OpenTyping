@@ -29,7 +29,7 @@ namespace OpenTyping
             InitializeComponent();
 
             modernHangulList = "";
-            for (long i = 0xAC00; i <= 0xD7AF; i++)
+            for (long i = 0xAC00; i <= 0xD7AF; i++) // 현대 한글 음절 모두 추가
             {
                 modernHangulList += (char)i;
             }
