@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Media;
 using MahApps.Metro.Controls;
 
 namespace OpenTyping
@@ -21,6 +23,8 @@ namespace OpenTyping
             set => SetField(ref currentSyllable, value);
         }
 
+        private readonly Brush incorrectBackground = Brushes.Pink;
+
         public SyllablePracticeWindow(string syllablesList)
         {
             InitializeComponent();
@@ -28,6 +32,7 @@ namespace OpenTyping
             void FocusCurrentTextBox(object sender, System.Windows.RoutedEventArgs e) { CurrentTextBox.Focus(); }
             this.Loaded += FocusCurrentTextBox;
             CurrentTextBox.LostFocus += FocusCurrentTextBox;
+            // 음절 입력 텍스트 박스 포커스 항상 유지
 
             this.syllablesList = syllablesList;
             NextSyllable();
@@ -39,7 +44,7 @@ namespace OpenTyping
             do
             {
                 newSyllable = syllablesList[Randomizer.Next(syllablesList.Length)];
-            } while (newSyllable == currentSyllable);
+            } while (newSyllable == currentSyllable); // 새 음절과 전 음절 중복 확인
 
             CurrentSyllable = newSyllable;
             CurrentTextBox.Clear();
@@ -58,6 +63,30 @@ namespace OpenTyping
             field = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        private void CurrentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            switch (CurrentTextBox.Text.Length)
+            {
+                case 0:
+                    CurrentTextBox.Background = Brushes.White;
+                    return;
+                case 1:
+                    List<char> decomposedCurrentSyllable = new List<char>(Differ.DecomposeHangul(CurrentSyllable)),
+                               decomposedInput = new List<char>(Differ.DecomposeHangul(CurrentTextBox.Text[0]));
+
+                    if (decomposedInput.Any() &&
+                        decomposedInput.SequenceEqual(decomposedCurrentSyllable.Take(decomposedInput.Count)))
+                    {
+                        CurrentTextBox.Background = Brushes.White;
+                        return;
+                    }
+
+                    break;
+            }
+
+            CurrentTextBox.Background = incorrectBackground;
         }
     }
 }

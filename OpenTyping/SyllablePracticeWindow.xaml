@@ -31,7 +31,8 @@
                          Background="#f8f9fa"
                          Width="110"
                          Height="125"
-                         SelectionBrush="Transparent"/>
+                         SelectionBrush="Transparent"
+                         TextChanged="CurrentTextBox_TextChanged"/>
             </StackPanel>
         </Border>
     </Grid>
