@@ -86,7 +86,7 @@ namespace OpenTyping
             Pressed = false;
         }
 
-        public void PressToggle(Brush releaseKeyColor, Brush releaseShadowColor, Brush pressKeyColor, Brush pressShadowColor)
+        public void PressToggle(Brush pressKeyColor, Brush pressShadowColor)
         {
             if (Pressed) Release();
             else Press(pressKeyColor, pressShadowColor);
