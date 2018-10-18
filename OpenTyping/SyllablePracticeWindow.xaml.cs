@@ -76,6 +76,11 @@ namespace OpenTyping
                     List<char> decomposedCurrentSyllable = new List<char>(Differ.DecomposeHangul(CurrentSyllable)),
                                decomposedInput = new List<char>(Differ.DecomposeHangul(CurrentTextBox.Text[0]));
 
+                    if (decomposedInput.SequenceEqual(decomposedCurrentSyllable))
+                    {
+                        NextSyllable();
+                        return;
+                    }
                     if (decomposedInput.Any() &&
                         decomposedInput.SequenceEqual(decomposedCurrentSyllable.Take(decomposedInput.Count)))
                     {
