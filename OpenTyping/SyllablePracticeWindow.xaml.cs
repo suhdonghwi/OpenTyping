@@ -16,11 +16,25 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private readonly string syllablesList;
 
+        private char previousSyllable = ' ';
+        public char PreviousSyllable
+        {
+            get => previousSyllable;
+            set => SetField(ref previousSyllable, value);
+        }
+
         private char currentSyllable = ' ';
         public char CurrentSyllable
         {
             get => currentSyllable;
             set => SetField(ref currentSyllable, value);
+        }
+
+        private char nextSyllable = ' ';
+        public char NextSyllable
+        {
+            get => nextSyllable;
+            set => SetField(ref nextSyllable, value);
         }
 
         private readonly Brush incorrectBackground = Brushes.Pink;
@@ -35,18 +49,29 @@ namespace OpenTyping
             // 음절 입력 텍스트 박스 포커스 항상 유지
 
             this.syllablesList = syllablesList;
-            NextSyllable();
+
+            NextSyllable = RandomSyllable();
+            MoveSyllable();
         }
 
-        public void NextSyllable()
+        private char RandomSyllable()
         {
+            return syllablesList[Randomizer.Next(syllablesList.Length)];
+        }
+
+        public void MoveSyllable()
+        {
+            PreviousSyllable = CurrentSyllable;
+            CurrentSyllable = NextSyllable;
+
             char newSyllable;
             do
             {
-                newSyllable = syllablesList[Randomizer.Next(syllablesList.Length)];
-            } while (newSyllable == currentSyllable); // 새 음절과 전 음절 중복 확인
+                newSyllable = RandomSyllable();
+            } while (newSyllable == CurrentSyllable); // 새 음절과 전 음절 중복 확인
 
-            CurrentSyllable = newSyllable;
+            NextSyllable = newSyllable;
+
             CurrentTextBox.Clear();
         }
 
@@ -76,9 +101,9 @@ namespace OpenTyping
                     List<char> decomposedCurrentSyllable = new List<char>(Differ.DecomposeHangul(CurrentSyllable)),
                                decomposedInput = new List<char>(Differ.DecomposeHangul(CurrentTextBox.Text[0]));
 
-                    if (decomposedInput.SequenceEqual(decomposedCurrentSyllable))
+                    if (decomposedInput.SequenceEqual(decomposedCurrentSyllable)) // 부분 일치
                     {
-                        NextSyllable();
+                        MoveSyllable();
                         return;
                     }
                     if (decomposedInput.Any() &&

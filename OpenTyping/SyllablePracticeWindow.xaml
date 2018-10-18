@@ -12,7 +12,26 @@
                  Width="700"
                  ResizeMode="CanMinimize">
     <Grid>
-        <Border BorderBrush="#868e96"
+        <Grid.Resources>
+            <Style x:Key="PrevNextTextBlock" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+                <Setter Property="FontSize" Value="60pt"/>
+                <Setter Property="Foreground" Value="#868e96"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   DataContext="{Binding ElementName=SelfWindow}"
+                   Style="{StaticResource PrevNextTextBlock}"
+                   Text="{Binding Path=PreviousSyllable}"/>
+        <Border Grid.Column="1"
+                BorderBrush="#868e96"
                 BorderThickness="2"
                 Background="#f1f3f5"
                 CornerRadius="5"
@@ -35,6 +54,10 @@
                          TextChanged="CurrentTextBox_TextChanged"/>
             </StackPanel>
         </Border>
+        <TextBlock Grid.Column="2"
+                   DataContext="{Binding ElementName=SelfWindow}"
+                   Style="{StaticResource PrevNextTextBlock}"
+                   Text="{Binding Path=NextSyllable}"/>
     </Grid>
 </mah:MetroWindow>
 
