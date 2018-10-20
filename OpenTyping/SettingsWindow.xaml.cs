@@ -85,8 +85,10 @@ namespace OpenTyping
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
         {
-            var dataFileDialog = new CommonOpenFileDialog();
-                SelectedKeyLayout = KeyLayouts[0];
+            var dataFileDialog = new CommonOpenFileDialog()
+            {
+                Title = "자판 파일 열기"
+            };
 
             dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
             dataFileDialog.Multiselect = false;
@@ -97,8 +99,7 @@ namespace OpenTyping
             {
                 string dataFileLocation = dataFileDialog.FileName;
                 string dataFileName = Path.GetFileName(dataFileLocation);
-                string destLocation =
-                    Path.Combine(KeyLayoutDataDir, dataFileName);
+                string destLocation = Path.Combine(KeyLayoutDataDir, dataFileName);
 
                 if (File.Exists(destLocation))
                 {

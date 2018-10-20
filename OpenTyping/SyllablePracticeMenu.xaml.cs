@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace OpenTyping
 {
@@ -49,7 +51,31 @@ namespace OpenTyping
 
         private void StartCustomTile_Click(object sender, RoutedEventArgs e)
         {
+            var practiceFileDialog = new OpenFileDialog()
+            {
+                Title = "음절 연습 파일 열기"
+            };
 
+            bool? result = practiceFileDialog.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                string content = File.ReadAllText(practiceFileDialog.FileName);
+                string hangulList = string.Concat(content.Where((ch) => 0xAC00 <= ch && ch <= 0xD7AF));
+
+                if (hangulList.Length <= 1)
+                {
+                    MessageBox.Show("파일 내 한글 음절 개수가 1개 이하입니다.",
+                                    "열린타자",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
+                else
+                {
+                    var window = new SyllablePracticeWindow(hangulList);
+                    window.ShowDialog();
+                }
+            }
         }
     }
 }
