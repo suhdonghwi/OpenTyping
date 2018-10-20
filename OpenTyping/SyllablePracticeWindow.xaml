@@ -6,6 +6,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:local="clr-namespace:OpenTyping"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  Title="열린타자"
                  Icon="{StaticResource AppIcon}"
@@ -27,34 +28,58 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <TextBlock Grid.Column="0"
                    DataContext="{Binding ElementName=SelfWindow}"
                    Style="{StaticResource PrevNextTextBlock}"
                    Text="{Binding Path=PreviousSyllable}"/>
-        <Border Grid.Column="1"
-                BorderBrush="#868e96"
-                BorderThickness="2"
-                Background="#f1f3f5"
-                CornerRadius="5"
-                Padding="20 7 15 8"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
-            <StackPanel DataContext="{Binding ElementName=SelfWindow}"
-                        Orientation="Horizontal">
-                <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
-                           FontSize="80pt"
-                           Margin="0 8 30 0"
-                           Text="{Binding Path=CurrentSyllable}"/>
-                <TextBox x:Name="CurrentTextBox"
-                         FontFamily="{StaticResource NanumBarunGothic}"
-                         FontSize="80pt"
-                         Background="#f8f9fa"
-                         Width="110"
-                         Height="125"
-                         SelectionBrush="Transparent"
-                         TextChanged="CurrentTextBox_TextChanged"/>
+
+        <StackPanel Grid.Column="1"
+                    Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    Margin="0 0 0 45">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10"
+                        HorizontalAlignment="Center">
+                <Rectangle Width="26" 
+                           Height="26"
+                           Margin="0 0 5 0"
+                           Fill="#37b24d">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Style="{StaticResource NormalTextBlock}"
+                       Text="{Binding CorrectCount}"
+                       Margin="0 3 0 0"
+                       FontSize="16pt"/>
             </StackPanel>
-        </Border>
+
+            <Border BorderBrush="#868e96"
+                    BorderThickness="2"
+                    Background="#f1f3f5"
+                    CornerRadius="5"
+                    Padding="20 7 15 8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                            Orientation="Horizontal">
+                    <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                               FontSize="80pt"
+                               Margin="0 8 30 0"
+                               Text="{Binding Path=CurrentSyllable}"/>
+                    <TextBox x:Name="CurrentTextBox"
+                             FontFamily="{StaticResource NanumBarunGothic}"
+                             FontSize="80pt"
+                             Background="#f8f9fa"
+                             Width="110"
+                             Height="125"
+                             SelectionBrush="Transparent"
+                             TextChanged="CurrentTextBox_TextChanged"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
         <TextBlock Grid.Column="2"
                    DataContext="{Binding ElementName=SelfWindow}"
                    Style="{StaticResource PrevNextTextBlock}"

@@ -37,6 +37,13 @@ namespace OpenTyping
             set => SetField(ref nextSyllable, value);
         }
 
+        private int correctCount;
+        public int CorrectCount
+        {
+            get => correctCount;
+            set => SetField(ref correctCount, value);
+        }
+
         private readonly Brush incorrectBackground = Brushes.Pink;
 
         public SyllablePracticeWindow(string syllablesList)
@@ -101,13 +108,14 @@ namespace OpenTyping
                     List<char> decomposedCurrentSyllable = new List<char>(Differ.DecomposeHangul(CurrentSyllable)),
                                decomposedInput = new List<char>(Differ.DecomposeHangul(CurrentTextBox.Text[0]));
 
-                    if (decomposedInput.SequenceEqual(decomposedCurrentSyllable)) // 부분 일치
+                    if (decomposedInput.SequenceEqual(decomposedCurrentSyllable))
                     {
+                        CorrectCount++;
                         MoveSyllable();
                         return;
                     }
                     if (decomposedInput.Any() &&
-                        decomposedInput.SequenceEqual(decomposedCurrentSyllable.Take(decomposedInput.Count)))
+                        decomposedInput.SequenceEqual(decomposedCurrentSyllable.Take(decomposedInput.Count))) // 부분 일치
                     {
                         CurrentTextBox.Background = Brushes.White;
                         return;

@@ -78,7 +78,6 @@
                        FontSize="14pt"/>
 
             <Rectangle Width="1.5"
-                       SnapsToDevicePixels="True"
                        Height="20"
                        Margin="10 0 10 0" 
                        Stroke="Gray"/>
