@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Media;
 using OpenTyping.Properties;
 
 namespace OpenTyping
@@ -23,6 +26,7 @@ namespace OpenTyping
         {
             TextData = TextData.Distinct().ToList();
         }
+
         public static PracticeData Parse(string data)
         {
             PracticeData practiceData = JsonConvert.DeserializeObject<PracticeData>(data);
@@ -106,5 +110,60 @@ namespace OpenTyping
 
             return practiceDataList;
         }
+
+        public static PracticeData FitPracticeData(PracticeData oldData, TextBlock textBlock) // 넘치지 않게 연습 데이터의 문장들을 적절히 자른다.
+        {
+            PracticeData newData = new PracticeData()
+            {
+                Name = oldData.Name,
+                Author = oldData.Author,
+                Character = oldData.Character,
+            };
+
+            var newTextData = new List<string>();
+
+            IList<string> FitLine(string line)
+            {
+                IList<string> splited = line.Split(' ').ToList();
+                if (splited.Count == 1) return splited;
+
+                for (int i = 1; i <= splited.Count; i++)
+                {
+                    var formattedText = new FormattedText(
+                        string.Join(" ", splited.Take(i)),
+                        CultureInfo.CurrentCulture,
+                        System.Windows.FlowDirection.LeftToRight,
+                        new Typeface(textBlock.FontFamily,
+                                     textBlock.FontStyle,
+                                     textBlock.FontWeight,
+                                     textBlock.FontStretch),
+                        textBlock.FontSize,
+                        Brushes.Black,
+                        new NumberSubstitution(),
+                        TextFormattingMode.Display);
+
+                    if (formattedText.Width > textBlock.ActualWidth - 10)
+                    {
+                        var result = new List<string>();
+
+                        result.Add(string.Join(" ", splited.Take(i - 1)));
+                        result.AddRange(FitLine(string.Join(" ", splited.Skip(i - 1))));
+
+                        return result;
+                    }
+                }
+
+                return new List<string> { line };
+            }
+
+            foreach (string line in oldData.TextData)
+            {
+                newTextData.AddRange(FitLine(line));
+            }
+
+            newData.TextData = newTextData;
+            return newData;
+        }
+
     }
 }

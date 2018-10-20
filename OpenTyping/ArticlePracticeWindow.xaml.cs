@@ -67,60 +67,6 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
-        public static PracticeData FitPracticeData(PracticeData oldData, TextBlock textBlock)
-        {
-            PracticeData newData = new PracticeData()
-            {
-                Name = oldData.Name,
-                Author = oldData.Author,
-                Character = oldData.Character,
-            };
-
-            var newTextData = new List<string>();
-
-            IList<string> FitLine(string line)
-            {
-                IList<string> splited = line.Split(' ').ToList();
-                if (splited.Count == 1) return splited;
-
-                for (int i = 1; i <= splited.Count; i++)
-                {
-                    var formattedText = new FormattedText(
-                        string.Join(" ", splited.Take(i)),
-                        CultureInfo.CurrentCulture,
-                        System.Windows.FlowDirection.LeftToRight,
-                        new Typeface(textBlock.FontFamily,
-                                     textBlock.FontStyle,
-                                     textBlock.FontWeight,
-                                     textBlock.FontStretch),
-                        textBlock.FontSize,
-                        Brushes.Black,
-                        new NumberSubstitution(),
-                        TextFormattingMode.Display);
-
-                    if (formattedText.Width > textBlock.ActualWidth - 10)
-                    {
-                        var result = new List<string>();
-
-                        result.Add(string.Join(" ", splited.Take(i - 1)));
-                        result.AddRange(FitLine(string.Join(" ", splited.Skip(i - 1))));
-
-                        return result;
-                    }
-                }
-
-                return new List<string> { line };
-            }
-
-            foreach (string line in oldData.TextData)
-            {
-                newTextData.AddRange(FitLine(line));
-            }
-
-            newData.TextData = newTextData;
-            return newData;
-        }
-
         public ArticlePracticeWindow(PracticeData practiceData)
         {
             InitializeComponent();
@@ -132,18 +78,28 @@ namespace OpenTyping
             this.Loaded += ArticlePracticeWindow_Loaded;
         }
 
-        private void ArticlePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void Next3Sentences()
         {
-            this.practiceData = FitPracticeData(practiceData, TargetTextBlock0);
-            TotalPage = practiceData.TextData.Count % 3 == 0 ? practiceData.TextData.Count / 3 : practiceData.TextData.Count / 3 + 1;
-            
             for (int i = 0; i < 3; i++)
             {
                 if (currentSentenceIndex + i == practiceData.TextData.Count) break;
                 targetTextBlocks[i].Text = practiceData.TextData[currentSentenceIndex + i];
             }
+        }
 
+        private void EnableCurrentTextBox()
+        {
             for (int i = 0; i < 3; i++) inputTextBoxes[i].IsEnabled = i == currentLine;
+            inputTextBoxes[currentLine].Focus();
+        }
+
+        private void ArticlePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.practiceData = PracticeData.FitPracticeData(practiceData, TargetTextBlock0);
+            TotalPage = practiceData.TextData.Count % 3 == 0 ? practiceData.TextData.Count / 3 : practiceData.TextData.Count / 3 + 1;
+
+            Next3Sentences();
+            EnableCurrentTextBox();
         }
 
         private void ArticlePracticeWindow_Closed(object sender, EventArgs e)
@@ -225,11 +181,7 @@ namespace OpenTyping
                 foreach (TextBox box in inputTextBoxes) box.Text = "";
                 foreach (TextBlock block in targetTextBlocks) block.Text = "";
 
-                for (int i = 0; i < 3; i++)
-                {
-                    if (currentSentenceIndex + i == practiceData.TextData.Count) break;
-                    targetTextBlocks[i].Text = practiceData.TextData[currentSentenceIndex + i];
-                }
+                Next3Sentences();
             }
             else
             {
@@ -242,9 +194,7 @@ namespace OpenTyping
                 }
             }
 
-            for (int i = 0; i < 3; i++) inputTextBoxes[i].IsEnabled = i == currentLine;
-
-            inputTextBoxes[currentLine].Focus();
+            EnableCurrentTextBox();
         }
 
         private async void FinishPracticeAsync()
@@ -271,9 +221,9 @@ namespace OpenTyping
                 e.Handled = true;
                 return;
             }
-            if (((TextBox)sender).Text == "")
+            if (((TextBox)sender).Text == "") // 입력이 비어있는데 입력이 들어왔을 경우
             {
-                typingMeasurer.Start();
+                typingMeasurer.Start(); // 타이머 (재)시작
             }
         }
 

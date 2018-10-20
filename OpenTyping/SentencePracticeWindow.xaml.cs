@@ -79,7 +79,7 @@ namespace OpenTyping
 
         private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            practiceData = ArticlePracticeWindow.FitPracticeData(practiceData, CurrentTextBlock);
+            practiceData = PracticeData.FitPracticeData(practiceData, CurrentTextBlock);
             NextSentence();
         }
 
