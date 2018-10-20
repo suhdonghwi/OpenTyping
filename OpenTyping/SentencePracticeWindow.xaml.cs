@@ -25,7 +25,7 @@ namespace OpenTyping
             set => SetField(ref currentText, value);
         }
 
-        private readonly PracticeData practiceData;
+        private PracticeData practiceData;
         private readonly bool shuffle;
 
         private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
@@ -74,6 +74,12 @@ namespace OpenTyping
 
             SpeedChart.AxisX[0].Separator.Step = 1;
 
+            this.Loaded += SentencePracticeWindow_Loaded;
+        }
+
+        private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            practiceData = ArticlePracticeWindow.FitPracticeData(practiceData, CurrentTextBlock);
             NextSentence();
         }
 
