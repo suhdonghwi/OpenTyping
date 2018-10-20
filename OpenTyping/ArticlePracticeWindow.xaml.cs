@@ -67,7 +67,7 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
-        private PracticeData FitPracticeData(PracticeData oldData)
+        public static PracticeData FitPracticeData(PracticeData oldData, TextBlock textBlock)
         {
             PracticeData newData = new PracticeData()
             {
@@ -89,16 +89,16 @@ namespace OpenTyping
                         string.Join(" ", splited.Take(i)),
                         CultureInfo.CurrentCulture,
                         System.Windows.FlowDirection.LeftToRight,
-                        new Typeface(TargetTextBlock0.FontFamily,
-                            TargetTextBlock0.FontStyle,
-                            TargetTextBlock0.FontWeight,
-                            TargetTextBlock0.FontStretch),
-                        TargetTextBlock0.FontSize,
+                        new Typeface(textBlock.FontFamily,
+                                     textBlock.FontStyle,
+                                     textBlock.FontWeight,
+                                     textBlock.FontStretch),
+                        textBlock.FontSize,
                         Brushes.Black,
                         new NumberSubstitution(),
                         TextFormattingMode.Display);
 
-                    if (formattedText.Width > TargetTextBlock0.ActualWidth - 10)
+                    if (formattedText.Width > textBlock.ActualWidth - 10)
                     {
                         var result = new List<string>();
 
@@ -134,7 +134,7 @@ namespace OpenTyping
 
         private void ArticlePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.practiceData = FitPracticeData(practiceData);
+            this.practiceData = FitPracticeData(practiceData, TargetTextBlock0);
             TotalPage = practiceData.TextData.Count % 3 == 0 ? practiceData.TextData.Count / 3 : practiceData.TextData.Count / 3 + 1;
             
             for (int i = 0; i < 3; i++)

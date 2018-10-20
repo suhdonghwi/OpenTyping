@@ -90,7 +90,7 @@ namespace OpenTyping
             }
         }
 
-        private Brush MapDiffState(Differ.DiffData.DiffState state)
+        private Brush MapDiffState(Differ.DiffData.DiffState state) // Diff 상태를 그에 대응하는 색으로 변환
         {
             switch (state)
             {
