@@ -107,10 +107,11 @@ namespace OpenTyping
 
         private void NextSentence()
         {
-            if (!string.IsNullOrEmpty(CurrentTextBlock.Text))
+            if (!string.IsNullOrEmpty(CurrentTextBox.Text)) // Diff 구하고 하이라이트, 타속, 정확도 계산 : 첫 호출인 경우 수행하지 않음
             {
                 PreviousTextBlock.Inlines.Clear();
-                var diffs = new List<Differ.DiffData>(Differ.Diff(CurrentTextBox.Text, CurrentText, CurrentTextBox.Text));
+                var diffs = new List<Differ.DiffData>(
+                    Differ.Diff(CurrentTextBox.Text, CurrentText, CurrentTextBox.Text));
 
                 for (int i = 0; i < diffs.Count(); i++)
                 {
@@ -129,8 +130,9 @@ namespace OpenTyping
                     PreviousTextBlock.Inlines.Add(run);
                 }
 
-                double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
-                                  (double)diffs.Sum(data => data.Text.Length);
+                double accuracy =
+                    diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) / // 입력 중 맞는 입력의 총 길이
+                    (double)diffs.Sum(data => data.Text.Length); // 총 입력 길이
                 TypingAccuracy = Convert.ToInt32(accuracy * 100);
                 AccuracyList.Add(TypingAccuracy);
 
@@ -139,28 +141,34 @@ namespace OpenTyping
                 AverageTypingSpeed = Convert.ToInt32(TypingSpeedList.Average());
             }
 
-            if (shuffle)
+            if (!string.IsNullOrEmpty(CurrentTextBox.Text) || currentSentenceIndex is null) // 입력이 비어있지 않거나 첫 번째 호출인 경우
             {
-                if (currentSentenceIndex is null)
+                if (shuffle) // 무작위 순서 모드일 경우
                 {
-                    currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
+                    if (currentSentenceIndex is null) // 첫 호출인 경우
+                    {
+                        currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
+                    }
+                    else
+                    {
+                        int newIndex;
+                        do
+                        {
+                            newIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
+                        } while (newIndex == currentSentenceIndex); // 중복 방지
+
+                        currentSentenceIndex = newIndex;
+                    }
                 }
                 else
                 {
-                    int tempIndex = currentSentenceIndex.Value;
-                    while ((currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count)) == tempIndex);
+                    if (currentSentenceIndex is null) currentSentenceIndex = 0; // 첫 호출인 경우
+                    else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0; // 마지막 인덱스인 경우, 순환
+                    else currentSentenceIndex++;
                 }
-            }
-            else
-            {
-                if (currentSentenceIndex is null) currentSentenceIndex = 0;
-                else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0;
-                else currentSentenceIndex++;
-            }
 
-
-            string nextSentence = practiceData.TextData[currentSentenceIndex.Value];
-            CurrentText = nextSentence;
+                CurrentText = practiceData.TextData[currentSentenceIndex.Value];
+            }
         }
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
