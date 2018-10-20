@@ -25,7 +25,7 @@ namespace OpenTyping
             }
         }
 
-        private static IEnumerable<char> DecomposeHangul(char ch)
+        public static IEnumerable<char> DecomposeHangul(char ch)
         {
             var choseongTable = new List<string> { "ㄱ", "ㄱㄱ", "ㄴ", "ㄷ", "ㄷㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅂㅂ", "ㅅ", "ㅅㅅ", "ㅇ", "ㅈ", "ㅈㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
             var jungseongTable = new List<string> { "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅗㅏ", "ㅗㅐ", "ㅗㅣ", "ㅛ", "ㅜ", "ㅜㅓ", "ㅜㅔ", "ㅜㅣ", "ㅠ", "ㅡ", "ㅡㅣ", "ㅣ" };
@@ -58,16 +58,16 @@ namespace OpenTyping
             return result;
         }
 
-        public IEnumerable<DiffData> Diff(string text1, string text2, string originalText1)
+        // text1, text2의 차이(Diff)를 구한다. 불일치하는 글자가 있을 경우 text1의 글자를 사용하여 불일치를 표현
+        public IEnumerable<DiffData> Diff(string text1, string text2, string originalText1 /* text1의 잘리지 않은 원본, 도깨비불 확인용 */)
         {
             if (string.IsNullOrEmpty(text1) || string.IsNullOrEmpty(text2))
             {
                 return new List<DiffData>();
             }
 
-            int length = Math.Min(text1.Length, text2.Length);
+            int length = Math.Min(text1.Length, text2.Length), i = 0;
             var result = new List<DiffData>();
-            int i = 0;
             DiffData.DiffState currentState = DiffData.DiffState.Unequal;
             string tempString = "";
             for (; i < length; i++)
@@ -87,23 +87,15 @@ namespace OpenTyping
                         {
                             state = DiffData.DiffState.Equal;
                         }
-                        else if (decomposed1.Count < decomposed2.Count) // 도깨비불 현상의 가능성
-                        {
-                            if (i < originalText1.Length - 1 &&
-                                decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count)) &&
-                                decomposed2.Count >= 3)
-                            {
-                                var nextDecomposed = new List<char>(DecomposeHangul(originalText1[i + 1]));
-                                state = nextDecomposed.Any() && decomposed2.Last() == nextDecomposed[0]
-                                    ? DiffData.DiffState.Equal
-                                    : DiffData.DiffState.Unequal;
-                            }
-                            else
-                            {
-                                state = decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count))
-                                    ? DiffData.DiffState.Intermediate
-                                    : DiffData.DiffState.Unequal;
-                            }
+                        else if (decomposed1.Count < decomposed2.Count &&
+                                 i < originalText1.Length - 1 && // 다음 글자가 존재함
+                                 decomposed1.SequenceEqual(decomposed2.Take(decomposed1.Count)) && // 부분 일치
+                                 decomposed2.Count >= 3) // decomposed2 는 종성이 있어야 함
+                        { // 도깨비불 현상 가능성
+                            var nextDecomposed = new List<char>(DecomposeHangul(originalText1[i + 1]));
+                            state = nextDecomposed.Any() && (decomposed2.Last() == nextDecomposed.First())
+                                ? DiffData.DiffState.Equal
+                                : DiffData.DiffState.Unequal;
                         }
                         else
                         {

@@ -77,9 +77,32 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
+                    <Grid Margin="2 0 6 0">
+                        <TextBlock FontSize="14pt"
+                                   FontFamily="{StaticResource NanumBarunGothic}"
+                                   Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 2 0 0">가</TextBlock>
+                        <Border Width="26"
+                                Height="26"
+                                CornerRadius="3"
+                                BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                                BorderThickness="2"/>
+                    </Grid>
+                    <Label Style="{StaticResource TabItemLabel}"
+                           Content="음절연습"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:SyllablePracticeMenu x:Name="SyllablePracticeMenu"/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
                     <Rectangle Style="{StaticResource TabItemIconRectangle}" 
-                               Width="37" 
-                               Height="25">
+                               Width="32" 
+                               Height="25"
+                               Margin="0 0 2 0">
                         <Rectangle.OpacityMask>
                             <VisualBrush Stretch="Uniform" 
                                          Visual="{iconPacks:FontAwesome Kind=PencilAltSolid}" />

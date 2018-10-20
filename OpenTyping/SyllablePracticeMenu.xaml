@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="OpenTyping.SyllablePracticeMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OpenTyping"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Vertical"
+                    Margin="11 7 0 0">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 6">
+                <Grid Margin="2 0 10 0">
+                    <TextBlock FontSize="27pt"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0 2 0 0">가</TextBlock>
+                    <Border Width="50"
+                            Height="50"
+                            CornerRadius="3"
+                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                            BorderThickness="3.5"/>
+                </Grid>
+                <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Text="음절연습"
+                           FontSize="32pt"
+                           Margin="0 2 0 0"/>
+            </StackPanel>
+            <TextBlock Style="{StaticResource NormalTextBlock}" 
+                       Text=": 음절 단위로 입력하여 연습을 진행합니다. (한글 한정)"
+                       FontSize="14pt"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="0 15 0 30">
+            <StackPanel.Resources>
+                    <Style x:Key="TileNumberBorder" TargetType="Border">
+                        <Setter Property="CornerRadius" Value="50"/>
+                        <Setter Property="Width" Value="35"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="Background" Value="#495057"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0 0 0 3"/>
+                    </Style>
+                    <Style x:Key="TileNumberTextBlock" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="{StaticResource NanumGothic}"/>
+                        <Setter Property="FontSize" Value="16pt"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Vertical"
+                        Margin="0 0 15 0">
+                <Border Style="{StaticResource TileNumberBorder}">
+                    <TextBlock Style="{StaticResource TileNumberTextBlock}">1</TextBlock>
+                </Border>
+                <mah:Tile x:Name="Start2350Tile"
+                          Title="2350자"
+                          Background="#37b24d"
+                          Height="170"
+                          Click="Start2350Tile_Click">
+                    <TextBlock FontSize="45pt"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0 2 0 0"
+                               Text="가"/>
+                </mah:Tile>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Border Style="{StaticResource TileNumberBorder}">
+                    <TextBlock Style="{StaticResource TileNumberTextBlock}">2</TextBlock>
+                </Border>
+                <mah:Tile x:Name="StartModernHangulTile"
+                          Title="현대 한글 11172자"
+                          Background="#f59f00"
+                          TitleFontSize="14"
+                          Height="170"
+                          Click="StartModernHangulTile_Click">
+                    <TextBlock FontSize="45pt"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0 2 0 0"
+                               Text="먏"/>
+                </mah:Tile>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        Margin="15 0 0 0">
+                <Border Style="{StaticResource TileNumberBorder}">
+                    <TextBlock Style="{StaticResource TileNumberTextBlock}">3</TextBlock>
+                </Border>
+                <mah:Tile x:Name="StartCustomTile"
+                          Title="사용자 정의"
+                          Background="#1c7ed6"
+                          Height="170"
+                          Click="StartCustomTile_Click">
+                    <TextBlock FontSize="40pt"
+                               FontFamily="{StaticResource NanumBarunGothic}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0 2 0 0"
+                               Text="..."/>
+                </mah:Tile>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10 0 0 10">
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="#1c7ed6">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock Style="{StaticResource NormalTextBlock}"
+                       Text="2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다."
+                       VerticalAlignment="Bottom"
+                       FontSize="14pt"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

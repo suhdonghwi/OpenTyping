@@ -39,6 +39,12 @@ namespace OpenTyping
         private Brush defaultKeyColor;
         private Brush defaultShadowColor;
 
+        private static readonly Brush CorrectKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
+        private static readonly Brush CorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
+
+        private static readonly Brush IncorrectKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
+        private static readonly Brush IncorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
+
         public KeyBox()
         {
             InitializeComponent();
@@ -54,7 +60,7 @@ namespace OpenTyping
             defaultShadowColor = ShadowColor;
         }
 
-        public void Press(Brush keyColor, Brush shadowColor)
+        private void Press(Brush keyColor, Brush shadowColor)
         {
             if (!Pressed)
             {
@@ -68,6 +74,16 @@ namespace OpenTyping
             ShadowColor = shadowColor;
 
             Pressed = true;
+        }
+
+        public void PressCorrect()
+        {
+            Press(CorrectKeyColor, CorrectKeyShadowColor);
+        }
+
+        public void PressIncorrect()
+        {
+            Press(IncorrectKeyColor, IncorrectKeyShadowColor);
         }
 
         public void Release()
@@ -86,10 +102,10 @@ namespace OpenTyping
             Pressed = false;
         }
 
-        public void PressToggle(Brush releaseKeyColor, Brush releaseShadowColor, Brush pressKeyColor, Brush pressShadowColor)
+        public void PressToggle()
         {
             if (Pressed) Release();
-            else Press(pressKeyColor, pressShadowColor);
+            else PressCorrect();
         }
     }
 }

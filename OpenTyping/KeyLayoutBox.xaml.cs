@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,12 +22,6 @@ namespace OpenTyping
         }
         public static readonly DependencyProperty ClickableProperty =
             DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
-
-        private static readonly Brush DefaultKeyColor = Brushes.White;
-        private static readonly Brush DefaultKeyShadowColor = new SolidColorBrush(Color.FromRgb(206, 212, 218));
-
-        private static readonly Brush PressedKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
-        private static readonly Brush PressedKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
 
         public KeyLayoutBox()
         {
@@ -91,13 +84,18 @@ namespace OpenTyping
             if (Clickable)
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle,
-                    new Action(() => PressDefaultKeys(PressedKeyColor, PressedKeyShadowColor)));
+                    new Action(PressDefaultKeys));
             }
         }
 
-        public void PressKey(KeyPos pos, Brush keyColor, Brush shadowColor)
+        public void PressCorrectKey(KeyPos pos)
         {
-            keyLayout[pos.Row][pos.Column].Press(keyColor, shadowColor);
+            keyLayout[pos.Row][pos.Column].PressCorrect();
+        }
+
+        public void PressIncorrectKey(KeyPos pos)
+        {
+            keyLayout[pos.Row][pos.Column].PressIncorrect();
         }
 
         public void ReleaseKey(KeyPos pos)
@@ -105,7 +103,7 @@ namespace OpenTyping
             keyLayout[pos.Row][pos.Column].Release();
         }
 
-        public void PressDefaultKeys(Brush keyColor, Brush shadowColor)
+        public void PressDefaultKeys()
         {
             List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
 
@@ -115,7 +113,7 @@ namespace OpenTyping
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {
-                        keyLayout[i][j].Press(keyColor, shadowColor);
+                        keyLayout[i][j].PressCorrect();
                     }
                 }
             }
@@ -141,7 +139,7 @@ namespace OpenTyping
 
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((KeyBox)sender).PressToggle(DefaultKeyColor, DefaultKeyShadowColor, PressedKeyColor, PressedKeyShadowColor);
+            ((KeyBox)sender).PressToggle();
             MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
         }
     }

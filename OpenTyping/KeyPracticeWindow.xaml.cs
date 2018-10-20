@@ -32,7 +32,7 @@ namespace OpenTyping
         }
 
         private readonly IList<KeyPos> keyList;
-        private bool noShiftMode;
+        private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
 
         private KeyInfo previousKey;
@@ -73,12 +73,6 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
-        private static readonly Brush CurrentKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
-        private static readonly Brush CurrentKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
-
-        private static readonly Brush WrongKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
-        private static readonly Brush WrongKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
-
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
             InitializeComponent();
@@ -96,7 +90,7 @@ namespace OpenTyping
             const double shakeDiff = 3;
             var keyFrames = new ThicknessKeyFrameCollection();
 
-            for(int timeSpan = 5; shakiness > 0;)
+            for (int timeSpan = 5; shakiness > 0;)
             {
                 keyFrames.Add(new EasingThicknessKeyFrame(new Thickness(0, 10, 0, 0))
                 {
@@ -163,11 +157,11 @@ namespace OpenTyping
             }
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressKey(CurrentKey.Pos, CurrentKeyColor, CurrentKeyShadowColor);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos);
             if (CurrentKey.IsShift)
             {
-                KeyLayoutBox.LShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
-                KeyLayoutBox.RShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+                KeyLayoutBox.LShiftKey.PressCorrect();
+                KeyLayoutBox.RShiftKey.PressCorrect();
             }
 
             NextKey = RandomKey();
@@ -202,30 +196,32 @@ namespace OpenTyping
                 KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
                 Dispatcher.Invoke(async () =>
                 {
-                    KeyLayoutBox.PressKey(pos, WrongKeyColor, WrongKeyShadowColor);
-                    if (isLShift) KeyLayoutBox.LShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);
-                    if (isRShift) KeyLayoutBox.RShiftKey.Press(WrongKeyColor, WrongKeyShadowColor);
+                    KeyLayoutBox.PressIncorrectKey(pos);
+                    if (isLShift) KeyLayoutBox.LShiftKey.PressIncorrect();
+                    if (isRShift) KeyLayoutBox.RShiftKey.PressIncorrect();
 
                     await Task.Delay(500);
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressKey(pos, CurrentKeyColor, CurrentKeyShadowColor);
+                        KeyLayoutBox.PressCorrectKey(pos);
                     }
                     else
                     {
                         KeyLayoutBox.ReleaseKey(pos);
                     }
 
-                    if (CurrentKey.IsShift)
+                    if (CurrentKey.IsShift) // 현재 키가 윗글쇠일 경우
                     {
-                        if (isLShift) KeyLayoutBox.LShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
-                        if (isRShift) KeyLayoutBox.RShiftKey.Press(CurrentKeyColor, CurrentKeyShadowColor);
+                        if (isLShift) KeyLayoutBox.LShiftKey.PressCorrect();
+                        if (isRShift) KeyLayoutBox.RShiftKey.PressCorrect();
+                        // 원래 색(초록)으로 복구
                     }
                     else
                     {
                         if (isLShift) KeyLayoutBox.LShiftKey.Release();
                         if (isRShift) KeyLayoutBox.RShiftKey.Release();
+                        // 현재 키가 윗글쇠가 아닌데 윗글쇠를 눌렀을 경우 누르기 취소
                     }
                 });
             }
