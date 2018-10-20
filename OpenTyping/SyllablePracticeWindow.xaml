@@ -8,6 +8,7 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
                  Title="열린타자"
+                 Icon="{StaticResource AppIcon}"
                  Height="400"
                  Width="700"
                  ResizeMode="CanMinimize">
