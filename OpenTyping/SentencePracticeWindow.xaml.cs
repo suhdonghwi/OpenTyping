@@ -117,9 +117,7 @@ namespace OpenTyping
                     PreviousTextBlock.Inlines.Add(run);
                 }
 
-                double accuracy =
-                    diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) / // 입력 중 맞는 입력의 총 길이
-                    (double)diffs.Sum(data => data.Text.Length); // 총 입력 길이
+                double accuracy = Differ.CalculateAccuracy(diffs);
                 TypingAccuracy = Convert.ToInt32(accuracy * 100);
                 AccuracyList.Add(TypingAccuracy);
 
@@ -177,22 +175,20 @@ namespace OpenTyping
         private void CurrentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             string input = CurrentTextBox.Text;
+
+            CurrentTextBlock.Inlines.Clear();
             var diffs
                 = new List<Differ.DiffData>(Differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
                                                         CurrentTextBox.Text,
                                                         CurrentText));
 
-            for (int i = 0; i < diffs.Count() - 1; i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-            
-            CurrentTextBlock.Inlines.Clear();
             foreach (Differ.DiffData diff in diffs)
             {
+                if (diff.State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diff.State = Differ.DiffData.DiffState.Unequal;
+                }
+
                 var run = new Run(diff.Text)
                 {
                     Background = Differ.MapDiffState(diff.State)

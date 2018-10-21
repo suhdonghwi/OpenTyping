@@ -110,7 +110,6 @@ namespace OpenTyping
             }
         }
 
-
         private void NextLine()
         {
             if (string.IsNullOrEmpty(inputTextBoxes[currentLine].Text)) return;
@@ -122,25 +121,22 @@ namespace OpenTyping
             currentTextBlock.Inlines.Clear();
             var diffs = new List<Differ.DiffData>(Differ.Diff(currentTextBox.Text, currentText, currentTextBox.Text));
 
-            for (int i = 0; i < diffs.Count(); i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-
             foreach (var diff in diffs)
             {
+                if (diff.State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diff.State = Differ.DiffData.DiffState.Unequal;
+                }
+
                 var run = new Run(diff.Text)
                 {
                     Background = Differ.MapDiffState(diff.State)
                 };
+
                 currentTextBlock.Inlines.Add(run);
             }
 
-            double accuracy = diffs.Sum(data => data.State == Differ.DiffData.DiffState.Equal ? data.Text.Length : 0) /
-                              (double)diffs.Sum(data => data.Text.Length);
+            double accuracy = Differ.CalculateAccuracy(diffs);
             accuracyList.Add(Convert.ToInt32(accuracy * 100));
             typingSpeedList.Add(Convert.ToInt32(typingMeasurer.Finish(currentTextBox.Text) * accuracy));
 

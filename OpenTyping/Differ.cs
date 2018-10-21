@@ -151,5 +151,14 @@ namespace OpenTyping
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public static double CalculateAccuracy(IList<DiffData> diffs)
+        {
+            double accuracy 
+                = diffs.Sum(data => data.State == DiffData.DiffState.Equal ? data.Text.Length : 0) / // 입력 중 맞는 입력의 총 길이
+                  (double)diffs.Sum(data => data.Text.Length); // 총 입력 길이
+
+            return accuracy;
+        }
     }
 }
