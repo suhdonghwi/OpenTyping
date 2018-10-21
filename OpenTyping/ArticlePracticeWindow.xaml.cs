@@ -121,13 +121,16 @@ namespace OpenTyping
             currentTextBlock.Inlines.Clear();
             var diffs = new List<Differ.DiffData>(Differ.Diff(currentTextBox.Text, currentText, currentTextBox.Text));
 
+            for (int i = 0; i < diffs.Count() - 1; i++)
+            {
+                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
+                {
+                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
+                }
+            }
+
             foreach (var diff in diffs)
             {
-                if (diff.State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diff.State = Differ.DiffData.DiffState.Unequal;
-                }
-
                 var run = new Run(diff.Text)
                 {
                     Background = Differ.MapDiffState(diff.State)

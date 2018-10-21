@@ -39,22 +39,14 @@ namespace OpenTyping
             set => SetField(ref averageAccuracy, value);
         }
 
+        // lhs와 rhs를 합친다. 중복된 key가 있을 경우 두 value를 mergeFunc에 넣어 나온 값을 value로 이용한다.
         private static Dictionary<TK, TV> MergeBy<TK, TV>(IReadOnlyDictionary<TK, TV> lhs, IReadOnlyDictionary<TK, TV> rhs, Func<TV, TV, TV> mergeFunc)
-        {
-            var result = new Dictionary<TK, TV>();
+        { 
+            Dictionary<TK, TV> result = lhs.ToDictionary(kv => kv.Key, kv => kv.Value);
 
-            if (lhs != null)
+            foreach (KeyValuePair<TK, TV> kv in rhs)
             {
-                foreach (KeyValuePair<TK, TV> kvPair in lhs)
-                {
-                    result[kvPair.Key] 
-                        = rhs.ContainsKey(kvPair.Key) ? mergeFunc(lhs[kvPair.Key], rhs[kvPair.Key]) : kvPair.Value;
-                }
-            }
-
-            foreach (KeyValuePair<TK, TV> kvPair in rhs)
-            {
-                result[kvPair.Key] = kvPair.Value;
+                result[kv.Key] = result.ContainsKey(kv.Key) ? mergeFunc(lhs[kv.Key], rhs[kv.Key]) : kv.Value;
             }
 
             return result;
@@ -62,10 +54,10 @@ namespace OpenTyping
 
         public void AddStats(KeyLayoutStats other)
         {
-            int AddInt(int lhs, int rhs) => lhs + rhs;
-
             if (other.KeyIncorrectCount != null)
             {
+                int AddInt(int lhs, int rhs) => lhs + rhs;
+
                 KeyIncorrectCount = MergeBy(KeyIncorrectCount, other.KeyIncorrectCount, AddInt);
                 MostIncorrect = KeyIncorrectCount.FirstOrDefault(x => x.Value == KeyIncorrectCount.Values.Max());
             }
