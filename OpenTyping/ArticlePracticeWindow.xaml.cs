@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -61,10 +60,6 @@ namespace OpenTyping
 
         private bool freeze = false;
 
-        private readonly Brush correctBackground = Brushes.LightGreen;
-        private readonly Brush incorrectBackground = Brushes.Pink;
-        private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
-
         private static readonly Differ Differ = new Differ();
 
         public ArticlePracticeWindow(PracticeData practiceData)
@@ -115,20 +110,6 @@ namespace OpenTyping
             }
         }
 
-        private Brush MapDiffState(Differ.DiffData.DiffState state)
-        {
-            switch (state)
-            {
-                case Differ.DiffData.DiffState.Equal:
-                    return correctBackground;
-                case Differ.DiffData.DiffState.Unequal:
-                    return incorrectBackground;
-                case Differ.DiffData.DiffState.Intermediate:
-                    return intermidiateBackground;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
 
         private void NextLine()
         {
@@ -153,7 +134,7 @@ namespace OpenTyping
             {
                 var run = new Run(diff.Text)
                 {
-                    Background = MapDiffState(diff.State)
+                    Background = Differ.MapDiffState(diff.State)
                 };
                 currentTextBlock.Inlines.Add(run);
             }
@@ -268,7 +249,7 @@ namespace OpenTyping
             {
                 var run = new Run(diff.Text)
                 {
-                    Background = MapDiffState(diff.State)
+                    Background = Differ.MapDiffState(diff.State)
                 };
                 currentTextBlock.Inlines.Add(run);
             }

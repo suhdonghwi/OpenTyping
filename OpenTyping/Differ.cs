@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media;
 
 namespace OpenTyping
 {
@@ -130,6 +131,25 @@ namespace OpenTyping
             result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
                                     DiffData.DiffState.Unequal));
             return result;
+        }
+
+        private readonly Brush correctBackground = Brushes.LightGreen;
+        private readonly Brush incorrectBackground = Brushes.Pink;
+        private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
+
+        public Brush MapDiffState(DiffData.DiffState state) // Diff 상태를 그에 대응하는 색으로 변환
+        {
+            switch (state)
+            {
+                case DiffData.DiffState.Equal:
+                    return correctBackground;
+                case DiffData.DiffState.Unequal:
+                    return incorrectBackground;
+                case DiffData.DiffState.Intermediate:
+                    return intermidiateBackground;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

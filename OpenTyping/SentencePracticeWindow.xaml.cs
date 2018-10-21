@@ -57,10 +57,6 @@ namespace OpenTyping
         private int? currentSentenceIndex;
         private static readonly Random SentenceIndexRandom = new Random();
 
-        private readonly Brush correctBackground = Brushes.LightGreen;
-        private readonly Brush incorrectBackground = Brushes.Pink;
-        private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
-
         private static readonly Differ Differ = new Differ();
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
@@ -96,21 +92,6 @@ namespace OpenTyping
             }
         }
 
-        private Brush MapDiffState(Differ.DiffData.DiffState state) // Diff 상태를 그에 대응하는 색으로 변환
-        {
-            switch (state)
-            {
-                case Differ.DiffData.DiffState.Equal:
-                    return correctBackground;
-                case Differ.DiffData.DiffState.Unequal:
-                    return incorrectBackground;
-                case Differ.DiffData.DiffState.Intermediate:
-                    return intermidiateBackground;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
         private void NextSentence()
         {
             if (!string.IsNullOrEmpty(CurrentTextBox.Text)) // Diff 구하고 하이라이트, 타속, 정확도 계산 : 첫 호출인 경우 수행하지 않음
@@ -131,7 +112,7 @@ namespace OpenTyping
                 {
                     var run = new Run(diff.Text)
                     {
-                        Background = MapDiffState(diff.State)
+                        Background = Differ.MapDiffState(diff.State)
                     };
                     PreviousTextBlock.Inlines.Add(run);
                 }
@@ -214,7 +195,7 @@ namespace OpenTyping
             {
                 var run = new Run(diff.Text)
                 {
-                    Background = MapDiffState(diff.State)
+                    Background = Differ.MapDiffState(diff.State)
                 };
                 CurrentTextBlock.Inlines.Add(run);
             }

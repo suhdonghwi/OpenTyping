@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-using OpenTyping.Properties;
+﻿using System.Windows;
 
 namespace OpenTyping
 {
@@ -14,8 +7,6 @@ namespace OpenTyping
     /// </summary>
     public partial class ArticlePracticeMenu : PracticeMenuBase
     {
-        public bool IsRandom { get; set; }
-
         public ArticlePracticeMenu()
         {
             InitializeComponent();
@@ -23,7 +14,7 @@ namespace OpenTyping
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedPracticeData is null)
+            if (selectedPracticeData == null)
             {
                 MessageBox.Show("연습하실 연습 데이터를 선택해주세요.",
                                 "열린타자",
