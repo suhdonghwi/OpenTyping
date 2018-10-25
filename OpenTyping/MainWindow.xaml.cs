@@ -44,8 +44,7 @@ namespace OpenTyping
             try
             {
                 var keyLayouts =
-                    new List<KeyLayout>(
-                        OpenTyping.KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDirStr]));
+                    new List<KeyLayout>(KeyLayout.LoadFromDirectory((string)Settings.Default[KeyLayoutDataDirStr]));
 
                 var layoutName = (string)Settings.Default[KeyLayoutStr];
                 KeyLayout currentKeylayout = keyLayouts.FirstOrDefault(keyLayout => keyLayout.Name == layoutName);
@@ -86,7 +85,14 @@ namespace OpenTyping
             }
             
             InitializeComponent();
-            Closed += MainWindow_Closed;
+
+            this.Loaded += MainWindow_Loaded;
+            this.Closed += MainWindow_Closed;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            CheckSyllablePractice();
         }
 
         private static void MainWindow_Closed(object sender, EventArgs e)
@@ -151,10 +157,29 @@ namespace OpenTyping
                     Source = CurrentKeyLayout,
                 };
                 HomeMenu.SentencePracticeCount.SetBinding(TextBlock.TextProperty, sentencePracticeCountBinding);
+
+                CheckSyllablePractice();
             }
 
             SentencePracticeMenu.LoadData();
             ArticlePracticeMenu.LoadData();
+        }
+
+        private void CheckSyllablePractice()
+        {
+            if (CurrentKeyLayout.Character == "한글")
+            {
+                SyllablePracticeTabItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SyllablePracticeTabItem.Visibility = Visibility.Collapsed;
+
+                if (SyllablePracticeTabItem.IsSelected)
+                {
+                    MenuTabControl.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

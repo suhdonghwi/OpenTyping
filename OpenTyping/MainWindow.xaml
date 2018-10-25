@@ -39,7 +39,7 @@
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
-    <TabControl>
+    <TabControl x:Name="MenuTabControl">
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
@@ -74,7 +74,7 @@
             </TabItem.Header>
             <local:KeyPracticeMenu x:Name="KeyPracticeMenu"/>
         </TabItem>
-        <TabItem>
+        <TabItem x:Name="SyllablePracticeTabItem">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <Grid Margin="2 0 6 0">
