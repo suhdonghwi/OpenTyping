@@ -26,7 +26,6 @@ namespace OpenTyping
         }
 
         private PracticeData practiceData;
-        private readonly bool shuffle;
 
         private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
 
@@ -55,7 +54,7 @@ namespace OpenTyping
         public ChartValues<int> AccuracyList { get; set; } = new ChartValues<int>();
 
         private int? currentSentenceIndex;
-        private static readonly Random SentenceIndexRandom = new Random();
+
 
         private static readonly Differ Differ = new Differ();
 
@@ -64,12 +63,17 @@ namespace OpenTyping
             InitializeComponent();
 
             this.practiceData = practiceData;
-            this.shuffle = shuffle;
 
-            if (shuffle) this.practiceData.RemoveDuplicates();
+            if (shuffle)
+            {
+                practiceData.RemoveDuplicates();
+
+                var sentenceIndexRandom = new Random();
+                practiceData.TextData = practiceData.TextData.OrderBy(s => sentenceIndexRandom.Next()).ToList();
+                // 학습 데이터 무작위로 섞기
+            }
 
             SpeedChart.AxisX[0].Separator.Step = 1;
-
             this.Loaded += SentencePracticeWindow_Loaded;
         }
 
@@ -128,29 +132,9 @@ namespace OpenTyping
 
             if (!string.IsNullOrEmpty(CurrentTextBox.Text) || currentSentenceIndex is null) // 입력이 비어있지 않거나 첫 번째 호출인 경우
             {
-                if (shuffle) // 무작위 순서 모드일 경우
-                {
-                    if (currentSentenceIndex is null) // 첫 호출인 경우
-                    {
-                        currentSentenceIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
-                    }
-                    else
-                    {
-                        int newIndex;
-                        do
-                        {
-                            newIndex = SentenceIndexRandom.Next(practiceData.TextData.Count);
-                        } while (newIndex == currentSentenceIndex); // 중복 방지
-
-                        currentSentenceIndex = newIndex;
-                    }
-                }
-                else
-                {
-                    if (currentSentenceIndex is null) currentSentenceIndex = 0; // 첫 호출인 경우
-                    else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0; // 마지막 인덱스인 경우, 순환
-                    else currentSentenceIndex++;
-                }
+                if (currentSentenceIndex is null) currentSentenceIndex = 0; // 첫 호출인 경우
+                else if (currentSentenceIndex == practiceData.TextData.Count - 1) currentSentenceIndex = 0; // 마지막 인덱스인 경우, 순환
+                else currentSentenceIndex++;
 
                 CurrentText = practiceData.TextData[currentSentenceIndex.Value];
             }
