@@ -29,6 +29,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock FontFamily="{StaticResource NanumGothic}"
+                               x:Name="MenuSetting"
                                Text="설정"
                                FontSize="13pt"
                                FontWeight="SemiBold"
@@ -51,7 +52,7 @@
                                          Visual="{iconPacks:Modern Home}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MainLbl1" Style="{StaticResource TabItemLabel}"
                            Content="홈"/>
                 </StackPanel>
             </TabItem.Header>
@@ -68,7 +69,7 @@
                                          Visual="{iconPacks:FontAwesome KeyboardRegular}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MainLbl2" Style="{StaticResource TabItemLabel}"
                            Content="자리연습"/>
                 </StackPanel>
             </TabItem.Header>

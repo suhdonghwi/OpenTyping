@@ -9,6 +9,7 @@ using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -43,7 +44,14 @@ namespace OpenTyping
         {
             get => practiceDataDir;
             private set => SetField(ref practiceDataDir, value);
-        } 
+        }
+
+        private string programLang = (string)Settings.Default[MainWindow.ProgramLang];
+        public string ProgramLang
+        {
+            get => programLang;
+            private set => SetField(ref programLang, value);
+        }
 
         private KeyLayout selectedKeyLayout;
         public KeyLayout SelectedKeyLayout
@@ -65,7 +73,8 @@ namespace OpenTyping
         public SettingsWindow()
         {
             InitializeComponent();
-
+            InitLangUI();
+           
             Closing += OnClose;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
@@ -81,6 +90,31 @@ namespace OpenTyping
             }
 
             PracticeDataList = new ObservableCollection<PracticeData>(PracticeData.LoadFromDirectory(PracticeDataDir));
+        }
+
+        private void InitLangUI()
+        {
+            this.SetTextBylanguage();
+
+            // 언어 RadioButton checked 표시   
+            if (programLang == "uz")
+            {
+                uz.IsChecked = true;
+            }
+            else if (programLang == "en")
+            {
+                en.IsChecked = true;
+            }
+            else if (programLang == "ko")
+            {
+                ko.IsChecked = true;
+            }
+        }
+
+        private void SetTextBylanguage()
+        {
+            SetLbl3.Content = LangStr.SetProgramLang;
+            ConfirmBtn.Text = LangStr.OK;
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
@@ -131,7 +165,7 @@ namespace OpenTyping
                 return;
             }
 
-            MessageBoxResult result 
+            MessageBoxResult result
                 = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 를 삭제하시겠습니까?",
                                   "열린타자",
                                   MessageBoxButton.OKCancel,
@@ -146,7 +180,7 @@ namespace OpenTyping
 
         private void ClearStatButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result 
+            MessageBoxResult result
                 = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 의 통계 정보를 삭제하시겠습니까?",
                                   "열린타자",
                                   MessageBoxButton.OKCancel,
@@ -235,7 +269,7 @@ namespace OpenTyping
                 return;
             }
 
-            MessageBoxResult result 
+            MessageBoxResult result
                 = MessageBox.Show("선택된 연습 데이터 \"" + SelectedPracticeData.Name + "\" 를 삭제하시겠습니까?",
                                   "열린타자",
                                   MessageBoxButton.OKCancel,
@@ -279,6 +313,26 @@ namespace OpenTyping
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            var prevProgramLang = programLang;
+
+            if ((bool)uz.IsChecked)
+            {
+                programLang = "uz";
+            }
+            else if ((bool)en.IsChecked)
+            {
+                programLang = "en";
+            }
+            else if ((bool)ko.IsChecked)
+            {
+                programLang = "ko";
+            }
+
+            if (prevProgramLang != programLang)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).SetTextBylanguage(programLang);
+            }
+
             Close();
         }
 
@@ -294,6 +348,11 @@ namespace OpenTyping
             {
                 Settings.Default[MainWindow.KeyLayoutDataDirStr] = KeyLayoutDataDir;
                 KeyLayoutDataDirUpdated = true;
+            }
+
+            if ((string)Settings.Default[MainWindow.ProgramLang] != ProgramLang)
+            {
+                Settings.Default[MainWindow.ProgramLang] = ProgramLang;
             }
 
             Settings.Default[MainWindow.PracticeDataDirStr] = PracticeDataDir;
@@ -315,5 +374,6 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
+
     }
 }

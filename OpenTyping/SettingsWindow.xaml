@@ -279,6 +279,17 @@
                         </Grid>
                     </StackPanel>
                 </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label x:Name="SetLbl3" Style="{StaticResource TabItemLabel}"
+                            Content="프로그램 언어"/>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <RadioButton x:Name="uz" GroupName="Lang" FontSize="18">O'zbek</RadioButton>
+                        <RadioButton x:Name="en" GroupName="Lang" FontSize="18">English</RadioButton>
+                        <RadioButton x:Name="ko" GroupName="Lang" FontSize="18">한국어</RadioButton>
+                    </StackPanel>
+                </TabItem>
             </TabControl>
         </StackPanel>
 
@@ -294,7 +305,7 @@
                             <VisualBrush Visual="{iconPacks:Modern check}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Style="{StaticResource ControlButtonText}"
+                    <TextBlock x:Name="ConfirmBtn" Style="{StaticResource ControlButtonText}"
                                Text="확인"/>
                 </StackPanel>
             </Button>

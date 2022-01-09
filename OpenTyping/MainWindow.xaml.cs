@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using MahApps.Metro.Controls;
 using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -22,6 +24,7 @@ namespace OpenTyping
         public const string KeyLayoutDataDirStr = "KeyLayoutDataDir";
         public const string KeyLayoutStr = "KeyLayout";
         public const string PracticeDataDirStr = "PracticeDataDir";
+        public const string ProgramLang = "ProgramLang";
 
         public MainWindow()
         {
@@ -83,11 +86,23 @@ namespace OpenTyping
                 string dataDirectory = Path.Combine(exeDirectory, "data");
                 Settings.Default[PracticeDataDirStr] = dataDirectory;
             }
-            
+
+            if (string.IsNullOrEmpty((string)Settings.Default[ProgramLang]))
+            {
+                Settings.Default[ProgramLang] = "uz"; //  기본 언어 설정
+            }
+
             InitializeComponent();
+            this.SetTextBylanguage(Settings.Default[ProgramLang].ToString());
 
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
+        }
+
+        private void ChangeCulture(string nationCode)
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(nationCode);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(nationCode);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -180,6 +195,13 @@ namespace OpenTyping
                     MenuTabControl.SelectedIndex = 0;
                 }
             }
+        }
+
+        public void SetTextBylanguage(string langCode)
+        {
+            this.ChangeCulture(langCode);
+
+            MenuSetting.Text = LangStr.Setting;
         }
     }
 }

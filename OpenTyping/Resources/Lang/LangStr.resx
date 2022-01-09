@@ -117,7 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AppDesc" xml:space="preserve">
+    <value>현대적인 오픈 소스 타자연습 프로그램</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>열린타자</value>
+  </data>
+  <data name="AvgCorrect" xml:space="preserve">
+    <value>평균 정확도</value>
+  </data>
+  <data name="AvgSpeed" xml:space="preserve">
+    <value>평균 타속</value>
+  </data>
+  <data name="CurKeyboard" xml:space="preserve">
+    <value>현재 자판</value>
+  </data>
+  <data name="CurPracData" xml:space="preserve">
+    <value>현재 연습 데이터</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="ExceptShftKey" xml:space="preserve">
+    <value>윗글쇠(Shift)  연습 제외</value>
+  </data>
   <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home1" xml:space="preserve">
     <value>홈</value>
+  </data>
+  <data name="InitStatInfo" xml:space="preserve">
+    <value>통계 정보 초기화</value>
+  </data>
+  <data name="KeyDataPath" xml:space="preserve">
+    <value>자판 데이터 경로</value>
+  </data>
+  <data name="KeyPrac" xml:space="preserve">
+    <value>자리연습</value>
+  </data>
+  <data name="KeyPracDesc" xml:space="preserve">
+    <value>자판 위의 글자들 각각의 자리를 연습합니다.</value>
+  </data>
+  <data name="KeyPracHelp" xml:space="preserve">
+    <value>연습하고 싶은 키의 위치를 클릭하여 설정/해제하세요.</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="LSenPrac" xml:space="preserve">
+    <value>긴글연습</value>
+  </data>
+  <data name="LSenPracDesc" xml:space="preserve">
+    <value>하나의 장문을 대상으로 연습합니다.</value>
+  </data>
+  <data name="MostWrongKey" xml:space="preserve">
+    <value>가장 많이 틀린 키</value>
+  </data>
+  <data name="NumPracSen" xml:space="preserve">
+    <value>연습한 문장 수</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PracDataPath" xml:space="preserve">
+    <value>연습 데이터 경로</value>
+  </data>
+  <data name="RanSenLoc" xml:space="preserve">
+    <value>문장 무작위 배열</value>
+  </data>
+  <data name="SenPrac" xml:space="preserve">
+    <value>문장연습</value>
+  </data>
+  <data name="SenPracDesc" xml:space="preserve">
+    <value>짧은 길이의 문장으로 나누어 연습합니다.</value>
+  </data>
+  <data name="SenPracHelp" xml:space="preserve">
+    <value>연습하고 싶은 글을 클릭하여 선택하세요.</value>
+  </data>
+  <data name="SetKeyboard" xml:space="preserve">
+    <value>연습 자판</value>
+  </data>
+  <data name="SetPracData" xml:space="preserve">
+    <value>연습 데이터</value>
+  </data>
+  <data name="SetProgramLang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="StartPrac" xml:space="preserve">
+    <value>연습 시작</value>
+  </data>
+  <data name="Uzbek" xml:space="preserve">
+    <value>O'zbek</value>
   </data>
 </root>
