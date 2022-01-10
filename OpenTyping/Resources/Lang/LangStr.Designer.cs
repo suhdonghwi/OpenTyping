@@ -70,7 +70,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 현대적인 오픈 소스 타자연습 프로그램.
+        ///   Looks up a localized string similar to OpenSource Mordern Keyboard Typing Trainer.
         /// </summary>
         internal static string AppDesc {
             get {
@@ -79,11 +79,29 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 열린타자.
+        ///   Looks up a localized string similar to OpenTyping.
         /// </summary>
         internal static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 긴글연습.
+        /// </summary>
+        internal static string ArtPrac {
+            get {
+                return ResourceManager.GetString("ArtPrac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 하나의 장문을 대상으로 연습합니다..
+        /// </summary>
+        internal static string ArtPracDesc {
+            get {
+                return ResourceManager.GetString("ArtPracDesc", resourceCulture);
             }
         }
         
@@ -102,6 +120,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string AvgSpeed {
             get {
                 return ResourceManager.GetString("AvgSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 정확도.
+        /// </summary>
+        internal static string Correct {
+            get {
+                return ResourceManager.GetString("Correct", resourceCulture);
             }
         }
         
@@ -142,6 +169,204 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 연습할 키를 2개 이상 선택해주세요..
+        /// </summary>
+        internal static string ErrMsg1 {
+            get {
+                return ResourceManager.GetString("ErrMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 이름이 중복되게 존재합니다..
+        /// </summary>
+        internal static string ErrMsg10 {
+            get {
+                return ResourceManager.GetString("ErrMsg10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 이름(Name  필드)이 없습니다..
+        /// </summary>
+        internal static string ErrMsg11 {
+            get {
+                return ResourceManager.GetString("ErrMsg11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 키 레이아웃 (KeyLayoutData 필드) 가 없습니다..
+        /// </summary>
+        internal static string ErrMsg12 {
+            get {
+                return ResourceManager.GetString("ErrMsg12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 문자코드 종류(Character 필드)가 없습니다..
+        /// </summary>
+        internal static string ErrMsg13 {
+            get {
+                return ResourceManager.GetString("ErrMsg13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 글자 데이터(TextData 필드) 크기가 0입니다..
+        /// </summary>
+        internal static string ErrMsg14 {
+            get {
+                return ResourceManager.GetString("ErrMsg14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 글자 데이터(TextData 필드)가 없습니다..
+        /// </summary>
+        internal static string ErrMsg15 {
+            get {
+                return ResourceManager.GetString("ErrMsg15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 숫자 열.
+        /// </summary>
+        internal static string ErrMsg16 {
+            get {
+                return ResourceManager.GetString("ErrMsg16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 첫째 열.
+        /// </summary>
+        internal static string ErrMsg17 {
+            get {
+                return ResourceManager.GetString("ErrMsg17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 둘째 열.
+        /// </summary>
+        internal static string ErrMsg18 {
+            get {
+                return ResourceManager.GetString("ErrMsg18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 셋째 열.
+        /// </summary>
+        internal static string ErrMsg19 {
+            get {
+                return ResourceManager.GetString("ErrMsg19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다..
+        /// </summary>
+        internal static string ErrMsg2 {
+            get {
+                return ResourceManager.GetString("ErrMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 의 키의 개수는.
+        /// </summary>
+        internal static string ErrMsg20 {
+            get {
+                return ResourceManager.GetString("ErrMsg20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 가 필요하나.
+        /// </summary>
+        internal static string ErrMsg21 {
+            get {
+                return ResourceManager.GetString("ErrMsg21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 개로 일치하지 않습니다..
+        /// </summary>
+        internal static string ErrMsg22 {
+            get {
+                return ResourceManager.GetString("ErrMsg22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다..
+        /// </summary>
+        internal static string ErrMsg3 {
+            get {
+                return ResourceManager.GetString("ErrMsg3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 자판 데이터가 한 개 존재하여 삭제할 수 없습니다..
+        /// </summary>
+        internal static string ErrMsg4 {
+            get {
+                return ResourceManager.GetString("ErrMsg4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 연습 데이터가 한 개 존재하여 삭제할 수 없습니다..
+        /// </summary>
+        internal static string ErrMsg5 {
+            get {
+                return ResourceManager.GetString("ErrMsg5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 파일 내 한글 음절 개수가 1개 이하입니다..
+        /// </summary>
+        internal static string ErrMsg6 {
+            get {
+                return ResourceManager.GetString("ErrMsg6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 응용 프로그램 경로를 찾는 도중 에러가 발생했습니다..
+        /// </summary>
+        internal static string ErrMsg7 {
+            get {
+                return ResourceManager.GetString("ErrMsg7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요..
+        /// </summary>
+        internal static string ErrMsg8 {
+            get {
+                return ResourceManager.GetString("ErrMsg8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요..
+        /// </summary>
+        internal static string ErrMsg9 {
+            get {
+                return ResourceManager.GetString("ErrMsg9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 윗글쇠(Shift)  연습 제외.
         /// </summary>
         internal static string ExceptShftKey {
@@ -160,11 +385,11 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 홈.
+        ///   Looks up a localized string similar to 연습하실 연습 데이터를 선택해주세요..
         /// </summary>
-        internal static string Home1 {
+        internal static string InfoMsg1 {
             get {
-                return ResourceManager.GetString("Home1", resourceCulture);
+                return ResourceManager.GetString("InfoMsg1", resourceCulture);
             }
         }
         
@@ -178,6 +403,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 페이지 중.
+        /// </summary>
+        internal static string InPage {
+            get {
+                return ResourceManager.GetString("InPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 자판 데이터 경로.
         /// </summary>
         internal static string KeyDataPath {
@@ -187,7 +421,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자리연습.
+        ///   Looks up a localized string similar to Key Training.
         /// </summary>
         internal static string KeyPrac {
             get {
@@ -219,24 +453,6 @@ namespace OpenTyping.Resources.Lang {
         internal static string Korean {
             get {
                 return ResourceManager.GetString("Korean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 긴글연습.
-        /// </summary>
-        internal static string LSenPrac {
-            get {
-                return ResourceManager.GetString("LSenPrac", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 하나의 장문을 대상으로 연습합니다..
-        /// </summary>
-        internal static string LSenPracDesc {
-            get {
-                return ResourceManager.GetString("LSenPracDesc", resourceCulture);
             }
         }
         
@@ -349,6 +565,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        internal static string Speed {
+            get {
+                return ResourceManager.GetString("Speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 연습 시작.
         /// </summary>
         internal static string StartPrac {
@@ -358,11 +583,74 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 음절연습.
+        /// </summary>
+        internal static string SylPrac {
+            get {
+                return ResourceManager.GetString("SylPrac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  음절 단위로 입력하여 연습을 진행합니다. (한글 한정) .
+        /// </summary>
+        internal static string SylPracDesc {
+            get {
+                return ResourceManager.GetString("SylPracDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다..
+        /// </summary>
+        internal static string SylPracHelp {
+            get {
+                return ResourceManager.GetString("SylPracHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O&apos;zbek.
         /// </summary>
         internal static string Uzbek {
             get {
                 return ResourceManager.GetString("Uzbek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 선택된 자판 데이터.
+        /// </summary>
+        internal static string WarnMsg1 {
+            get {
+                return ResourceManager.GetString("WarnMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 선택된 연습 데이터.
+        /// </summary>
+        internal static string WarnMsg2 {
+            get {
+                return ResourceManager.GetString("WarnMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 를 삭제하시겠습니까?.
+        /// </summary>
+        internal static string WarnMsg3 {
+            get {
+                return ResourceManager.GetString("WarnMsg3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 의 통계 정보를 삭제하시겠습니까?.
+        /// </summary>
+        internal static string WarnMsg4 {
+            get {
+                return ResourceManager.GetString("WarnMsg4", resourceCulture);
             }
         }
     }

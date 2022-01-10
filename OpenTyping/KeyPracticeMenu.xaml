@@ -32,11 +32,13 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource NormalTextBlock}" 
+                               Name="MenuName"
                                Text="자리연습"
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
                 <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Name="MenuDesc"
                            Text=": 자판 위 글자들 각각의 자리를 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
@@ -56,6 +58,7 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Name="MenuHelp"
                            Text="연습하고 싶은 위치의 키를 클릭하여 설정/해제하세요."
                            VerticalAlignment="Bottom"
                            FontSize="14pt"/>
@@ -79,6 +82,7 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Name="SetToggle"
                            Text="윗글쇠(Shift) 연습 제외"
                            FontFamily="{StaticResource NanumGothic}"
                            FontWeight="Bold"
@@ -106,6 +110,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource ControlButtonText}"
+                               Name="StartBtn"
                                Text="연습 시작"/>
                 </StackPanel>
             </Button>

@@ -34,11 +34,13 @@
                             BorderThickness="3.5"/>
                 </Grid>
                 <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Name="MenuName"
                            Text="음절연습"
                            FontSize="32pt"
                            Margin="0 2 0 0"/>
             </StackPanel>
             <TextBlock Style="{StaticResource NormalTextBlock}" 
+                       Name="MenuDesc"
                        Text=": 음절 단위로 입력하여 연습을 진행합니다. (한글 한정)"
                        FontSize="14pt"/>
         </StackPanel>
@@ -135,6 +137,7 @@
                 </Rectangle.OpacityMask>
             </Rectangle>
             <TextBlock Style="{StaticResource NormalTextBlock}"
+                       Name="MenuHelp"
                        Text="2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다."
                        VerticalAlignment="Bottom"
                        FontSize="14pt"/>

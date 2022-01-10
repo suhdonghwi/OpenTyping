@@ -137,8 +137,8 @@ namespace OpenTyping
 
                 if (File.Exists(destLocation))
                 {
-                    MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.",
-                                    "열린타자",
+                    MessageBox.Show(LangStr.ErrMsg2,
+                                    LangStr.AppName,
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }
@@ -158,16 +158,16 @@ namespace OpenTyping
         {
             if (KeyLayouts.Count == 1)
             {
-                MessageBox.Show("자판 데이터가 한 개 존재하여 삭제할 수 없습니다.",
-                                "열린타자",
+                MessageBox.Show(LangStr.ErrMsg4,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 return;
             }
 
             MessageBoxResult result
-                = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 를 삭제하시겠습니까?",
-                                  "열린타자",
+                = MessageBox.Show(LangStr.WarnMsg1 +" \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg3,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -181,8 +181,8 @@ namespace OpenTyping
         private void ClearStatButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result
-                = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 의 통계 정보를 삭제하시겠습니까?",
-                                  "열린타자",
+                = MessageBox.Show(LangStr.WarnMsg1 + " \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg4,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -215,7 +215,7 @@ namespace OpenTyping
                 {
                     if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
                     {
-                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else throw;
                 }
@@ -242,8 +242,8 @@ namespace OpenTyping
 
                 if (File.Exists(destLocation))
                 {
-                    MessageBox.Show("같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다.",
-                                    "열린타자",
+                    MessageBox.Show(LangStr.ErrMsg3,
+                                    LangStr.AppName,
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }
@@ -262,16 +262,16 @@ namespace OpenTyping
         {
             if (PracticeDataList.Count == 1)
             {
-                MessageBox.Show("연습 데이터가 한 개 존재하여 삭제할 수 없습니다.",
-                                "열린타자",
+                MessageBox.Show(LangStr.ErrMsg5,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 return;
             }
 
             MessageBoxResult result
-                = MessageBox.Show("선택된 연습 데이터 \"" + SelectedPracticeData.Name + "\" 를 삭제하시겠습니까?",
-                                  "열린타자",
+                = MessageBox.Show(LangStr.WarnMsg2 + " \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg3,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -303,7 +303,7 @@ namespace OpenTyping
                 {
                     if (ex is PracticeDataLoadFail || ex is InvalidPracticeDataException)
                     {
-                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
 using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -61,6 +62,7 @@ namespace OpenTyping
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             this.practiceData = practiceData;
 
@@ -75,6 +77,15 @@ namespace OpenTyping
 
             SpeedChart.AxisX[0].Separator.Step = 1;
             this.Loaded += SentencePracticeWindow_Loaded;
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+            Speed.Text = LangStr.Speed;
+            AvgSpeed.Text = LangStr.AvgSpeed;
+            GphSpped.Title = LangStr.Correct;
+            GphCorrect.Title = LangStr.Correct;
         }
 
         private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)

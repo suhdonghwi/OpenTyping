@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -71,6 +72,14 @@ namespace OpenTyping
 
             this.practiceData = practiceData;
             this.Loaded += ArticlePracticeWindow_Loaded;
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+            InPage.Text = LangStr.InPage;
+            Speed.Text = LangStr.Speed;
+            Correct.Name = LangStr.Correct;
         }
 
         private void Next3Sentences()
