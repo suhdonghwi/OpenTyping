@@ -83,6 +83,16 @@ namespace OpenTyping.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] Mechanical_Key {
+            get {
+                object obj = ResourceManager.GetObject("Mechanical_Key", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Qwerty {
             get {
                 object obj = ResourceManager.GetObject("Qwerty", resourceCulture);

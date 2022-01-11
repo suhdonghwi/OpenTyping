@@ -59,6 +59,9 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
             InitializeComponent();
@@ -154,6 +157,9 @@ namespace OpenTyping
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            playMedia.Open(uri);
+            playMedia.Play(); // Key pressing sound
+
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 NextSentence();
