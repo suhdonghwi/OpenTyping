@@ -1,0 +1,243 @@
+{
+  "Name": "두벌식 표준",
+  "Character": "한글",
+  "KeyLayoutData": [
+    [
+      {
+        "KeyData": "`",
+        "ShiftKeyData": "~"
+      },
+      {
+        "KeyData": "1",
+        "ShiftKeyData": "!"
+      },
+      {
+        "KeyData": "2",
+        "ShiftKeyData": "@"
+      },
+      {
+        "KeyData": "3",
+        "ShiftKeyData": "#"
+      },
+      {
+        "KeyData": "4",
+        "ShiftKeyData": "$"
+      },
+      {
+        "KeyData": "5",
+        "ShiftKeyData": "%"
+      },
+      {
+        "KeyData": "6",
+        "ShiftKeyData": "^"
+      },
+      {
+        "KeyData": "7",
+        "ShiftKeyData": "&"
+      },
+      {
+        "KeyData": "8",
+        "ShiftKeyData": "*"
+      },
+      {
+        "KeyData": "9",
+        "ShiftKeyData": "("
+      },
+      {
+        "KeyData": "0",
+        "ShiftKeyData": ")"
+      },
+      {
+        "KeyData": "-",
+        "ShiftKeyData": "_"
+      },
+      {
+        "KeyData": "=",
+        "ShiftKeyData": "+"
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅂ",
+        "ShiftKeyData": "ㅃ"
+      },
+      {
+        "KeyData": "ㅈ",
+        "ShiftKeyData": "ㅉ"
+      },
+      {
+        "KeyData": "ㄷ",
+        "ShiftKeyData": "ㄸ"
+      },
+      {
+        "KeyData": "ㄱ",
+        "ShiftKeyData": "ㄲ"
+      },
+      {
+        "KeyData": "ㅅ",
+        "ShiftKeyData": "ㅆ"
+      },
+      {
+        "KeyData": "ㅛ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅕ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅑ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅐ",
+        "ShiftKeyData": "ㅒ"
+      },
+      {
+        "KeyData": "ㅔ",
+        "ShiftKeyData": "ㅖ"
+      },
+      {
+        "KeyData": "[",
+        "ShiftKeyData": "{"
+      },
+      {
+        "KeyData": "]",
+        "ShiftKeyData": "}"
+      },
+      {
+        "KeyData": "⧵",
+        "ShiftKeyData": "|"
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅁ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㄴ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅇ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㄹ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅎ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅗ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅓ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅏ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅣ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": ";",
+        "ShiftKeyData": ":"
+      },
+      {
+        "KeyData": "'",
+        "ShiftKeyData": "\""
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅋ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅌ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅊ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅍ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅠ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅜ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": "ㅡ",
+        "ShiftKeyData": null
+      },
+      {
+        "KeyData": ",",
+        "ShiftKeyData": "<"
+      },
+      {
+        "KeyData": ".",
+        "ShiftKeyData": ">"
+      },
+      {
+        "KeyData": "/",
+        "ShiftKeyData": "?"
+      }
+    ]
+  ],
+  "DefaultKeys": [
+    "1,0",
+    "1,1",
+    "1,2",
+    "1,3",
+    "1,4",
+    "1,5",
+    "1,6",
+    "1,7",
+    "1,8",
+    "1,9",
+    "2,0",
+    "2,1",
+    "2,2",
+    "2,3",
+    "2,4",
+    "2,5",
+    "2,6",
+    "2,7",
+    "2,8",
+    "3,0",
+    "3,1",
+    "3,2",
+    "3,3",
+    "3,4",
+    "3,5",
+    "3,6"
+  ],
+  "Stats": {
+    "KeyIncorrectCount": {
+      "3,4": 2,
+      "1,9": 2
+    },
+    "MostIncorrect": {
+      "Key": "3,4",
+      "Value": 2
+    },
+    "SentencePracticeCount": 0,
+    "AverageTypingSpeed": 0,
+    "AverageAccuracy": 0
+  }
+}

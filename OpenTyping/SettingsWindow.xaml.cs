@@ -113,18 +113,29 @@ namespace OpenTyping
 
         private void SetTextBylanguage()
         {
-            SetLbl3.Content = LangStr.SetProgramLang;
+            SelfWindow.Title = LangStr.Setting;
+            TabLbl1.Content = LangStr.SetKeyboard;
+            TabLbl2.Content = LangStr.SetPracData;
+            TabLbl3.Content = LangStr.SetProgramLang;
             ConfirmBtn.Text = LangStr.OK;
+
+            CurKeyBoard.Text = LangStr.CurKeyboard;
+            InitStat.Text = LangStr.InitStatInfo;
+            KeyDataPath.Text = LangStr.KeyDataPath;
+
+            CurPracData.Text = LangStr.CurPracData;
+            Add.Text = LangStr.Add;
+            Del.Text = LangStr.Delete;
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDialog = new CommonOpenFileDialog()
             {
-                Title = "자판 파일 열기"
+                Title = LangStr.KeyDataOpen
             };
 
-            dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter(LangStr.PracDataFile, "*.json"));
             dataFileDialog.Multiselect = false;
             dataFileDialog.EnsureFileExists = true;
             dataFileDialog.EnsurePathExists = true;
@@ -228,7 +239,7 @@ namespace OpenTyping
         {
             var dataFileDialog = new CommonOpenFileDialog();
 
-            dataFileDialog.Filters.Add(new CommonFileDialogFilter("연습 데이터 파일", "*.json"));
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter(LangStr.PracDataFile, "*.json"));
             dataFileDialog.Multiselect = false;
             dataFileDialog.EnsureFileExists = true;
             dataFileDialog.EnsurePathExists = true;

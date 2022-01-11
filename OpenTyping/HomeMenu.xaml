@@ -72,7 +72,7 @@
                 <mah:Tile Style="{StaticResource StatTile}"
                           Name="Tile1"
                           Title="가장 많이 틀린 키"
-                          Background="#f03e3e">
+                          Background="#f03e3e" HorizontalTitleAlignment="Center">
                     <local:KeyBox x:Name="MostIncorrectKey"
                                   Key="{Binding Path=Stats.MostIncorrect.Key, 
                                                 Source={x:Static local:MainWindow.CurrentKeyLayout},
@@ -84,7 +84,7 @@
                 <mah:Tile Style="{StaticResource StatTile}"
                           Name="Tile2"
                           Title="평균 타속"
-                          Background="#1c7ed6">
+                          Background="#1c7ed6" HorizontalTitleAlignment="Center">
                     <TextBlock x:Name="AverageTypingSpeed"
                                Text="{Binding Path=Stats.AverageTypingSpeed,
                                               Source={x:Static local:MainWindow.CurrentKeyLayout}}"
@@ -95,7 +95,7 @@
                 <mah:Tile Style="{StaticResource StatTile}"
                           Name="Tile3"
                           Title="평균 정확도"
-                          Background="#37b24d">
+                          Background="#37b24d" HorizontalTitleAlignment="Center">
                     <TextBlock x:Name="AverageAccuracy"
                                Text="{Binding Path=Stats.AverageAccuracy,
                                               Source={x:Static local:MainWindow.CurrentKeyLayout},
@@ -107,7 +107,7 @@
                 <mah:Tile Style="{StaticResource StatTile}"
                           Name="Tile4"
                           Title="연습한 문장 수"
-                          Background="#f76707">
+                          Background="#f76707" HorizontalTitleAlignment="Center">
                     <TextBlock x:Name="SentencePracticeCount"
                                Text="{Binding Path=Stats.SentencePracticeCount,
                                               Source={x:Static local:MainWindow.CurrentKeyLayout}}"

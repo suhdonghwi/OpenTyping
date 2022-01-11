@@ -163,7 +163,7 @@
 
                 <lvc:CartesianChart.Series>
                     <lvc:LineSeries Values="{Binding Path=TypingSpeedList}"
-                                    Name="GphSpped"
+                                    Name="GphSpeed"
                                     Title="타속"
                                     Foreground="#1c7ed6"/>
                     <lvc:LineSeries Values="{Binding Path=AccuracyList}"

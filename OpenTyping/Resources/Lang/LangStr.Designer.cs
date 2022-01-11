@@ -196,7 +196,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 키 레이아웃 (KeyLayoutData 필드) 가 없습니다..
+        ///   Looks up a localized string similar to 키 레이아웃(KeyLayoutData 필드) 가 없습니다..
         /// </summary>
         internal static string ErrMsg12 {
             get {
@@ -205,7 +205,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 문자코드 종류(Character 필드)가 없습니다..
+        ///   Looks up a localized string similar to 문자코드(Character 필드)가 없습니다..
         /// </summary>
         internal static string ErrMsg13 {
             get {
@@ -412,6 +412,24 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 자판 파일 데이터.
+        /// </summary>
+        internal static string KeyDataFile {
+            get {
+                return ResourceManager.GetString("KeyDataFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 자판 파일 열기.
+        /// </summary>
+        internal static string KeyDataOpen {
+            get {
+                return ResourceManager.GetString("KeyDataOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 자판 데이터 경로.
         /// </summary>
         internal static string KeyDataPath {
@@ -480,6 +498,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 연습 데이터 파일.
+        /// </summary>
+        internal static string PracDataFile {
+            get {
+                return ResourceManager.GetString("PracDataFile", resourceCulture);
             }
         }
         

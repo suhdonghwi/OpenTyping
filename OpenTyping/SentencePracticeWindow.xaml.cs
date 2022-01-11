@@ -84,7 +84,8 @@ namespace OpenTyping
             SelfWindow.Title = LangStr.AppName;
             Speed.Text = LangStr.Speed;
             AvgSpeed.Text = LangStr.AvgSpeed;
-            GphSpped.Title = LangStr.Correct;
+            Correct.Text = LangStr.Correct;
+            GphSpeed.Title = LangStr.Speed;
             GphCorrect.Title = LangStr.Correct;
         }
 

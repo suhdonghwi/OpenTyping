@@ -130,7 +130,7 @@
     <value>평균 정확도</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
-    <value>평균 타속</value>
+    <value>O'rtacha terish tezligi</value>
   </data>
   <data name="CurKeyboard" xml:space="preserve">
     <value>현재 자판</value>
@@ -184,7 +184,7 @@
     <value>자판 데이터 경로</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
-    <value>자리연습</value>
+    <value>Harflar mashq</value>
   </data>
   <data name="KeyPracDesc" xml:space="preserve">
     <value>자판 위의 글자들 각각의 자리를 연습합니다.</value>
@@ -196,7 +196,7 @@
     <value>한국어</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
-    <value>긴글연습</value>
+    <value>Uzun matnlar mashq</value>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
     <value>하나의 장문을 대상으로 연습합니다.</value>
@@ -214,16 +214,16 @@
     <value>연습 데이터 경로</value>
   </data>
   <data name="RanSenLoc" xml:space="preserve">
-    <value>문장 무작위 배열</value>
+    <value>Matnlarni tasodify aralash</value>
   </data>
   <data name="SenPrac" xml:space="preserve">
-    <value>문장연습</value>
+    <value>Matnlar mashq</value>
   </data>
   <data name="SenPracDesc" xml:space="preserve">
-    <value>짧은 길이의 문장으로 나누어 연습합니다.</value>
+    <value>Qisqa matnlarga bo'lib mashq qilasiz</value>
   </data>
   <data name="SenPracHelp" xml:space="preserve">
-    <value>연습하고 싶은 글을 클릭하여 선택하세요.</value>
+    <value>Mashq qilmoqchi matnni tanlang</value>
   </data>
   <data name="SetKeyboard" xml:space="preserve">
     <value>연습 자판</value>
@@ -238,7 +238,7 @@
     <value>Sozlash</value>
   </data>
   <data name="StartPrac" xml:space="preserve">
-    <value>연습 시작</value>
+    <value>Mashq boshlash</value>
   </data>
   <data name="Uzbek" xml:space="preserve">
     <value>O'zbek</value>
@@ -256,7 +256,7 @@
     <value>의 통계 정보를 삭제하시겠습니까?</value>
   </data>
   <data name="Correct" xml:space="preserve">
-    <value>정확도</value>
+    <value>aniqligi</value>
   </data>
   <data name="ErrMsg10" xml:space="preserve">
     <value>이름이 중복되게 존재합니다.</value>
@@ -265,10 +265,10 @@
     <value>이름(Name  필드)이 없습니다.</value>
   </data>
   <data name="ErrMsg12" xml:space="preserve">
-    <value>키 레이아웃 (KeyLayoutData 필드) 가 없습니다.</value>
+    <value>키 레이아웃(KeyLayoutData 필드) 가 없습니다.</value>
   </data>
   <data name="ErrMsg13" xml:space="preserve">
-    <value>문자코드 종류(Character 필드)가 없습니다.</value>
+    <value>문자코드(Character 필드)가 없습니다.</value>
   </data>
   <data name="ErrMsg14" xml:space="preserve">
     <value>글자 데이터(TextData 필드) 크기가 0입니다.</value>
@@ -306,8 +306,17 @@
   <data name="InPage" xml:space="preserve">
     <value>페이지 중</value>
   </data>
+  <data name="KeyDataFile" xml:space="preserve">
+    <value>자판 파일 데이터</value>
+  </data>
+  <data name="KeyDataOpen" xml:space="preserve">
+    <value>자판 파일 열기</value>
+  </data>
+  <data name="PracDataFile" xml:space="preserve">
+    <value>연습 데이터 파일</value>
+  </data>
   <data name="Speed" xml:space="preserve">
-    <value>타속</value>
+    <value>Terish tezligi</value>
   </data>
   <data name="SylPrac" xml:space="preserve">
     <value>음절연습</value>

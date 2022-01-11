@@ -262,10 +262,10 @@
     <value>이름(Name  필드)이 없습니다.</value>
   </data>
   <data name="ErrMsg12" xml:space="preserve">
-    <value>키 레이아웃 (KeyLayoutData 필드) 가 없습니다.</value>
+    <value>키 레이아웃(KeyLayoutData 필드) 가 없습니다.</value>
   </data>
   <data name="ErrMsg13" xml:space="preserve">
-    <value>문자코드 종류(Character 필드)가 없습니다.</value>
+    <value>문자코드(Character 필드)가 없습니다.</value>
   </data>
   <data name="ErrMsg14" xml:space="preserve">
     <value>글자 데이터(TextData 필드) 크기가 0입니다.</value>
@@ -302,6 +302,15 @@
   </data>
   <data name="InPage" xml:space="preserve">
     <value>페이지 중</value>
+  </data>
+  <data name="KeyDataFile" xml:space="preserve">
+    <value>자판 파일 데이터</value>
+  </data>
+  <data name="KeyDataOpen" xml:space="preserve">
+    <value>자판 파일 열기</value>
+  </data>
+  <data name="PracDataFile" xml:space="preserve">
+    <value>연습 데이터 파일</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>타속</value>

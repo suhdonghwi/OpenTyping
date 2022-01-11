@@ -11,7 +11,7 @@ using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
-    public class PracticeData
+public class PracticeData
     {
         public PracticeData() {}
 

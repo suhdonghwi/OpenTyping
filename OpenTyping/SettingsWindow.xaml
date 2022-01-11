@@ -48,15 +48,15 @@
             <TabControl Margin="0 3 0 0">
                 <TabItem>
                     <TabItem.Header>
-                        <Label Style="{StaticResource TabItemLabel}">
-                            연습 자판
-                        </Label>
+                        <Label Style="{StaticResource TabItemLabel}"
+                               x:Name="TabLbl1" 
+                               Content="연습 자판"/>
                     </TabItem.Header>
 
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
-                            현재 자판
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}"
+                                   Name="CurKeyBoard"
+                                   Text="현재 자판"/>
                         <StackPanel Orientation="Horizontal"
                                     Margin="0 0 0 8">
                             <ComboBox x:Name="KeyLayoutsCombo"
@@ -125,17 +125,16 @@
                                             <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
-                                    <TextBlock Text="통계 정보 초기화"
+                                    <TextBlock Name="InitStat" Text="통계 정보 초기화"
                                                FontFamily="{StaticResource NanumGothic}"
                                                FontSize="12pt"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
 
-                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
-                            자판 데이터 경로
-                        </TextBlock>
-
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}"
+                                   Name="KeyDataPath"
+                                   Text="자판 데이터 경로"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -163,15 +162,15 @@
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <Label Style="{StaticResource TabItemLabel}">
-                            연습 데이터
-                        </Label>
+                        <Label Style="{StaticResource TabItemLabel}"
+                               x:Name="TabLbl2"
+                               Content="연습 데이터"/>
                     </TabItem.Header>
 
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
-                            현재 연습 데이터
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}"
+                                   Name="CurrData"
+                                   Text="현재 연습 데이터"/>
 
                         <ListBox DataContext="{Binding ElementName=SelfWindow}"
                                  BorderThickness="1"
@@ -225,7 +224,7 @@
                                             <VisualBrush Visual="{iconPacks:Modern add}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
-                                    <TextBlock Text="추가"
+                                    <TextBlock Name="Add" Text="추가"
                                                FontFamily="{StaticResource NanumGothic}"
                                                FontSize="10pt"/>
                                 </StackPanel>
@@ -243,17 +242,16 @@
                                             <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
-                                    <TextBlock Text="삭제"
+                                    <TextBlock Name="Del" Text="삭제"
                                                FontFamily="{StaticResource NanumGothic}"
                                                FontSize="10pt"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
 
-                        <TextBlock Style="{StaticResource SettingNameTextBlock}">
-                            연습 데이터 경로
-                        </TextBlock>
-
+                        <TextBlock Style="{StaticResource SettingNameTextBlock}"
+                                   Name="CurPracData"
+                                   Text="연습 데이터 경로"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -281,8 +279,9 @@
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <Label x:Name="SetLbl3" Style="{StaticResource TabItemLabel}"
-                            Content="프로그램 언어"/>
+                        <Label Style="{StaticResource TabItemLabel}"
+                               x:Name="TabLbl3"
+                               Content="프로그램 언어"/>
                     </TabItem.Header>
                     <StackPanel Orientation="Vertical" Margin="15">
                         <RadioButton x:Name="uz" GroupName="Lang" FontSize="18">O'zbek</RadioButton>
