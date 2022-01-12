@@ -127,7 +127,7 @@
     <value>OpenTyping</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
-    <value>Long Sentence Practice</value>
+    <value>Long sentences</value>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
     <value>Practice with one long sentence</value>
@@ -136,7 +136,7 @@
     <value>Average accuracy</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
-    <value>Average typing speed</value>
+    <value>Average speed</value>
   </data>
   <data name="Correct" xml:space="preserve">
     <value>Accuracy</value>
@@ -145,7 +145,7 @@
     <value>Current Keyboard</value>
   </data>
   <data name="CurPracData" xml:space="preserve">
-    <value>Current Practice Data</value>
+    <value>Current sentences</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -178,13 +178,13 @@
     <value>Column of numbers</value>
   </data>
   <data name="ErrMsg17" xml:space="preserve">
-    <value>First column</value>
+    <value>First row</value>
   </data>
   <data name="ErrMsg18" xml:space="preserve">
-    <value>Second column</value>
+    <value>Second row</value>
   </data>
   <data name="ErrMsg19" xml:space="preserve">
-    <value>Third column</value>
+    <value>Third row</value>
   </data>
   <data name="ErrMsg2" xml:space="preserve">
     <value>A file with the same name already exists in the Keyboard data path.</value>
@@ -193,7 +193,7 @@
     <value>Number of key is </value>
   </data>
   <data name="ErrMsg21" xml:space="preserve">
-    <value> need, but </value>
+    <value>need, but </value>
   </data>
   <data name="ErrMsg22" xml:space="preserve">
     <value>does not match </value>
@@ -218,8 +218,7 @@
     path and try again.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
-    <value>Cannot fidn practice data file. Please create practice data in that
-    path and try again.</value>
+    <value>Cannot fidn practice data file. Please create practice data in that path and try again.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
     <value>Excluding upper key(Shift)</value>
@@ -231,7 +230,7 @@
     <value>Select practice data you want to practice.</value>
   </data>
   <data name="InitStatInfo" xml:space="preserve">
-    <value>Reset statistical information.</value>
+    <value>Reset statistic information</value>
   </data>
   <data name="InPage" xml:space="preserve">
     <value> of pages</value>
@@ -243,13 +242,13 @@
     <value>Open Keyboard File</value>
   </data>
   <data name="KeyDataPath" xml:space="preserve">
-    <value>Keyboard data path</value>
+    <value>Keyboard layout path</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
-    <value>Key Training</value>
+    <value>Keys</value>
   </data>
   <data name="KeyPracDesc" xml:space="preserve">
-    <value>Practice the position of each letter on the keyboard.</value>
+    <value>Practice the position of each key on the keyboard.</value>
   </data>
   <data name="KeyPracHelp" xml:space="preserve">
     <value>Click the position of the key you want to practice on/off.</value>
@@ -270,25 +269,25 @@
     <value>Practice Data File</value>
   </data>
   <data name="PracDataPath" xml:space="preserve">
-    <value>Practice data path</value>
+    <value>Sentences path</value>
   </data>
   <data name="RanSenLoc" xml:space="preserve">
     <value>Random arrangement of sentences</value>
   </data>
   <data name="SenPrac" xml:space="preserve">
-    <value>Practice sentence</value>
+    <value>Sentences</value>
   </data>
   <data name="SenPracDesc" xml:space="preserve">
     <value>Practice by dividing it into short sentences</value>
   </data>
   <data name="SenPracHelp" xml:space="preserve">
-    <value>Select the text you want to practice by clicking on it.</value>
+    <value>Select the sentence you want to practice by clicking on it.</value>
   </data>
   <data name="SetKeyboard" xml:space="preserve">
-    <value>Keyboard to practice</value>
+    <value>Keyboard layout</value>
   </data>
   <data name="SetPracData" xml:space="preserve">
-    <value>Data to practice</value>
+    <value>Sentences</value>
   </data>
   <data name="SetProgramLang" xml:space="preserve">
     <value>Language</value>
@@ -303,13 +302,13 @@
     <value>Start practice</value>
   </data>
   <data name="SylPrac" xml:space="preserve">
-    <value>Practice syllables</value>
+    <value>Syllables</value>
   </data>
   <data name="SylPracDesc" xml:space="preserve">
-    <value> Practice by entering syllable units (Korean only) </value>
+    <value>Practice by entering syllable units (Korean only) </value>
   </data>
   <data name="SylPracHelp" xml:space="preserve">
-    <value>2350 characters are practiced with the most frequently used 2350 syllables among modern Hangul syllables.</value>
+    <value>2350 characters are practiced with the most frequently used in modern Hangul</value>
   </data>
   <data name="Uzbek" xml:space="preserve">
     <value>O'zbek</value>
@@ -325,5 +324,23 @@
   </data>
   <data name="WarnMsg4" xml:space="preserve">
     <value>Are you sure you want to delete statistical information?</value>
+  </data>
+  <data name="ErrMsg23" xml:space="preserve">
+    <value>Forth row</value>
+  </data>
+  <data name="Char11722" xml:space="preserve">
+    <value>11172 Charaters</value>
+  </data>
+  <data name="Char2350" xml:space="preserve">
+    <value>2350 Characters</value>
+  </data>
+  <data name="FinishedPrac" xml:space="preserve">
+    <value>Practice is finished.</value>
+  </data>
+  <data name="LastSpeed" xml:space="preserve">
+    <value>Your last speed:</value>
+  </data>
+  <data name="UserDefined" xml:space="preserve">
+    <value>User defined</value>
   </data>
 </root>

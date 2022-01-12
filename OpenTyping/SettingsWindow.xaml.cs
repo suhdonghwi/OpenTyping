@@ -114,16 +114,20 @@ namespace OpenTyping
         private void SetTextBylanguage()
         {
             SelfWindow.Title = LangStr.Setting;
+            MainName.Text = LangStr.Setting;
             TabLbl1.Content = LangStr.SetKeyboard;
             TabLbl2.Content = LangStr.SetPracData;
             TabLbl3.Content = LangStr.SetProgramLang;
             ConfirmBtn.Text = LangStr.OK;
 
+            // Layout
             CurKeyBoard.Text = LangStr.CurKeyboard;
             InitStat.Text = LangStr.InitStatInfo;
             KeyDataPath.Text = LangStr.KeyDataPath;
 
+            // Sentence
             CurPracData.Text = LangStr.CurPracData;
+            PracDataPath.Text = LangStr.PracDataPath;
             Add.Text = LangStr.Add;
             Del.Text = LangStr.Delete;
         }

@@ -69,6 +69,7 @@ namespace OpenTyping
         public ArticlePracticeWindow(PracticeData practiceData)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             inputTextBoxes = new List<TextBox> { InputTextBox0, InputTextBox1, InputTextBox2 };
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
@@ -82,7 +83,7 @@ namespace OpenTyping
             SelfWindow.Title = LangStr.AppName;
             InPage.Text = LangStr.InPage;
             Speed.Text = LangStr.Speed;
-            Correct.Name = LangStr.Correct;
+            Correct.Text = LangStr.Correct;
         }
 
         private void Next3Sentences()
@@ -192,8 +193,8 @@ namespace OpenTyping
         private async void FinishPracticeAsync()
         {
             freeze = true;
-            await this.ShowMessageAsync("연습이 끝났습니다.",
-                                        "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + "% 입니다.",
+            await this.ShowMessageAsync(LangStr.FinishedPrac + " ",
+                                         LangStr.LastSpeed + " " + TypingSpeed + ", " + LangStr.Correct + ": "+ TypingAccuracy + "%",
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings{ AnimateHide = false });
 

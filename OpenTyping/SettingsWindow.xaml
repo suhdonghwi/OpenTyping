@@ -39,6 +39,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Name="MainName"
                            Text="설정"
                            FontSize="30pt"
                            Margin="5 10 0 5"
@@ -169,7 +170,7 @@
 
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource SettingNameTextBlock}"
-                                   Name="CurrData"
+                                   Name="CurPracData"
                                    Text="현재 연습 데이터"/>
 
                         <ListBox DataContext="{Binding ElementName=SelfWindow}"
@@ -250,7 +251,7 @@
                         </StackPanel>
 
                         <TextBlock Style="{StaticResource SettingNameTextBlock}"
-                                   Name="CurPracData"
+                                   Name="PracDataPath"
                                    Text="연습 데이터 경로"/>
                         <Grid>
                             <Grid.ColumnDefinitions>

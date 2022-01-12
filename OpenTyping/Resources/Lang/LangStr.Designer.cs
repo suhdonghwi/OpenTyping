@@ -88,7 +88,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 긴글연습.
+        ///   Looks up a localized string similar to Long sentences.
         /// </summary>
         internal static string ArtPrac {
             get {
@@ -97,7 +97,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 하나의 장문을 대상으로 연습합니다..
+        ///   Looks up a localized string similar to Practice with one long sentence.
         /// </summary>
         internal static string ArtPracDesc {
             get {
@@ -106,7 +106,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 평균 정확도.
+        ///   Looks up a localized string similar to Average accuracy.
         /// </summary>
         internal static string AvgCorrect {
             get {
@@ -115,7 +115,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 평균 타속.
+        ///   Looks up a localized string similar to Average speed.
         /// </summary>
         internal static string AvgSpeed {
             get {
@@ -124,7 +124,25 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 정확도.
+        ///   Looks up a localized string similar to 11172 Charaters.
+        /// </summary>
+        internal static string Char11722 {
+            get {
+                return ResourceManager.GetString("Char11722", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2350 Characters.
+        /// </summary>
+        internal static string Char2350 {
+            get {
+                return ResourceManager.GetString("Char2350", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accuracy.
         /// </summary>
         internal static string Correct {
             get {
@@ -133,7 +151,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 현재 자판.
+        ///   Looks up a localized string similar to Current Keyboard.
         /// </summary>
         internal static string CurKeyboard {
             get {
@@ -142,7 +160,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 현재 연습 데이터.
+        ///   Looks up a localized string similar to Current sentences.
         /// </summary>
         internal static string CurPracData {
             get {
@@ -151,7 +169,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 삭제.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
             get {
@@ -169,7 +187,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습할 키를 2개 이상 선택해주세요..
+        ///   Looks up a localized string similar to Please select 2 or more keys to practice.
         /// </summary>
         internal static string ErrMsg1 {
             get {
@@ -178,7 +196,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름이 중복되게 존재합니다..
+        ///   Looks up a localized string similar to Duplicate names exist.
         /// </summary>
         internal static string ErrMsg10 {
             get {
@@ -187,7 +205,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 이름(Name  필드)이 없습니다..
+        ///   Looks up a localized string similar to No Name field..
         /// </summary>
         internal static string ErrMsg11 {
             get {
@@ -196,7 +214,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 키 레이아웃(KeyLayoutData 필드) 가 없습니다..
+        ///   Looks up a localized string similar to No KeyLayoutData field..
         /// </summary>
         internal static string ErrMsg12 {
             get {
@@ -205,7 +223,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 문자코드(Character 필드)가 없습니다..
+        ///   Looks up a localized string similar to No Character field..
         /// </summary>
         internal static string ErrMsg13 {
             get {
@@ -214,7 +232,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 글자 데이터(TextData 필드) 크기가 0입니다..
+        ///   Looks up a localized string similar to TextData field size is 0..
         /// </summary>
         internal static string ErrMsg14 {
             get {
@@ -223,7 +241,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 글자 데이터(TextData 필드)가 없습니다..
+        ///   Looks up a localized string similar to Doesn&apos;t exist TextData field..
         /// </summary>
         internal static string ErrMsg15 {
             get {
@@ -232,7 +250,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 숫자 열.
+        ///   Looks up a localized string similar to Column of numbers.
         /// </summary>
         internal static string ErrMsg16 {
             get {
@@ -241,7 +259,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 첫째 열.
+        ///   Looks up a localized string similar to First row.
         /// </summary>
         internal static string ErrMsg17 {
             get {
@@ -250,7 +268,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 둘째 열.
+        ///   Looks up a localized string similar to Second row.
         /// </summary>
         internal static string ErrMsg18 {
             get {
@@ -259,7 +277,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 셋째 열.
+        ///   Looks up a localized string similar to Third row.
         /// </summary>
         internal static string ErrMsg19 {
             get {
@@ -268,7 +286,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다..
+        ///   Looks up a localized string similar to A file with the same name already exists in the Keyboard data path..
         /// </summary>
         internal static string ErrMsg2 {
             get {
@@ -277,7 +295,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 의 키의 개수는.
+        ///   Looks up a localized string similar to Number of key is .
         /// </summary>
         internal static string ErrMsg20 {
             get {
@@ -286,7 +304,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 가 필요하나.
+        ///   Looks up a localized string similar to need, but .
         /// </summary>
         internal static string ErrMsg21 {
             get {
@@ -295,7 +313,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 개로 일치하지 않습니다..
+        ///   Looks up a localized string similar to does not match .
         /// </summary>
         internal static string ErrMsg22 {
             get {
@@ -304,7 +322,16 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다..
+        ///   Looks up a localized string similar to Forth row.
+        /// </summary>
+        internal static string ErrMsg23 {
+            get {
+                return ResourceManager.GetString("ErrMsg23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A file with the same name already exists in the practice data path..
         /// </summary>
         internal static string ErrMsg3 {
             get {
@@ -313,7 +340,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자판 데이터가 한 개 존재하여 삭제할 수 없습니다..
+        ///   Looks up a localized string similar to Cannot be deleted because only one keyboard data exists..
         /// </summary>
         internal static string ErrMsg4 {
             get {
@@ -322,7 +349,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 데이터가 한 개 존재하여 삭제할 수 없습니다..
+        ///   Looks up a localized string similar to Cannot be deleted because only one practice data exists..
         /// </summary>
         internal static string ErrMsg5 {
             get {
@@ -331,7 +358,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 파일 내 한글 음절 개수가 1개 이하입니다..
+        ///   Looks up a localized string similar to The number of Hangul syllables in the file is one or less..
         /// </summary>
         internal static string ErrMsg6 {
             get {
@@ -340,7 +367,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 응용 프로그램 경로를 찾는 도중 에러가 발생했습니다..
+        ///   Looks up a localized string similar to An error occurred while locating the application path..
         /// </summary>
         internal static string ErrMsg7 {
             get {
@@ -349,7 +376,8 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요..
+        ///   Looks up a localized string similar to Cannot find keyborad data file. Please create keyboard data in that
+        ///    path and try again..
         /// </summary>
         internal static string ErrMsg8 {
             get {
@@ -358,7 +386,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요..
+        ///   Looks up a localized string similar to Cannot fidn practice data file. Please create practice data in that path and try again..
         /// </summary>
         internal static string ErrMsg9 {
             get {
@@ -367,11 +395,20 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 윗글쇠(Shift)  연습 제외.
+        ///   Looks up a localized string similar to Excluding upper key(Shift).
         /// </summary>
         internal static string ExceptShftKey {
             get {
                 return ResourceManager.GetString("ExceptShftKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Practice is finished..
+        /// </summary>
+        internal static string FinishedPrac {
+            get {
+                return ResourceManager.GetString("FinishedPrac", resourceCulture);
             }
         }
         
@@ -385,7 +422,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습하실 연습 데이터를 선택해주세요..
+        ///   Looks up a localized string similar to Select practice data you want to practice..
         /// </summary>
         internal static string InfoMsg1 {
             get {
@@ -394,7 +431,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 통계 정보 초기화.
+        ///   Looks up a localized string similar to Reset statistic information.
         /// </summary>
         internal static string InitStatInfo {
             get {
@@ -403,7 +440,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 페이지 중.
+        ///   Looks up a localized string similar to  of pages.
         /// </summary>
         internal static string InPage {
             get {
@@ -412,7 +449,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자판 파일 데이터.
+        ///   Looks up a localized string similar to Keyboard File data.
         /// </summary>
         internal static string KeyDataFile {
             get {
@@ -421,7 +458,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자판 파일 열기.
+        ///   Looks up a localized string similar to Open Keyboard File.
         /// </summary>
         internal static string KeyDataOpen {
             get {
@@ -430,7 +467,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자판 데이터 경로.
+        ///   Looks up a localized string similar to Keyboard layout path.
         /// </summary>
         internal static string KeyDataPath {
             get {
@@ -439,7 +476,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key Training.
+        ///   Looks up a localized string similar to Keys.
         /// </summary>
         internal static string KeyPrac {
             get {
@@ -448,7 +485,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 자판 위의 글자들 각각의 자리를 연습합니다..
+        ///   Looks up a localized string similar to Practice the position of each key on the keyboard..
         /// </summary>
         internal static string KeyPracDesc {
             get {
@@ -457,7 +494,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습하고 싶은 키의 위치를 클릭하여 설정/해제하세요..
+        ///   Looks up a localized string similar to Click the position of the key you want to practice on/off..
         /// </summary>
         internal static string KeyPracHelp {
             get {
@@ -466,7 +503,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 한국어.
+        ///   Looks up a localized string similar to Korean.
         /// </summary>
         internal static string Korean {
             get {
@@ -475,7 +512,16 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 가장 많이 틀린 키.
+        ///   Looks up a localized string similar to Your last speed:.
+        /// </summary>
+        internal static string LastSpeed {
+            get {
+                return ResourceManager.GetString("LastSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most mistyped key.
         /// </summary>
         internal static string MostWrongKey {
             get {
@@ -484,7 +530,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습한 문장 수.
+        ///   Looks up a localized string similar to Number of sentence practiced.
         /// </summary>
         internal static string NumPracSen {
             get {
@@ -502,7 +548,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 데이터 파일.
+        ///   Looks up a localized string similar to Practice Data File.
         /// </summary>
         internal static string PracDataFile {
             get {
@@ -511,7 +557,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 데이터 경로.
+        ///   Looks up a localized string similar to Sentences path.
         /// </summary>
         internal static string PracDataPath {
             get {
@@ -520,7 +566,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 문장 무작위 배열.
+        ///   Looks up a localized string similar to Random arrangement of sentences.
         /// </summary>
         internal static string RanSenLoc {
             get {
@@ -529,7 +575,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 문장연습.
+        ///   Looks up a localized string similar to Sentences.
         /// </summary>
         internal static string SenPrac {
             get {
@@ -538,7 +584,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 짧은 길이의 문장으로 나누어 연습합니다..
+        ///   Looks up a localized string similar to Practice by dividing it into short sentences.
         /// </summary>
         internal static string SenPracDesc {
             get {
@@ -547,7 +593,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습하고 싶은 글을 클릭하여 선택하세요..
+        ///   Looks up a localized string similar to Select the sentence you want to practice by clicking on it..
         /// </summary>
         internal static string SenPracHelp {
             get {
@@ -556,7 +602,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 자판.
+        ///   Looks up a localized string similar to Keyboard layout.
         /// </summary>
         internal static string SetKeyboard {
             get {
@@ -565,7 +611,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 데이터.
+        ///   Looks up a localized string similar to Sentences.
         /// </summary>
         internal static string SetPracData {
             get {
@@ -601,7 +647,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 연습 시작.
+        ///   Looks up a localized string similar to Start practice.
         /// </summary>
         internal static string StartPrac {
             get {
@@ -610,7 +656,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 음절연습.
+        ///   Looks up a localized string similar to Syllables.
         /// </summary>
         internal static string SylPrac {
             get {
@@ -619,7 +665,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  음절 단위로 입력하여 연습을 진행합니다. (한글 한정) .
+        ///   Looks up a localized string similar to Practice by entering syllable units (Korean only) .
         /// </summary>
         internal static string SylPracDesc {
             get {
@@ -628,11 +674,20 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다..
+        ///   Looks up a localized string similar to 2350 characters are practiced with the most frequently used in modern Hangul.
         /// </summary>
         internal static string SylPracHelp {
             get {
                 return ResourceManager.GetString("SylPracHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User defined.
+        /// </summary>
+        internal static string UserDefined {
+            get {
+                return ResourceManager.GetString("UserDefined", resourceCulture);
             }
         }
         
@@ -646,7 +701,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 선택된 자판 데이터.
+        ///   Looks up a localized string similar to Selected keyboard data.
         /// </summary>
         internal static string WarnMsg1 {
             get {
@@ -655,7 +710,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 선택된 연습 데이터.
+        ///   Looks up a localized string similar to Selected practice data.
         /// </summary>
         internal static string WarnMsg2 {
             get {
@@ -664,7 +719,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 를 삭제하시겠습니까?.
+        ///   Looks up a localized string similar to Are you sure you want to delete?.
         /// </summary>
         internal static string WarnMsg3 {
             get {
@@ -673,7 +728,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 의 통계 정보를 삭제하시겠습니까?.
+        ///   Looks up a localized string similar to Are you sure you want to delete statistical information?.
         /// </summary>
         internal static string WarnMsg4 {
             get {

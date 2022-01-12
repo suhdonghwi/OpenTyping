@@ -230,6 +230,9 @@ namespace OpenTyping
             // Syllable menu
             SyllablePracticeMenu.MenuName.Text = LangStr.SylPrac;
             SyllablePracticeMenu.MenuDesc.Text = LangStr.SylPracDesc;
+            SyllablePracticeMenu.Start2350Tile.Title = LangStr.Char2350;
+            SyllablePracticeMenu.StartModernHangulTile.Title = LangStr.Char11722;
+            SyllablePracticeMenu.StartCustomTile.Title = LangStr.UserDefined;
             SyllablePracticeMenu.MenuHelp.Text = LangStr.SylPracHelp;
 
             // Sentence menu

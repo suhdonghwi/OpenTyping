@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -49,6 +50,7 @@ namespace OpenTyping
         public SyllablePracticeWindow(string syllablesList)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             void FocusCurrentTextBox(object sender, System.Windows.RoutedEventArgs e) { CurrentTextBox.Focus(); }
             this.Loaded += FocusCurrentTextBox;
@@ -59,6 +61,11 @@ namespace OpenTyping
 
             NextSyllable = RandomSyllable();
             MoveSyllable();
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
         }
 
         private char RandomSyllable()

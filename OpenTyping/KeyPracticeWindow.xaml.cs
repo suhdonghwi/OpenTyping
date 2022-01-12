@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,6 +81,7 @@ namespace OpenTyping
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
@@ -132,6 +134,10 @@ namespace OpenTyping
             ShakeAnimation.KeyFrames = keyFrames;
         }
 
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+        }
 
         private KeyInfo RandomKey()
         {
