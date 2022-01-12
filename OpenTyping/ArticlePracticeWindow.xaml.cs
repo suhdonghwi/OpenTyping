@@ -63,6 +63,9 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+
         public ArticlePracticeWindow(PracticeData practiceData)
         {
             InitializeComponent();
@@ -228,6 +231,9 @@ namespace OpenTyping
 
         private void LineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            playMedia.Open(uri);
+            playMedia.Play(); // Key pressing sound
+
             if (freeze)
             {
                 e.Handled = true;
