@@ -12,7 +12,7 @@
                  Style="{StaticResource WindowTitleStyle}"
                  FontFamily="{StaticResource NanumGothic}"
                  Width="800" 
-                 Height="450" 
+                  Height="500" 
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
     <mah:MetroWindow.RightWindowCommands>

@@ -197,6 +197,12 @@
         "KeyData": "/",
         "ShiftKeyData": "?"
       }
+    ],
+    [
+      {
+        "KeyData": " ",
+        "ShiftKeyData": null
+      }
     ]
   ],
   "DefaultKeys": [

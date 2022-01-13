@@ -7,7 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d"
-             d:DesignHeight="450" 
+             d:DesignHeight="500" 
              d:DesignWidth="800">
     <UserControl.Resources>
         <local:KeyPosToKeyConverter x:Key="KeyPosToKeyDataConverter"/>

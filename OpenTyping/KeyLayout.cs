@@ -69,7 +69,8 @@ namespace OpenTyping
                 Tuple.Create(LangStr.ErrMsg16, 13), // Key count for 1st row on Keyboard
                 Tuple.Create(LangStr.ErrMsg17, 13), // 2nd row
                 Tuple.Create(LangStr.ErrMsg18, 11), // 3rd row
-                Tuple.Create(LangStr.ErrMsg19, 10)  // 4th row
+                Tuple.Create(LangStr.ErrMsg19, 10), // 4th row
+                Tuple.Create(LangStr.ErrMsg23, 1)   // 5th row
             };
 
             for (int i = 0; i < keyLayout.KeyLayoutData.Count; i++)
