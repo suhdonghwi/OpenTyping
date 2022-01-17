@@ -72,6 +72,7 @@
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">
                             <TextBlock Text="타속 "
+                                       Name="Speed"
                                        Foreground="White"
                                        FontFamily="{StaticResource NanumGothic}"
                                        FontSize="11pt"
@@ -90,6 +91,7 @@
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">
                             <TextBlock Text="평균 타속 "
+                                       Name="AvgSpeed"
                                        Foreground="White"
                                        FontFamily="{StaticResource NanumGothic}"
                                        FontSize="11pt"
@@ -107,6 +109,7 @@
                         <StackPanel Margin="5 2 5 2"
                                     Orientation="Horizontal">
                             <TextBlock Text="정확도 "
+                                       Name="Correct"
                                        Foreground="White"
                                        FontFamily="{StaticResource NanumGothic}"
                                        FontSize="11pt"
@@ -160,9 +163,11 @@
 
                 <lvc:CartesianChart.Series>
                     <lvc:LineSeries Values="{Binding Path=TypingSpeedList}"
+                                    Name="GphSpeed"
                                     Title="타속"
                                     Foreground="#1c7ed6"/>
                     <lvc:LineSeries Values="{Binding Path=AccuracyList}"
+                                    Name="GphCorrect"
                                     Title="정확도"
                                     Foreground="#f03e3e"
                                     Fill="Transparent"

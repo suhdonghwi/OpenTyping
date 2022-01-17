@@ -9,6 +9,7 @@ using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -43,7 +44,14 @@ namespace OpenTyping
         {
             get => practiceDataDir;
             private set => SetField(ref practiceDataDir, value);
-        } 
+        }
+
+        private string programLang = (string)Settings.Default[MainWindow.ProgramLang];
+        public string ProgramLang
+        {
+            get => programLang;
+            private set => SetField(ref programLang, value);
+        }
 
         private KeyLayout selectedKeyLayout;
         public KeyLayout SelectedKeyLayout
@@ -65,7 +73,8 @@ namespace OpenTyping
         public SettingsWindow()
         {
             InitializeComponent();
-
+            InitLangUI();
+           
             Closing += OnClose;
 
             KeyLayouts = new ObservableCollection<KeyLayout>(KeyLayout.LoadFromDirectory(KeyLayoutDataDir));
@@ -83,14 +92,54 @@ namespace OpenTyping
             PracticeDataList = new ObservableCollection<PracticeData>(PracticeData.LoadFromDirectory(PracticeDataDir));
         }
 
+        private void InitLangUI()
+        {
+            this.SetTextBylanguage();
+
+            // 언어 RadioButton checked 표시   
+            if (programLang == "uz")
+            {
+                uz.IsChecked = true;
+            }
+            else if (programLang == "en")
+            {
+                en.IsChecked = true;
+            }
+            else if (programLang == "ko")
+            {
+                ko.IsChecked = true;
+            }
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.Setting;
+            MainName.Text = LangStr.Setting;
+            TabLbl1.Content = LangStr.SetKeyboard;
+            TabLbl2.Content = LangStr.SetPracData;
+            TabLbl3.Content = LangStr.SetProgramLang;
+            ConfirmBtn.Text = LangStr.OK;
+
+            // Layout
+            CurKeyBoard.Text = LangStr.CurKeyboard;
+            InitStat.Text = LangStr.InitStatInfo;
+            KeyDataPath.Text = LangStr.KeyDataPath;
+
+            // Sentence
+            CurPracData.Text = LangStr.CurPracData;
+            PracDataPath.Text = LangStr.PracDataPath;
+            Add.Text = LangStr.Add;
+            Del.Text = LangStr.Delete;
+        }
+
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
         {
             var dataFileDialog = new CommonOpenFileDialog()
             {
-                Title = "자판 파일 열기"
+                Title = LangStr.KeyDataOpen
             };
 
-            dataFileDialog.Filters.Add(new CommonFileDialogFilter("자판 데이터 파일", "*.json"));
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter(LangStr.PracDataFile, "*.json"));
             dataFileDialog.Multiselect = false;
             dataFileDialog.EnsureFileExists = true;
             dataFileDialog.EnsurePathExists = true;
@@ -103,8 +152,8 @@ namespace OpenTyping
 
                 if (File.Exists(destLocation))
                 {
-                    MessageBox.Show("같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.",
-                                    "열린타자",
+                    MessageBox.Show(LangStr.ErrMsg2,
+                                    LangStr.AppName,
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }
@@ -124,16 +173,16 @@ namespace OpenTyping
         {
             if (KeyLayouts.Count == 1)
             {
-                MessageBox.Show("자판 데이터가 한 개 존재하여 삭제할 수 없습니다.",
-                                "열린타자",
+                MessageBox.Show(LangStr.ErrMsg4,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 return;
             }
 
-            MessageBoxResult result 
-                = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 를 삭제하시겠습니까?",
-                                  "열린타자",
+            MessageBoxResult result
+                = MessageBox.Show(LangStr.WarnMsg1 +" \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg3,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -146,9 +195,9 @@ namespace OpenTyping
 
         private void ClearStatButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result 
-                = MessageBox.Show("선택된 자판 데이터 \"" + SelectedKeyLayout.Name + "\" 의 통계 정보를 삭제하시겠습니까?",
-                                  "열린타자",
+            MessageBoxResult result
+                = MessageBox.Show(LangStr.WarnMsg1 + " \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg4,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -181,7 +230,7 @@ namespace OpenTyping
                 {
                     if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
                     {
-                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else throw;
                 }
@@ -194,7 +243,7 @@ namespace OpenTyping
         {
             var dataFileDialog = new CommonOpenFileDialog();
 
-            dataFileDialog.Filters.Add(new CommonFileDialogFilter("연습 데이터 파일", "*.json"));
+            dataFileDialog.Filters.Add(new CommonFileDialogFilter(LangStr.PracDataFile, "*.json"));
             dataFileDialog.Multiselect = false;
             dataFileDialog.EnsureFileExists = true;
             dataFileDialog.EnsurePathExists = true;
@@ -208,8 +257,8 @@ namespace OpenTyping
 
                 if (File.Exists(destLocation))
                 {
-                    MessageBox.Show("같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다.",
-                                    "열린타자",
+                    MessageBox.Show(LangStr.ErrMsg3,
+                                    LangStr.AppName,
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }
@@ -228,16 +277,16 @@ namespace OpenTyping
         {
             if (PracticeDataList.Count == 1)
             {
-                MessageBox.Show("연습 데이터가 한 개 존재하여 삭제할 수 없습니다.",
-                                "열린타자",
+                MessageBox.Show(LangStr.ErrMsg5,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 return;
             }
 
-            MessageBoxResult result 
-                = MessageBox.Show("선택된 연습 데이터 \"" + SelectedPracticeData.Name + "\" 를 삭제하시겠습니까?",
-                                  "열린타자",
+            MessageBoxResult result
+                = MessageBox.Show(LangStr.WarnMsg2 + " \"" + SelectedKeyLayout.Name + "\" " + LangStr.WarnMsg3,
+                                  LangStr.AppName,
                                   MessageBoxButton.OKCancel,
                                   MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
@@ -269,7 +318,7 @@ namespace OpenTyping
                 {
                     if (ex is PracticeDataLoadFail || ex is InvalidPracticeDataException)
                     {
-                        MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
@@ -279,6 +328,26 @@ namespace OpenTyping
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            var prevProgramLang = programLang;
+
+            if ((bool)uz.IsChecked)
+            {
+                programLang = "uz";
+            }
+            else if ((bool)en.IsChecked)
+            {
+                programLang = "en";
+            }
+            else if ((bool)ko.IsChecked)
+            {
+                programLang = "ko";
+            }
+
+            if (prevProgramLang != programLang)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).SetTextBylanguage(programLang);
+            }
+
             Close();
         }
 
@@ -294,6 +363,11 @@ namespace OpenTyping
             {
                 Settings.Default[MainWindow.KeyLayoutDataDirStr] = KeyLayoutDataDir;
                 KeyLayoutDataDirUpdated = true;
+            }
+
+            if ((string)Settings.Default[MainWindow.ProgramLang] != ProgramLang)
+            {
+                Settings.Default[MainWindow.ProgramLang] = ProgramLang;
             }
 
             Settings.Default[MainWindow.PracticeDataDirStr] = PracticeDataDir;
@@ -315,5 +389,6 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
+
     }
 }

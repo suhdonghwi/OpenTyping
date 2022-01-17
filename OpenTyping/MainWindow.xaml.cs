@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using MahApps.Metro.Controls;
 using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -22,14 +24,15 @@ namespace OpenTyping
         public const string KeyLayoutDataDirStr = "KeyLayoutDataDir";
         public const string KeyLayoutStr = "KeyLayout";
         public const string PracticeDataDirStr = "PracticeDataDir";
+        public const string ProgramLang = "ProgramLang";
 
         public MainWindow()
         {
             string exeDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             if (exeDirectory is null)
             {
-                MessageBox.Show("응용 프로그램 경로를 찾는 도중 에러가 발생했습니다.",
-                                "열린타자",
+                MessageBox.Show(LangStr.ErrMsg7,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                 Environment.Exit(-1);
@@ -73,7 +76,7 @@ namespace OpenTyping
             {
                 if (ex is KeyLayoutLoadFail || ex is InvalidKeyLayoutDataException)
                 {
-                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     Environment.Exit(-1);
                 }
             }
@@ -83,11 +86,23 @@ namespace OpenTyping
                 string dataDirectory = Path.Combine(exeDirectory, "data");
                 Settings.Default[PracticeDataDirStr] = dataDirectory;
             }
-            
+
+            if (string.IsNullOrEmpty((string)Settings.Default[ProgramLang]))
+            {
+                Settings.Default[ProgramLang] = "uz"; // App default language
+            }
+
             InitializeComponent();
+            this.SetTextBylanguage(Settings.Default[ProgramLang].ToString());
 
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
+        }
+
+        private void ChangeCulture(string nationCode)
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(nationCode);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(nationCode);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -180,6 +195,58 @@ namespace OpenTyping
                     MenuTabControl.SelectedIndex = 0;
                 }
             }
+        }
+
+        public void SetTextBylanguage(string langCode)
+        {
+            this.ChangeCulture(langCode);
+
+            // Title Bar
+            MainTitle.Title = LangStr.AppName;
+            MenuSetting.Text = LangStr.Setting;
+
+            // Top Menu
+            MenuLbl1.Content = LangStr.Home;
+            MenuLbl2.Content = LangStr.KeyPrac;
+            MenuLbl3.Content = LangStr.SylPrac;
+            MenuLbl4.Content = LangStr.SenPrac;
+            MenuLbl5.Content = LangStr.ArtPrac;
+
+            // Home menu
+            HomeMenu.MenuName.Text = LangStr.AppName;
+            HomeMenu.MenuDesc.Text = LangStr.AppDesc;
+            HomeMenu.Tile1.Title = LangStr.MostWrongKey;
+            HomeMenu.Tile2.Title = LangStr.AvgSpeed;
+            HomeMenu.Tile3.Title = LangStr.AvgCorrect;
+            HomeMenu.Tile4.Title = LangStr.NumPracSen;
+
+            // Key menu
+            KeyPracticeMenu.MenuName.Text = LangStr.KeyPrac;
+            KeyPracticeMenu.MenuDesc.Text = LangStr.KeyPracDesc;
+            KeyPracticeMenu.MenuHelp.Text = LangStr.KeyPracHelp;
+            KeyPracticeMenu.SetToggle.Text = LangStr.ExceptShftKey;
+            KeyPracticeMenu.StartBtn.Text = LangStr.StartPrac;
+
+            // Syllable menu
+            SyllablePracticeMenu.MenuName.Text = LangStr.SylPrac;
+            SyllablePracticeMenu.MenuDesc.Text = LangStr.SylPracDesc;
+            SyllablePracticeMenu.Start2350Tile.Title = LangStr.Char2350;
+            SyllablePracticeMenu.StartModernHangulTile.Title = LangStr.Char11722;
+            SyllablePracticeMenu.StartCustomTile.Title = LangStr.UserDefined;
+            SyllablePracticeMenu.MenuHelp.Text = LangStr.SylPracHelp;
+
+            // Sentence menu
+            SentencePracticeMenu.MenuName.Text = LangStr.SenPrac;
+            SentencePracticeMenu.MenuDesc.Text = LangStr.SenPracDesc;
+            SentencePracticeMenu.MenuHelp.Text = LangStr.SenPracHelp;
+            SentencePracticeMenu.SetToggle.Text = LangStr.RanSenLoc;
+            SentencePracticeMenu.StartBtn.Text = LangStr.StartPrac;
+
+            // Article menu
+            ArticlePracticeMenu.MenuName.Text = LangStr.ArtPrac;
+            ArticlePracticeMenu.MenuDesc.Text = LangStr.ArtPracDesc;
+            ArticlePracticeMenu.MenuHelp.Text = LangStr.SenPracHelp;
+            ArticlePracticeMenu.StartBtn.Text = LangStr.StartPrac;
         }
     }
 }

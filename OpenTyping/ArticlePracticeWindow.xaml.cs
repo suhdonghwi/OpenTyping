@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -62,15 +63,27 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+
         public ArticlePracticeWindow(PracticeData practiceData)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             inputTextBoxes = new List<TextBox> { InputTextBox0, InputTextBox1, InputTextBox2 };
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
 
             this.practiceData = practiceData;
             this.Loaded += ArticlePracticeWindow_Loaded;
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+            InPage.Text = LangStr.InPage;
+            Speed.Text = LangStr.Speed;
+            Correct.Text = LangStr.Correct;
         }
 
         private void Next3Sentences()
@@ -180,8 +193,8 @@ namespace OpenTyping
         private async void FinishPracticeAsync()
         {
             freeze = true;
-            await this.ShowMessageAsync("연습이 끝났습니다.",
-                                        "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + "% 입니다.",
+            await this.ShowMessageAsync(LangStr.FinishedPrac + " ",
+                                         LangStr.LastSpeed + " " + TypingSpeed + ", " + LangStr.Correct + ": "+ TypingAccuracy + "%",
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings{ AnimateHide = false });
 
@@ -219,6 +232,9 @@ namespace OpenTyping
 
         private void LineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            playMedia.Open(uri);
+            playMedia.Play(); // Key pressing sound
+
             if (freeze)
             {
                 e.Handled = true;

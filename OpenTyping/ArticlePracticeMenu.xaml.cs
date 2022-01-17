@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using OpenTyping.Resources.Lang;
+using System.Windows;
 
 namespace OpenTyping
 {
@@ -16,8 +17,8 @@ namespace OpenTyping
         {
             if (selectedPracticeData == null)
             {
-                MessageBox.Show("연습하실 연습 데이터를 선택해주세요.",
-                                "열린타자",
+                MessageBox.Show(LangStr.InfoMsg1,
+                                LangStr.AppName,
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
                 return;

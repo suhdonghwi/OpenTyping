@@ -10,6 +10,7 @@ using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
 using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -58,9 +59,13 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             this.practiceData = practiceData;
 
@@ -75,6 +80,16 @@ namespace OpenTyping
 
             SpeedChart.AxisX[0].Separator.Step = 1;
             this.Loaded += SentencePracticeWindow_Loaded;
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+            Speed.Text = LangStr.Speed;
+            AvgSpeed.Text = LangStr.AvgSpeed;
+            Correct.Text = LangStr.Correct;
+            GphSpeed.Title = LangStr.Speed;
+            GphCorrect.Title = LangStr.Correct;
         }
 
         private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -142,6 +157,9 @@ namespace OpenTyping
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            playMedia.Open(uri);
+            playMedia.Play(); // Key pressing sound
+
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 NextSentence();

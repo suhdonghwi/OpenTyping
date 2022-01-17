@@ -1,7 +1,9 @@
 ﻿using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -73,9 +75,13 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
             InitializeComponent();
+            this.SetTextBylanguage();
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
@@ -128,6 +134,10 @@ namespace OpenTyping
             ShakeAnimation.KeyFrames = keyFrames;
         }
 
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+        }
 
         private KeyInfo RandomKey()
         {
@@ -183,6 +193,9 @@ namespace OpenTyping
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
+                playMedia.Open(uri);
+                playMedia.Play(); // Key pressing sound
+
                 CorrectCount++;
                 MoveKey();
             }

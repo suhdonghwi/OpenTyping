@@ -44,7 +44,7 @@
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Foreground"
                         Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" />
-                <Setter Property="FontSize" Value="18pt" />
+                <Setter Property="FontSize" Value="15pt" />
                 <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}" />
                 <Setter Property="FontWeight" Value="Regular" />
                 <Setter Property="Margin" Value="0 4 0 0" />

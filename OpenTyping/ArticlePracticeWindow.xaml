@@ -90,6 +90,7 @@
                     <StackPanel Margin="5 2 5 2"
                                 Orientation="Horizontal">
                         <TextBlock Text="타속 "
+                                   Name="Speed"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
                                    FontSize="11pt"
@@ -107,6 +108,7 @@
                     <StackPanel Margin="5 2 5 2"
                                 Orientation="Horizontal">
                         <TextBlock Text="정확도 "
+                                   Name="Correct"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
                                    FontSize="11pt"
@@ -136,6 +138,7 @@
                                Margin="0 2 7 0"
                                VerticalAlignment="Center"/>
                     <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Name="InPage"
                                Text="페이지 중"
                                FontSize="11pt"
                                Foreground="White"

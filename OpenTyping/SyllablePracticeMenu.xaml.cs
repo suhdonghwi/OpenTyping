@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -65,8 +66,8 @@ namespace OpenTyping
 
                 if (hangulList.Length <= 1)
                 {
-                    MessageBox.Show("파일 내 한글 음절 개수가 1개 이하입니다.",
-                                    "열린타자",
+                    MessageBox.Show(LangStr.ErrMsg6,
+                                    LangStr.AppName,
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Error);
                 }

@@ -86,6 +86,7 @@ namespace OpenTyping
                 new List<Input.Key> { Input.Key.Q, Input.Key.W, Input.Key.E, Input.Key.R, Input.Key.T, Input.Key.Y, Input.Key.U, Input.Key.I, Input.Key.O, Input.Key.P, Input.Key.OemOpenBrackets, Input.Key.OemCloseBrackets, Input.Key.Oem5 },
                 new List<Input.Key> { Input.Key.A, Input.Key.S, Input.Key.D, Input.Key.F, Input.Key.G, Input.Key.H, Input.Key.J, Input.Key.K, Input.Key.L, Input.Key.OemSemicolon, Input.Key.OemQuotes},
                 new List<Input.Key> { Input.Key.Z, Input.Key.X, Input.Key.C, Input.Key.V, Input.Key.B, Input.Key.N, Input.Key.M, Input.Key.OemComma, Input.Key.OemPeriod, Input.Key.OemQuestion},
+                new List<Input.Key> { Input.Key.Space}
             };
 
             for (int i=0; i<keyPosData.Count; i++)

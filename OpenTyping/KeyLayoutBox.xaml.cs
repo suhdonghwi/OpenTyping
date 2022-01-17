@@ -40,6 +40,7 @@ namespace OpenTyping
             FirstRow.Children.Clear();
             SecondRow.Children.Clear();
             ThirdRow.Children.Clear();
+            ForthRow.Children.Clear();
 
             keyLayout = new List<List<KeyBox>>();
 
@@ -56,7 +57,7 @@ namespace OpenTyping
                         Height = 50,
                         Margin = new Thickness(0, 0, 2, 0)
                     };
-
+                    
                     if (Clickable)
                     {
                         keyBox.MouseDown += KeyBox_MouseDown;
@@ -68,8 +69,8 @@ namespace OpenTyping
                 keyLayout.Add(keyBoxes);
             }
 
-            var keyRows = new List<StackPanel> { NumberRow, FirstRow, SecondRow, ThirdRow };
-            for (int i = 0; i < 4; i++)
+            var keyRows = new List<StackPanel> { NumberRow, FirstRow, SecondRow, ThirdRow, ForthRow };
+            for (int i = 0; i < keyRows.Count; i++)
             {
                 for (int j = 0; j < keyLayout[i].Count; j++)
                 {
@@ -77,6 +78,11 @@ namespace OpenTyping
                     {
                         keyLayout[i][j].Width = 70;
                     }
+                    else if (i == keyRows.Count - 1 && j == 0) // Spacebar
+                    {
+                        keyLayout[i][j].Width = 400;
+                    }
+
                     keyRows[i].Children.Add(keyLayout[i][j]);
                 }
             }
