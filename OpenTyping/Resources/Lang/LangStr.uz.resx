@@ -119,6 +119,7 @@
   </resheader>
   <data name="Add" xml:space="preserve">
     <value>Qo'shish</value>
+    <comment>Qo'shish</comment>
   </data>
   <data name="AppDesc" xml:space="preserve">
     <value>현대적인 오픈 소스 타자연습 프로그램</value>
@@ -197,6 +198,7 @@
   </data>
   <data name="ArtPrac" xml:space="preserve">
     <value>Uzun matnlar mashq</value>
+    <comment>Uzun matnlar mashq</comment>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
     <value>하나의 장문을 대상으로 연습합니다.</value>
