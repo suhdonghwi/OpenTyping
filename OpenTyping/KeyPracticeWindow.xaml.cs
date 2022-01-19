@@ -248,7 +248,7 @@ namespace OpenTyping
             });
         }
 
-        private void WindowActivated(object sender, EventArgs e)
+        private void KeyPracticeWindow_Activated(object sender, EventArgs e)
         {
             if (CurrentKey != null)
             {
@@ -256,9 +256,17 @@ namespace OpenTyping
             }
         }
 
-        private void WindowDeactivated(object sender, EventArgs e)
+        private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
         {
             KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+        }
+
+        private void KeyPracticeWindow_LocationChanged(object sender, EventArgs e)
+        {
+            if (CurrentKey != null)
+            {
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

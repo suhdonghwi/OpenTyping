@@ -15,8 +15,9 @@
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}"
                  Closed="KeyPracticeWindow_Closed"
-                 Activated="WindowActivated"
-                 Deactivated="WindowDeactivated">
+                 LocationChanged="KeyPracticeWindow_LocationChanged"
+                 Activated="KeyPracticeWindow_Activated"
+                 Deactivated="KeyPracticeWindow_Deactivated">
     <StackPanel Orientation="Vertical">
         <Grid x:Name="KeyGrid"
               Margin="0 10 0 0">

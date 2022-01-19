@@ -79,11 +79,19 @@ namespace OpenTyping
             KeyColor = keyColor;
             ShadowColor = shadowColor;
 
-            if (Key.KeyData == " ") // Spacebar
-            {
-                handPopup.VerticalOffset = 0;
-            }
             handPopup.IsOpen = isHandPopup;
+            if (handPopup.IsOpen) 
+            {
+                // Re-positioning on Spacebar
+                if (Key.KeyData == " ") 
+                {
+                    handPopup.VerticalOffset = 0;
+                }
+
+                // Re-positioning when KeyPracticeWindow LocChanged
+                handPopup.HorizontalOffset += 1;
+                handPopup.HorizontalOffset -= 1;
+            }
 
             Pressed = true;
         }
