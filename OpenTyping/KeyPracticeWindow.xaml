@@ -11,10 +11,12 @@
                  Title="열린타자"
                  Style="{StaticResource WindowTitleStyle}"
                  Width="810" 
-                 Height="500"
+                 Height="450"
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}"
-                 Closed="KeyPracticeWindow_Closed">
+                 Closed="KeyPracticeWindow_Closed"
+                 Activated="WindowActivated"
+                 Deactivated="WindowDeactivated">
     <StackPanel Orientation="Vertical">
         <Grid x:Name="KeyGrid"
               Margin="0 10 0 0">

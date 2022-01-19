@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace OpenTyping
 {
@@ -51,6 +53,7 @@ namespace OpenTyping
 
             defaultKeyColor = KeyColor;
             defaultShadowColor = ShadowColor;
+            handPopup.IsOpen = false;
             Loaded += OnLoaded;
         }
 
@@ -58,9 +61,12 @@ namespace OpenTyping
         {
             defaultKeyColor = KeyColor;
             defaultShadowColor = ShadowColor;
+
+            Uri resourceUri = new Uri("Resources/imgs/" + Key.FingerPosition + ".png", UriKind.Relative);
+            handImg.Source = new BitmapImage(resourceUri);
         }
 
-        private void Press(Brush keyColor, Brush shadowColor)
+        private void Press(Brush keyColor, Brush shadowColor, bool isHandPopup = false)
         {
             if (!Pressed)
             {
@@ -73,12 +79,18 @@ namespace OpenTyping
             KeyColor = keyColor;
             ShadowColor = shadowColor;
 
+            if (Key.KeyData == " ") // Spacebar
+            {
+                handPopup.VerticalOffset = 0;
+            }
+            handPopup.IsOpen = isHandPopup;
+
             Pressed = true;
         }
 
-        public void PressCorrect()
+        public void PressCorrect(bool isHandPopup = false)
         {
-            Press(CorrectKeyColor, CorrectKeyShadowColor);
+            Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup);
         }
 
         public void PressIncorrect()
@@ -98,6 +110,7 @@ namespace OpenTyping
 
             KeyColor = defaultKeyColor;
             ShadowColor = defaultShadowColor;
+            handPopup.IsOpen = false;
 
             Pressed = false;
         }

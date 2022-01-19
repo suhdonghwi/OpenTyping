@@ -94,9 +94,9 @@ namespace OpenTyping
             }
         }
 
-        public void PressCorrectKey(KeyPos pos)
+        public void PressCorrectKey(KeyPos pos, bool isHandPopup = false)
         {
-            keyLayout[pos.Row][pos.Column].PressCorrect();
+            keyLayout[pos.Row][pos.Column].PressCorrect(isHandPopup);
         }
 
         public void PressIncorrectKey(KeyPos pos)

@@ -5,203 +5,251 @@
     [
       {
         "KeyData": "`",
-        "ShiftKeyData": "~"
+        "ShiftKeyData": "~",
+        "FingerPosition": "L5"
       },
       {
         "KeyData": "1",
-        "ShiftKeyData": "!"
+        "ShiftKeyData": "!",
+        "FingerPosition": "L5"
       },
       {
         "KeyData": "2",
-        "ShiftKeyData": "@"
+        "ShiftKeyData": "@",
+        "FingerPosition": "L4"
       },
       {
         "KeyData": "3",
-        "ShiftKeyData": "#"
+        "ShiftKeyData": "#",
+        "FingerPosition": "L3"
       },
       {
         "KeyData": "4",
-        "ShiftKeyData": "$"
+        "ShiftKeyData": "$",
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "5",
-        "ShiftKeyData": "%"
+        "ShiftKeyData": "%",
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "6",
-        "ShiftKeyData": "^"
+        "ShiftKeyData": "^",
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "7",
-        "ShiftKeyData": "&"
+        "ShiftKeyData": "&",
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "8",
-        "ShiftKeyData": "*"
+        "ShiftKeyData": "*",
+        "FingerPosition": "R3"
       },
       {
         "KeyData": "9",
-        "ShiftKeyData": "("
+        "ShiftKeyData": "(",
+        "FingerPosition": "R4"
       },
       {
         "KeyData": "0",
-        "ShiftKeyData": ")"
+        "ShiftKeyData": ")",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "-",
-        "ShiftKeyData": "_"
+        "ShiftKeyData": "_",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "=",
-        "ShiftKeyData": "+"
+        "ShiftKeyData": "+",
+        "FingerPosition": "R5"
       }
     ],
     [
       {
         "KeyData": "ㅂ",
-        "ShiftKeyData": "ㅃ"
+        "ShiftKeyData": "ㅃ",
+        "FingerPosition": "L5"
       },
       {
         "KeyData": "ㅈ",
-        "ShiftKeyData": "ㅉ"
+        "ShiftKeyData": "ㅉ",
+        "FingerPosition": "L4"
       },
       {
         "KeyData": "ㄷ",
-        "ShiftKeyData": "ㄸ"
+        "ShiftKeyData": "ㄸ",
+        "FingerPosition": "L3"
       },
       {
         "KeyData": "ㄱ",
-        "ShiftKeyData": "ㄲ"
+        "ShiftKeyData": "ㄲ",
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅅ",
-        "ShiftKeyData": "ㅆ"
+        "ShiftKeyData": "ㅆ",
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅛ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "ㅕ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "ㅑ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R3"
       },
       {
         "KeyData": "ㅐ",
-        "ShiftKeyData": "ㅒ"
+        "ShiftKeyData": "ㅒ",
+        "FingerPosition": "R4"
       },
       {
         "KeyData": "ㅔ",
-        "ShiftKeyData": "ㅖ"
+        "ShiftKeyData": "ㅖ",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "[",
-        "ShiftKeyData": "{"
+        "ShiftKeyData": "{",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "]",
-        "ShiftKeyData": "}"
+        "ShiftKeyData": "}",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "⧵",
-        "ShiftKeyData": "|"
+        "ShiftKeyData": "|",
+        "FingerPosition": "R5"
       }
     ],
     [
       {
         "KeyData": "ㅁ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L5"
       },
       {
         "KeyData": "ㄴ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L4"
       },
       {
         "KeyData": "ㅇ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L3"
       },
       {
         "KeyData": "ㄹ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅎ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅗ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "ㅓ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "ㅏ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R3"
       },
       {
         "KeyData": "ㅣ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R4"
       },
       {
         "KeyData": ";",
-        "ShiftKeyData": ":"
+        "ShiftKeyData": ":",
+        "FingerPosition": "R5"
       },
       {
         "KeyData": "'",
-        "ShiftKeyData": "\""
+        "ShiftKeyData": "\"",
+        "FingerPosition": "R5"
       }
     ],
     [
       {
         "KeyData": "ㅋ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L5"
       },
       {
         "KeyData": "ㅌ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L4"
       },
       {
         "KeyData": "ㅊ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L3"
       },
       {
         "KeyData": "ㅍ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅠ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
       },
       {
         "KeyData": "ㅜ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": "ㅡ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
       },
       {
         "KeyData": ",",
-        "ShiftKeyData": "<"
+        "ShiftKeyData": "<",
+        "FingerPosition": "R3"
       },
       {
         "KeyData": ".",
-        "ShiftKeyData": ">"
+        "ShiftKeyData": ">",
+        "FingerPosition": "R4"
       },
       {
         "KeyData": "/",
-        "ShiftKeyData": "?"
+        "ShiftKeyData": "?",
+        "FingerPosition": "R5"
       }
     ],
     [
       {
         "KeyData": " ",
-        "ShiftKeyData": null
+        "ShiftKeyData": null,
+        "FingerPosition": "R1"
       }
     ]
   ],

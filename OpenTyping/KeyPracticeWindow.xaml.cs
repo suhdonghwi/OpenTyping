@@ -167,7 +167,7 @@ namespace OpenTyping
             }
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
             if (CurrentKey.IsShift)
             {
                 KeyLayoutBox.LShiftKey.PressCorrect();
@@ -199,7 +199,7 @@ namespace OpenTyping
                 CorrectCount++;
                 MoveKey();
             }
-            else
+            else // Wrong pressed
             {
                 IncorrectCount++;
 
@@ -217,7 +217,7 @@ namespace OpenTyping
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressCorrectKey(pos);
+                        KeyLayoutBox.PressCorrectKey(pos, true);
                     }
                     else
                     {
@@ -246,6 +246,19 @@ namespace OpenTyping
             {
                 KeyIncorrectCount = incorrectStats
             });
+        }
+
+        private void WindowActivated(object sender, EventArgs e)
+        {
+            if (CurrentKey != null)
+            {
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+            }
+        }
+
+        private void WindowDeactivated(object sender, EventArgs e)
+        {
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
