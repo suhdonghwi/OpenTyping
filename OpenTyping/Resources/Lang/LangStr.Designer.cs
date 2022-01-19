@@ -142,6 +142,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright.
+        /// </summary>
+        internal static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accuracy.
         /// </summary>
         internal static string Correct {
@@ -178,11 +187,11 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English.
+        ///   Looks up a localized string similar to Derivative work.
         /// </summary>
-        internal static string English {
+        internal static string DWork {
             get {
-                return ResourceManager.GetString("English", resourceCulture);
+                return ResourceManager.GetString("DWork", resourceCulture);
             }
         }
         
@@ -503,20 +512,20 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Korean.
-        /// </summary>
-        internal static string Korean {
-            get {
-                return ResourceManager.GetString("Korean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your last speed:.
         /// </summary>
         internal static string LastSpeed {
             get {
                 return ResourceManager.GetString("LastSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        internal static string License {
+            get {
+                return ResourceManager.GetString("License", resourceCulture);
             }
         }
         
@@ -544,6 +553,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original work.
+        /// </summary>
+        internal static string OWork {
+            get {
+                return ResourceManager.GetString("OWork", resourceCulture);
             }
         }
         
@@ -692,11 +710,11 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O&apos;zbek.
+        ///   Looks up a localized string similar to Version.
         /// </summary>
-        internal static string Uzbek {
+        internal static string Version {
             get {
-                return ResourceManager.GetString("Uzbek", resourceCulture);
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         

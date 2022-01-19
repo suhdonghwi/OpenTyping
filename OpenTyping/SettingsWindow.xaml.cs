@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Documents;
 using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
@@ -118,6 +120,7 @@ namespace OpenTyping
             TabLbl1.Content = LangStr.SetKeyboard;
             TabLbl2.Content = LangStr.SetPracData;
             TabLbl3.Content = LangStr.SetProgramLang;
+            TabLbl4.Content = LangStr.Copyright;
             ConfirmBtn.Text = LangStr.OK;
 
             // Layout
@@ -130,6 +133,14 @@ namespace OpenTyping
             PracDataPath.Text = LangStr.PracDataPath;
             Add.Text = LangStr.Add;
             Del.Text = LangStr.Delete;
+
+            // Copyright
+            Version.Text = LangStr.Version + " : ";
+            Copyright.Text = "* " + LangStr.Copyright;
+            OWork.Text = LangStr.OWork + " : ";
+            DWork.Text = LangStr.DWork + " : ";
+            License1.Text = LangStr.License + " : ";
+            License2.Text = LangStr.License + " : ";
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
@@ -375,6 +386,12 @@ namespace OpenTyping
             Settings.Default.Save();
         }
 
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink hl = (Hyperlink)sender;
+            Process.Start(hl.NavigateUri.AbsoluteUri);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -389,6 +406,5 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
-
     }
 }

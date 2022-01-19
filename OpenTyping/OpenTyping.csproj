@@ -380,6 +380,9 @@
     <Resource Include="Resources\Imgs\R4.png" />
     <Resource Include="Resources\Imgs\R5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imgs\roboticsware.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

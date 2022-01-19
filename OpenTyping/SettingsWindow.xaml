@@ -285,9 +285,53 @@
                                Content="프로그램 언어"/>
                     </TabItem.Header>
                     <StackPanel Orientation="Vertical" Margin="15">
-                        <RadioButton x:Name="uz" GroupName="Lang" FontSize="18">O'zbek</RadioButton>
+                        <RadioButton x:Name="uz" GroupName="Lang" FontSize="18">O'zbekcha</RadioButton>
                         <RadioButton x:Name="en" GroupName="Lang" FontSize="18">English</RadioButton>
                         <RadioButton x:Name="ko" GroupName="Lang" FontSize="18">한국어</RadioButton>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label x:Name="TabLbl4" Style="{StaticResource TabItemLabel}" Content="Copyright"/>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Vertical" Margin="15" HorizontalAlignment="Center">
+                        <Image Source="Resources/Imgs/roboticsware.png" Width="250"/>
+                        <TextBlock HorizontalAlignment="Center">
+                           <Hyperlink NavigateUri="https://roboticsware.uz" RequestNavigate="Hyperlink_Click">
+                               https://RoboticsWare.uz
+                           </Hyperlink>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Name="Version" Text="Version : " FontSize="12" HorizontalAlignment="Center"/>
+                            <TextBlock>1.0.0 Beta</TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Name="Copyright" Text="* Copyright" FontWeight="Bold" FontSize="14" Margin="0 50 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="OWork" Text="Original work : " FontSize="14"/>
+                            <TextBlock>
+                                <Hyperlink NavigateUri="https://github.com/suhdonghwi/OpenTyping" RequestNavigate="Hyperlink_Click">
+                                    https://github.com/suhdonghwi/OpenTyping
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="License1" Text="License : " FontSize="14"/>
+                            <TextBlock>MIT</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                            <TextBlock Name="DWork" Text="Derivative work : " FontSize="14"/>
+                            <TextBlock>
+                                <Hyperlink NavigateUri="https://github.com/roboticsware/OpenTyping" RequestNavigate="Hyperlink_Click">
+                                   https://github.com/roboticsware/OpenTyping
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="License2" Text="License : " FontSize="14"/>
+                            <TextBlock>GPLv3</TextBlock>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
             </TabControl>

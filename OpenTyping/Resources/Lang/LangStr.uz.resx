@@ -141,9 +141,6 @@
   <data name="Delete" xml:space="preserve">
     <value>삭제</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
-  </data>
   <data name="ErrMsg1" xml:space="preserve">
     <value>연습할 키를 2개 이상 선택해주세요.</value>
   </data>
@@ -192,9 +189,6 @@
   <data name="KeyPracHelp" xml:space="preserve">
     <value>연습하고 싶은 키의 위치를 클릭하여 설정/해제하세요.</value>
   </data>
-  <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
-  </data>
   <data name="ArtPrac" xml:space="preserve">
     <value>Uzun matnlar mashq</value>
   </data>
@@ -239,9 +233,6 @@
   </data>
   <data name="StartPrac" xml:space="preserve">
     <value>Mashq boshlash</value>
-  </data>
-  <data name="Uzbek" xml:space="preserve">
-    <value>O'zbek</value>
   </data>
   <data name="WarnMsg1" xml:space="preserve">
     <value>선택된 자판 데이터</value>
@@ -344,5 +335,20 @@
   </data>
   <data name="UserDefined" xml:space="preserve">
     <value>사용자 정의</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="DWork" xml:space="preserve">
+    <value>Derivative work</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="OWork" xml:space="preserve">
+    <value>Original work</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
   </data>
 </root>
