@@ -7,6 +7,7 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -36,6 +37,7 @@ namespace OpenTyping
         private readonly IList<KeyPos> keyList;
         private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
+        private bool isHandPopup = true;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -168,7 +170,7 @@ namespace OpenTyping
             }
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
             if (CurrentKey.IsShift)
             {
                 KeyLayoutBox.LShiftKey.PressCorrect();
@@ -219,7 +221,7 @@ namespace OpenTyping
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressCorrectKey(pos, true);
+                        KeyLayoutBox.PressCorrectKey(pos, this.isHandPopup);
                     }
                     else
                     {
@@ -254,7 +256,7 @@ namespace OpenTyping
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
             }
         }
 
@@ -267,7 +269,31 @@ namespace OpenTyping
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
+            }
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
+            {
+                if (toggleButton.IsChecked == true)
+                {
+                    this.isHandPopup = true;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                    }
+                }
+                else
+                {
+                    this.isHandPopup = false;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+                    }
+                }
             }
         }
 

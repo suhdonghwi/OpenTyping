@@ -98,6 +98,21 @@
                        Text="{Binding IncorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>
+            <ToggleButton Margin="630 0 0 0" 
+                            Width="30"
+                            Height="30"
+                            IsChecked="True"
+                            Unchecked="ToggleButton_Checked"
+                            Checked ="ToggleButton_Checked"
+                            Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                <ToggleButton.ContentTemplate>
+                    <DataTemplate>
+                        <iconPacks:PackIconFontAwesome Width="20"
+                                                        Height="20"
+                                                        Kind="HandPaperSolid" />
+                    </DataTemplate>
+                </ToggleButton.ContentTemplate>
+            </ToggleButton>
         </StackPanel>
         <local:KeyLayoutBox x:Name="KeyLayoutBox"
                             Clickable="False"
