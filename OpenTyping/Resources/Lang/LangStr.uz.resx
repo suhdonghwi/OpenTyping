@@ -121,234 +121,231 @@
     <value>Qo'shish</value>
   </data>
   <data name="AppDesc" xml:space="preserve">
-    <value>현대적인 오픈 소스 타자연습 프로그램</value>
+    <value>Ochiq mabali zamonaviy klaviatura mashq dasturi</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>TezTer</value>
   </data>
   <data name="AvgCorrect" xml:space="preserve">
-    <value>평균 정확도</value>
+    <value>O'rtacha aniqlik</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
     <value>O'rtacha terish tezligi</value>
   </data>
   <data name="CurKeyboard" xml:space="preserve">
-    <value>현재 자판</value>
+    <value>Joriy klaviatura</value>
   </data>
   <data name="CurPracData" xml:space="preserve">
-    <value>현재 연습 데이터</value>
+    <value>Joriy matnlar</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>삭제</value>
+    <value>O'chirish</value>
   </data>
   <data name="ErrMsg1" xml:space="preserve">
-    <value>연습할 키를 2개 이상 선택해주세요.</value>
+    <value>Iltimos, mashq qilish uchun 2 yoki undan ortiq kalitni tanlang.</value>
   </data>
   <data name="ErrMsg2" xml:space="preserve">
-    <value>같은 이름의 파일이 이미 자판 데이터 경로에 존재합니다.</value>
+    <value>Shu nomdagi fayl Klaviatura fayllari yoʻnalishida allaqachon mavjud.</value>
   </data>
   <data name="ErrMsg3" xml:space="preserve">
-    <value>같은 이름의 파일이 이미 연습 데이터 경로에 존재합니다.</value>
+    <value>Shu nomdagi fayl Matnlar fayllari yoʻnalishida allaqachon mavjud.</value>
   </data>
   <data name="ErrMsg4" xml:space="preserve">
-    <value>자판 데이터가 한 개 존재하여 삭제할 수 없습니다.</value>
+    <value>Oʻchirib boʻlmaydi, chunki faqat bitta klaviatura maʼlumotlari mavjud.</value>
   </data>
   <data name="ErrMsg5" xml:space="preserve">
-    <value>연습 데이터가 한 개 존재하여 삭제할 수 없습니다.</value>
+    <value>Oʻchirib boʻlmaydi, chunki faqat bitta matn maʼlumotlari mavjud.</value>
   </data>
   <data name="ErrMsg6" xml:space="preserve">
-    <value>파일 내 한글 음절 개수가 1개 이하입니다.</value>
+    <value>Fayldagi koreyscha bo'g'inlari soni bitta yoki undan kam.</value>
   </data>
   <data name="ErrMsg7" xml:space="preserve">
-    <value>응용 프로그램 경로를 찾는 도중 에러가 발생했습니다.</value>
+    <value>Ilova fayl yo'nalishini aniqlashda xatolik yuz berdi.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
-    <value>윗글쇠(Shift)  연습 제외</value>
+    <value>Yuqori tugma (Shift) bundan mustasno</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Asosiy</value>
   </data>
-  <data name="Home1" xml:space="preserve">
-    <value>홈</value>
-  </data>
   <data name="InfoMsg1" xml:space="preserve">
-    <value>연습하실 연습 데이터를 선택해주세요.</value>
+    <value>Mashq qilmoqchi bo'lgan matnini tanlang.</value>
   </data>
   <data name="InitStatInfo" xml:space="preserve">
-    <value>통계 정보 초기화</value>
+    <value>Statistik ma'lumotlarni qayta o'rnatish</value>
   </data>
   <data name="KeyDataPath" xml:space="preserve">
-    <value>자판 데이터 경로</value>
+    <value>Klaviatura fayllar yo'nalishi</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
-    <value>Harflar mashq</value>
+    <value>Harflar mashg'i</value>
   </data>
   <data name="KeyPracDesc" xml:space="preserve">
-    <value>자판 위의 글자들 각각의 자리를 연습합니다.</value>
+    <value>Klaviaturadagi har bir tugmachalarning joyini mashq qiling.</value>
   </data>
   <data name="KeyPracHelp" xml:space="preserve">
-    <value>연습하고 싶은 키의 위치를 클릭하여 설정/해제하세요.</value>
+    <value>Yoqish/o‘chirish uchun mashq qilmoqchi bo‘lgan klavishning o‘rnini bosing.</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
-    <value>Uzun matnlar mashq</value>
+    <value>Matnlar mashg'i</value>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
-    <value>하나의 장문을 대상으로 연습합니다.</value>
+    <value>Bir matn orqali mashq qiling.</value>
   </data>
   <data name="MostWrongKey" xml:space="preserve">
-    <value>가장 많이 틀린 키</value>
+    <value>Ko'pincha noto'g'ri kiritilgan harf</value>
   </data>
   <data name="NumPracSen" xml:space="preserve">
-    <value>연습한 문장 수</value>
+    <value>Amaldagi gaplar soni</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="PracDataPath" xml:space="preserve">
-    <value>연습 데이터 경로</value>
+    <value>Matn fayllar yo'nalishi</value>
   </data>
   <data name="RanSenLoc" xml:space="preserve">
-    <value>Matnlarni tasodify aralash</value>
+    <value>Gaplarni tasodifiy tartibga solish</value>
   </data>
   <data name="SenPrac" xml:space="preserve">
-    <value>Matnlar mashq</value>
+    <value>Gaplar mashg'i</value>
   </data>
   <data name="SenPracDesc" xml:space="preserve">
-    <value>Qisqa matnlarga bo'lib mashq qilasiz</value>
+    <value>Qisqa qismlarga bo'lib mashq qiling.</value>
   </data>
   <data name="SenPracHelp" xml:space="preserve">
-    <value>Mashq qilmoqchi matnni tanlang</value>
+    <value>Mashq qilmoqchi bo'lgan matnni tanlab, ustiga bosing</value>
   </data>
   <data name="SetKeyboard" xml:space="preserve">
-    <value>연습 자판</value>
+    <value>Klaviatura turi</value>
   </data>
   <data name="SetPracData" xml:space="preserve">
-    <value>연습 데이터</value>
+    <value>Matnlar</value>
   </data>
   <data name="SetProgramLang" xml:space="preserve">
-    <value>Tili</value>
+    <value>Til</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>Sozlash</value>
   </data>
   <data name="StartPrac" xml:space="preserve">
-    <value>Mashq boshlash</value>
+    <value>Mashqni boshlash</value>
   </data>
   <data name="WarnMsg1" xml:space="preserve">
-    <value>선택된 자판 데이터</value>
+    <value>Tanlangan klaviatura</value>
   </data>
   <data name="WarnMsg2" xml:space="preserve">
-    <value>선택된 연습 데이터</value>
+    <value>Tanlangan matn</value>
   </data>
   <data name="WarnMsg3" xml:space="preserve">
-    <value>를 삭제하시겠습니까?</value>
+    <value>ni oʻchirib tashlamoqchimisiz?</value>
   </data>
   <data name="WarnMsg4" xml:space="preserve">
-    <value>의 통계 정보를 삭제하시겠습니까?</value>
+    <value>ning statistik maʼlumotlarni oʻchirib tashlamoqchimisiz?</value>
   </data>
   <data name="Correct" xml:space="preserve">
-    <value>aniqligi</value>
+    <value>Aniqlik</value>
   </data>
   <data name="ErrMsg10" xml:space="preserve">
-    <value>이름이 중복되게 존재합니다.</value>
+    <value>Takroriy nomlar mavjud.</value>
   </data>
   <data name="ErrMsg11" xml:space="preserve">
-    <value>이름(Name  필드)이 없습니다.</value>
+    <value>Name maydoni yo'q.</value>
   </data>
   <data name="ErrMsg12" xml:space="preserve">
-    <value>키 레이아웃(KeyLayoutData 필드) 가 없습니다.</value>
+    <value>KeyLayoutData maydoni yo'q.</value>
   </data>
   <data name="ErrMsg13" xml:space="preserve">
-    <value>문자코드(Character 필드)가 없습니다.</value>
+    <value>Chracter maydoni yo'q.</value>
   </data>
   <data name="ErrMsg14" xml:space="preserve">
-    <value>글자 데이터(TextData 필드) 크기가 0입니다.</value>
+    <value>TextData maydoni hajmi 0 ga teng.</value>
   </data>
   <data name="ErrMsg15" xml:space="preserve">
-    <value>글자 데이터(TextData 필드)가 없습니다.</value>
+    <value>TextData maydoni yo'q.</value>
   </data>
   <data name="ErrMsg16" xml:space="preserve">
-    <value>숫자 열</value>
+    <value>Raqamlar qator</value>
   </data>
   <data name="ErrMsg17" xml:space="preserve">
-    <value>첫째 열</value>
+    <value>Birinchi qator</value>
   </data>
   <data name="ErrMsg18" xml:space="preserve">
-    <value>둘째 열</value>
+    <value>Ikkinchi qator</value>
   </data>
   <data name="ErrMsg19" xml:space="preserve">
-    <value>셋째 열</value>
+    <value>Uchinchi qator</value>
   </data>
   <data name="ErrMsg20" xml:space="preserve">
-    <value>의 키의 개수는</value>
+    <value>ning kalit jami</value>
   </data>
   <data name="ErrMsg21" xml:space="preserve">
-    <value>가 필요하나</value>
+    <value>ta kerak, lekin</value>
   </data>
   <data name="ErrMsg22" xml:space="preserve">
-    <value>개로 일치하지 않습니다.</value>
+    <value>ta borligidan mos kelmaydi.</value>
   </data>
   <data name="ErrMsg8" xml:space="preserve">
-    <value>에서 자판 데이터 파일을 찾을 수 없습니다. 해당 경로에 자판 데이터를 생성하고 다시 시도하세요.</value>
+    <value>Klaviatura faylini topib boʻlmadi. Klaviatura faylini o'sha yo'nalishida yarating va qayta urinib ko'ring.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
-    <value>에서 연습 데이터 파일을 찾을 수 없습니다. 해당 경로에 연습 데이터를 생성하고 다시 시도하세요.</value>
+    <value>Matn faylini topib boʻlmadi. Matn faylini o'sha yo'nalishida yarating va qayta urinib ko'ring.</value>
   </data>
   <data name="InPage" xml:space="preserve">
-    <value>페이지 중</value>
+    <value>sahifalarning</value>
   </data>
   <data name="KeyDataFile" xml:space="preserve">
-    <value>자판 파일 데이터</value>
+    <value>Klaviatura fayllari</value>
   </data>
   <data name="KeyDataOpen" xml:space="preserve">
-    <value>자판 파일 열기</value>
+    <value>Klaviatura fayli ochish</value>
   </data>
   <data name="PracDataFile" xml:space="preserve">
-    <value>연습 데이터 파일</value>
+    <value>Matn fayllari</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Terish tezligi</value>
   </data>
   <data name="SylPrac" xml:space="preserve">
-    <value>음절연습</value>
+    <value>Bo'g'inlar mashg'i</value>
   </data>
   <data name="SylPracDesc" xml:space="preserve">
-    <value> 음절 단위로 입력하여 연습을 진행합니다. (한글 한정) </value>
+    <value>Bo'g'in birliklarini kiritish orqali mashq qiling (Faqat koreyscha)</value>
   </data>
   <data name="SylPracHelp" xml:space="preserve">
-    <value>2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다.</value>
+    <value>Mashq qilinadigan 2350 ta bo'g'inlar hozirgi koreyschada eng ko'p qo'llaniladiganlardir.</value>
   </data>
   <data name="Char11722" xml:space="preserve">
-    <value>11172 글자</value>
+    <value>11172 bo'g'inlar</value>
   </data>
   <data name="Char2350" xml:space="preserve">
-    <value>2350 글자</value>
+    <value>2350 bo'g'inlar</value>
   </data>
   <data name="ErrMsg23" xml:space="preserve">
-    <value>넷째 열</value>
+    <value>To'rtinchi qator</value>
   </data>
   <data name="FinishedPrac" xml:space="preserve">
-    <value>연습이 끝났습니다.</value>
+    <value>Mashq tugadi.</value>
   </data>
   <data name="LastSpeed" xml:space="preserve">
-    <value>최종 타속:</value>
+    <value>Sizning oxirgi tezligingiz:</value>
   </data>
   <data name="UserDefined" xml:space="preserve">
-    <value>사용자 정의</value>
+    <value>Foydalanuvchi aniqlagan</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright</value>
+    <value>Mualiflik huquqi</value>
   </data>
   <data name="DWork" xml:space="preserve">
-    <value>Derivative work</value>
+    <value>Qoʼshimcha ish</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>Litsenziya</value>
   </data>
   <data name="OWork" xml:space="preserve">
-    <value>Original work</value>
+    <value>Original ish</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version</value>
+    <value>Versiya</value>
   </data>
 </root>
