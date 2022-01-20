@@ -81,12 +81,11 @@ namespace OpenTyping.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        public static byte[] Mechanical_Key {
+        public static System.IO.UnmanagedMemoryStream Pressed {
             get {
-                object obj = ResourceManager.GetObject("Mechanical_Key", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetStream("Pressed", resourceCulture);
             }
         }
         
@@ -96,6 +95,16 @@ namespace OpenTyping.Properties {
         public static byte[] Qwerty {
             get {
                 object obj = ResourceManager.GetObject("Qwerty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] WrongPressed {
+            get {
+                object obj = ResourceManager.GetObject("WrongPressed", resourceCulture);
                 return ((byte[])(obj));
             }
         }

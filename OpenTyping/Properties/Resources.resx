@@ -124,11 +124,14 @@
   <data name="Madhiya" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\madhiya.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Mechanical_Key" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\sounds\mechanical-key.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sounds\Pressed.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Qwerty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\layouts\qwerty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WrongPressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sounds\WrongPressed.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="애국가" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\애국가.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

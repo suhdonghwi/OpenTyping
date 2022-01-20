@@ -64,7 +64,7 @@ namespace OpenTyping
         private static readonly Differ Differ = new Differ();
 
         private readonly MediaPlayer playMedia = new MediaPlayer();
-        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Pressed.wav");
 
         public ArticlePracticeWindow(PracticeData practiceData)
         {

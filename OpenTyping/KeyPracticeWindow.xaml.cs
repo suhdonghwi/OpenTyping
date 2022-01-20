@@ -76,7 +76,8 @@ namespace OpenTyping
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
         private readonly MediaPlayer playMedia = new MediaPlayer();
-        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Mechanical-Key.mp3");
+        private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/WrongPressed.mp3");
 
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
@@ -193,14 +194,15 @@ namespace OpenTyping
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
-                playMedia.Open(uri);
-                playMedia.Play(); // Key pressing sound
-
+                playSound.Play();
                 CorrectCount++;
                 MoveKey();
             }
             else // Wrong pressed
             {
+                playMedia.Open(uri);
+                playMedia.Play(); 
+
                 IncorrectCount++;
 
                 if (!incorrectStats.ContainsKey(CurrentKey.Pos)) incorrectStats[CurrentKey.Pos] = 1;
