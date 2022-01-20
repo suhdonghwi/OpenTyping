@@ -1,4 +1,5 @@
-﻿using OpenTyping.Resources.Lang;
+﻿using MahApps.Metro.Controls;
+using OpenTyping.Resources.Lang;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +11,7 @@ namespace OpenTyping
     /// </summary>
     public partial class KeyPracticeMenu : UserControl
     {
-        public bool NoShiftMode { get; set; }
+        private bool NoShiftMode { get; set; }
 
         public KeyPracticeMenu()
         {
@@ -32,6 +33,22 @@ namespace OpenTyping
 
             var keyPracticeWindow = new KeyPracticeWindow(pressedKeys, NoShiftMode);
             keyPracticeWindow.ShowDialog();
+        }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    this.NoShiftMode = true;
+                }
+                else
+                {
+                    this.NoShiftMode = false;
+                }
+            }
         }
     }
 }

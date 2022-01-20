@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls;
 using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 
@@ -15,7 +16,7 @@ namespace OpenTyping
     /// </summary>
     public partial class SentencePracticeMenu : PracticeMenuBase
     {
-        public bool IsRandom { get; set; }
+        private bool IsRandom { get; set; }
 
         public SentencePracticeMenu()
         {
@@ -35,6 +36,22 @@ namespace OpenTyping
 
             var sentencePracticeWindow = new SentencePracticeWindow(selectedPracticeData, IsRandom);
             sentencePracticeWindow.ShowDialog();
+        }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    this.IsRandom = true;
+                }
+                else
+                {
+                    this.IsRandom = false;
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="800"
-             d:DesignHeight="500">
+             d:DesignHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -48,7 +48,7 @@
                                 VerticalAlignment="Center"
                                 Margin="0 0 0 5"/>
             <StackPanel Orientation="Horizontal"
-                        Margin="4 0 0 5">
+                        Margin="4 0 0 7">
                 <Rectangle Width="23" 
                            Height="23"
                            Margin="0 0 5 0"
@@ -67,7 +67,7 @@
 
         <DockPanel Grid.Row="1"
                    LastChildFill="False"
-                   Margin="10 0 10 10">
+                   Margin="10 0 10 8">
             <StackPanel DockPanel.Dock="Left"
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
@@ -89,14 +89,12 @@
                            FontSize="13pt"
                            VerticalAlignment="Center"
                            Margin="0 0 5 0"/>
-                <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
+                <mah:ToggleSwitch 
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Center"
-                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                                   Foreground="#212529"
-                                  OnLabel="" OffLabel=""
-                                  IsChecked="{Binding Path=NoShiftMode,
-                                                      Mode=OneWayToSource}"/>
+                                  OnContent="" OffContent=""
+                                  Toggled="ToggleSwitch_Toggled"/>
             </StackPanel>
             <Button x:Name="StartButton"
                     DockPanel.Dock="Right"
