@@ -54,12 +54,12 @@ namespace OpenTyping
 
                 if (currentKeylayout == null)
                 {
-                    KeyLayout dubeolsikLayout = keyLayouts.Find(keyLayout => keyLayout.Name == "두벌식 표준");
+                    KeyLayout qwertyLayout = keyLayouts.Find(keyLayout => keyLayout.Name == "QWERTY");
 
-                    if (dubeolsikLayout != null)
+                    if (qwertyLayout != null)
                     {
-                        Settings.Default[KeyLayoutStr] = dubeolsikLayout.Name;
-                        CurrentKeyLayout = dubeolsikLayout;
+                        Settings.Default[KeyLayoutStr] = qwertyLayout.Name;
+                        CurrentKeyLayout = qwertyLayout;
                     }
                     else
                     {

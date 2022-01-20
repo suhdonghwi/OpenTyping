@@ -211,8 +211,7 @@
     <value>An error occurred while locating the application path.</value>
   </data>
   <data name="ErrMsg8" xml:space="preserve">
-    <value>Cannot find keyborad data file. Please create keyboard data in that
-    path and try again.</value>
+    <value>Cannot find keyborad data file. Please create keyboard data in that path and try again.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
     <value>Cannot fidn practice data file. Please create practice data in that path and try again.</value>

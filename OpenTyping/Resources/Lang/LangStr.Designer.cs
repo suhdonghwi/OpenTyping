@@ -385,8 +385,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot find keyborad data file. Please create keyboard data in that
-        ///    path and try again..
+        ///   Looks up a localized string similar to Cannot find keyborad data file. Please create keyboard data in that path and try again..
         /// </summary>
         internal static string ErrMsg8 {
             get {
