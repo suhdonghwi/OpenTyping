@@ -209,8 +209,9 @@ namespace OpenTyping
             MenuLbl1.Content = LangStr.Home;
             MenuLbl2.Content = LangStr.KeyPrac;
             MenuLbl3.Content = LangStr.SylPrac;
-            MenuLbl4.Content = LangStr.SenPrac;
-            MenuLbl5.Content = LangStr.ArtPrac;
+            MenuLbl4.Content = LangStr.WordPrac;
+            MenuLbl5.Content = LangStr.SenPrac;
+            MenuLbl6.Content = LangStr.ArtPrac;
 
             // Home menu
             HomeMenu.MenuName.Text = LangStr.AppName;
@@ -234,6 +235,11 @@ namespace OpenTyping
             SyllablePracticeMenu.StartModernHangulTile.Title = LangStr.Char11722;
             SyllablePracticeMenu.StartCustomTile.Title = LangStr.UserDefined;
             SyllablePracticeMenu.MenuHelp.Text = LangStr.SylPracHelp;
+
+            // Word menu
+            WordPracticeMenu.MenuName.Text = LangStr.WordPrac;
+            WordPracticeMenu.MenuDesc.Text = LangStr.WordPracDesc;
+            WordPracticeMenu.StartBtn.Text = LangStr.StartPrac;
 
             // Sentence menu
             SentencePracticeMenu.MenuName.Text = LangStr.SenPrac;

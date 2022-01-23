@@ -98,6 +98,24 @@
             </TabItem.Header>
             <local:SyllablePracticeMenu x:Name="SyllablePracticeMenu"/>
         </TabItem>
+        <TabItem x:Name="WordPracticeTabItem">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="32" 
+                               Height="25"
+                               Margin="0 0 2 0">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome Kind=FileWordRegular}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label x:Name="MenuLbl4" Style="{StaticResource TabItemLabel}"
+                           Content=" 단어연습"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:WordPracticeMenu x:Name="WordPracticeMenu"/>
+        </TabItem>
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
@@ -110,7 +128,7 @@
                                          Visual="{iconPacks:FontAwesome Kind=PencilAltSolid}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label x:Name="MenuLbl4" Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl5" Style="{StaticResource TabItemLabel}"
                            Content="문장연습"/>
                 </StackPanel>
             </TabItem.Header>
@@ -127,7 +145,7 @@
                                          Visual="{iconPacks:FontAwesome BookSolid}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label x:Name="MenuLbl5" Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl6" Style="{StaticResource TabItemLabel}"
                            Content="긴글연습"/>
                 </StackPanel>
             </TabItem.Header>

@@ -260,6 +260,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LangStr.resx</DependentUpon>
     </Compile>
+    <Compile Include="WordPracticeMenu.xaml.cs">
+      <DependentUpon>WordPracticeMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SentencePracticeMenu.xaml.cs">
       <DependentUpon>SentencePracticeMenu.xaml</DependentUpon>
     </Compile>
@@ -276,6 +279,9 @@
       <DependentUpon>SyllablePracticeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TypingMeasurer.cs" />
+    <Compile Include="WordPracticeWindow.xaml.cs">
+      <DependentUpon>WordPracticeWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="ArticlePracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WordPracticeMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SentencePracticeMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -341,6 +351,10 @@
     <Page Include="SyllablePracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WordPracticeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +396,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="data\애국가.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="data\WordData-uz.json" />
+    <EmbeddedResource Include="data\WordData-ko.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="OpenTyping_TemporaryKey.pfx" />
@@ -445,9 +463,8 @@
     <Resource Include="Resources\Imgs\roboticsware.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Sounds\Pressed.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Sounds\Bell.wav" />
+    <Content Include="Resources\Sounds\Pressed.wav" />
     <None Include="Resources\Sounds\WrongPressed.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

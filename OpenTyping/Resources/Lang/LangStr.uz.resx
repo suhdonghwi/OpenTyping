@@ -178,7 +178,7 @@
     <value>Klaviatura fayllar yo'nalishi</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
-    <value>Harflar mashg'i</value>
+    <value>Harflar mashqi</value>
   </data>
   <data name="KeyPracDesc" xml:space="preserve">
     <value>Klaviaturadagi har bir tugmachalarning joyini mashq qiling.</value>
@@ -187,7 +187,7 @@
     <value>Yoqish/o‘chirish uchun mashq qilmoqchi bo‘lgan klavishning o‘rnini bosing.</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
-    <value>Matnlar mashg'i</value>
+    <value>Matnlar mashqi</value>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
     <value>Bir matn orqali mashq qiling.</value>
@@ -208,10 +208,10 @@
     <value>Gaplarni tasodifiy tartibga solish</value>
   </data>
   <data name="SenPrac" xml:space="preserve">
-    <value>Gaplar mashg'i</value>
+    <value>Gaplar mashqi</value>
   </data>
   <data name="SenPracDesc" xml:space="preserve">
-    <value>Qisqa qismlarga bo'lib mashq qiling.</value>
+    <value>Matnni qisqa qismlarga bo'lib mashq qiling.</value>
   </data>
   <data name="SenPracHelp" xml:space="preserve">
     <value>Mashq qilmoqchi bo'lgan matnni tanlab, ustiga bosing</value>
@@ -307,7 +307,7 @@
     <value>Terish tezligi</value>
   </data>
   <data name="SylPrac" xml:space="preserve">
-    <value>Bo'g'inlar mashg'i</value>
+    <value>Bo'g'inlar mashqi</value>
   </data>
   <data name="SylPracDesc" xml:space="preserve">
     <value>Bo'g'in birliklarini kiritish orqali mashq qiling (Faqat koreyscha)</value>
@@ -347,5 +347,11 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versiya</value>
+  </data>
+  <data name="WordPrac" xml:space="preserve">
+    <value>So'zlar mashqi</value>
+  </data>
+  <data name="WordPracDesc" xml:space="preserve">
+    <value>Harflarni birlashtirgan so'zlardan mashq qiling.</value>
   </data>
 </root>

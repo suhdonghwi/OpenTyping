@@ -1,0 +1,118 @@
+﻿<local:PracticeMenuBase x:Name="SelfControl"
+                        x:Class="OpenTyping.WordPracticeMenu"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                        xmlns:local="clr-namespace:OpenTyping"
+                        mc:Ignorable="d" 
+                        d:DesignHeight="500"
+                        d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0"
+                   Margin="14 5 14 5">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Vertical"
+                        Margin="0 0 0 12">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 0 0 2">
+                    <Rectangle Width="40" 
+                               Height="40"
+                               Margin="0 0 9 0"
+                               Fill="#212529">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:FontAwesome Kind=FileWordRegular}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource NormalTextBlock}" 
+                               Name="MenuName"
+                               Text="단어연습"
+                               FontSize="32pt"
+                               Margin="0 2 0 0"/>
+                </StackPanel>
+                <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Name="MenuDesc"
+                           Text=":철자를 조합한 단어를 통해 연습합니다."
+                           FontSize="14pt"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="PracticeDataListBox"
+                         DataContext="{Binding ElementName=SelfControl}"
+                         Grid.Row="1"
+                         BorderThickness="1"
+                         FontFamily="{StaticResource NanumBarunGothic}"
+                         FontSize="14pt"
+                         Foreground="#212529"
+                         Margin="0 0 0 5"
+                         SelectedItem="{Binding SelectedPracticeData}"
+                         ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                         ItemsSource="">
+                    <ListBox.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+                        <local:NullToVisibilityConverter x:Key="NullToVis"/>
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" 
+                                           Height="13"
+                                           Fill="#2b8a3e"
+                                           Visibility="{Binding Converter={StaticResource BoolToVis},
+                                                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                               AncestorType={x:Type ListBoxItem}},
+                                                                                               Path=IsSelected}"
+                                           Margin="0 0 5 1">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckSolid}"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+
+                                <TextBlock Text="{Binding Path=Name}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding Path=Author}"
+                                           FontFamily="{StaticResource NanumGothic}"
+                                           FontSize="10pt"
+                                           VerticalAlignment="Center"
+                                           Visibility="{Binding Converter={StaticResource NullToVis},
+                                                                Path=Author}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1"
+                   LastChildFill="False"
+                   Margin="10 0 10 10">
+            <Button x:Name="StartButton"
+                    DockPanel.Dock="Right"
+                    Click="StartButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18"
+                               Height="15" 
+                               Fill="Green">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Visual="{iconPacks:Modern Kind=ArrowRight}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource ControlButtonText}"
+                               Name="StartBtn"
+                               Text="연습 시작"/>
+                </StackPanel>
+            </Button>
+        </DockPanel>
+    </Grid>
+</local:PracticeMenuBase>

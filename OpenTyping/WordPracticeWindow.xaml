@@ -1,0 +1,162 @@
+﻿<mah:MetroWindow x:Name="SelfWindow"
+                 x:Class="OpenTyping.WordPracticeWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:local="clr-namespace:OpenTyping"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 mc:Ignorable="d"
+                 Title="열린타자"
+                 Style="{StaticResource WindowTitleStyle}"
+                 Width="810" 
+                 Height="500"
+                 ResizeMode="CanMinimize"
+                 Icon="{StaticResource AppIcon}"
+                 Closed="WordPracticeWindow_Closed">
+    <StackPanel Orientation="Vertical">
+        <Grid x:Name="KeyGrid"
+              Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Grid.Column="0"
+                       Style="{StaticResource NormalTextBlock}"
+                       x:Name="PreviousTextBlock"
+                       Text="{Binding PreviousKey.KeyData}"
+                       FontSize="30pt"
+                       Foreground="#adb5bd"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+            <Rectangle Grid.Column="1"
+                       Width="1"
+                       Height="60"
+                       Margin="10 0 15 0"
+                       Stroke="#868e96"/>
+            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Grid.Column="2"
+                       Style="{StaticResource NormalTextBlock}"
+                       x:Name="CurrentTextBlock"
+                       Text="{Binding CurrentText}"
+                       FontSize="50pt"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <Rectangle Grid.Column="3"
+                       Width="1"
+                       Height="60"
+                       Margin="15 0 10 0" 
+                       Stroke="#868e96"/>
+            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Grid.Column="4"
+                       Style="{StaticResource NormalTextBlock}"
+                       x:Name="NextTextBlock"
+                       Text="{Binding NextText}"
+                       FontSize="30pt"
+                       Foreground="#adb5bd"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="20 0 0 10">
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="#37b24d">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Style="{StaticResource NormalTextBlock}"
+                       Text="{Binding CorrectCount}"
+                       Margin="0 3 0 0"
+                       FontSize="14pt"/>
+
+            <Rectangle Width="1.5"
+                       Height="20"
+                       Margin="10 0 10 0" 
+                       Stroke="Gray"/>
+
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="#f03e3e">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                       Style="{StaticResource NormalTextBlock}"
+                       Text="{Binding IncorrectCount}"
+                       Margin="0 3 0 0"
+                       FontSize="14pt"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBox x:Name="CurrentTextBox"
+                     DataContext="{Binding ElementName=SelfWindow}"
+                     FontFamily="{StaticResource NanumBarunGothic}"
+                     FontSize="17pt"
+                     Width="300"
+                     Margin="0 0 0 10"
+                     TextAlignment="Center"
+                     Focusable="True"
+                     PreviewKeyDown="CurrentTextBox_PreviewKeyDown"
+                     CommandManager.PreviewExecuted="CurrentTextBox_PreviewExecuted"
+                     ContextMenu="{x:Null}"/>
+        </StackPanel>
+        <StackPanel DataContext="{Binding ElementName=SelfWindow}"
+                    Margin="0 0 20 5"    
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Border Background="#37b24d"
+                            Margin="0 0 5 0">
+                <StackPanel Margin="5 2 5 2"
+                                    Orientation="Horizontal">
+                    <TextBlock Text="타속 "
+                                       Name="Speed"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumGothic}"
+                                       FontSize="11pt"
+                                       VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Path=AverageTypingSpeed,
+                                                      Mode=OneWay}"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumBarunGothic}"
+                                       FontSize="16pt"
+                                       VerticalAlignment="Center"
+                                       Margin="0 3 0 0"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#f03e3e">
+                <StackPanel Margin="5 2 5 2"
+                                    Orientation="Horizontal">
+                    <TextBlock Text="정확도 "
+                                       Name="Correct"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumGothic}"
+                                       FontSize="11pt"
+                                       VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Path=AverageAccuracy,
+                                                      StringFormat={}{0}%,
+                                                      Mode=OneWay}"
+                                       Foreground="White"
+                                       FontFamily="{StaticResource NanumBarunGothic}"
+                                       FontSize="16pt"
+                                       VerticalAlignment="Center"
+                                       Margin="0 3 0 0"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <local:KeyLayoutBox x:Name="KeyLayoutBox"
+                            Clickable="False"
+                            HorizontalAlignment="Center"/>
+    </StackPanel>
+</mah:MetroWindow>

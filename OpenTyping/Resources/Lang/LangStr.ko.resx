@@ -348,4 +348,10 @@
   <data name="Version" xml:space="preserve">
     <value>버전</value>
   </data>
+  <data name="WordPrac" xml:space="preserve">
+    <value>단어연습</value>
+  </data>
+  <data name="WordPracDesc" xml:space="preserve">
+    <value>철자를 조합한 단어를 통해 연습합니다.</value>
+  </data>
 </root>

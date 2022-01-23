@@ -61,22 +61,11 @@ namespace OpenTyping.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        public static byte[] DubeolsikStandard {
+        public static System.IO.UnmanagedMemoryStream Bell {
             get {
-                object obj = ResourceManager.GetObject("DubeolsikStandard", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Madhiya {
-            get {
-                object obj = ResourceManager.GetObject("Madhiya", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetStream("Bell", resourceCulture);
             }
         }
         
@@ -86,36 +75,6 @@ namespace OpenTyping.Properties {
         public static System.IO.UnmanagedMemoryStream Pressed {
             get {
                 return ResourceManager.GetStream("Pressed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Qwerty {
-            get {
-                object obj = ResourceManager.GetObject("Qwerty", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] WrongPressed {
-            get {
-                object obj = ResourceManager.GetObject("WrongPressed", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] 애국가 {
-            get {
-                object obj = ResourceManager.GetObject("애국가", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }

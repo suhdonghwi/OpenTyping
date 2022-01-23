@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using LiveCharts;
-using LiveCharts.Wpf;
 using MahApps.Metro.Controls;
 using OpenTyping.Resources.Lang;
 
@@ -59,8 +57,7 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
-        private readonly MediaPlayer playMedia = new MediaPlayer();
-        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/Pressed.wav");
+        private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -157,8 +154,7 @@ namespace OpenTyping
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            playMedia.Open(uri);
-            playMedia.Play(); // Key pressing sound
+            playSound.Play(); // Key pressing sound
 
             if (e.Key == System.Windows.Input.Key.Enter)
             {

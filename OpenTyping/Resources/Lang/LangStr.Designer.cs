@@ -752,5 +752,23 @@ namespace OpenTyping.Resources.Lang {
                 return ResourceManager.GetString("WarnMsg4", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Words.
+        /// </summary>
+        internal static string WordPrac {
+            get {
+                return ResourceManager.GetString("WordPrac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Practice words by combinating alphabet.
+        /// </summary>
+        internal static string WordPracDesc {
+            get {
+                return ResourceManager.GetString("WordPracDesc", resourceCulture);
+            }
+        }
     }
 }

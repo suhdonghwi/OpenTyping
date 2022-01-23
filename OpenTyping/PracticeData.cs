@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
+using System.Reflection;
 
 namespace OpenTyping
 {
@@ -74,6 +75,45 @@ public class PracticeData
             {
                 throw new InvalidPracticeDataException(dataFileLocation + " : " + ex.Message, ex);
             }
+        }
+
+        public static PracticeData LoadWordData()
+        {
+            List<string> wordDataResList = new List<string> {};
+            var assembly = Assembly.GetExecutingAssembly();
+            string[] resList = assembly.GetManifestResourceNames();
+            for (int i = 0; i < resList.Length; i++)
+            {
+                string res = resList[i];
+                if (res.Contains("WordData")) // File Format: WordData-[lang code].json
+                {
+                    wordDataResList.Add(res);
+                }
+            }
+
+            foreach (string res in wordDataResList)
+            {
+                Stream stream = assembly.GetManifestResourceStream(res);
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                string dataLines = reader.ReadToEnd();
+
+                try
+                {
+                    PracticeData practiceData = Parse(dataLines);
+                    practiceData.Location = res;
+
+                    if (practiceData.Character == MainWindow.CurrentKeyLayout.Character)
+                    {
+                        return practiceData;
+                    }
+                }
+                catch (InvalidPracticeDataException ex)
+                {
+                    throw new InvalidPracticeDataException(res + " : " + ex.Message, ex);
+                }
+            }
+
+            throw new InvalidPracticeDataException();
         }
 
         public static IList<PracticeData> LoadFromDirectory(string dataDirectory, string character = null)

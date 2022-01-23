@@ -348,4 +348,10 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="WordPrac" xml:space="preserve">
+    <value>Words</value>
+  </data>
+  <data name="WordPracDesc" xml:space="preserve">
+    <value>Practice words by combinating alphabet</value>
+  </data>
 </root>

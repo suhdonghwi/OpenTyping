@@ -53,6 +53,11 @@ namespace OpenTyping
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public PracticeData loadWordData()
+        {
+            return PracticeData.LoadWordData();
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

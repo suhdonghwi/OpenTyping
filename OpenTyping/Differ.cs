@@ -133,8 +133,8 @@ namespace OpenTyping
             return result;
         }
 
-        private readonly Brush correctBackground = Brushes.LightGreen;
-        private readonly Brush incorrectBackground = Brushes.Pink;
+        public readonly Brush correctBackground = Brushes.LightGreen;
+        public readonly Brush incorrectBackground = Brushes.Pink;
         private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
         public Brush MapDiffState(DiffData.DiffState state) // Diff 상태를 그에 대응하는 색으로 변환
