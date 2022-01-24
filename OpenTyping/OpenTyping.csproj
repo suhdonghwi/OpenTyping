@@ -407,6 +407,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="data\WordData-uz.json" />
     <EmbeddedResource Include="data\WordData-ko.json" />
+    <None Include="data\YeryongoqDoktor1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\YeryongoqDoktor2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\땅콩박사1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\땅콩박사2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="OpenTyping_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
