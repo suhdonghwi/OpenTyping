@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace OpenTyping
+﻿namespace OpenTyping
 {
     /// <summary>
     /// TutorialMenu.xaml에 대한 상호 작용 논리
@@ -10,12 +8,6 @@ namespace OpenTyping
         public TutorialMenu()
         {
             InitializeComponent();
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            WordPracticeWindow wordPracticeWindow = new WordPracticeWindow();
-            wordPracticeWindow.ShowDialog();
         }
     }
 }

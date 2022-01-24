@@ -130,26 +130,8 @@ namespace OpenTyping
             var currentTextBlock = targetTextBlocks[currentLine];
             string currentText = currentTextBlock.Text;
 
-            currentTextBlock.Inlines.Clear();
             var diffs = new List<Differ.DiffData>(Differ.Diff(currentTextBox.Text, currentText, currentTextBox.Text));
 
-            for (int i = 0; i < diffs.Count() - 1; i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-
-            foreach (var diff in diffs)
-            {
-                var run = new Run(diff.Text)
-                {
-                    Background = Differ.MapDiffState(diff.State)
-                };
-
-                currentTextBlock.Inlines.Add(run);
-            }
 
             double accuracy = Differ.CalculateAccuracy(diffs);
             accuracyList.Add(Convert.ToInt32(accuracy * 100));

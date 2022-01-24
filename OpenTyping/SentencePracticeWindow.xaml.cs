@@ -63,6 +63,7 @@ namespace OpenTyping
         {
             InitializeComponent();
             this.SetTextBylanguage();
+            CurrentTextBox.Focus();
 
             this.practiceData = practiceData;
 
@@ -112,11 +113,14 @@ namespace OpenTyping
         {
             if (!string.IsNullOrEmpty(CurrentTextBox.Text)) // Diff 구하고 하이라이트, 타속, 정확도 계산 : 첫 호출인 경우 수행하지 않음
             {
+                string input = CurrentTextBox.Text;
                 PreviousTextBlock.Inlines.Clear();
-                var diffs = new List<Differ.DiffData>(
-                    Differ.Diff(CurrentTextBox.Text, CurrentText, CurrentTextBox.Text));
+                var diffs
+                = new List<Differ.DiffData>(Differ.Diff(CurrentText.Substring(0, Math.Min(input.Length, CurrentText.Length)),
+                                                        CurrentTextBox.Text,
+                                                        CurrentText));
 
-                for (int i = 0; i < diffs.Count(); i++)
+                for (int i = 0; i < diffs.Count() - 1; i++)
                 {
                     if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
                     {
@@ -131,6 +135,11 @@ namespace OpenTyping
                         Background = Differ.MapDiffState(diff.State)
                     };
                     PreviousTextBlock.Inlines.Add(run);
+                }
+
+                if (input.Length < CurrentText.Length)
+                {
+                    PreviousTextBlock.Inlines.Add(new Run(CurrentText.Substring(input.Length)));
                 }
 
                 double accuracy = Differ.CalculateAccuracy(diffs);
