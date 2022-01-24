@@ -700,6 +700,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tutorial.
+        /// </summary>
+        internal static string Tutorial {
+            get {
+                return ResourceManager.GetString("Tutorial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User defined.
         /// </summary>
         internal static string UserDefined {

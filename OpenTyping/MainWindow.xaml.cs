@@ -108,6 +108,7 @@ namespace OpenTyping
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             CheckSyllablePractice();
+            CheckTutorial();
         }
 
         private static void MainWindow_Closed(object sender, EventArgs e)
@@ -176,6 +177,11 @@ namespace OpenTyping
                 CheckSyllablePractice();
             }
 
+            if (settingsWindow.LangUpdated)
+            {
+                CheckTutorial();
+            }
+
             SentencePracticeMenu.LoadData();
             ArticlePracticeMenu.LoadData();
         }
@@ -197,6 +203,23 @@ namespace OpenTyping
             }
         }
 
+        private void CheckTutorial()
+        {
+            if ((string)Settings.Default[ProgramLang] == "uz")
+            {
+                TutorialTabItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TutorialTabItem.Visibility = Visibility.Collapsed;
+
+                if (TutorialTabItem.IsSelected)
+                {
+                    MenuTabControl.SelectedIndex = 0;
+                }
+            }
+        }
+
         public void SetTextBylanguage(string langCode)
         {
             this.ChangeCulture(langCode);
@@ -212,6 +235,7 @@ namespace OpenTyping
             MenuLbl4.Content = LangStr.WordPrac;
             MenuLbl5.Content = LangStr.SenPrac;
             MenuLbl6.Content = LangStr.ArtPrac;
+            MenuLbl7.Content = LangStr.Tutorial;
 
             // Home menu
             HomeMenu.MenuName.Text = LangStr.AppName;

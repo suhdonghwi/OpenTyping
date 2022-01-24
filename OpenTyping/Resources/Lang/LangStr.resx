@@ -354,4 +354,7 @@
   <data name="WordPracDesc" xml:space="preserve">
     <value>Practice words by combinating alphabet</value>
   </data>
+  <data name="Tutorial" xml:space="preserve">
+    <value>Tutorial</value>
+  </data>
 </root>

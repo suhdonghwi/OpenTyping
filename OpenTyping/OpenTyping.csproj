@@ -260,6 +260,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LangStr.resx</DependentUpon>
     </Compile>
+    <Compile Include="TutorialMenu .xaml.cs">
+      <DependentUpon>TutorialMenu .xaml</DependentUpon>
+    </Compile>
     <Compile Include="WordPracticeMenu.xaml.cs">
       <DependentUpon>WordPracticeMenu.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ArticlePracticeMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TutorialMenu .xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -399,9 +406,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="data\WordData-uz.json" />
-    <EmbeddedResource Include="data\WordData-ko.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="data\WordData-ko.json" />
     <None Include="OpenTyping_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -463,6 +468,7 @@
     <Resource Include="Resources\Imgs\roboticsware.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Imgs\typing_tutorial.png" />
     <Content Include="Resources\Sounds\Bell.wav" />
     <Content Include="Resources\Sounds\Pressed.wav" />
     <None Include="Resources\Sounds\WrongPressed.mp3">

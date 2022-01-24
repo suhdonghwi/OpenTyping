@@ -354,4 +354,7 @@
   <data name="WordPracDesc" xml:space="preserve">
     <value>Harflarni birlashtirgan so'zlardan mashq qiling.</value>
   </data>
+  <data name="Tutorial" xml:space="preserve">
+    <value>Qo'llanma</value>
+  </data>
 </root>

@@ -71,6 +71,7 @@ namespace OpenTyping
 
         public bool KeyLayoutUpdated { get; set; }
         public bool KeyLayoutDataDirUpdated { get; set; }
+        public bool LangUpdated { get; set; }
 
         public SettingsWindow()
         {
@@ -379,6 +380,7 @@ namespace OpenTyping
             if ((string)Settings.Default[MainWindow.ProgramLang] != ProgramLang)
             {
                 Settings.Default[MainWindow.ProgramLang] = ProgramLang;
+                LangUpdated = true;
             }
 
             Settings.Default[MainWindow.PracticeDataDirStr] = PracticeDataDir;

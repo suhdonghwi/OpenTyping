@@ -59,6 +59,23 @@
             </TabItem.Header>
             <local:HomeMenu x:Name="HomeMenu"/>
         </TabItem>
+        <TabItem x:Name="TutorialTabItem">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="50" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome UserMdSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label x:Name="MenuLbl7" Style="{StaticResource TabItemLabel}"
+                           Content="Tutorial"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:TutorialMenu x:Name="TutorialMenu"/>
+        </TabItem>
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
