@@ -121,12 +121,12 @@
     <value>Qo'shish</value>
   </data>
   <data name="AppDesc" xml:space="preserve">
-    <value>Ochiq mabali zamonaviy klaviatura mashq dasturi</value>
+    <value>Ochiq manbali zamonaviy klaviatura mashq dasturi</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>TezTer</value>
   </data>
-  <data name="AvgCorrect" xml:space="preserve">
+  <data name="AvgAccuracy" xml:space="preserve">
     <value>O'rtacha aniqlik</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
@@ -243,7 +243,7 @@
   <data name="WarnMsg4" xml:space="preserve">
     <value>ning statistik maʼlumotlarni oʻchirib tashlamoqchimisiz?</value>
   </data>
-  <data name="Correct" xml:space="preserve">
+  <data name="Accuracy" xml:space="preserve">
     <value>Aniqlik</value>
   </data>
   <data name="ErrMsg10" xml:space="preserve">
@@ -352,9 +352,36 @@
     <value>So'zlar mashqi</value>
   </data>
   <data name="WordPracDesc" xml:space="preserve">
-    <value>Harflarni birlashtirgan so'zlardan mashq qiling.</value>
+    <value>Harflarni birlashtirgan so'zlardan mashq qiling. O'ringa kirishga harakat qiling.</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
     <value>Qo'llanma</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonim</value>
+  </data>
+  <data name="CongratMsg" xml:space="preserve">
+    <value>O'ringa kirganingiz bilan tabriklaymiz.</value>
+  </data>
+  <data name="ElapsedTime" xml:space="preserve">
+    <value>O'tilgan soniya</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ism</value>
+  </data>
+  <data name="NotSupport" xml:space="preserve">
+    <value>Keyinchalik taqdim etiladi.</value>
+  </data>
+  <data name="Org" xml:space="preserve">
+    <value>Tashkilot</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>O'rin</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Lokal</value>
+  </data>
+  <data name="WordCount" xml:space="preserve">
+    <value>So'z soni</value>
   </data>
 </root>

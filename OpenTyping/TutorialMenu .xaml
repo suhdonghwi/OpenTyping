@@ -15,7 +15,9 @@
                   Margin="0 0 5 0"
                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                   CircularNavigation="True"
-                  BannerOpacity="0.0"
+                  IsBannerEnabled="False"
+                  ShowIndex="True"
+                  IndexPlacement="Top"
                   NavigationButtonsPosition="Outside">
         <mah:FlipView.Items>
             <Grid>

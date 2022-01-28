@@ -20,6 +20,7 @@
 
             <FontFamily x:Key="NanumBarunGothic">pack://application:,,,/Resources/Fonts/#나눔바른고딕</FontFamily>
             <FontFamily x:Key="NanumGothic">pack://application:,,,/Resources/Fonts/#나눔고딕</FontFamily>
+            <FontFamily x:Key="LabDigital">pack://application:,,,/Resources/Fonts/#LAB디지털</FontFamily>
 
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
                 <Setter Property="TitleTemplate">

@@ -61,11 +61,29 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accuracy.
+        /// </summary>
+        internal static string Accuracy {
+            get {
+                return ResourceManager.GetString("Accuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string Add {
             get {
                 return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous.
+        /// </summary>
+        internal static string Anonymous {
+            get {
+                return ResourceManager.GetString("Anonymous", resourceCulture);
             }
         }
         
@@ -108,9 +126,9 @@ namespace OpenTyping.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Average accuracy.
         /// </summary>
-        internal static string AvgCorrect {
+        internal static string AvgAccuracy {
             get {
-                return ResourceManager.GetString("AvgCorrect", resourceCulture);
+                return ResourceManager.GetString("AvgAccuracy", resourceCulture);
             }
         }
         
@@ -142,20 +160,20 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Congratulations. Your new record!! .
+        /// </summary>
+        internal static string CongratMsg {
+            get {
+                return ResourceManager.GetString("CongratMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copyright.
         /// </summary>
         internal static string Copyright {
             get {
                 return ResourceManager.GetString("Copyright", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accuracy.
-        /// </summary>
-        internal static string Correct {
-            get {
-                return ResourceManager.GetString("Correct", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string DWork {
             get {
                 return ResourceManager.GetString("DWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elapsed(s).
+        /// </summary>
+        internal static string ElapsedTime {
+            get {
+                return ResourceManager.GetString("ElapsedTime", resourceCulture);
             }
         }
         
@@ -529,11 +556,38 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local.
+        /// </summary>
+        internal static string Local {
+            get {
+                return ResourceManager.GetString("Local", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Most mistyped key.
         /// </summary>
         internal static string MostWrongKey {
             get {
                 return ResourceManager.GetString("MostWrongKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;ll be supported later..
+        /// </summary>
+        internal static string NotSupport {
+            get {
+                return ResourceManager.GetString("NotSupport", resourceCulture);
             }
         }
         
@@ -552,6 +606,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization.
+        /// </summary>
+        internal static string Org {
+            get {
+                return ResourceManager.GetString("Org", resourceCulture);
             }
         }
         
@@ -579,6 +642,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string PracDataPath {
             get {
                 return ResourceManager.GetString("PracDataPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank.
+        /// </summary>
+        internal static string Rank {
+            get {
+                return ResourceManager.GetString("Rank", resourceCulture);
             }
         }
         
@@ -615,6 +687,15 @@ namespace OpenTyping.Resources.Lang {
         internal static string SenPracHelp {
             get {
                 return ResourceManager.GetString("SenPracHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
             }
         }
         
@@ -765,6 +846,15 @@ namespace OpenTyping.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Words.
         /// </summary>
+        internal static string WordCount {
+            get {
+                return ResourceManager.GetString("WordCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Words.
+        /// </summary>
         internal static string WordPrac {
             get {
                 return ResourceManager.GetString("WordPrac", resourceCulture);
@@ -772,7 +862,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Practice words by combinating alphabet.
+        ///   Looks up a localized string similar to Practice words by combinating alphabet. Try to break the record..
         /// </summary>
         internal static string WordPracDesc {
             get {

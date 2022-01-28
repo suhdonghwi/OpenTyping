@@ -126,7 +126,7 @@
   <data name="AppName" xml:space="preserve">
     <value>열린타자</value>
   </data>
-  <data name="AvgCorrect" xml:space="preserve">
+  <data name="AvgAccuracy" xml:space="preserve">
     <value>평균 정확도</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
@@ -243,7 +243,7 @@
   <data name="WarnMsg4" xml:space="preserve">
     <value>의 통계 정보를 삭제하시겠습니까?</value>
   </data>
-  <data name="Correct" xml:space="preserve">
+  <data name="Accuracy" xml:space="preserve">
     <value>정확도</value>
   </data>
   <data name="ErrMsg10" xml:space="preserve">
@@ -352,6 +352,30 @@
     <value>단어연습</value>
   </data>
   <data name="WordPracDesc" xml:space="preserve">
-    <value>철자를 조합한 단어를 통해 연습합니다.</value>
+    <value>철자를 조합한 단어를 통해 연습합니다. 기록갱신에 도전해 보세요.</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>무명</value>
+  </data>
+  <data name="CongratMsg" xml:space="preserve">
+    <value>새로운 기록갱신을 축하합니다!!</value>
+  </data>
+  <data name="ElapsedTime" xml:space="preserve">
+    <value>소요시간(초)</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="NotSupport" xml:space="preserve">
+    <value>추후 지원될 예정입니다.</value>
+  </data>
+  <data name="Org" xml:space="preserve">
+    <value>소속</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>순위</value>
+  </data>
+  <data name="WordCount" xml:space="preserve">
+    <value>단어 수</value>
   </data>
 </root>

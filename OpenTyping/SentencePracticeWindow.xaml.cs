@@ -85,9 +85,9 @@ namespace OpenTyping
             SelfWindow.Title = LangStr.AppName;
             Speed.Text = LangStr.Speed;
             AvgSpeed.Text = LangStr.AvgSpeed;
-            Correct.Text = LangStr.Correct;
+            Accuracy.Text = LangStr.Accuracy;
             GphSpeed.Title = LangStr.Speed;
-            GphCorrect.Title = LangStr.Correct;
+            GphCorrect.Title = LangStr.Accuracy;
         }
 
         private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)

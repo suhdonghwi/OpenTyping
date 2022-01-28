@@ -1,5 +1,5 @@
 ﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
+using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 using System;
 using System.Collections.Generic;
@@ -21,8 +21,13 @@ namespace OpenTyping
     /// </summary>
     public partial class WordPracticeWindow : MetroWindow, INotifyPropertyChanged
     {
+        // Key pressing
         private KeyPos currKeyPos;
-        private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
+        private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
+
+        // Practice data
+        private PracticeData practiceData;
+        private int? currentSentenceIndex;
 
         private string currentText;
         public string CurrentText
@@ -38,6 +43,9 @@ namespace OpenTyping
             set => SetField(ref nextText, value);
         }
 
+        // Maeasurement
+        private static readonly Differ Differ = new Differ();
+
         private int correctCount = 0;
         public int CorrectCount
         {
@@ -51,8 +59,6 @@ namespace OpenTyping
             get => incorrectCount;
             private set => SetField(ref incorrectCount, value);
         }
-
-        private PracticeData practiceData;
 
         private readonly TypingMeasurer typingMeasurer = new TypingMeasurer();
 
@@ -77,16 +83,23 @@ namespace OpenTyping
         public List<int> TypingSpeedList { get; set; } = new List<int>();
         public List<int> AccuracyList { get; set; } = new List<int>();
 
-        private int? currentSentenceIndex;
-        private static readonly Differ Differ = new Differ();
-
-        private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
-
+        // Sound
         private readonly MediaPlayer playMedia = new MediaPlayer();
         private readonly Uri wrongPressedUri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/WrongPressed.mp3");
 
         private readonly SoundPlayer playPressedSound = new SoundPlayer(Properties.Resources.Pressed);
         private readonly SoundPlayer playBellSound = new SoundPlayer(Properties.Resources.Bell);
+
+        // Timer
+        private System.Windows.Threading.DispatcherTimer timer;
+        private int elapsedTime;
+        private int second = 0;
+        private int minute = 0;
+        private int hour = 0;
+        private int milisecond = 0;
+
+        // Event for returning UserRecord value
+        public event Action<User> RtnNewUser;
 
         public WordPracticeWindow()
         {
@@ -143,13 +156,17 @@ namespace OpenTyping
         {
             SelfWindow.Title = LangStr.AppName;
             Speed.Text = LangStr.Speed;
-            Correct.Text = LangStr.Correct;
+            Accuracy.Text = LangStr.Accuracy;
         }
 
         private void ShuffleWords()
         {
             practiceData = new PracticeMenuBase().loadWordData();
             var wordIndexRandom = new Random();
+            
+            // UI code for progress bar
+            ProgressBar.Maximum = practiceData.TextData.Count;
+            MaxCnt.Text = practiceData.TextData.Count.ToString();
 
             practiceData.RemoveDuplicates();
             practiceData.TextData = practiceData.TextData.OrderBy(s => wordIndexRandom.Next()).ToList();
@@ -160,18 +177,37 @@ namespace OpenTyping
             NextWord();
         }
 
-        private void SentencePracticeWindow_Closed(object sender, EventArgs e)
+        private void WordPracticeWindow_Closed(object sender, EventArgs e)
         {
             if (TypingSpeedList.Count > 0)
             {
                 MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
                 {
-                    SentencePracticeCount = TypingSpeedList.Count,
                     AverageTypingSpeed = Convert.ToInt32(TypingSpeedList.Average()),
                     AverageAccuracy = Convert.ToInt32(AccuracyList.Average())
                 });
             }
+
+            if ((string)Settings.Default["Name"] == "")
+            {
+                Settings.Default["Name"] = LangStr.Anonymous;
+            }
+            if ((string)Settings.Default["Org"] == "")
+            {
+                Settings.Default["Org"] = LangStr.Anonymous;
+            }
+
+            User user = new User(
+                (string)Settings.Default["Name"],
+                (string)Settings.Default["Org"],
+                averageAccuracy,
+                averageTypingSpeed,
+                (int)currentSentenceIndex,
+                (double)elapsedTime / (double)10 // Unit change: 100ms -> 1s
+            );
+            this.RtnNewUser(user);
         }
+
         private void NextWord()
         {
             bool isWrongWord = false;
@@ -235,7 +271,12 @@ namespace OpenTyping
 
                 if (currentSentenceIndex == practiceData.TextData.Count)
                 {
-                    FinishPracticeAsync();
+                    // UI code for progress bar
+                    ProgressBar.Value = (int)currentSentenceIndex;
+                    CurrCnt.Text = currentSentenceIndex.ToString();
+
+                    timer.Stop();
+                    this.Close();
                     return;
                 }
 
@@ -245,17 +286,11 @@ namespace OpenTyping
                 {
                     NextText = practiceData.TextData[currentSentenceIndex.Value + 1];
                 }
+
+                // UI code for progress bar
+                ProgressBar.Value = (int)currentSentenceIndex;
+                CurrCnt.Text = currentSentenceIndex.ToString();
             }
-        }
-
-        private async void FinishPracticeAsync()
-        {
-            await this.ShowMessageAsync(LangStr.FinishedPrac + " ",
-                                         LangStr.LastSpeed + " " + AverageTypingSpeed + ", " + LangStr.Correct + ": " + AverageAccuracy + "%",
-                                         MessageDialogStyle.Affirmative,
-                                         new MetroDialogSettings { AnimateHide = false });
-
-            this.Close();
         }
 
         private async void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -282,6 +317,7 @@ namespace OpenTyping
                 if (CurrentTextBox.Text == "")
                 {
                     typingMeasurer.Start();
+                    StartStopWatch();
                 }
 
                 KeyLayoutBox.PressCorrectKey(currKeyPos);
@@ -301,6 +337,41 @@ namespace OpenTyping
             }
         }
 
+        private void StartStopWatch()
+        {
+            if (timer != null) return;
+
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
+            timer.Tick += new EventHandler(TimerTick);
+            timer.Start();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            elapsedTime++;
+            milisecond = elapsedTime % 10;
+
+            TBstopWatch.Text = string.Format("{0:D2}", hour) + ":" + string.Format("{0:D2}", minute)
+                                + ":" + string.Format("{0:D2}", second) + "." + string.Format("{0:D2}", milisecond);
+
+            if (milisecond == 0)
+            {
+                second++;
+                milisecond = 0;
+            }
+            if (second == 60)
+            {
+                minute++;
+                second = 0;
+            }
+            if (minute == 60)
+            {
+                hour++;
+                minute = 0;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -316,12 +387,5 @@ namespace OpenTyping
             return true;
         }
 
-        private void WordPracticeWindow_Closed(object sender, EventArgs e)
-        {
-            MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
-            {
-                KeyIncorrectCount = incorrectStats
-            });
-        }
     }
 }

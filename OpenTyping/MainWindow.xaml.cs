@@ -242,7 +242,7 @@ namespace OpenTyping
             HomeMenu.MenuDesc.Text = LangStr.AppDesc;
             HomeMenu.Tile1.Title = LangStr.MostWrongKey;
             HomeMenu.Tile2.Title = LangStr.AvgSpeed;
-            HomeMenu.Tile3.Title = LangStr.AvgCorrect;
+            HomeMenu.Tile3.Title = LangStr.AvgAccuracy;
             HomeMenu.Tile4.Title = LangStr.NumPracSen;
 
             // Key menu
@@ -264,6 +264,18 @@ namespace OpenTyping
             WordPracticeMenu.MenuName.Text = LangStr.WordPrac;
             WordPracticeMenu.MenuDesc.Text = LangStr.WordPracDesc;
             WordPracticeMenu.StartBtn.Text = LangStr.StartPrac;
+            WordPracticeMenu.TabLbl1.Content = LangStr.Local;
+            WordPracticeMenu.TabLbl2.Content = LangStr.Server;
+            WordPracticeMenu.Header1.Header = LangStr.Rank;
+            WordPracticeMenu.Header2.Header = LangStr.Name;
+            WordPracticeMenu.Header3.Header = LangStr.Org;
+            WordPracticeMenu.Header4.Header = LangStr.Accuracy;
+            WordPracticeMenu.Header5.Header = LangStr.Speed;
+            WordPracticeMenu.Header6.Header = LangStr.WordCount;
+            WordPracticeMenu.Header7.Header = LangStr.ElapsedTime;
+            WordPracticeMenu.NotSupport.Text = LangStr.NotSupport;
+            WordPracticeMenu.TBlblName.Text = LangStr.Name;
+            WordPracticeMenu.TBlblOrg.Text = LangStr.Org;
 
             // Sentence menu
             SentencePracticeMenu.MenuName.Text = LangStr.SenPrac;

@@ -82,7 +82,7 @@ namespace OpenTyping
             SelfWindow.Title = LangStr.AppName;
             InPage.Text = LangStr.InPage;
             Speed.Text = LangStr.Speed;
-            Correct.Text = LangStr.Correct;
+            Accuracy.Text = LangStr.Accuracy;
         }
 
         private void Next3Sentences()
@@ -175,7 +175,7 @@ namespace OpenTyping
         {
             freeze = true;
             await this.ShowMessageAsync(LangStr.FinishedPrac + " ",
-                                         LangStr.LastSpeed + " " + TypingSpeed + ", " + LangStr.Correct + ": "+ TypingAccuracy + "%",
+                                         LangStr.LastSpeed + " " + TypingSpeed + ", " + LangStr.Accuracy + ": "+ TypingAccuracy + "%",
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings{ AnimateHide = false });
 
