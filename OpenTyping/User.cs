@@ -26,7 +26,11 @@ namespace OpenTyping
         [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public int Count { get; set; }
         [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
-        public double Time { get; set; }
+        private double time;
+        public double Time { 
+            get => (double)time;
+            set => time = value;
+        }
 
         public int CompareTo(User other)
         {

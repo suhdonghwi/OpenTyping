@@ -50,11 +50,11 @@ namespace OpenTyping
             this.FinishPracticeAsync();
         }
 
-        private void FinishPracticeAsync()
+        private async void FinishPracticeAsync()
         {
             string congMsg = "";
 
-            int curPos = Rank.Add(newUser);
+            int curPos = await Rank.Add(newUser);
             LVusers.Items.Refresh();
 
             if (curPos >= 0 && curPos <= 9)
@@ -63,9 +63,12 @@ namespace OpenTyping
                 LVusers.SelectedIndex = curPos;
             }
 
-            this.TryFindParent<MetroWindow>().ShowMessageAsync(LangStr.FinishedPrac + " " + congMsg,
-                                         LangStr.LastSpeed + " " + newUser.Speed + ", " + LangStr.Accuracy + ": " + newUser.Accuracy + "%" + ", "
-                                         + LangStr.WordCount + ": " + newUser.Count + ", " + LangStr.ElapsedTime + ": " + newUser.Time,
+            await this.TryFindParent<MetroWindow>().ShowMessageAsync(LangStr.FinishedPrac + " " + congMsg,
+                                        LangStr.LastSpeed + ": " + newUser.Speed + ", " 
+                                        + LangStr.Accuracy + ": " + newUser.Accuracy + "%" + ", "
+                                        + LangStr.WordCount + ": " + newUser.Count + ", " 
+                                        + LangStr.ElapsedTime + ": " 
+                                        + newUser.Time.ToString(CultureInfo.GetCultureInfo("en-US")),
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings { AnimateHide = false });
         }

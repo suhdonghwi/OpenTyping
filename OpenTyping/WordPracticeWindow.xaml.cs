@@ -92,11 +92,11 @@ namespace OpenTyping
 
         // Timer
         private System.Windows.Threading.DispatcherTimer timer;
-        private int elapsedTime;
-        private int second = 0;
-        private int minute = 0;
-        private int hour = 0;
-        private int milisecond = 0;
+        private uint elapsedTime;
+        private uint second = 0;
+        private uint minute = 0;
+        private uint hour = 0;
+        private uint milisecond = 0;
 
         // Event for returning UserRecord value
         public event Action<User> RtnNewUser;

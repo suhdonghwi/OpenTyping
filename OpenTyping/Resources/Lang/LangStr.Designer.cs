@@ -538,7 +538,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your last speed:.
+        ///   Looks up a localized string similar to Your last speed.
         /// </summary>
         internal static string LastSpeed {
             get {
