@@ -6,6 +6,8 @@ namespace OpenTyping
     [Table("Users")]
     public class User : IComparable<User>
     {
+        public User() { }
+
         public User(string name, string org, int accuracy, int speed, int count, double time)
         {
             this.Name = name;

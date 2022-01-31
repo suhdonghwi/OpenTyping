@@ -28,7 +28,7 @@ namespace OpenTyping
 
         private async void LoadDatabase()
         {
-            await Rank.GetUsers();
+            await Rank.GetUsersAsync();
             LVusers.ItemsSource = Rank.users;
         }
 
@@ -58,7 +58,7 @@ namespace OpenTyping
         {
             string congMsg = "";
 
-            int curPos = await Rank.Add(newUser);
+            int curPos = await Rank.AddSync(newUser);
             LVusers.Items.Refresh();
 
             if (curPos >= 0 && curPos <= 9)

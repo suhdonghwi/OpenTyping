@@ -10,7 +10,7 @@ namespace OpenTyping
 
         public Rank() { }
 
-        public async Task GetUsers()
+        public async Task GetUsersAsync()
         {
             if (await sqlite.OpenDatabase())
             {
@@ -23,7 +23,7 @@ namespace OpenTyping
             }
         }
 
-        public int Add(User user)
+        public async Task<int> AddSync(User user)
         {
             users.Add(user);
             users.Sort();
@@ -40,7 +40,7 @@ namespace OpenTyping
                 users.RemoveAt(users.Count - 1); // Remove always 11th last record
             }
 
-            sqlite.ReWriteAllAsync(users);
+            await sqlite.ReWriteAllAsync(users);
             return curPos;
         }
     }

@@ -27,10 +27,8 @@ namespace OpenTyping
 
             if (!File.Exists(filename))
             {
-                await _db.CreateTableAsync<User>().ContinueWith((results) =>
-                {
-                    Debug.WriteLine("New database! Table created!");
-                });
+                await _db.CreateTableAsync<User>();
+                Debug.WriteLine("New database! Table created!");
             }
             else // Check it's broken DB
             {
@@ -72,20 +70,17 @@ namespace OpenTyping
             return id;
         }
 
-        public void AddUserAsync(User user)
+        public async Task<int> AddUserAsync(User user)
         {
-            _db.InsertAsync(user).ContinueWith((t) =>
-            {
-                Debug.WriteLine("New user Name: {0}", user.Name);
-            });
+            return await _db.InsertAsync(user);
         }
 
-        public Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return _db.QueryAsync<User>("Select * From Users");
+            return await _db.QueryAsync<User>("Select * From Users");
         }
 
-        public async void ReWriteAllAsync(List<User> users)
+        public async Task ReWriteAllAsync(List<User> users)
         {
             await _db.DeleteAllAsync<User>();
             Debug.WriteLine("All records are deleted");
