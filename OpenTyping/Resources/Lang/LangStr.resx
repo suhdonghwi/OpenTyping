@@ -214,7 +214,7 @@
     <value>Cannot find keyborad data file. Please create keyboard data in that path and try again.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
-    <value>Cannot fidn practice data file. Please create practice data in that path and try again.</value>
+    <value>Cannot find practice data file. Please create practice data in that path and try again.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
     <value>Excluding upper key(Shift)</value>
@@ -386,5 +386,8 @@
   </data>
   <data name="Server" xml:space="preserve">
     <value>Server</value>
+  </data>
+  <data name="ErrMsg24" xml:space="preserve">
+    <value>DB file is broken. Please reinstall this App or delete the broken DB file.</value>
   </data>
 </root>

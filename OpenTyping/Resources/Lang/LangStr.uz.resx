@@ -384,4 +384,7 @@
   <data name="WordCount" xml:space="preserve">
     <value>So'z soni</value>
   </data>
+  <data name="ErrMsg24" xml:space="preserve">
+    <value>DB fayli buzilgan. Dasturni qayta o'rnating yoki buzilgan DB faylini o'chirib tashlang.</value>
+  </data>
 </root>

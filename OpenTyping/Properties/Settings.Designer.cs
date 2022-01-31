@@ -94,17 +94,5 @@ namespace OpenTyping.Properties {
                 this["Org"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string RankLocal {
-            get {
-                return ((string)(this["RankLocal"]));
-            }
-            set {
-                this["RankLocal"] = value;
-            }
-        }
     }
 }

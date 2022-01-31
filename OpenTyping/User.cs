@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using SQLite;
 using System;
 
 namespace OpenTyping
 {
+    [Table("Users")]
     public class User : IComparable<User>
     {
         public User(string name, string org, int accuracy, int speed, int count, double time)
@@ -15,21 +16,17 @@ namespace OpenTyping
             this.Time = time;
         }
 
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public string Name { get; set; }
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public string Org { get; set; }
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public int Accuracy { get; set; }
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public int Speed { get; set; }
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         public int Count { get; set; }
-        [JsonConverter(typeof(EncryptingJsonConverter), "UseYourEncKey")]
         private double time;
-        public double Time { 
+        public double Time
+        {
+            // Add this to fix sqlite datatype-conversion
             get => (double)time;
-            set => time = value;
+            set => time = (double)value;
         }
 
         public int CompareTo(User other)

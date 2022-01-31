@@ -378,4 +378,7 @@
   <data name="WordCount" xml:space="preserve">
     <value>단어 수</value>
   </data>
+  <data name="ErrMsg24" xml:space="preserve">
+    <value>DB 파일이 손상되었습니다. 앱을 재설치 하거나 손상된 DB 파일을 지워주세요.</value>
+  </data>
 </root>

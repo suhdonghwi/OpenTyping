@@ -1,22 +1,25 @@
-﻿using Newtonsoft.Json;
-using OpenTyping.Properties;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OpenTyping
 {
     public class Rank
     {
         public List<User> users;
-        private readonly string json;
+        private SqliteProvider sqlite = new SqliteProvider();
 
-        public Rank()
+        public Rank() { }
+
+        public async Task GetUsers()
         {
-            json = (string)Settings.Default["RankLocal"];
-            users = JsonConvert.DeserializeObject<List<User>>(json);
-            if (users == null) // If first insertion
+            if (await sqlite.OpenDatabase())
             {
-                users = new List<User>();
+                users = await sqlite.GetUsersAsync();
+                if (users.Count == 0) // If first insertion
+                {
+                    users = new List<User>();
+                }
+                users.Sort();
             }
         }
 
@@ -24,6 +27,7 @@ namespace OpenTyping
         {
             users.Add(user);
             users.Sort();
+
             int curPos = users.FindIndex(user.Equals);
             if (curPos == 10) // If not new record
             {
@@ -35,9 +39,8 @@ namespace OpenTyping
             {
                 users.RemoveAt(users.Count - 1); // Remove always 11th last record
             }
-            string json = JsonConvert.SerializeObject(users);
-            Settings.Default["RankLocal"] = json;
-            Settings.Default.Save();
+
+            sqlite.ReWriteAllAsync(users);
             return curPos;
         }
     }

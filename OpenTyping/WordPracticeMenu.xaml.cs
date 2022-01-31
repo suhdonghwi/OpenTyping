@@ -15,7 +15,7 @@ namespace OpenTyping
     /// </summary>
     public partial class WordPracticeMenu : UserControl
     {
-        private readonly Rank Rank;
+        private readonly Rank Rank = new Rank();
         private User newUser;
 
         public WordPracticeMenu()
@@ -23,8 +23,12 @@ namespace OpenTyping
             InitializeComponent();
             SetTextBylanguage();
 
-            Rank = new Rank();
-            Rank.users.Sort();
+            LoadDatabase();
+        }
+
+        private async void LoadDatabase()
+        {
+            await Rank.GetUsers();
             LVusers.ItemsSource = Rank.users;
         }
 

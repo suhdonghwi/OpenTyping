@@ -367,6 +367,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DB file is broken. Please reinstall this App or delete the broken DB file..
+        /// </summary>
+        internal static string ErrMsg24 {
+            get {
+                return ResourceManager.GetString("ErrMsg24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A file with the same name already exists in the practice data path..
         /// </summary>
         internal static string ErrMsg3 {
@@ -421,7 +430,7 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot fidn practice data file. Please create practice data in that path and try again..
+        ///   Looks up a localized string similar to Cannot find practice data file. Please create practice data in that path and try again..
         /// </summary>
         internal static string ErrMsg9 {
             get {
