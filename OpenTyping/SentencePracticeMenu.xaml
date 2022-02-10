@@ -101,7 +101,7 @@
                             <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
                                Name="MenuHelp"
                                Text="연습하고 싶은 글을 클릭하여 선택하세요."
                                VerticalAlignment="Bottom"

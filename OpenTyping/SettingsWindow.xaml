@@ -46,7 +46,8 @@
                            VerticalAlignment="Center"/>
             </StackPanel>
 
-            <TabControl Margin="0 3 0 0">
+            <TabControl Margin="0 3 0 0" mah:TabControlHelper.Underlined="TabPanel" 
+                Style="{DynamicResource MahApps.Styles.TabControl.AnimatedSingleRow}">
                 <TabItem>
                     <TabItem.Header>
                         <Label Style="{StaticResource TabItemLabel}"
@@ -286,6 +287,7 @@
                     </TabItem.Header>
                     <StackPanel Orientation="Vertical" Margin="15">
                         <RadioButton x:Name="uz" GroupName="Lang" FontSize="18">O'zbekcha</RadioButton>
+                        <RadioButton x:Name="ru" GroupName="Lang" FontSize="18">Русский</RadioButton>
                         <RadioButton x:Name="en" GroupName="Lang" FontSize="18">English</RadioButton>
                         <RadioButton x:Name="ko" GroupName="Lang" FontSize="18">한국어</RadioButton>
                     </StackPanel>

@@ -21,6 +21,7 @@
             <FontFamily x:Key="NanumBarunGothic">pack://application:,,,/Resources/Fonts/#나눔바른고딕</FontFamily>
             <FontFamily x:Key="NanumGothic">pack://application:,,,/Resources/Fonts/#나눔고딕</FontFamily>
             <FontFamily x:Key="LabDigital">pack://application:,,,/Resources/Fonts/#LAB디지털</FontFamily>
+            <FontFamily x:Key="PTMono">pack://application:,,,/Resources/Fonts/#PTMono</FontFamily>
 
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
                 <Setter Property="TitleTemplate">
@@ -43,7 +44,7 @@
                 <Setter Property="Foreground"
                         Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" />
                 <Setter Property="FontSize" Value="15pt" />
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}" />
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}" />
                 <Setter Property="FontWeight" Value="Regular" />
                 <Setter Property="Margin" Value="0 4 0 0" />
             </Style>
@@ -54,11 +55,11 @@
             </Style>
 
             <Style x:Key="NormalLabel" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}"/>
             </Style>
 
             <Style x:Key="NormalTextBlock" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}"/>
                 <Setter Property="Foreground" Value="#212529"/>
             </Style>
 

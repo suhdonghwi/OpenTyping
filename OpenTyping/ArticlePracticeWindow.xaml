@@ -93,13 +93,13 @@
                                    Name="Speed"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
-                                   FontSize="11pt"
+                                   FontSize="10pt"
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Path=TypingSpeed,
                                                   Mode=OneWay}"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumBarunGothic}"
-                                   FontSize="16pt"
+                                   FontSize="13pt"
                                    VerticalAlignment="Center"
                                    Margin="0 3 0 0"/>
                     </StackPanel>
@@ -111,14 +111,14 @@
                                    Name="Accuracy"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
-                                   FontSize="11pt"
+                                   FontSize="10pt"
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Path=TypingAccuracy,
                                                   StringFormat={}{0}%,
                                                   Mode=OneWay}"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumBarunGothic}"
-                                   FontSize="16pt"
+                                   FontSize="13pt"
                                    VerticalAlignment="Center"
                                    Margin="0 3 0 0"/>
                     </StackPanel>

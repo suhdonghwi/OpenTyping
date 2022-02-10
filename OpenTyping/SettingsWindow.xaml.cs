@@ -112,6 +112,10 @@ namespace OpenTyping
             {
                 ko.IsChecked = true;
             }
+            else if (programLang == "ru")
+            {
+                ru.IsChecked = true;
+            }
         }
 
         private void SetTextBylanguage()
@@ -353,6 +357,10 @@ namespace OpenTyping
             else if ((bool)ko.IsChecked)
             {
                 programLang = "ko";
+            }
+            else if ((bool)ru.IsChecked)
+            {
+                programLang = "ru";
             }
 
             if (prevProgramLang != programLang)

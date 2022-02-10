@@ -398,6 +398,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\Lang\LangStr.ru.resx" />
     <EmbeddedResource Include="Resources\Lang\LangStr.uz.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -504,6 +505,7 @@
     <Content Include="Resources\Sounds\Bell.wav" />
     <Content Include="Resources\Sounds\Pressed.wav" />
     <Resource Include="Resources\Fonts\LabDigital.ttf" />
+    <Resource Include="Resources\Fonts\PTMono.ttf" />
     <None Include="Resources\Sounds\WrongPressed.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

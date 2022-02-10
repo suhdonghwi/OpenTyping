@@ -118,271 +118,271 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Добавить</value>
   </data>
   <data name="AppDesc" xml:space="preserve">
-    <value>OpenSource Mordern Keyboard Typing Trainer</value>
+    <value>Тренажер современной клавиатуры с открытым исходным кодом</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>OpenTyping</value>
+    <value>Быстрый набор</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
-    <value>Long sentences</value>
+    <value>Упражнения текстов</value>
   </data>
   <data name="ArtPracDesc" xml:space="preserve">
-    <value>Practice with one long sentence</value>
+    <value>Практикуйте через один текст.</value>
   </data>
   <data name="AvgAccuracy" xml:space="preserve">
-    <value>Average accuracy</value>
+    <value>Средняя точность</value>
   </data>
   <data name="AvgSpeed" xml:space="preserve">
-    <value>Average speed</value>
+    <value>Средняя скорость набора</value>
   </data>
   <data name="Accuracy" xml:space="preserve">
-    <value>Accuracy</value>
+    <value>Точность</value>
   </data>
   <data name="CurKeyboard" xml:space="preserve">
-    <value>Current Keyboard</value>
+    <value>Текущая клавиатура</value>
   </data>
   <data name="CurPracData" xml:space="preserve">
-    <value>Current sentences</value>
+    <value>Текущие тексты</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Удалить</value>
   </data>
   <data name="ErrMsg1" xml:space="preserve">
-<value>Please select 2 or more keys to practice</value>
+    <value>Пожалуйста, выберите 2 или более ключей для тренировки.</value>
   </data>
   <data name="ErrMsg10" xml:space="preserve">
-    <value>Duplicate names exist</value>
+    <value>Существуют повторяющиеся имена.</value>
   </data>
   <data name="ErrMsg11" xml:space="preserve">
-    <value>No Name field.</value>
+    <value>Нет площади Name </value>
   </data>
   <data name="ErrMsg12" xml:space="preserve">
-    <value>No KeyLayoutData field.</value>
+    <value>Нет площади KeyLayoutData </value>
   </data>
   <data name="ErrMsg13" xml:space="preserve">
-    <value>No Character field.</value>
+    <value>Нет площади Chracter.</value>
   </data>
   <data name="ErrMsg14" xml:space="preserve">
-    <value>TextData field size is 0.</value>
+    <value>Размер поля TextData равен 0.</value>
   </data>
   <data name="ErrMsg15" xml:space="preserve">
-    <value>Doesn't exist TextData field.</value>
+    <value>Нет площади TextData.</value>
   </data>
   <data name="ErrMsg16" xml:space="preserve">
-    <value>Column of numbers</value>
+    <value>Строка чисел</value>
   </data>
   <data name="ErrMsg17" xml:space="preserve">
-    <value>First row</value>
+    <value>Первая строка</value>
   </data>
   <data name="ErrMsg18" xml:space="preserve">
-    <value>Second row</value>
+    <value>Вторая строка</value>
   </data>
   <data name="ErrMsg19" xml:space="preserve">
-    <value>Third row</value>
+    <value>Третья строка</value>
   </data>
   <data name="ErrMsg2" xml:space="preserve">
-    <value>A file with the same name already exists in the Keyboard data path.</value>
+    <value>Файл с таким названием уже существует в разделе «Файлы клавиатуры».</value>
   </data>
   <data name="ErrMsg20" xml:space="preserve">
-    <value>Number of key is </value>
+    <value>количество ключей в</value>
   </data>
   <data name="ErrMsg21" xml:space="preserve">
-    <value>need, but </value>
+    <value>нужно, но</value>
   </data>
   <data name="ErrMsg22" xml:space="preserve">
-    <value>does not match </value>
+    <value>не соответсвует</value>
   </data>
   <data name="ErrMsg3" xml:space="preserve">
-    <value>A file with the same name already exists in the practice data path.</value>
+    <value>Файл с таким именем уже существует в разделе Текстовые файлы.</value>
   </data>
   <data name="ErrMsg4" xml:space="preserve">
-    <value>Cannot be deleted because only one keyboard data exists.</value>
+    <value>Нельзя удалить, так как существует информация только об одной клавиатуре.</value>
   </data>
   <data name="ErrMsg5" xml:space="preserve">
-    <value>Cannot be deleted because only one practice data exists.</value>
+    <value>Нельзя удалить, потому что есть только одна текстовая информация.</value>
   </data>
   <data name="ErrMsg6" xml:space="preserve">
-    <value>The number of Hangul syllables in the file is one or less.</value>
+    <value>Количество корейских слогов в файле — одна или меньше.</value>
   </data>
   <data name="ErrMsg7" xml:space="preserve">
-    <value>An error occurred while locating the application path.</value>
+    <value>Произошла ошибка при определении ориентации файла приложения.</value>
   </data>
   <data name="ErrMsg8" xml:space="preserve">
-    <value>Cannot find keyborad data file. Please create keyboard data in that path and try again.</value>
+    <value>Не удалось найти файл клавиатуры. Создайте файл клавиатуры в этом направлении и повторите попытку.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
-    <value>Cannot find practice data file. Please create practice data in that path and try again.</value>
+    <value>Не удалось найти файл текста.Создайте текстовый файл в этом направлении и повторите попытку.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
-    <value>Excluding upper key(Shift)</value>
+    <value>Данный клавиш (Shift) исключается</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Основной</value>
   </data>
   <data name="InfoMsg1" xml:space="preserve">
-    <value>Select practice data you want to practice.</value>
+    <value>Выберите текст, который вы хотите тренировать.</value>
   </data>
   <data name="InitStatInfo" xml:space="preserve">
-    <value>Reset statistic information</value>
+    <value>Переустановка Статистики</value>
   </data>
   <data name="InPage" xml:space="preserve">
-    <value> of pages</value>
+    <value>страниц</value>
   </data>
   <data name="KeyDataFile" xml:space="preserve">
-    <value>Keyboard File data</value>
+    <value>файлы клавиатуры</value>
   </data>
   <data name="KeyDataOpen" xml:space="preserve">
-    <value>Open Keyboard File</value>
+    <value>Открыть файл клавиатуры</value>
   </data>
   <data name="KeyDataPath" xml:space="preserve">
-    <value>Keyboard layout path</value>
+    <value>Направление файлов клавиатуры</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
-    <value>Keys</value>
+    <value>Упражнение букв</value>
   </data>
   <data name="KeyPracDesc" xml:space="preserve">
-    <value>Practice the position of each key on the keyboard.</value>
+    <value>Практикуйте  расположение каждой клавиши на клавиатуре.</value>
   </data>
   <data name="KeyPracHelp" xml:space="preserve">
-    <value>Click the position of the key you want to practice on/off.</value>
+    <value>Чтобы включить / выключить нажмите клавишу, которую вы хотите потренировать.</value>
   </data>
   <data name="MostWrongKey" xml:space="preserve">
-    <value>Most mistyped key</value>
+    <value>Часто ошибающаяся буква</value>
   </data>
   <data name="NumPracSen" xml:space="preserve">
-    <value>Number of sentence practiced</value>
+    <value>Количество практикованных предложений</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="PracDataFile" xml:space="preserve">
-    <value>Practice Data File</value>
+    <value>Текстовые файлы</value>
   </data>
   <data name="PracDataPath" xml:space="preserve">
-    <value>Sentences path</value>
+    <value>Направление текстовых файлов</value>
   </data>
   <data name="RanSenLoc" xml:space="preserve">
-    <value>Random arrangement of sentences</value>
+    <value>Случайное расположение предложений</value>
   </data>
   <data name="SenPrac" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Упражнение предложений</value>
   </data>
   <data name="SenPracDesc" xml:space="preserve">
-    <value>Practice by dividing it into short sentences</value>
+    <value>Тренируйтесь, разделив текст на короткие предложения.</value>
   </data>
   <data name="SenPracHelp" xml:space="preserve">
-    <value>Select the sentence you want to practice by clicking on it.</value>
+    <value>Нажмите на текст, который хотите упражняться</value>
   </data>
   <data name="SetKeyboard" xml:space="preserve">
-    <value>Keyboard layout</value>
+    <value>Тип клавиатуры</value>
   </data>
   <data name="SetPracData" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Тексты</value>
   </data>
   <data name="SetProgramLang" xml:space="preserve">
-    <value>Language</value>
+    <value>Язык</value>
   </data>
   <data name="Setting" xml:space="preserve">
-    <value>Setting</value>
+    <value>Настройки</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Speed</value>
+    <value>Скорость набора</value>
   </data>
   <data name="StartPrac" xml:space="preserve">
-    <value>Start practice</value>
+    <value>Начать упражнение</value>
   </data>
   <data name="SylPrac" xml:space="preserve">
-    <value>Syllables</value>
+    <value>Упражнение слог</value>
   </data>
   <data name="SylPracDesc" xml:space="preserve">
-    <value>Practice by entering syllable units (Korean only) </value>
+    <value>Практикуйтесь, добавляя по слогам (только на корейском языке)</value>
   </data>
   <data name="SylPracHelp" xml:space="preserve">
-    <value>2350 characters are practiced with the most frequently used in modern Hangul</value>
+    <value>Практикуемые 2350 слогов, наиболее широко используются в современном корейском языке.</value>
   </data>
   <data name="WarnMsg1" xml:space="preserve">
-    <value>Selected keyboard data</value>
+    <value>Выбранная клавиатура</value>
   </data>
   <data name="WarnMsg2" xml:space="preserve">
-    <value>Selected practice data</value>
+    <value>Выбранный текст</value>
   </data>
   <data name="WarnMsg3" xml:space="preserve">
-    <value>Are you sure you want to delete?</value>
+    <value>Вы хотите удалить это </value>
   </data>
   <data name="WarnMsg4" xml:space="preserve">
-    <value>Are you sure you want to delete statistical information?</value>
+    <value>ning statistik maʼlumotlarni oʻchirib tashlamoqchimisiz?</value>
   </data>
   <data name="ErrMsg23" xml:space="preserve">
-    <value>Forth row</value>
+    <value>Четвёртая строка</value>
   </data>
   <data name="Char11722" xml:space="preserve">
-    <value>11172 Charaters</value>
+    <value>11172 слогов</value>
   </data>
   <data name="Char2350" xml:space="preserve">
-    <value>2350 Characters</value>
+    <value>2350 слогов</value>
   </data>
   <data name="FinishedPrac" xml:space="preserve">
-    <value>Practice is finished.</value>
+    <value>Упражнение окончено.</value>
   </data>
   <data name="LastSpeed" xml:space="preserve">
-    <value>Your last speed</value>
+    <value>Ваша последняя скорость</value>
   </data>
   <data name="UserDefined" xml:space="preserve">
-    <value>User defined</value>
+    <value>Пользователи</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright</value>
+    <value>Авторское право</value>
   </data>
   <data name="DWork" xml:space="preserve">
-    <value>Derivative work</value>
+    <value>Дополнительная работа</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>Лицензия</value>
   </data>
   <data name="OWork" xml:space="preserve">
-    <value>Original work</value>
+    <value>Оригинальная работа</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version</value>
+    <value>Версия</value>
   </data>
   <data name="WordPrac" xml:space="preserve">
-    <value>Words</value>
+    <value>Упражнение слов</value>
   </data>
   <data name="WordPracDesc" xml:space="preserve">
-    <value>Practice words by combinating alphabet. Try to break the record.</value>
+    <value>Практика от слов, которые объединяют буквы. Попробуйте вставить на место.</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
-    <value>Tutorial</value>
+    <value>Справочник</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
-    <value>Elapsed(s)</value>
+    <value>Пройденные секунды</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
-    <value>Anonymous</value>
+    <value>Аноним</value>
   </data>
   <data name="CongratMsg" xml:space="preserve">
-    <value>Congratulations. Your new record!! </value>
+    <value>Поздравляем с установлением нового рекорда!</value>
   </data>
   <data name="WordCount" xml:space="preserve">
-    <value>Words</value>
+    <value>Число слов</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Имя</value>
   </data>
   <data name="NotSupport" xml:space="preserve">
-    <value>It'll be supported later.</value>
+    <value>будет поддерживаться позже.</value>
   </data>
   <data name="Org" xml:space="preserve">
-    <value>Organization</value>
+    <value>Организация</value>
   </data>
   <data name="Rank" xml:space="preserve">
-    <value>Rank</value>
+    <value>Место</value>
   </data>
   <data name="Local" xml:space="preserve">
-    <value>Local</value>
+    <value>Локальный</value>
   </data>
   <data name="Server" xml:space="preserve">
     <value>Server</value>
