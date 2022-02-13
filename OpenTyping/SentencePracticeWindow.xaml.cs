@@ -6,8 +6,10 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using LiveCharts;
 using MahApps.Metro.Controls;
+using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
@@ -63,6 +65,7 @@ namespace OpenTyping
         {
             InitializeComponent();
             this.SetTextBylanguage();
+            this.FontAssignByLang();
             CurrentTextBox.Focus();
 
             this.practiceData = practiceData;
@@ -88,6 +91,16 @@ namespace OpenTyping
             Accuracy.Text = LangStr.Accuracy;
             GphSpeed.Title = LangStr.Speed;
             GphCorrect.Title = LangStr.Accuracy;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                PreviousTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBox.FontFamily = new FontFamily("Times New Roman");
+            } 
         }
 
         private void SentencePracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)

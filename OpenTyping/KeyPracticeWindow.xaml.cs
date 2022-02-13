@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,7 @@ namespace OpenTyping
         {
             InitializeComponent();
             this.SetTextBylanguage();
+            this.FontAssignByLang();
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
@@ -140,6 +142,16 @@ namespace OpenTyping
         private void SetTextBylanguage()
         {
             SelfWindow.Title = LangStr.AppName;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                PreviousTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBlock.FontFamily = new FontFamily("Times New Roman");
+                NextTextBlock.FontFamily = new FontFamily("Times New Roman");
+            }
         }
 
         private KeyInfo RandomKey()

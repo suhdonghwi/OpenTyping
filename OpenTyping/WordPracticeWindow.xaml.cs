@@ -105,6 +105,7 @@ namespace OpenTyping
         {
             InitializeComponent();
             this.SetTextBylanguage();
+            this.FontAssignByLang();
             CurrentTextBox.Focus();
 
             this.ShuffleWords();
@@ -157,6 +158,17 @@ namespace OpenTyping
             SelfWindow.Title = LangStr.AppName;
             Speed.Text = LangStr.Speed;
             Accuracy.Text = LangStr.Accuracy;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                PreviousTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBlock.FontFamily = new FontFamily("Times New Roman");
+                NextTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBox.FontFamily = new FontFamily("Times New Roman");
+            }
         }
 
         private void ShuffleWords()

@@ -1,0 +1,302 @@
+{
+  "Name": "Lotincha",
+  "Character": "UZB",
+  "Author": "UFE",
+  "KeyLayoutData": [
+    [
+      {
+        "KeyData": ":",
+        "ShiftKeyData": "~",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "1",
+        "ShiftKeyData": "!",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "2",
+        "ShiftKeyData": "@",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "3",
+        "ShiftKeyData": "#",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "4",
+        "ShiftKeyData": "$",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "5",
+        "ShiftKeyData": "%",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "6",
+        "ShiftKeyData": "^",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "7",
+        "ShiftKeyData": "&",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "8",
+        "ShiftKeyData": "*",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "9",
+        "ShiftKeyData": "(",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "0",
+        "ShiftKeyData": ")",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "-",
+        "ShiftKeyData": "_",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "=",
+        "ShiftKeyData": "+",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "q",
+        "ShiftKeyData": "Q",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "oʻ",
+        "ShiftKeyData": "Oʻ",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "e",
+        "ShiftKeyData": "E",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "r",
+        "ShiftKeyData": "R",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "t",
+        "ShiftKeyData": "T",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "y",
+        "ShiftKeyData": "Y",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "u",
+        "ShiftKeyData": "U",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "i",
+        "ShiftKeyData": "I",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "o",
+        "ShiftKeyData": "O",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "p",
+        "ShiftKeyData": "P",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "[",
+        "ShiftKeyData": "{",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "]",
+        "ShiftKeyData": "}",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "⧵",
+        "ShiftKeyData": "|",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "a",
+        "ShiftKeyData": "A",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "s",
+        "ShiftKeyData": "S",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "d",
+        "ShiftKeyData": "D",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "f",
+        "ShiftKeyData": "F",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "g",
+        "ShiftKeyData": "G",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "h",
+        "ShiftKeyData": "H",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "j",
+        "ShiftKeyData": "J",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "k",
+        "ShiftKeyData": "K",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "l",
+        "ShiftKeyData": "L",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "gʻ",
+        "ShiftKeyData": "Gʻ",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "ʼ",
+        "ShiftKeyData": "\"",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "z",
+        "ShiftKeyData": "Z",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "x",
+        "ShiftKeyData": "X",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "c",
+        "ShiftKeyData": "C",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "v",
+        "ShiftKeyData": "V",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "b",
+        "ShiftKeyData": "B",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "n",
+        "ShiftKeyData": "N",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "m",
+        "ShiftKeyData": "M",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": ",",
+        "ShiftKeyData": "<",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": ".",
+        "ShiftKeyData": ">",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "/",
+        "ShiftKeyData": "?",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": " ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R1"
+      }
+    ]
+  ],
+  "DefaultKeys": [
+    "1,0",
+    "1,1",
+    "1,2",
+    "1,3",
+    "1,4",
+    "1,5",
+    "1,6",
+    "1,7",
+    "1,8",
+    "1,9",
+    "2,0",
+    "2,1",
+    "2,2",
+    "2,3",
+    "2,4",
+    "2,5",
+    "2,6",
+    "2,7",
+    "2,8",
+    "2,9",
+    "2,10",
+    "3,0",
+    "3,1",
+    "3,2",
+    "3,3",
+    "3,4",
+    "3,5",
+    "3,6",
+    "4,0"
+  ],
+  "Stats": {
+    "KeyIncorrectCount": {
+      "1,5": 1,
+      "1,2": 1,
+      "3,4": 1
+    },
+    "MostIncorrect": {
+      "Key": "1,5",
+      "Value": 1
+    },
+    "SentencePracticeCount": 0,
+    "AverageTypingSpeed": 0,
+    "AverageAccuracy": 0
+  }
+}

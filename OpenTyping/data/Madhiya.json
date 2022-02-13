@@ -1,26 +1,26 @@
 {
     "Name": "Madhiya",
     "Author": "Abdulla Oripov",
-    "Character": "ENG",
-    "TextData": [
-        "Serquyosh, hur o'lkam, elga baxt, najot,",
-        "Sen o'zing do'stlarga yo'ldosh, mehribon!",
-        "Yashnagay to abad ilmu fan, ijod,",
-        "Shuhrating porlasin toki bor jahon!",
-        
-        "Oltin bu vodiylar - jon O'zbekiston,",
-        "Ajdodlar mardona ruhi senga yor!",
-        "Ulug' xalq qudrati jo'sh urgan zamon,",
-        "Olamni mahliyo aylagan diyor!",
-        
-        "Bag'ri keng o'zbekning o'chmas iymoni,",
-        "Erkin, yosh avlodlar senga zo'r qanot!",
-        "Istiqlol mash'ali, tinchlik posboni,",
-        "Haqsevar, ona yurt, mangu bo'l obod!",
-        
-        "Oltin bu vodiylar - jon O'zbekiston,",
-        "Ajdodlar mardona ruhi senga yor!",
-        "Ulug' xalq qudrati jo'sh urgan zamon,",
-        "Olamni mahliyo aylagan diyor!"
-    ]
+    "Character": "UZB",
+  "TextData": [
+    "Serquyosh, hur oʻlkam, elga baxt, najot,",
+    "Sen oʻzing doʻstlarga yoʻldosh, mehribon!",
+    "Yashnagay to abad ilmu fan, ijod,",
+    "Shuhrating porlasin toki bor jahon!",
+
+    "Oltin bu vodiylar - jon Oʻzbekiston,",
+    "Ajdodlar mardona ruhi senga yor!",
+    "Ulugʻ xalq qudrati joʻsh urgan zamon,",
+    "Olamni mahliyo aylagan diyor!",
+
+    "Bagʻri keng oʻzbekning oʻchmas iymoni,",
+    "Erkin, yosh avlodlar senga zoʻr qanot!",
+    "Istiqlol mashʼali, tinchlik posboni,",
+    "Haqsevar, ona yurt, mangu boʻl obod!",
+
+    "Oltin bu vodiylar - jon Oʻzbekiston,",
+    "Ajdodlar mardona ruhi senga yor!",
+    "Ulugʻ xalq qudrati joʻsh urgan zamon,",
+    "Olamni mahliyo aylagan diyor!"
+  ]
 }

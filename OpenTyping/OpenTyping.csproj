@@ -426,12 +426,22 @@
     <EmbeddedResource Include="data\애국가.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="data\WordData-uz.json" />
+    <EmbeddedResource Include="data\WordData-uz-qty.json" />
     <EmbeddedResource Include="data\WordData-ko.json" />
+    <None Include="data\Madhiya.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="data\WordData-uz-lot.json" />
     <None Include="data\YeryongoqDoktor1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="data\YeryongoqDoktor1-qty.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="data\YeryongoqDoktor2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\YeryongoqDoktor2-qty.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\땅콩박사1.json">
@@ -440,13 +450,16 @@
     <None Include="data\땅콩박사2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="layouts\UzbLatin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="OpenTyping_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EmbeddedResource Include="data\Madhiya.json">
+    <EmbeddedResource Include="data\Madhiya-qty.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <Resource Include="Resources\Fonts\NanumGothic.ttf" />

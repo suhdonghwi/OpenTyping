@@ -7,8 +7,10 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
@@ -69,6 +71,7 @@ namespace OpenTyping
         {
             InitializeComponent();
             this.SetTextBylanguage();
+            this.FontAssignByLang();
 
             inputTextBoxes = new List<TextBox> { InputTextBox0, InputTextBox1, InputTextBox2 };
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
@@ -83,6 +86,19 @@ namespace OpenTyping
             InPage.Text = LangStr.InPage;
             Speed.Text = LangStr.Speed;
             Accuracy.Text = LangStr.Accuracy;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                TargetTextBlock0.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox0.FontFamily = new FontFamily("Times New Roman");
+                TargetTextBlock1.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox1.FontFamily = new FontFamily("Times New Roman");
+                TargetTextBlock2.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox2.FontFamily = new FontFamily("Times New Roman");
+            }
         }
 
         private void Next3Sentences()

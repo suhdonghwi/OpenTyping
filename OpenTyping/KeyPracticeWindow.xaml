@@ -29,7 +29,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+            <TextBlock Name="PreviousTextBlock"
+                       DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="0"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding PreviousKey.KeyData}"
@@ -42,7 +43,8 @@
                        Height="60"
                        Margin="10 0 15 0"
                        Stroke="#868e96"/>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+            <TextBlock Name="CurrentTextBlock"
+                       DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="2"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CurrentKey.KeyData}"
@@ -54,7 +56,8 @@
                        Height="60"
                        Margin="15 0 10 0" 
                        Stroke="#868e96"/>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+            <TextBlock Name="NextTextBlock"
+                       DataContext="{Binding ElementName=SelfWindow}"
                        Grid.Column="4"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding NextKey.KeyData}"

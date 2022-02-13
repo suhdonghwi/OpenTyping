@@ -23,15 +23,15 @@
             <Grid>
                 <StackPanel>
                     <TextBlock TextWrapping="Wrap" FontSize="20" Margin="0 20 0 0">
-                        Barcha ishlarda bo’lgani kabi klaviaturada yozishning ham o’z qoidalari bor. Bu qoidalarga amal qilmasdan ham yozish mumkin, albatta. Lekin siz to’g’ri va tez yozishni istasangiz qoidalarga amal qilishingiz shart!
+                        Barcha ishlarda boʻlgani kabi klaviaturada yozishning ham oʻz qoidalari bor. Bu qoidalarga amal qilmasdan ham yozish mumkin, albatta. Lekin siz toʻgʻri va tez yozishni istasangiz qoidalarga amal qilishingiz shart!
                     </TextBlock>
                     <TextBlock TextWrapping="Wrap">
                         <LineBreak/>
                         <LineBreak/>
-                        <Bold>1) Hech qachon klaviaturaga qaramang!</Bold> Bu albatta biroz g’alati eshitilishi mumkin. Lekin aynan qaramaslik sizni tezligingiz oshishiga sabab bo’ladi. Buning uchun tugmalar joylashuvini yoddan bilishingiz kerak. Boshida biroz qiyin bo’lishi mumkin. Shuning uchun ham TezTer dasturida klaviatura va bosgan tugmalaringiz ko’rinib turadi.
+                        <Bold>1) Hech qachon klaviaturaga qaramang!</Bold> Bu albatta biroz gʻalati eshitilishi mumkin. Lekin aynan qaramaslik sizni tezligingiz oshishiga sabab boʻladi. Buning uchun tugmalar joylashuvini yoddan bilishingiz kerak. Boshida biroz qiyin boʻlishi mumkin. Shuning uchun ham TezTer dasturida klaviatura va bosgan tugmalaringiz koʻrinib turadi.
                         <LineBreak/>
                         <LineBreak/>                    
-                        <Bold>2) F va J tugmalaridagi belgilar bekorga qo’yilmagan!</Bold> Ko’rsatkich barmoqlar shu harflarda turishi kerak. Shunda qolgan barmoqlar o’z o’rnini topadi. Pianino chalishdagi qoidalar Barcha ishlarda bo’lgani kabi klaviaturada yozishning ham o’z qoidalari bor. Bu qoidalarga amal qilmasdan ham yozish mumkin, albatta. Lekin siz to’g’ri va tez yozishni istasangiz qoidalarga amal qilishingiz shart!
+                        <Bold>2) F va J tugmalaridagi belgilar bekorga qoʻyilmagan!</Bold> Koʻrsatkich barmoqlar shu harflarda turishi kerak. Shunda qolgan barmoqlar oʻz oʻrinini topadi. Pianino chalishdagi qoidalar Barcha ishlarda boʻlgani kabi klaviaturada yozishning ham oʻz qoidalari bor. Bu qoidalarga amal qilmasdan ham yozish mumkin, albatta. Lekin siz toʻgʻri va tez yozishni istasangiz qoidalarga amal qilishingiz shart!
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -43,10 +43,10 @@
             </Grid>
             <Grid>
                 <TextBlock TextWrapping="Wrap" Margin="0 20 0 0">
-                        <Bold>3) Klaviaturada 2 ta shift tugmasi bor!</Bold> Ko’pchilik e’tibor bermaydigan yana bir qoida shuki, siz shift tugmasini asosiy tugmani bosayotgan qo’lingiz bilan emas, narigi qo’lingiz bilan bosishingiz kerak. Misol uchun siz katta “A” termoqchi bo’lsangiz, o’ng qo’lingiz bilan shiftni bosasiz, agar “L” ni bosmoqchi bo’lsangiz shiftni chap qo’lingiz bilan bosishingiz kerak.
+                        <Bold>3) Klaviaturada 2 ta shift tugmasi bor!</Bold> Koʻpchilik eʻtibor bermaydigan yana bir qoida shuki, siz shift tugmasini asosiy tugmani bosayotgan qoʻlingiz bilan emas, narigi qoʻlingiz bilan bosishingiz kerak. Misol uchun siz katta “A” termoqchi boʻlsangiz, oʻng qoʻlingiz bilan shiftni bosasiz, agar “L” ni bosmoqchi boʻlsangiz shiftni chap qoʻlingiz bilan bosishingiz kerak.
                         <LineBreak/>
                         <LineBreak/>
-                        <Bold>4) Mashq muvaffaqiyat kalitidir!</Bold> Tepadagi qoidalarga amal qilgan holda ko’p mashq qilsangiz, klaviaturada yozish tezligingiz oshish aniq. Mashq qilishda matn tanlashga ham e’tibor berish kerak. Siz tanlagan matn faqatgina harflardan emas, katta va kichik harflar, sonlar va belgilardan iborat bo’lishi kerak
+                        <Bold>4) Mashq muvaffaqiyat kalitidir!</Bold> Tepadagi qoidalarga amal qilgan holda koʻp mashq qilsangiz, klaviaturada yozish tezligingiz oshish aniq. Mashq qilishda matn tanlashga ham eʻtibor berish kerak. Siz tanlagan matn faqatgina harflardan emas, katta va kichik harflar, sonlar va belgilardan iborat boʻlishi kerak.
                 </TextBlock>
             </Grid>
         </mah:FlipView.Items>
