@@ -240,6 +240,7 @@
       <DependentUpon>ArticlePracticeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Differ.cs" />
+    <Compile Include="EnumVolume.cs" />
     <Compile Include="InvalidKeyDataException.cs" />
     <Compile Include="InvalidPracticeDataException.cs" />
     <Compile Include="KeyBox.xaml.cs">

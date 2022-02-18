@@ -111,8 +111,8 @@
                 <ToggleButton.ContentTemplate>
                     <DataTemplate>
                         <iconPacks:PackIconFontAwesome Width="20"
-                                                        Height="20"
-                                                        Kind="HandPaperSolid" />
+                                                       Height="20"
+                                                       Kind="HandPaperSolid" />
                     </DataTemplate>
                 </ToggleButton.ContentTemplate>
             </ToggleButton>

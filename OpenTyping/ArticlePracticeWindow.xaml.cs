@@ -66,6 +66,7 @@ namespace OpenTyping
         private static readonly Differ Differ = new Differ();
 
         private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Volume volume;
 
         public ArticlePracticeWindow(PracticeData practiceData)
         {
@@ -78,6 +79,8 @@ namespace OpenTyping
 
             this.practiceData = practiceData;
             this.Loaded += ArticlePracticeWindow_Loaded;
+
+            this.volume = (Volume)Settings.Default["Volume"];
         }
 
         private void SetTextBylanguage()
@@ -229,7 +232,10 @@ namespace OpenTyping
 
         private void LineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            playSound.Play(); // Key pressing sound
+            if (this.volume == Volume.Up)
+            {
+                playSound.Play(); // Key pressing sound
+            }
 
             if (freeze)
             {

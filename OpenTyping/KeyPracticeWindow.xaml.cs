@@ -81,12 +81,14 @@ namespace OpenTyping
         private readonly MediaPlayer playMedia = new MediaPlayer();
         private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
         private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/WrongPressed.mp3");
+        private readonly Volume volume;
 
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
             InitializeComponent();
             this.SetTextBylanguage();
             this.FontAssignByLang();
+            this.volume = (Volume)Settings.Default["Volume"];
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
@@ -208,14 +210,20 @@ namespace OpenTyping
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
-                playSound.Play();
+                if (this.volume == Volume.Up)
+                {
+                    playSound.Play();
+                }
                 CorrectCount++;
                 MoveKey();
             }
             else // Wrong pressed
             {
                 playMedia.Open(uri);
-                playMedia.Play(); 
+                if (this.volume != Volume.Off)
+                {
+                    playMedia.Play();
+                }
 
                 IncorrectCount++;
 

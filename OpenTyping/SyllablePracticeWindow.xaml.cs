@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
+using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
@@ -47,6 +49,9 @@ namespace OpenTyping
 
         private readonly Brush incorrectBackground = Brushes.Pink;
 
+        private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Volume volume;
+
         public SyllablePracticeWindow(string syllablesList)
         {
             InitializeComponent();
@@ -61,6 +66,8 @@ namespace OpenTyping
 
             NextSyllable = RandomSyllable();
             MoveSyllable();
+
+            this.volume = (Volume)Settings.Default["Volume"];
         }
 
         private void SetTextBylanguage()
@@ -106,6 +113,11 @@ namespace OpenTyping
 
         private void CurrentTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            if (this.volume == Volume.Up)
+            {
+                playSound.Play(); // Key pressing sound
+            }
+
             switch (CurrentTextBox.Text.Length)
             {
                 case 0:

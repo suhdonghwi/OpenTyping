@@ -60,6 +60,7 @@ namespace OpenTyping
         private static readonly Differ Differ = new Differ();
 
         private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Volume volume;
 
         public SentencePracticeWindow(PracticeData practiceData, bool shuffle)
         {
@@ -81,6 +82,8 @@ namespace OpenTyping
 
             SpeedChart.AxisX[0].Separator.Step = 1;
             this.Loaded += SentencePracticeWindow_Loaded;
+
+            this.volume = (Volume)Settings.Default["Volume"];
         }
 
         private void SetTextBylanguage()
@@ -176,7 +179,10 @@ namespace OpenTyping
 
         private void CurrentTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            playSound.Play(); // Key pressing sound
+            if (this.volume == Volume.Up)
+            {
+                playSound.Play(); // Key pressing sound
+            }
 
             if (e.Key == System.Windows.Input.Key.Enter)
             {

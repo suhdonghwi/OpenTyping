@@ -90,6 +90,8 @@ namespace OpenTyping
         private readonly SoundPlayer playPressedSound = new SoundPlayer(Properties.Resources.Pressed);
         private readonly SoundPlayer playBellSound = new SoundPlayer(Properties.Resources.Bell);
 
+        private readonly Volume volume;
+
         // Timer
         private System.Windows.Threading.DispatcherTimer timer;
         private uint elapsedTime;
@@ -110,6 +112,7 @@ namespace OpenTyping
 
             this.ShuffleWords();
             this.Loaded += WordPracticeWindow_Loaded;
+            this.volume = (Volume)Settings.Default["Volume"];
 
             double shakiness = 30;
             const double shakeDiff = 3;
@@ -256,12 +259,18 @@ namespace OpenTyping
                 {
                     KeyGrid.BeginAnimation(MarginProperty, ShakeAnimation);
                     playMedia.Open(wrongPressedUri);
-                    playMedia.Play();
+                    if (this.volume != Volume.Off)
+                    {
+                        playMedia.Play();
+                    }
                     IncorrectCount++;
                 }
                 else
                 {
-                    playBellSound.Play();
+                    if (this.volume != Volume.Off)
+                    {
+                        playBellSound.Play();
+                    }
                     CorrectCount++;
                 }
                 isWrongWord = false;
@@ -333,7 +342,10 @@ namespace OpenTyping
                 }
 
                 KeyLayoutBox.PressCorrectKey(currKeyPos);
-                playPressedSound.Play();
+                if (this.volume == Volume.Up)
+                {
+                    playPressedSound.Play();
+                }
                 await Task.Delay(20);
                 KeyLayoutBox.ReleaseKey(currKeyPos);
             }

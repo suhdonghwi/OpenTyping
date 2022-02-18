@@ -19,6 +19,8 @@ namespace OpenTyping
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private Volume volume;
+
         public static KeyLayout CurrentKeyLayout { get; private set; }
 
         public const string KeyLayoutDataDirStr = "KeyLayoutDataDir";
@@ -97,6 +99,9 @@ namespace OpenTyping
 
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
+
+            this.volume = (Volume)Settings.Default["Volume"];
+            VolumeValToSetIcon(this.volume);
         }
 
         private void ChangeCulture(string nationCode)
@@ -217,6 +222,34 @@ namespace OpenTyping
                 {
                     MenuTabControl.SelectedIndex = 0;
                 }
+            }
+        }
+
+        private void VolumeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.volume++;
+            if (this.volume == Volume.Up + 1)
+            {
+                this.volume = Volume.Off;
+            }
+
+            VolumeValToSetIcon(this.volume);
+            Settings.Default["Volume"] = (int)this.volume;
+        }
+
+        private void VolumeValToSetIcon(Volume volume)
+        {
+            switch (volume)
+            {
+                case Volume.Off:
+                    VolumeBtnIcon.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.VolumeMuteSolid;
+                    break;
+                case Volume.Down:
+                    VolumeBtnIcon.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.VolumeDownSolid;
+                    break;
+                case Volume.Up:
+                    VolumeBtnIcon.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.VolumeUpSolid;
+                    break;
             }
         }
 
