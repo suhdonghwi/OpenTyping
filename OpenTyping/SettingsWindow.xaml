@@ -297,7 +297,10 @@
                         <Label x:Name="TabLbl4" Style="{StaticResource TabItemLabel}" Content="Copyright"/>
                     </TabItem.Header>
                     <StackPanel Orientation="Vertical" Margin="15" HorizontalAlignment="Center">
-                        <Image Source="Resources/Imgs/roboticsware.png" Width="250"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Source="Resources/Imgs/roboticsware.png" Width="150" Margin="0 0 20 0"/>
+                        <Image Source="Resources/Imgs/ufe.jpg" Width="100"/>
+                        </StackPanel>
                         <TextBlock HorizontalAlignment="Center">
                            <Hyperlink NavigateUri="https://roboticsware.uz" RequestNavigate="Hyperlink_Click">
                                https://RoboticsWare.uz
