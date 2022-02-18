@@ -515,6 +515,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Imgs\typing_tutorial.png" />
+    <Resource Include="Resources\Imgs\ufe.jpg" />
     <Content Include="Resources\Sounds\Bell.wav" />
     <Content Include="Resources\Sounds\Pressed.wav" />
     <Resource Include="Resources\Fonts\LabDigital.ttf" />
