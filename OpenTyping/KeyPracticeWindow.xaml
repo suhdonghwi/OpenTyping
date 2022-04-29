@@ -66,59 +66,104 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
         </Grid>
-
-        <StackPanel Orientation="Horizontal"
-                    Margin="20 0 0 10">
-            <Rectangle Width="23" 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            
+            <StackPanel Orientation="Horizontal"
+                    Margin="20 0 0 10"
+                    Grid.Column="0"
+                    Width="400"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                <Rectangle Width="23" 
                        Height="23"
                        Margin="0 0 5 0"
                        Fill="#37b24d">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>
 
-            <Rectangle Width="1.5"
+                <Rectangle Width="1.5"
                        Height="20"
                        Margin="10 0 10 0" 
                        Stroke="Gray"/>
 
-            <Rectangle Width="23" 
+                <Rectangle Width="23" 
                        Height="23"
                        Margin="0 0 5 0"
                        Fill="#f03e3e">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding IncorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>
-            <ToggleButton Margin="630 0 0 0" 
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                    Width="200"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0 -10 10 0"
+                    Grid.Column="1"
+                    Height="30">
+                <ToggleButton  Margin="100 0 0 0"
+                           Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}"
+                           Width="30"
+                           Height="30"
+                           IsChecked="False"
+                           IsTabStop="True"
+                           KeyboardNavigation.IsTabStop="True"
+                           KeyboardNavigation.DirectionalNavigation="None"
+                           PreviewKeyDown="ToggleButton_PreviewKeyDown"
+                           Checked="ToggleButton_Checked_1"
+                           Unchecked="ToggleButton_Checked_1">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconFontAwesome Width="20"
+                                                       Height="20"
+                                                       Kind="AdjustSolid" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton   Margin="20 0 0 0" 
                             Width="30"
                             Height="30"
                             IsChecked="True"
                             Unchecked="ToggleButton_Checked"
                             Checked ="ToggleButton_Checked"
+                            IsTabStop="True" 
+                            KeyboardNavigation.IsTabStop="True"
+                            KeyboardNavigation.DirectionalNavigation="None"
+                            PreviewKeyDown="ToggleButton_PreviewKeyDown"
                             Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                <ToggleButton.ContentTemplate>
-                    <DataTemplate>
-                        <iconPacks:PackIconFontAwesome Width="20"
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconFontAwesome Width="20"
                                                        Height="20"
                                                        Kind="HandPaperSolid" />
-                    </DataTemplate>
-                </ToggleButton.ContentTemplate>
-            </ToggleButton>
-        </StackPanel>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+       
         <local:KeyLayoutBox x:Name="KeyLayoutBox"
                             Clickable="False"
+                            IsEnabled="True"
                             HorizontalAlignment="Center"/>
     </StackPanel>
 </mah:MetroWindow>

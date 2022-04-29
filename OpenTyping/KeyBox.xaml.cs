@@ -19,6 +19,7 @@ namespace OpenTyping
         public static readonly DependencyProperty KeyColorProperty =
             DependencyProperty.Register("KeyColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.White));
 
+
         public Brush ShadowColor
         {
             get => (Brush)GetValue(ShadowColorProperty);
@@ -37,7 +38,7 @@ namespace OpenTyping
 
         public bool Pressed { get; private set; } = false;
 
-        private const double PressDiff = 1.7;
+        private const double PressDiff = 0.0000001;
         private Brush defaultKeyColor;
         private Brush defaultShadowColor;
 
@@ -74,16 +75,16 @@ namespace OpenTyping
                 Canvas.SetTop(KeyTop, PressDiff);
                 KeyBack.Height -= PressDiff;
                 Canvas.SetTop(KeyBack, PressDiff);
+         
             }
 
             KeyColor = keyColor;
             ShadowColor = shadowColor;
-
             handPopup.IsOpen = isHandPopup;
-            if (handPopup.IsOpen) 
+            if (handPopup.IsOpen)
             {
                 // Re-positioning on Spacebar
-                if (Key.KeyData == " ") 
+                if (Key.KeyData == " ")
                 {
                     handPopup.VerticalOffset = 0;
                 }
@@ -94,13 +95,44 @@ namespace OpenTyping
             }
 
             Pressed = true;
+
         }
 
-        public void PressCorrect(bool isHandPopup = false)
+        private void Press(bool Press, bool isHandPopup = false)
         {
-            Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup);
+            if (!Pressed && Press)
+            {
+                KeyTop.Height += PressDiff;
+                Canvas.SetTop(KeyTop, PressDiff);
+                KeyBack.Height -= PressDiff;
+                Canvas.SetTop(KeyBack, PressDiff);
+            }
+            handPopup.IsOpen = isHandPopup;
+            if (handPopup.IsOpen)
+            {
+                // Re-positioning on Spacebar
+                if (Key.KeyData == " ")
+                {
+                    handPopup.VerticalOffset = 0;
+                }
+
+                // Re-positioning when KeyPracticeWindow LocChanged
+                handPopup.HorizontalOffset += 1;
+                handPopup.HorizontalOffset -= 1;
+            }
+
+            Pressed = true;
+
+        }
+        public void PressCorrect( bool isHandPopup = false)
+        {
+            Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup); 
         }
 
+        public void PressCorrect(bool P, bool isHandPopup = false)
+        {
+            Press(P, isHandPopup);
+        }
         public void PressIncorrect()
         {
             Press(IncorrectKeyColor, IncorrectKeyShadowColor);
@@ -115,12 +147,36 @@ namespace OpenTyping
                 KeyBack.Height += PressDiff;
                 Canvas.SetTop(KeyBack, 0);
             }
-
+            
             KeyColor = defaultKeyColor;
             ShadowColor = defaultShadowColor;
             handPopup.IsOpen = false;
 
             Pressed = false;
+        }
+
+        public void Release(bool pressed)
+        {
+            if (Pressed && pressed)
+            {
+                KeyTop.Height -= PressDiff;
+                Canvas.SetTop(KeyTop, 0);
+                KeyBack.Height += PressDiff;
+                Canvas.SetTop(KeyBack, 0);
+                handPopup.IsOpen = false;
+                Pressed = false;
+            }
+            else
+            {
+                KeyTop.Height -= PressDiff;
+                Canvas.SetTop(KeyTop, 0);
+                KeyBack.Height += PressDiff;
+                Canvas.SetTop(KeyBack, 0);
+                KeyColor = defaultKeyColor;
+                ShadowColor = defaultShadowColor;
+                handPopup.IsOpen = false;
+                Pressed = false;
+            }
         }
 
         public void PressToggle()

@@ -8,6 +8,7 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -175,7 +176,7 @@ namespace OpenTyping
             PreviousKey = CurrentKey;
             if (PreviousKey != null)
             {
-                KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
+                KeyLayoutBox.ReleaseKey(PreviousKey.Pos, _pressed);
                 if (PreviousKey.IsShift)
                 {
                     KeyLayoutBox.LShiftKey.Release();
@@ -189,10 +190,14 @@ namespace OpenTyping
             {
                 KeyLayoutBox.LShiftKey.PressCorrect();
                 KeyLayoutBox.RShiftKey.PressCorrect();
+                
             }
 
             NextKey = RandomKey();
+
         }
+
+
 
         private void KeyPracticeWindow_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -200,14 +205,14 @@ namespace OpenTyping
 
             KeyPos pos = KeyPos.FromKeyCode(e.Key == System.Windows.Input.Key.ImeProcessed ? e.ImeProcessedKey : e.Key);
 
-            if (e.Key == System.Windows.Input.Key.LeftShift || 
-                e.Key == System.Windows.Input.Key.RightShift || 
+            if (e.Key == System.Windows.Input.Key.LeftShift ||
+                e.Key == System.Windows.Input.Key.RightShift ||
                 pos == null) return;
 
             bool isLShift = Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift);
             bool isRShift = Keyboard.IsKeyDown(System.Windows.Input.Key.RightShift);
             bool isShift = isLShift || isRShift;
-            
+
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
                 if (this.volume == Volume.Up)
@@ -216,6 +221,7 @@ namespace OpenTyping
                 }
                 CorrectCount++;
                 MoveKey();
+
             }
             else // Wrong pressed
             {
@@ -241,11 +247,15 @@ namespace OpenTyping
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressCorrectKey(pos, this.isHandPopup);
+                        KeyLayoutBox.PressCorrectKey(pos,_pressed, this.isHandPopup);
                     }
                     else
                     {
-                        KeyLayoutBox.ReleaseKey(pos);
+                        KeyLayoutBox.ReleaseKey(pos, _pressed);
+                        if (_pressed)
+                        {
+                            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup);
+                        }
                     }
 
                     if (CurrentKey.IsShift) // 현재 키가 윗글쇠일 경우
@@ -264,6 +274,7 @@ namespace OpenTyping
             }
         }
 
+
         private void KeyPracticeWindow_Closed(object sender, EventArgs e)
         {
             MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
@@ -276,23 +287,26 @@ namespace OpenTyping
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos,_pressed, this.isHandPopup);
             }
         }
 
         private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
         {
-            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed, false);
         }
 
         private void KeyPracticeWindow_LocationChanged(object sender, EventArgs e)
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed, this.isHandPopup);
             }
         }
 
+
+
+        bool _pressed1 = false;
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
@@ -303,8 +317,10 @@ namespace OpenTyping
                     this.isHandPopup = true;
                     if (KeyLayoutBox != null)
                     {
-                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                         KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                        
                     }
+                    _pressed1 = true;
                 }
                 else
                 {
@@ -312,10 +328,47 @@ namespace OpenTyping
                     if (KeyLayoutBox != null)
                     {
                         KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+                       ;
                     }
+                    _pressed1 = false;
                 }
             }
         }
+
+        //Color togglebutton on or off
+        bool _pressed = false;
+
+        //Adding color functionality to keyboard
+        private void ToggleButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
+            {
+                if (toggleButton.IsChecked == true)
+                {
+                    
+                    if (KeyLayoutBox != null)
+                    {
+                       KeyLayoutBox.ChangeColorOn();
+                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed1);
+                    }
+
+                    _pressed = true;
+                }
+                else
+                {
+
+                    if (KeyLayoutBox != null)
+                    {
+                       KeyLayoutBox.ChangeColorOff();
+                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed1);
+
+                    }
+                    _pressed = false;
+                }
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -331,5 +384,14 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        private void ToggleButton_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Tab || e.Key == System.Windows.Input.Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

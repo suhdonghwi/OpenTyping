@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d" 
              d:DesignHeight="500" 
+             IsTabStop="True"
              d:DesignWidth="800">
     <UserControl.Resources>
         <Style x:Key="ModKeyBoxStyle"

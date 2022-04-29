@@ -86,7 +86,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -192,8 +192,8 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
@@ -538,18 +538,18 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.3.2.0\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Fody.3.2.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.3.2.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.linux.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.linux.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.sqlcipher.linux.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.linux.targets'))" />
     <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.osx.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.osx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.sqlcipher.osx.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.osx.targets'))" />
     <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.windows.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.sqlcipher.windows.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.windows.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.3.1.0\build\Costura.Fody.targets')" />
-  <Import Project="..\packages\Fody.3.2.0\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.0\build\Fody.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.sqlcipher.linux.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.linux.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.linux.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.sqlcipher.osx.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.osx.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.osx.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.osx.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.sqlcipher.windows.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.windows.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.sqlcipher.windows.1.1.13\build\net35\SQLitePCLRaw.lib.sqlcipher.windows.targets')" />
