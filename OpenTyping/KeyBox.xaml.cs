@@ -56,7 +56,6 @@ namespace OpenTyping
             handPopup.IsOpen = false;
             Loaded += OnLoaded;
         }
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             defaultKeyColor = KeyColor;
@@ -65,7 +64,6 @@ namespace OpenTyping
             Uri resourceUri = new Uri("Resources/imgs/" + Key.FingerPosition + ".png", UriKind.Relative);
             handImg.Source = new BitmapImage(resourceUri);
         }
-
         private void Press(Brush keyColor, Brush shadowColor, bool isHandPopup = false)
         {
             if (!Pressed)
@@ -86,15 +84,12 @@ namespace OpenTyping
                 {
                     handPopup.VerticalOffset = 0;
                 }
-
                 // Re-positioning when KeyPracticeWindow LocChanged
                 handPopup.HorizontalOffset += 1;
                 handPopup.HorizontalOffset -= 1;
             }
-
             Pressed = true;
         }
-
         private void Press(bool Press, bool isHandPopup = false)
         {
             if (!Pressed && Press)
@@ -124,7 +119,6 @@ namespace OpenTyping
         {
             Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup); 
         }
-
         public void PressCorrect(bool isButtonClicked, bool isHandPopup = false)
         {
             Press(isButtonClicked, isHandPopup);
@@ -133,7 +127,6 @@ namespace OpenTyping
         {
             Press(IncorrectKeyColor, IncorrectKeyShadowColor);
         }
-
         public void Release()
         {
             if (Pressed)
@@ -150,7 +143,6 @@ namespace OpenTyping
 
             Pressed = false;
         }
-
         public void Release(bool pressed)
         {
             if (Pressed && pressed)
@@ -174,7 +166,6 @@ namespace OpenTyping
                 Pressed = false;
             }
         }
-
         public void PressToggle()
         {
             if (Pressed) Release();

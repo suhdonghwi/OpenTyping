@@ -158,7 +158,6 @@ namespace OpenTyping
                 NextTextBlock.FontFamily = new FontFamily("Times New Roman");
             }
         }
-
         private KeyInfo RandomKey()
         {
             KeyPos keyPos = keyList[Randomizer.Next(0, keyList.Count)];
@@ -172,7 +171,6 @@ namespace OpenTyping
             bool isShift = Randomizer.Next(0, 2) == 0;
             return new KeyInfo(isShift ? key.ShiftKeyData : key.KeyData, keyPos, isShift);
         }
-
         private void MoveKey()
         {
             PreviousKey = CurrentKey;
@@ -269,7 +267,6 @@ namespace OpenTyping
                 });
             }
         }
-
         private void KeyPracticeWindow_Closed(object sender, EventArgs e)
         {
             MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
@@ -277,7 +274,6 @@ namespace OpenTyping
                 KeyIncorrectCount = incorrectStats
             });
         }
-
         private void KeyPracticeWindow_Activated(object sender, EventArgs e)
         {
             if (CurrentKey != null)
@@ -285,12 +281,10 @@ namespace OpenTyping
                 KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, this.isHandPopup);
             }
         }
-
         private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
         {
             KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, false);
         }
-
         private void KeyPracticeWindow_LocationChanged(object sender, EventArgs e)
         {
             if (CurrentKey != null)
@@ -298,7 +292,6 @@ namespace OpenTyping
                 KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, this.isHandPopup);
             }
         }
-
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
@@ -322,7 +315,6 @@ namespace OpenTyping
                 }
             }
         }
-
         private void ToggleBtnColor_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
@@ -356,7 +348,6 @@ namespace OpenTyping
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
@@ -364,7 +355,6 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
-
         private void ToggleButton_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == System.Windows.Input.Key.Tab || e.Key == System.Windows.Input.Key.Space)
