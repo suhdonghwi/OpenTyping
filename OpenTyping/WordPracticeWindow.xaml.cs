@@ -92,18 +92,19 @@ namespace OpenTyping
 
         private readonly Volume volume;
 
-        // Timer
+        // StopWatch, Countdown
         private System.Windows.Threading.DispatcherTimer timer;
         private uint elapsedTime;
         private uint second = 0;
         private uint minute = 0;
         private uint hour = 0;
         private uint milisecond = 0;
+        private TimeSpan timeSpan;
 
         // Event for returning UserRecord value
         public event Action<User> RtnNewUser;
 
-        public WordPracticeWindow()
+        public WordPracticeWindow(int countdownTime)
         {
             InitializeComponent();
             this.SetTextBylanguage();
@@ -154,6 +155,8 @@ namespace OpenTyping
             }
 
             ShakeAnimation.KeyFrames = keyFrames;
+
+            if (countdownTime != 0) StartCountdown(countdownTime);
         }
 
         private void SetTextBylanguage()
@@ -367,11 +370,11 @@ namespace OpenTyping
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
-            timer.Tick += new EventHandler(TimerTick);
+            timer.Tick += new EventHandler(StopWatchTick);
             timer.Start();
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void StopWatchTick(object sender, EventArgs e)
         {
             elapsedTime++;
             milisecond = elapsedTime % 10;
@@ -393,6 +396,31 @@ namespace OpenTyping
             {
                 hour++;
                 minute = 0;
+            }
+        }
+
+        private void StartCountdown(int countdownTime)
+        {
+            if (timer != null) return;
+
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timeSpan = TimeSpan.FromMinutes(countdownTime);
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += CountdownTick;
+            timer.Start();
+        }
+
+        private void CountdownTick(object sender, EventArgs e)
+        {
+            if (timeSpan == TimeSpan.Zero)
+            {
+                timer.Stop();
+                this.Close();
+            }
+            else
+            {
+                timeSpan = timeSpan.Add(TimeSpan.FromSeconds(-1));
+                TBstopWatch.Text = timeSpan.ToString("c");
             }
         }
 

@@ -104,7 +104,7 @@
 
         <DockPanel Grid.Row="1"
                    LastChildFill="False"
-                   Margin="10 0 10 10">
+                   Margin="0 0 5 5">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                 <Rectangle Style="{StaticResource TabItemIconRectangle}" 
                            Width="35" 
@@ -115,8 +115,8 @@
                                      Visual="{iconPacks:FontAwesome Kind=UserSolid}"/>
                     </Rectangle.OpacityMask>
                 </Rectangle>
-                <TextBlock Name="TBlblName" Margin="5" FontWeight="Bold" FontSize="15" Text="Name:"/>
-                <TextBox Name="TBname" MaxLength="30" Width="130" Margin="0 0 20 0" FontSize="20"></TextBox>
+                <TextBlock Name="TBlblName" Margin="0" FontWeight="Bold" FontSize="15" Text="Name:"/>
+                <TextBox Name="TBname" MaxLength="30" Width="130" Margin="0 0 0 0" FontSize="20"></TextBox>
 
                 <Rectangle Style="{StaticResource TabItemIconRectangle}" 
                            Width="35" 
@@ -127,7 +127,17 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Name="TBlblOrg" Margin="5" FontWeight="Bold" FontSize="15" Text="Organization:"/>
-                <TextBox Name="TBorg" MaxLength="50" Width="230" FontSize="20"></TextBox>
+                <TextBox Name="TBorg" MaxLength="50" Width="130" FontSize="20"></TextBox>
+
+                <mah:SplitButton Margin="5"
+                                 DisplayMemberPath="Name"
+                                 SelectionChanged="SplitButton_SelectionChanged"
+                                 SelectedIndex="0"
+                                 ItemsSource="{Binding Source={x:Static local:WordPracticeMenu.Timers}}">
+                    <mah:SplitButton.Icon>
+                        <iconPacks:PackIconMaterial Margin="0" Kind="Timer" />
+                    </mah:SplitButton.Icon>
+                </mah:SplitButton>
             </StackPanel>
             <Button x:Name="StartButton"
                     DockPanel.Dock="Right"

@@ -7,16 +7,45 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace OpenTyping
 {
     /// <summary>
     /// WordPracticeMenu.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+    public class Timer
+    {
+        public string Name { get; set; }
+
+        public Timer(string name)
+        {
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     public partial class WordPracticeMenu : UserControl
     {
         private readonly Rank Rank = new Rank();
         private User newUser;
+
+        private int countdownTime;
+        static public List<Timer> Timers = new List<Timer>
+        {
+            new Timer("∞"),
+            new Timer("3M"),
+            new Timer("5M"),
+            new Timer("10M"),
+            new Timer("15M"),
+            new Timer("30M")
+        };
 
         public WordPracticeMenu()
         {
@@ -43,7 +72,7 @@ namespace OpenTyping
             Settings.Default["Name"] = TBname.Text;
             Settings.Default["Org"] = TBorg.Text;
 
-            WordPracticeWindow wordPracticeWindow = new WordPracticeWindow();
+            WordPracticeWindow wordPracticeWindow = new WordPracticeWindow(countdownTime);
             wordPracticeWindow.Closed += new EventHandler(WordPracticeWindow_Closed);
             wordPracticeWindow.RtnNewUser += value => this.newUser = value;
             wordPracticeWindow.ShowDialog();
@@ -75,6 +104,19 @@ namespace OpenTyping
                                         + newUser.Time.ToString(CultureInfo.GetCultureInfo("en-US")),
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings { AnimateHide = false });
+        }
+
+        private void SplitButton_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string value = Regex.Replace(e.AddedItems[0].ToString(), @"\D", ""); // Extract numbers from string
+            if (int.TryParse(value, out int temp)) 
+            {
+                countdownTime = int.Parse(value);
+            }
+            else
+            {
+                countdownTime = 0; // Init
+            }
         }
     }
 
