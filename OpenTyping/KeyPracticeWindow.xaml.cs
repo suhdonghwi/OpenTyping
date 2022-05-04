@@ -24,7 +24,7 @@ namespace OpenTyping
     {
         public class KeyInfo
         {
-            public KeyInfo(string keyData, KeyPos pos, bool isShift)
+           public KeyInfo(string keyData, KeyPos pos, bool isShift)
             {
                 KeyData = keyData;
                 Pos = pos;
@@ -40,6 +40,7 @@ namespace OpenTyping
         private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
         private bool isHandPopup = true;
+        bool isColoredKeyLayout = false;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -96,10 +97,11 @@ namespace OpenTyping
 
             NextKey = RandomKey();
 
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded,
+                                  new Action(KeyLayoutBox.ColoredKeys));
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
             PreviewKeyDown += KeyPracticeWindow_PreviewKeyDown;
-
             double shakiness = 30;
             const double shakeDiff = 3;
             var keyFrames = new ThicknessKeyFrameCollection();
@@ -176,7 +178,7 @@ namespace OpenTyping
             PreviousKey = CurrentKey;
             if (PreviousKey != null)
             {
-                KeyLayoutBox.ReleaseKey(PreviousKey.Pos, _pressed);
+                KeyLayoutBox.ReleaseKey(PreviousKey.Pos, isColoredKeyLayout);
                 if (PreviousKey.IsShift)
                 {
                     KeyLayoutBox.LShiftKey.Release();
@@ -189,16 +191,11 @@ namespace OpenTyping
             if (CurrentKey.IsShift)
             {
                 KeyLayoutBox.LShiftKey.PressCorrect();
-                KeyLayoutBox.RShiftKey.PressCorrect();
-                
+                KeyLayoutBox.RShiftKey.PressCorrect();       
             }
 
             NextKey = RandomKey();
-
         }
-
-
-
         private void KeyPracticeWindow_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.IsRepeat) return;
@@ -221,7 +218,6 @@ namespace OpenTyping
                 }
                 CorrectCount++;
                 MoveKey();
-
             }
             else // Wrong pressed
             {
@@ -247,12 +243,12 @@ namespace OpenTyping
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressCorrectKey(pos,_pressed, this.isHandPopup);
+                        KeyLayoutBox.PressCorrectKey(pos, isColoredKeyLayout, this.isHandPopup);
                     }
                     else
                     {
-                        KeyLayoutBox.ReleaseKey(pos, _pressed);
-                        if (_pressed)
+                        KeyLayoutBox.ReleaseKey(pos, isColoredKeyLayout);
+                        if (isColoredKeyLayout)
                         {
                             KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup);
                         }
@@ -274,7 +270,6 @@ namespace OpenTyping
             }
         }
 
-
         private void KeyPracticeWindow_Closed(object sender, EventArgs e)
         {
             MainWindow.CurrentKeyLayout.Stats.AddStats(new KeyLayoutStats()
@@ -287,26 +282,23 @@ namespace OpenTyping
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos,_pressed, this.isHandPopup);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, this.isHandPopup);
             }
         }
 
         private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
         {
-            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed, false);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, false);
         }
 
         private void KeyPracticeWindow_LocationChanged(object sender, EventArgs e)
         {
             if (CurrentKey != null)
             {
-                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed, this.isHandPopup);
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isColoredKeyLayout, this.isHandPopup);
             }
         }
 
-
-
-        bool _pressed1 = false;
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
@@ -317,61 +309,49 @@ namespace OpenTyping
                     this.isHandPopup = true;
                     if (KeyLayoutBox != null)
                     {
-                         KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
-                        
+                         KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup); 
                     }
-                    _pressed1 = true;
                 }
                 else
                 {
                     this.isHandPopup = false;
                     if (KeyLayoutBox != null)
                     {
-                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
-                       ;
+                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup);
                     }
-                    _pressed1 = false;
                 }
             }
         }
 
-        //Color togglebutton on or off
-        bool _pressed = false;
-
-        //Adding color functionality to keyboard
-        private void ToggleButton_Checked_1(object sender, RoutedEventArgs e)
+        private void ToggleBtnColor_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
             if (toggleButton != null)
             {
                 if (toggleButton.IsChecked == true)
-                {
-                    
+                {  
                     if (KeyLayoutBox != null)
                     {
-                       KeyLayoutBox.ChangeColorOn();
-                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed1);
+                       KeyLayoutBox.ColoredKeys();
+                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup);
                     }
 
-                    _pressed = true;
+                    isColoredKeyLayout = true;
                 }
                 else
                 {
-
                     if (KeyLayoutBox != null)
                     {
-                       KeyLayoutBox.ChangeColorOff();
-                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, _pressed1);
-
+                       KeyLayoutBox.PlainColorKeys();
+                       KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, isHandPopup);
                     }
-                    _pressed = false;
+
+                    isColoredKeyLayout = false;
                 }
             }
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -392,6 +372,5 @@ namespace OpenTyping
                 e.Handled = true;
             }
         }
-
     }
 }

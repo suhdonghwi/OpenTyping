@@ -19,7 +19,6 @@ namespace OpenTyping
         public static readonly DependencyProperty KeyColorProperty =
             DependencyProperty.Register("KeyColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(Brushes.White));
 
-
         public Brush ShadowColor
         {
             get => (Brush)GetValue(ShadowColorProperty);
@@ -75,7 +74,6 @@ namespace OpenTyping
                 Canvas.SetTop(KeyTop, PressDiff);
                 KeyBack.Height -= PressDiff;
                 Canvas.SetTop(KeyBack, PressDiff);
-         
             }
 
             KeyColor = keyColor;
@@ -95,7 +93,6 @@ namespace OpenTyping
             }
 
             Pressed = true;
-
         }
 
         private void Press(bool Press, bool isHandPopup = false)
@@ -122,16 +119,15 @@ namespace OpenTyping
             }
 
             Pressed = true;
-
         }
         public void PressCorrect( bool isHandPopup = false)
         {
             Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup); 
         }
 
-        public void PressCorrect(bool P, bool isHandPopup = false)
+        public void PressCorrect(bool isButtonClicked, bool isHandPopup = false)
         {
-            Press(P, isHandPopup);
+            Press(isButtonClicked, isHandPopup);
         }
         public void PressIncorrect()
         {
