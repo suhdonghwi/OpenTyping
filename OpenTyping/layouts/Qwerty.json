@@ -254,45 +254,35 @@
     ]
   ],
   "DefaultKeys": [
-    "1,0",
-    "1,1",
-    "1,2",
+    "0,4",
+    "0,5",
+    "0,6",
+    "0,7",
     "1,3",
     "1,4",
     "1,5",
     "1,6",
-    "1,7",
-    "1,8",
-    "1,9",
-    "2,0",
-    "2,1",
-    "2,2",
     "2,3",
     "2,4",
     "2,5",
     "2,6",
-    "2,7",
-    "2,8",
-    "3,0",
-    "3,1",
-    "3,2",
     "3,3",
     "3,4",
     "3,5",
-    "3,6",
-    "4,0"
+    "3,6"
   ],
-  "Stats": {
-    "KeyIncorrectCount": {
-      "3,5": 1,
-      "3,6": 1
-    },
-    "MostIncorrect": {
-      "Key": "3,5",
-      "Value": 1
-    },
-    "SentencePracticeCount": 0,
-    "AverageTypingSpeed": 0,
-    "AverageAccuracy": 0
-  }
+  "Stats" :
+    {
+      "KeyIncorrectCount": {
+        "3,5": 1,
+        "3,6": 1
+      },
+      "MostIncorrect": {
+        "Key": "3,5",
+        "Value": 1
+      },
+      "SentencePracticeCount": 0,
+      "AverageTypingSpeed": 0,
+      "AverageAccuracy": 0
+    }
 }

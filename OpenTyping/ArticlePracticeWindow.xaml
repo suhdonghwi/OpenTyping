@@ -101,7 +101,7 @@
                                    FontFamily="{StaticResource NanumBarunGothic}"
                                    FontSize="13pt"
                                    VerticalAlignment="Center"
-                                   Margin="0 3 0 0"/>
+                                   Margin="3 3 0 0"/>
                     </StackPanel>
                 </Border>
                 <Border Background="#f03e3e">
@@ -120,7 +120,7 @@
                                    FontFamily="{StaticResource NanumBarunGothic}"
                                    FontSize="13pt"
                                    VerticalAlignment="Center"
-                                   Margin="0 3 0 0"/>
+                                   Margin="3 3 0 0"/>
                     </StackPanel>
                 </Border>
             </StackPanel>

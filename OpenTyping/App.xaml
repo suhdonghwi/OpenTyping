@@ -23,6 +23,19 @@
             <FontFamily x:Key="LabDigital">pack://application:,,,/Resources/Fonts/#LAB디지털</FontFamily>
             <FontFamily x:Key="PTMono">pack://application:,,,/Resources/Fonts/#PTMono</FontFamily>
 
+            <SolidColorBrush x:Key="CorrectKeyColor">
+                <SolidColorBrush.Color><Color A="255" R="140" G="233" B="154"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="CorrectKeyShadowColor">
+                <SolidColorBrush.Color><Color A="255" R="105" G="219" B="124"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="IncorrectKeyColor">
+                <SolidColorBrush.Color><Color A="255" R="255" G="168" B="168"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="IncorrectKeyShadowColor">
+                <SolidColorBrush.Color><Color A="255" R="255" G="135" B="135"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
                 <Setter Property="TitleTemplate">
                     <Setter.Value>

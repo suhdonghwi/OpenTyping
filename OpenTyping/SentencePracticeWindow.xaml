@@ -83,7 +83,7 @@
                                        FontFamily="{StaticResource NanumBarunGothic}"
                                        FontSize="16pt"
                                        VerticalAlignment="Center"
-                                       Margin="0 3 0 0"/>
+                                       Margin="3 3 0 0"/>
                         </StackPanel>
                     </Border>
                     <Border Background="#37b24d"
@@ -102,7 +102,7 @@
                                        FontFamily="{StaticResource NanumBarunGothic}"
                                        FontSize="16pt"
                                        VerticalAlignment="Center"
-                                       Margin="0 3 0 0"/>
+                                       Margin="3 3 0 0"/>
                         </StackPanel>
                     </Border>
                     <Border Background="#f03e3e">
@@ -121,7 +121,7 @@
                                        FontFamily="{StaticResource NanumBarunGothic}"
                                        FontSize="16pt"
                                        VerticalAlignment="Center"
-                                       Margin="0 3 0 0"/>
+                                       Margin="3 3 0 0"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>

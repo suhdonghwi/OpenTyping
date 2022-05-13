@@ -41,11 +41,11 @@ namespace OpenTyping
         private Brush defaultKeyColor;
         private Brush defaultShadowColor;
 
-        private static readonly Brush CorrectKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
-        private static readonly Brush CorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
+        private static readonly Brush CorrectKeyColor = (Brush)Application.Current.FindResource("CorrectKeyColor");
+        private static readonly Brush CorrectKeyShadowColor = (Brush)Application.Current.FindResource("CorrectKeyShadowColor");
 
-        private static readonly Brush IncorrectKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
-        private static readonly Brush IncorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
+        private static readonly Brush IncorrectKeyColor = (Brush)Application.Current.FindResource("IncorrectKeyColor");
+        private static readonly Brush IncorrectKeyShadowColor = (Brush)Application.Current.FindResource("IncorrectKeyShadowColor");
 
         public KeyBox()
         {

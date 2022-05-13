@@ -9,7 +9,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignWidth="800"
-             d:DesignHeight="600">
+             d:DesignHeight="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -20,7 +20,7 @@
                     Orientation="Vertical"
                     Margin="6 5 0 5">
             <StackPanel Orientation="Vertical"
-                        Margin="8 0 0 12">
+                        Margin="8 0 0 10">
                 <StackPanel Orientation="Horizontal"
                             Margin="0 0 0 2">
                     <Rectangle Width="59" 
@@ -42,26 +42,110 @@
                            Text=": 자판 위 글자들 각각의 자리를 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ToggleButton Margin="0 0 0 5" 
+                              Width="28"
+                              Height="28"
+                              Name="Finger1"
+                              IsChecked="False"
+                              Unchecked="ToggleKeys_Checked"
+                              Checked ="ToggleKeys_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterialDesign Width="20"
+                                                              Height="20"
+                                                              Kind="Filter1" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Margin="15 0 0 5" 
+                              Width="28"
+                              Height="28"
+                              Name="Finger2"
+                              IsChecked="True"
+                              Unchecked="ToggleKeys_Checked"
+                              Checked ="ToggleKeys_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterialDesign Width="20"
+                                                              Height="20"
+                                                              Kind="Filter2" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Margin="15 0 0 5" 
+                              Width="28"
+                              Height="28"
+                              Name="Finger3"
+                              IsChecked="False"
+                              Unchecked="ToggleKeys_Checked"
+                              Checked ="ToggleKeys_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterialDesign Width="20"
+                                                              Height="20"
+                                                              Kind="Filter3" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Margin="15 0 0 5" 
+                              Width="28"
+                              Height="28"
+                              Name="Finger4"
+                              IsChecked="False"
+                              Unchecked="ToggleKeys_Checked"
+                              Checked ="ToggleKeys_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterialDesign Width="20"
+                                                              Height="20"
+                                                              Kind="Filter4" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Margin="15 0 0 5" 
+                              Width="28"
+                              Height="28"
+                              Name="Finger5"
+                              IsChecked="False"
+                              Unchecked="ToggleKeys_Checked"
+                              Checked ="ToggleKeys_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterialDesign Width="20"
+                                                              Height="20"
+                                                              Kind="Filter5" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+            </StackPanel>
+
             <local:KeyLayoutBox x:Name="KeyLayoutBox"
                                 Clickable="True"
-                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Margin="0 0 0 5"/>
+            
             <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
                         Margin="4 0 0 7">
-                <Rectangle Width="23" 
-                           Height="23"
-                           Margin="0 0 5 0"
-                           Fill="#1c7ed6">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <TextBlock Style="{StaticResource NormalTextBlock}"
-                           Name="MenuHelp"
-                           Text="연습하고 싶은 위치의 키를 클릭하여 설정/해제하세요."
-                           VerticalAlignment="Bottom"
-                           FontSize="14pt"/>
+            <Rectangle Width="23" 
+                       Height="23"
+                       Margin="0 0 5 0"
+                       Fill="#1c7ed6">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock Style="{StaticResource NormalTextBlock}"
+                       Name="MenuHelp"
+                       Text="연습하고 싶은 위치의 키를 클릭하여 설정/해제하세요."
+                       VerticalAlignment="Bottom"
+                       FontSize="14pt"/>
             </StackPanel>
         </StackPanel>
 
@@ -89,12 +173,12 @@
                            FontSize="13pt"
                            VerticalAlignment="Center"
                            Margin="0 0 5 0"/>
-                <mah:ToggleSwitch 
-                                  HorizontalAlignment="Right"
+                <mah:ToggleSwitch HorizontalAlignment="Right"
                                   VerticalAlignment="Center"
                                   Foreground="#212529"
                                   OnContent="" OffContent=""
-                                  Toggled="ToggleSwitch_Toggled"/>
+                                  IsOn="False"
+                                  Toggled="ToggleShift_Toggled"/>
             </StackPanel>
             <Button x:Name="StartButton"
                     DockPanel.Dock="Right"

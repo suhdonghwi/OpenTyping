@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace OpenTyping
@@ -109,6 +108,23 @@ namespace OpenTyping
             keyLayout[pos.Row][pos.Column].Release();
         }
 
+        public void ReleaseKeys (List<KeyPos> keys)
+        {
+            List<KeyPos> defaultKeys = keys;
+
+            for (int i = 0; i < keyLayout.Count; i++)
+            {
+                for (int j = 0; j < keyLayout[i].Count; j++)
+                {
+                    if (defaultKeys.Contains(new KeyPos(i, j)))
+                    {
+                        keyLayout[i][j].Release();
+                    }
+                }
+            }
+            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
+        }
+
         public void PressDefaultKeys()
         {
             List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
@@ -123,6 +139,23 @@ namespace OpenTyping
                     }
                 }
             }
+        }
+
+        public void PressDefaultKeys(List<KeyPos> keys)
+        {
+            List<KeyPos> defaultKeys = keys;
+
+            for (int i = 0; i < keyLayout.Count; i++)
+            {
+                for (int j = 0; j < keyLayout[i].Count; j++)
+                {
+                    if (defaultKeys.Contains(new KeyPos(i, j)))
+                    {
+                        keyLayout[i][j].PressCorrect();
+                    }
+                }
+            }
+            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
         }
 
         public List<KeyPos> PressedKeys()

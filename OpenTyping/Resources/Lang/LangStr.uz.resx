@@ -163,7 +163,7 @@
     <value>Ilova fayl yo'nalishini aniqlashda xatolik yuz berdi.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
-    <value>Yuqori tugma (Shift) bundan mustasno</value>
+    <value>Katta harflar</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Asosiy</value>
@@ -184,7 +184,7 @@
     <value>Klaviaturadagi har bir tugmachalarning joyini mashq qiling.</value>
   </data>
   <data name="KeyPracHelp" xml:space="preserve">
-    <value>Yoqish/o‘chirish uchun mashq qilmoqchi bo‘lgan klavishning o‘rnini bosing.</value>
+    <value>Har tugmacha o‘rnini bosib mashq qilmoqchi tugmachani tanlash mumkin.</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
     <value>Matnlar mashqi</value>

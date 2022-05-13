@@ -60,6 +60,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox x:Name="LShiftKey"
+                          KeyColor="{StaticResource CorrectKeyColor}"
                           Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource ShiftKey}"
                           Width="130"/>
