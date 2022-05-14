@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace OpenTyping
@@ -103,9 +104,9 @@ namespace OpenTyping
             keyLayout[pos.Row][pos.Column].PressIncorrect();
         }
 
-        public void ReleaseKey(KeyPos pos)
+        public void ReleaseKey(KeyPos pos, bool isColored = false)
         {
-            keyLayout[pos.Row][pos.Column].Release();
+            keyLayout[pos.Row][pos.Column].Release(isColored);
         }
 
         public void ReleaseKeys (List<KeyPos> keys)
@@ -135,7 +136,7 @@ namespace OpenTyping
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {
-                        keyLayout[i][j].PressCorrect();
+                        keyLayout[i][j].PressCorrect(false, true);
                     }
                 }
             }
@@ -151,7 +152,7 @@ namespace OpenTyping
                 {
                     if (defaultKeys.Contains(new KeyPos(i, j)))
                     {
-                        keyLayout[i][j].PressCorrect();
+                        keyLayout[i][j].PressCorrect(false, true);
                     }
                 }
             }
@@ -174,6 +175,33 @@ namespace OpenTyping
             }
 
             return result;
+        }
+
+        public void ToggleColoredKeys(bool colored, KeyPos currentKey)
+        {
+            for (int i = 0; i < keyLayout.Count; i++)
+            {
+                for (int j = 0; j < keyLayout[i].Count; j++)
+                {
+                    // Don't fill a color in case of current practicing key
+                    if (!(currentKey.Row == i && currentKey.Column == j))
+                    {
+                        keyLayout[i][j].ToggleColor(colored);
+                    }
+                }
+            }
+        }
+
+        public void PressShiftKey()
+        {
+            LShiftKey.KeyColor = RShiftKey.KeyColor = (Brush)Application.Current.FindResource("CorrectKeyColor");
+            LShiftKey.ShadowColor = RShiftKey.ShadowColor = (Brush)Application.Current.FindResource("CorrectKeyColor");
+        }
+
+        public void ReleaseShiftKey()
+        {
+            LShiftKey.KeyColor = RShiftKey.KeyColor = Brushes.White;
+            LShiftKey.ShadowColor = RShiftKey.ShadowColor = (Brush)Application.Current.FindResource("DefaultKeyShadowColor");
         }
 
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)

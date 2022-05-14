@@ -42,87 +42,117 @@
                            Text=": 자판 위 글자들 각각의 자리를 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ToggleButton Margin="0 0 0 5" 
-                              Width="28"
-                              Height="28"
-                              Name="Finger1"
-                              IsChecked="False"
-                              Unchecked="ToggleKeys_Checked"
-                              Checked ="ToggleKeys_Checked"
-                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <iconPacks:PackIconMaterialDesign Width="20"
-                                                              Height="20"
-                                                              Kind="Filter1" />
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton Margin="15 0 0 5" 
-                              Width="28"
-                              Height="28"
-                              Name="Finger2"
-                              IsChecked="True"
-                              Unchecked="ToggleKeys_Checked"
-                              Checked ="ToggleKeys_Checked"
-                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <iconPacks:PackIconMaterialDesign Width="20"
-                                                              Height="20"
-                                                              Kind="Filter2" />
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton Margin="15 0 0 5" 
-                              Width="28"
-                              Height="28"
-                              Name="Finger3"
-                              IsChecked="False"
-                              Unchecked="ToggleKeys_Checked"
-                              Checked ="ToggleKeys_Checked"
-                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <iconPacks:PackIconMaterialDesign Width="20"
-                                                              Height="20"
-                                                              Kind="Filter3" />
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton Margin="15 0 0 5" 
-                              Width="28"
-                              Height="28"
-                              Name="Finger4"
-                              IsChecked="False"
-                              Unchecked="ToggleKeys_Checked"
-                              Checked ="ToggleKeys_Checked"
-                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <iconPacks:PackIconMaterialDesign Width="20"
-                                                              Height="20"
-                                                              Kind="Filter4" />
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton Margin="15 0 0 5" 
-                              Width="28"
-                              Height="28"
-                              Name="Finger5"
-                              IsChecked="False"
-                              Unchecked="ToggleKeys_Checked"
-                              Checked ="ToggleKeys_Checked"
-                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <iconPacks:PackIconMaterialDesign Width="20"
-                                                              Height="20"
-                                                              Kind="Filter5" />
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 2">
+                <mah:Badged Badge="1" BadgePlacementMode="Left" 
+                            BadgeBackground="White" 
+                            BadgeForeground="Black" 
+                            BadgeBorderBrush="Black" 
+                            BadgeBorderThickness="1">
+                    <ToggleButton Margin="7 0 0 0" 
+                                  Width="28"
+                                  Height="28"
+                                  Name="Finger1"
+                                  IsChecked="False"
+                                  Unchecked="ToggleKeys_Checked"
+                                  Checked ="ToggleKeys_Checked"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <iconPacks:PackIconMaterial Width="20"
+                                                            Height="20"
+                                                            Kind="HandBackRight" />
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </mah:Badged>
+                <mah:Badged Badge="2" BadgePlacementMode="TopLeft" Margin="10 0 0 0" 
+                            BadgeBackground="White" 
+                            BadgeForeground="Black" 
+                            BadgeBorderBrush="Black" 
+                            BadgeBorderThickness="1">
+                    <ToggleButton Margin="0 0 0 0" 
+                                  Width="28"
+                                  Height="28"
+                                  Name="Finger2"
+                                  IsChecked="True"
+                                  Unchecked="ToggleKeys_Checked"
+                                  Checked ="ToggleKeys_Checked"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <iconPacks:PackIconMaterial Width="20"
+                                                            Height="20"
+                                                            Kind="HandBackRight" />
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </mah:Badged>
+                <mah:Badged Badge="3" BadgePlacementMode="Top" Margin="10 0 0 0" 
+                            BadgeBackground="White" 
+                            BadgeForeground="Black" 
+                            BadgeBorderBrush="Black" 
+                            BadgeBorderThickness="1">
+                    <ToggleButton Margin="0 3 0 0" 
+                                  Width="28"
+                                  Height="28"
+                                  Name="Finger3"
+                                  IsChecked="False"
+                                  Unchecked="ToggleKeys_Checked"
+                                  Checked ="ToggleKeys_Checked"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <iconPacks:PackIconMaterial Width="20"
+                                                            Height="20"
+                                                            Kind="HandBackRight" />
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </mah:Badged>
+                <mah:Badged Badge="4" BadgePlacementMode="TopRight" Margin="10 0 0 0" 
+                            BadgeBackground="White" 
+                            BadgeForeground="Black" 
+                            BadgeBorderBrush="Black" 
+                            BadgeBorderThickness="1">
+                    <ToggleButton Margin="0 0 0 0" 
+                                  Width="28"
+                                  Height="28"
+                                  Name="Finger4"
+                                  IsChecked="False"
+                                  Unchecked="ToggleKeys_Checked"
+                                  Checked ="ToggleKeys_Checked"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <iconPacks:PackIconMaterial Width="20"
+                                                            Height="20"
+                                                            Kind="HandBackRight" />
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </mah:Badged>
+                <mah:Badged Badge="5" BadgePlacementMode="Right" Margin="10 0 0 0" 
+                            BadgeBackground="White" 
+                            BadgeForeground="Black" 
+                            BadgeBorderBrush="Black" 
+                            BadgeBorderThickness="1">
+                    <ToggleButton Margin="0 0 7 0" 
+                                  Width="28"
+                                  Height="28"
+                                  Name="Finger5"
+                                  IsChecked="False"
+                                  Unchecked="ToggleKeys_Checked"
+                                  Checked ="ToggleKeys_Checked"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <iconPacks:PackIconMaterial Width="20"
+                                                            Height="20"
+                                                            Kind="HandBackRight" />
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </mah:Badged>
             </StackPanel>
 
             <local:KeyLayoutBox x:Name="KeyLayoutBox"
@@ -162,7 +192,7 @@
                            VerticalAlignment="Center"
                            Fill="#212529">
                     <Rectangle.OpacityMask>
-                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                        <VisualBrush Visual="{iconPacks:Material Kind=FormatLetterMatches}"/>
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"

@@ -308,7 +308,7 @@
                         </TextBlock>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Name="Version" Text="Version : " FontSize="12" HorizontalAlignment="Center"/>
-                            <TextBlock>1.1.1</TextBlock>
+                            <TextBlock>1.2.0</TextBlock>
                         </StackPanel>
 
                         <TextBlock Name="Copyright" Text="* Copyright" FontWeight="Bold" FontSize="14" Margin="0 50 0 0"/>

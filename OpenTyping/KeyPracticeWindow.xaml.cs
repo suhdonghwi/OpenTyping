@@ -38,7 +38,8 @@ namespace OpenTyping
         private readonly IList<KeyPos> keyList;
         private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
-        private bool isHandPopup = true;
+        private bool isHandPopup;
+        private bool isColored;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -88,15 +89,21 @@ namespace OpenTyping
             InitializeComponent();
             this.SetTextBylanguage();
             this.FontAssignByLang();
+
             this.volume = (Volume)Settings.Default["Volume"];
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
 
             NextKey = RandomKey();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
+            var dispatcherOp = Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
+            dispatcherOp.Completed += (s, e) => // When asynchronous completed
+            {
+                ColorToggleBtn.IsChecked = true; // Default is the Colored keys
+                HandToggleBtn.IsChecked = true;  // Default is with hand guidance 
+            };
+
             PreviewKeyDown += KeyPracticeWindow_PreviewKeyDown;
 
             double shakiness = 30;
@@ -175,7 +182,7 @@ namespace OpenTyping
             PreviousKey = CurrentKey;
             if (PreviousKey != null)
             {
-                KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
+                KeyLayoutBox.ReleaseKey(PreviousKey.Pos, isColored);
                 if (PreviousKey.IsShift)
                 {
                     KeyLayoutBox.LShiftKey.Release();
@@ -245,7 +252,7 @@ namespace OpenTyping
                     }
                     else
                     {
-                        KeyLayoutBox.ReleaseKey(pos);
+                        KeyLayoutBox.ReleaseKey(pos, isColored);
                     }
 
                     if (CurrentKey.IsShift) // 현재 키가 윗글쇠일 경우
@@ -293,7 +300,7 @@ namespace OpenTyping
             }
         }
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void HandToggle_Checked(object sender, RoutedEventArgs e)
         {
             ToggleButton toggleButton = sender as ToggleButton;
             if (toggleButton != null)
@@ -314,6 +321,39 @@ namespace OpenTyping
                         KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
                     }
                 }
+            }
+        }
+
+        private void ColorToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
+            {
+                if (toggleButton.IsChecked == true)
+                {
+                    isColored = true;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.ToggleColoredKeys(true, CurrentKey.Pos);
+                    }
+                }
+                else
+                {
+                    isColored = false;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.ToggleColoredKeys(false, CurrentKey.Pos);
+                    }
+                }
+            }
+        }
+
+        // Pevent toggle on/off by spacebar
+        private void ToggleButton_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab || e.Key == System.Windows.Input.Key.Space)
+            {
+                e.Handled = true;
             }
         }
 

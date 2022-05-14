@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Documents;
 using MahApps.Metro.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using Newtonsoft.Json;
 using OpenTyping.Properties;
 using OpenTyping.Resources.Lang;
 

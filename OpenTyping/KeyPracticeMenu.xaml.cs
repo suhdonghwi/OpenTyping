@@ -119,10 +119,12 @@ namespace OpenTyping
                 if (toggleSwitch.IsOn == true)
                 {
                     this.NoShiftMode = false;
+                    KeyLayoutBox.PressShiftKey();
                 }
                 else
                 {
                     this.NoShiftMode = true;
+                    KeyLayoutBox.ReleaseShiftKey();
                 }
             }
         }
@@ -155,7 +157,6 @@ namespace OpenTyping
 
                 if (toggleButton.IsChecked == true)
                 {
-
                     if (KeyLayoutBox != null)
                     {
                         KeyLayoutBox.PressDefaultKeys(Keys);
@@ -163,7 +164,6 @@ namespace OpenTyping
                 }
                 else
                 {
-
                     if (KeyLayoutBox != null)
                     {
                         KeyLayoutBox.ReleaseKeys(Keys);

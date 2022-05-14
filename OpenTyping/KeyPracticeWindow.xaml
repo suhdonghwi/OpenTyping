@@ -101,13 +101,32 @@
                        Text="{Binding IncorrectCount}"
                        Margin="0 3 0 0"
                        FontSize="14pt"/>
-            <ToggleButton Margin="630 0 0 0" 
-                            Width="30"
-                            Height="30"
-                            IsChecked="True"
-                            Unchecked="ToggleButton_Checked"
-                            Checked ="ToggleButton_Checked"
-                            Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+            <ToggleButton Name="ColorToggleBtn"
+                          Margin="590 0 0 0" 
+                          Width="30"
+                          Height="30"
+                          PreviewKeyDown="ToggleButton_PreviewKeyDown"
+                          IsChecked="False"
+                          Unchecked="ColorToggle_Checked"
+                          Checked ="ColorToggle_Checked"
+                          Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                <ToggleButton.ContentTemplate>
+                    <DataTemplate>
+                        <iconPacks:PackIconMaterial Width="20"
+                                                    Height="20"
+                                                    Kind="InvertColors" />
+                    </DataTemplate>
+                </ToggleButton.ContentTemplate>
+            </ToggleButton>
+            <ToggleButton Name="HandToggleBtn"
+                          Margin="15 0 0 0" 
+                          Width="30"
+                          Height="30"
+                          PreviewKeyDown="ToggleButton_PreviewKeyDown"
+                          IsChecked="False"
+                          Unchecked="HandToggle_Checked"
+                          Checked ="HandToggle_Checked"
+                          Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
                 <ToggleButton.ContentTemplate>
                     <DataTemplate>
                         <iconPacks:PackIconFontAwesome Width="20"
