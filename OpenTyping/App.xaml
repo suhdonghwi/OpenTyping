@@ -41,28 +41,28 @@
             </SolidColorBrush>
             
             <SolidColorBrush x:Key="L5">
-                <SolidColorBrush.Color><Color A="40" R="248" G="171" B="53"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="248" G="171" B="53"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="L4">
-                <SolidColorBrush.Color><Color A="40" R="239" G="232" B="21"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="239" G="232" B="21"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="L3">
-                <SolidColorBrush.Color><Color A="40" R="94" G="206" B="0"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="94" G="206" B="0"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="L2">
-                <SolidColorBrush.Color><Color A="40" R="0" G="213" B="141"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="0" G="213" B="141"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="R2">
-                <SolidColorBrush.Color><Color A="40" R="50" G="164" B="242"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="50" G="164" B="242"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="R3">
-                <SolidColorBrush.Color><Color A="40" R="144" G="72" B="247"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="144" G="72" B="247"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="R4">
-                <SolidColorBrush.Color><Color A="40" R="255" G="57" B="241"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="255" G="57" B="241"/></SolidColorBrush.Color>
             </SolidColorBrush>
             <SolidColorBrush x:Key="R5">
-                <SolidColorBrush.Color><Color A="40" R="253" G="90" B="97"/></SolidColorBrush.Color>
+                <SolidColorBrush.Color><Color A="80" R="253" G="90" B="97"/></SolidColorBrush.Color>
             </SolidColorBrush>
 
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">

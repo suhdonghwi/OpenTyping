@@ -193,7 +193,7 @@
     <value>Bir matn orqali mashq qiling.</value>
   </data>
   <data name="MostWrongKey" xml:space="preserve">
-    <value>Ko'pincha noto'g'ri kiritilgan harf</value>
+    <value>Ko‘p xatoga yo‘l qo‘ygan harflaringiz</value>
   </data>
   <data name="NumPracSen" xml:space="preserve">
     <value>Amaldagi gaplar soni</value>
@@ -352,7 +352,7 @@
     <value>So'zlar mashqi</value>
   </data>
   <data name="WordPracDesc" xml:space="preserve">
-    <value>Harflarni birlashtirgan so'zlardan mashq qiling. O'ringa kirishga harakat qiling.</value>
+    <value>So‘zlarni mashq qiling va yuqori o‘rinni egallashga urinib ko‘ring.</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
     <value>Qo'llanma</value>
