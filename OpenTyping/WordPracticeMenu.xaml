@@ -71,11 +71,11 @@
                                     <GridViewColumn x:Name="Header1"  DisplayMemberBinding="{Binding Converter={StaticResource IndexConverter},
                                             RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}" Header="Rank" Width="50"/>
                                     <GridViewColumn x:Name="Header2" DisplayMemberBinding="{Binding Name}" Header="Name" Width="150"/>
-                                    <GridViewColumn x:Name="Header3" DisplayMemberBinding="{Binding Org}" Header="Org" Width="250"/>
-                                    <GridViewColumn x:Name="Header4" DisplayMemberBinding="{Binding Accuracy}" Header="Accuracy" Width="50"/>
-                                    <GridViewColumn x:Name="Header5" DisplayMemberBinding="{Binding Speed}" Header="Speed" Width="50"/>
-                                    <GridViewColumn x:Name="Header6" DisplayMemberBinding="{Binding Count}" Header="Count" Width="50"/>
-                                    <GridViewColumn x:Name="Header7" DisplayMemberBinding="{Binding Time, StringFormat='{}{0:0.0}'}" Header="Time" Width="80"/>
+                                    <GridViewColumn x:Name="Header3" DisplayMemberBinding="{Binding Org}" Header="Org" Width="200"/>
+                                    <GridViewColumn x:Name="Header4" DisplayMemberBinding="{Binding Accuracy}" Header="Accuracy" Width="75"/>
+                                    <GridViewColumn x:Name="Header5" DisplayMemberBinding="{Binding Speed}" Header="Speed" Width="95"/>
+                                    <GridViewColumn x:Name="Header6" DisplayMemberBinding="{Binding Count}" Header="Count" Width="75"/>
+                                    <GridViewColumn x:Name="Header7" DisplayMemberBinding="{Binding Time, StringFormat='{}{0:0.0}'}" Header="Time" Width="114"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -115,7 +115,7 @@
                                      Visual="{iconPacks:FontAwesome Kind=UserSolid}"/>
                     </Rectangle.OpacityMask>
                 </Rectangle>
-                <TextBlock Name="TBlblName" Margin="0" FontWeight="Bold" FontSize="15" Text="Name:"/>
+                <TextBlock Name="TBlblName" Margin="0 0 5 0" FontWeight="Bold" FontSize="15" Text="Name:" VerticalAlignment="Center"/>
                 <TextBox Name="TBname" MaxLength="30" Width="130" Margin="0 0 0 0" FontSize="20"></TextBox>
 
                 <Rectangle Style="{StaticResource TabItemIconRectangle}" 
@@ -126,7 +126,7 @@
                                      Visual="{iconPacks:FontAwesome Kind=SchoolSolid}"/>
                     </Rectangle.OpacityMask>
                 </Rectangle>
-                <TextBlock Name="TBlblOrg" Margin="5" FontWeight="Bold" FontSize="15" Text="Organization:"/>
+                <TextBlock Name="TBlblOrg" Margin="5" FontWeight="Bold" FontSize="15" Text="Organization:" VerticalAlignment="Center"/>
                 <TextBox Name="TBorg" MaxLength="50" Width="130" FontSize="20"></TextBox>
 
                 <mah:SplitButton Margin="5"
