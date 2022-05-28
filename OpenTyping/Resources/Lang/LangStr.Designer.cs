@@ -376,6 +376,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No DefaultKeys field..
+        /// </summary>
+        internal static string ErrMsg25 {
+            get {
+                return ResourceManager.GetString("ErrMsg25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A file with the same name already exists in the practice data path..
         /// </summary>
         internal static string ErrMsg3 {

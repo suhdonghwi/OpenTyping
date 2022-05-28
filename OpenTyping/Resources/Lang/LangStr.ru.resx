@@ -157,10 +157,10 @@
     <value>Существуют повторяющиеся имена.</value>
   </data>
   <data name="ErrMsg11" xml:space="preserve">
-    <value>Нет площади Name </value>
+    <value>Нет площади Name.</value>
   </data>
   <data name="ErrMsg12" xml:space="preserve">
-    <value>Нет площади KeyLayoutData </value>
+    <value>Нет площади KeyLayoutData.</value>
   </data>
   <data name="ErrMsg13" xml:space="preserve">
     <value>Нет площади Chracter.</value>
@@ -389,5 +389,8 @@
   </data>
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB file is broken. Please reinstall this App or delete the broken DB file.</value>
+  </data>
+  <data name="ErrMsg25" xml:space="preserve">
+    <value>Нет площади DefaultKeys.</value>
   </data>
 </root>

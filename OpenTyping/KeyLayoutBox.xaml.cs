@@ -14,6 +14,7 @@ namespace OpenTyping
     public partial class KeyLayoutBox : UserControl
     {
         private List<List<KeyBox>> keyLayout;
+        private List<KeyPos> selectedKeys;
 
         public bool Clickable
         {
@@ -26,6 +27,7 @@ namespace OpenTyping
         public KeyLayoutBox()
         {
             InitializeComponent();
+            selectedKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
             Loaded += KeyLayoutBox_Loaded; 
         }
 
@@ -123,18 +125,16 @@ namespace OpenTyping
                     }
                 }
             }
-            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
+            selectedKeys = PressedKeys();
         }
 
         public void PressDefaultKeys()
         {
-            List<KeyPos> defaultKeys = MainWindow.CurrentKeyLayout.DefaultKeys;
-
             for (int i = 0; i < keyLayout.Count; i++)
             {
                 for (int j = 0; j < keyLayout[i].Count; j++)
                 {
-                    if (defaultKeys.Contains(new KeyPos(i, j)))
+                    if (selectedKeys.Contains(new KeyPos(i, j)))
                     {
                         keyLayout[i][j].PressCorrect(false, true);
                     }
@@ -156,7 +156,7 @@ namespace OpenTyping
                     }
                 }
             }
-            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
+            selectedKeys = PressedKeys();
         }
 
         public List<KeyPos> PressedKeys()
@@ -207,7 +207,7 @@ namespace OpenTyping
         private void KeyBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ((KeyBox)sender).PressToggle();
-            MainWindow.CurrentKeyLayout.DefaultKeys = PressedKeys();
+            selectedKeys = PressedKeys();
         }
     }
 }

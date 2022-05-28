@@ -22,7 +22,7 @@ namespace OpenTyping
         public string Name { get; }
         public string Character { get; }
         public IList<IList<Key>> KeyLayoutData { get; }
-        public List<KeyPos> DefaultKeys { get; set; }
+        public List<KeyPos> DefaultKeys { get; }
 
         [JsonProperty]
         public KeyLayoutStats Stats { get; set; } = new KeyLayoutStats();
@@ -61,7 +61,8 @@ namespace OpenTyping
 
             if (keyLayout.DefaultKeys is null)
             {
-                keyLayout.DefaultKeys = new List<KeyPos>();
+                string message = LangStr.ErrMsg25;
+                throw new InvalidKeyLayoutDataException(message);
             }
 
             var rowNumberData = new List<Tuple<string, int>>
