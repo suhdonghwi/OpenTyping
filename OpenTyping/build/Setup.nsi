@@ -6,7 +6,7 @@
 !define MUI_UNICON "icon.ico"
 !define PRODUCT_NAME "TezTer"
 !define APP_NAME "TezTer.exe"
-!define PRODUCT_VERSION "1.2.0"
+!define PRODUCT_VERSION "1.2.1"
 !define PRODUCT_PUBLISHER "RoboticsWare"
 !define PRODUCT_WEB_SITE "https://RoboticsWare.uz"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -178,6 +178,7 @@ Section "Uninstall"
   RMDir "$SMPROGRAMS\${PRODUCT_NAME}"
   RMDir /r "$INSTDIR"
   RMDir /r "$APPDATA\${PRODUCT_NAME}"
+  RMDir /r "$LOCALAPPDATA\${PRODUCT_NAME}"
 
 SectionEnd
 
@@ -217,6 +218,7 @@ Function .onInit
 		Goto no_remove_uninstaller
 		RMDir /r /REBOOTOK $R1
     RMDir /r "$APPDATA\${PRODUCT_NAME}"
+	RMDir /r "$LOCALAPPDATA\${PRODUCT_NAME}"
 		Goto done
 
 	no_remove_uninstaller:
