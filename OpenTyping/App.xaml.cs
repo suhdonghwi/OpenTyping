@@ -26,5 +26,11 @@ namespace OpenTyping
             MessageBox.Show(LangStr.UnhandledError, "TezTer", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown(); // quit the application in a controlled way
         }
+
+        public static double BaseFontSize
+        {
+            get => (double)Current.Resources["BaseFontSize"];
+            set => Current.Resources["BaseFontSize"] = value;
+        }
     }
 }

@@ -24,6 +24,14 @@ namespace OpenTyping
         public static readonly DependencyProperty ClickableProperty =
             DependencyProperty.Register("Clickable", typeof(bool), typeof(KeyLayoutBox), new PropertyMetadata(true));
 
+        public double WidthRatio
+        {
+            get => (double)GetValue(WidthRatioProperty);
+            set => SetValue(WidthRatioProperty, value);
+        }
+        public static readonly DependencyProperty WidthRatioProperty =
+            DependencyProperty.Register("WidthRatio", typeof(double), typeof(KeyLayoutBox), new PropertyMetadata(1.0));
+
         public KeyLayoutBox()
         {
             InitializeComponent();
@@ -55,11 +63,13 @@ namespace OpenTyping
                     var keyBox = new KeyBox
                     {
                         Key = key,
-                        Width = 50,
-                        Height = 50,
-                        Margin = new Thickness(0, 0, 2, 0)
+                        Width = 50 * WidthRatio,
+                        Height = 50 * WidthRatio,
+                        Margin = new Thickness(0, 0, 2, 0),
                     };
-                    
+                    keyBox.KeyText.FontSize = 15 * WidthRatio;
+                    keyBox.ShiftKeyText.FontSize = 15 * WidthRatio;
+
                     if (Clickable)
                     {
                         keyBox.MouseDown += KeyBox_MouseDown;
@@ -78,11 +88,11 @@ namespace OpenTyping
                 {
                     if (i == 1 && j == keyLayout[i].Count - 1)
                     {
-                        keyLayout[i][j].Width = 70;
+                        keyLayout[i][j].Width = 70 * WidthRatio;
                     }
                     else if (i == keyRows.Count - 1 && j == 0) // Spacebar
                     {
-                        keyLayout[i][j].Width = 400;
+                        keyLayout[i][j].Width = 400 * WidthRatio;
                     }
 
                     keyRows[i].Children.Add(keyLayout[i][j]);
@@ -94,6 +104,25 @@ namespace OpenTyping
                 Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle,
                     new Action(PressDefaultKeys));
             }
+
+            // Mode Keys
+            BackspaceKey.Width = 100 * WidthRatio;
+            BackspaceKey.KeyText.FontSize = 15 * WidthRatio;
+
+            TabKey.Width = 80 * WidthRatio;
+            TabKey.KeyText.FontSize = 15 * WidthRatio;
+
+            CapsLockKey.Width = 100 * WidthRatio;
+            CapsLockKey.KeyText.FontSize = 15 * WidthRatio;
+
+            EnterKey.Width = 103 * WidthRatio;
+            EnterKey.KeyText.FontSize = 15 * WidthRatio;
+
+            LShiftKey.Width = 130 * WidthRatio;
+            LShiftKey.KeyText.FontSize = 15 * WidthRatio;
+
+            RShiftKey.Width = 125 * WidthRatio;
+            RShiftKey.KeyText.FontSize = 15 * WidthRatio;
         }
 
         public void PressCorrectKey(KeyPos pos, bool isHandPopup = false)

@@ -104,8 +104,19 @@ namespace OpenTyping
         // Event for returning UserRecord value
         public event Action<User> RtnNewUser;
 
+        // Magnify window
+        private bool isMagnified;
+        private double baseFontSize;
+        public double BaseFontSize
+        {
+            get => baseFontSize;
+            private set => SetField(ref baseFontSize, value);
+        }
+
         public WordPracticeWindow(int countdownTime)
         {
+            BaseFontSize = App.BaseFontSize;
+
             InitializeComponent();
             this.SetTextBylanguage();
             this.FontAssignByLang();
@@ -190,7 +201,7 @@ namespace OpenTyping
             practiceData.TextData = practiceData.TextData.OrderBy(s => wordIndexRandom.Next()).ToList();
         }
 
-        private void WordPracticeWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void WordPracticeWindow_Loaded(object sender, RoutedEventArgs e)
         {
             NextWord();
         }
@@ -224,6 +235,9 @@ namespace OpenTyping
                 (double)elapsedTime / (double)10 // Unit change: 100ms -> 1s
             );
             this.RtnNewUser(user);
+
+            // Restore magnification
+            if (isMagnified) BaseFontSize /= 1.5;
         }
 
         private void NextWord()
@@ -424,6 +438,34 @@ namespace OpenTyping
             }
         }
 
+        private void MagnifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMagnified)
+            {
+                SizeToContent = SizeToContent.Manual;
+                Width = ActualWidth * 1.5;
+
+                BaseFontSize *= 1.5;
+                KeyLayoutBox.WidthRatio = 1.2;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyMinus;
+                SizeToContent = SizeToContent.Height; // Have to call to fit to content's height again
+
+                isMagnified = true;
+            } 
+            else
+            {
+                SizeToContent = SizeToContent.WidthAndHeight;
+
+                BaseFontSize /= 1.5;
+                KeyLayoutBox.WidthRatio = 1.0;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyAdd;
+                
+                isMagnified = false;
+            }
+            
+            KeyLayoutBox.LoadKeyLayout(); // Refresh key layout control
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -438,6 +480,5 @@ namespace OpenTyping
             OnPropertyChanged(propertyName);
             return true;
         }
-
     }
 }

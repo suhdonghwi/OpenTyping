@@ -65,6 +65,8 @@
                 <SolidColorBrush.Color><Color A="80" R="253" G="90" B="97"/></SolidColorBrush.Color>
             </SolidColorBrush>
 
+            <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="BaseFontSize">10</sys:Double>
+
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
                 <Setter Property="TitleTemplate">
                     <Setter.Value>

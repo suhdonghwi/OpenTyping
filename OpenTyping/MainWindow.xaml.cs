@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -114,6 +114,11 @@ namespace OpenTyping
         {
             CheckSyllablePractice();
             CheckTutorial();
+
+            // Decide a base font size by the screen resolution
+            App.BaseFontSize = ((SystemParameters.PrimaryScreenWidth / 12) / 3 * 2) / 5 * 0.7;
+            App.BaseFontSize = Math.Round(App.BaseFontSize);
+            Debug.WriteLine(App.BaseFontSize, "BaseFontSize");
         }
 
         private static void MainWindow_Closed(object sender, EventArgs e)

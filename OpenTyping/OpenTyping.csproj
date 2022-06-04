@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -210,6 +210,7 @@
     <Compile Include="KeyLayoutBox.xaml.cs">
       <DependentUpon>KeyLayoutBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MathConverter.cs" />
     <Compile Include="NullToVisibilityConverter.cs" />
     <Compile Include="PracticeDataLoadFail.cs" />
     <Compile Include="KeyLayoutLoadFail.cs" />
@@ -390,6 +391,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="data\WordData-uz-qty.json" />
     <EmbeddedResource Include="data\WordData-ko.json" />
+    <None Include="build\Setup.nsi" />
     <None Include="data\Madhiya.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -481,6 +483,7 @@
   <ItemGroup>
     <Resource Include="Resources\Imgs\typing_tutorial.png" />
     <Resource Include="Resources\Imgs\ufe.jpg" />
+    <Resource Include="build\icon.ico" />
     <Content Include="Resources\Sounds\Bell.wav" />
     <Content Include="Resources\Sounds\Pressed.wav" />
     <Resource Include="Resources\Fonts\LabDigital.ttf" />

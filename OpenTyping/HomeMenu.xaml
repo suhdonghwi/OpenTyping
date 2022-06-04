@@ -79,7 +79,8 @@
                                                 Converter={StaticResource KeyPosToKeyDataConverter}}"
                                   Foreground="Black"
                                   Width="50"
-                                  Margin="0 0 0 60"/>
+                                  Height="50"
+                                  Margin="0 0 0 20"/>
                 </mah:Tile>
                 <mah:Tile Style="{StaticResource StatTile}"
                           Name="Tile2"

@@ -67,75 +67,91 @@
                        VerticalAlignment="Center"/>
         </Grid>
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="20 0 0 10">
-            <Rectangle Width="23" 
-                       Height="23"
-                       Margin="0 0 5 0"
-                       Fill="#37b24d">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
-                       Style="{StaticResource NormalTextBlock}"
-                       Text="{Binding CorrectCount}"
-                       Margin="0 3 0 0"
-                       FontSize="14pt"/>
+        <Grid Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Rectangle Width="1.5"
-                       Height="20"
-                       Margin="10 0 10 0" 
-                       Stroke="Gray"/>
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal"
+                        Margin="20 0 0 10">
+                <Rectangle Width="23" 
+                           Height="23"
+                           Margin="0 0 5 0"
+                           Fill="#37b24d">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=CheckCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                           Style="{StaticResource NormalTextBlock}"
+                           Text="{Binding CorrectCount}"
+                           Margin="0 3 0 0"
+                           FontSize="14pt"/>
 
-            <Rectangle Width="23" 
-                       Height="23"
-                       Margin="0 0 5 0"
-                       Fill="#f03e3e">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <TextBlock DataContext="{Binding ElementName=SelfWindow}"
-                       Style="{StaticResource NormalTextBlock}"
-                       Text="{Binding IncorrectCount}"
-                       Margin="0 3 0 0"
-                       FontSize="14pt"/>
-            <ToggleButton Name="ColorToggleBtn"
-                          Margin="590 0 0 0" 
-                          Width="30"
-                          Height="30"
-                          PreviewKeyDown="ToggleButton_PreviewKeyDown"
-                          IsChecked="False"
-                          Unchecked="ColorToggle_Checked"
-                          Checked ="ColorToggle_Checked"
-                          Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                <ToggleButton.ContentTemplate>
-                    <DataTemplate>
-                        <iconPacks:PackIconMaterial Width="20"
-                                                    Height="20"
-                                                    Kind="InvertColors" />
-                    </DataTemplate>
-                </ToggleButton.ContentTemplate>
-            </ToggleButton>
-            <ToggleButton Name="HandToggleBtn"
-                          Margin="15 0 0 0" 
-                          Width="30"
-                          Height="30"
-                          PreviewKeyDown="ToggleButton_PreviewKeyDown"
-                          IsChecked="False"
-                          Unchecked="HandToggle_Checked"
-                          Checked ="HandToggle_Checked"
-                          Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                <ToggleButton.ContentTemplate>
-                    <DataTemplate>
-                        <iconPacks:PackIconFontAwesome Width="20"
-                                                       Height="20"
-                                                       Kind="HandPaperSolid" />
-                    </DataTemplate>
-                </ToggleButton.ContentTemplate>
-            </ToggleButton>
-        </StackPanel>
+                <Rectangle Width="1.5"
+                           Height="20"
+                           Margin="10 0 10 0" 
+                           Stroke="Gray"/>
+
+                <Rectangle Width="23" 
+                           Height="23"
+                           Margin="0 0 5 0"
+                           Fill="#f03e3e">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Visual="{iconPacks:FontAwesome Kind=TimesCircleSolid}"/>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <TextBlock DataContext="{Binding ElementName=SelfWindow}"
+                           Style="{StaticResource NormalTextBlock}"
+                           Text="{Binding IncorrectCount}"
+                           Margin="0 3 0 0"
+                           FontSize="14pt"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        Margin="0 0 0 10">
+                <ToggleButton Name="ColorToggleBtn"
+                              Margin="0 0 0 0" 
+                              Width="30"
+                              Height="30"
+                              PreviewKeyDown="ToggleButton_PreviewKeyDown"
+                              IsChecked="False"
+                              Unchecked="ColorToggle_Checked"
+                              Checked ="ColorToggle_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconMaterial Width="20"
+                                                        Height="20"
+                                                        Kind="InvertColors" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Name="HandToggleBtn"
+                              Margin="15 0 20 0" 
+                              Width="30"
+                              Height="30"
+                              PreviewKeyDown="ToggleButton_PreviewKeyDown"
+                              IsChecked="False"
+                              Unchecked="HandToggle_Checked"
+                              Checked ="HandToggle_Checked"
+                              Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <iconPacks:PackIconFontAwesome Width="20"
+                                                           Height="20"
+                                                           Kind="HandPaperSolid" />
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+        
         <local:KeyLayoutBox x:Name="KeyLayoutBox"
                             Clickable="False"
                             HorizontalAlignment="Center"/>
