@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Documents;
@@ -145,6 +146,10 @@ namespace OpenTyping
             DWork.Text = LangStr.DWork + " : ";
             License1.Text = LangStr.License + " : ";
             License2.Text = LangStr.License + " : ";
+
+            // Version Number
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+            AppVersion.Text = $"{version.Major}.{version.Minor}.{version.Build}";
         }
 
         private void AddKeyLayoutButton_Click(object sender, RoutedEventArgs e)
