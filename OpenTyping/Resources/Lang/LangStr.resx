@@ -390,4 +390,10 @@
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB file is broken. Please reinstall this App or delete the broken DB file.</value>
   </data>
+  <data name="ErrMsg25" xml:space="preserve">
+    <value>No DefaultKeys field.</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>An unexpected error has occurred. If the error repeats, please report it on Telegram @enty_uz, thank you</value>
+  </data>
 </root>

@@ -393,4 +393,7 @@
   <data name="ErrMsg25" xml:space="preserve">
     <value>Нет площади DefaultKeys.</value>
   </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Произошла непредвиденная ошибка. Если ошибка повторится, пожалуйста, сообщите об этом в Telegram @entry_uz, спасибо.</value>
+  </data>
 </root>

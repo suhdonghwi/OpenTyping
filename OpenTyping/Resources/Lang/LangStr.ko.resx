@@ -381,4 +381,10 @@
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB 파일이 손상되었습니다. 앱을 재설치 하거나 손상된 DB 파일을 지워주세요.</value>
   </data>
+  <data name="ErrMsg25" xml:space="preserve">
+    <value>기본키(Default Keys 필드) 필드가 없습니다.</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>예기치 않은 에러가 발생하였습니다. 에러가 반복되면 텔레그램 @entry_uz로 신고해 주시면 감사합니다.</value>
+  </data>
 </root>

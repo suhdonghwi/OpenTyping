@@ -387,4 +387,10 @@
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB fayli buzilgan. Dasturni qayta o'rnating yoki buzilgan DB faylini o'chirib tashlang.</value>
   </data>
+  <data name="ErrMsg25" xml:space="preserve">
+    <value>DefaultKeys maydoni yo'q.</value>
+  </data>
+  <data name="UnhandledError" xml:space="preserve">
+    <value>Kutilmagan error yuz berdi. Error yana takrorlansa Telegram @entry_uz ga xabar bering, rahmat.</value>
+  </data>
 </root>

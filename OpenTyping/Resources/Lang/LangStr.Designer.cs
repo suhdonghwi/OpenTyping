@@ -808,6 +808,15 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error has occurred. If the error repeats, please report it on Telegram @enty_uz, thank you.
+        /// </summary>
+        internal static string UnhandledError {
+            get {
+                return ResourceManager.GetString("UnhandledError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User defined.
         /// </summary>
         internal static string UserDefined {

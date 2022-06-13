@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OpenTyping.Resources.Lang;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -9,7 +10,7 @@ namespace OpenTyping
     /// </summary>
     public partial class App : Application
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger logger = LogManager.GetCurrentClassLogger();
 
         public App()
         {
@@ -19,10 +20,11 @@ namespace OpenTyping
         private void App_DispatcherUnhandledException(object sender,
             DispatcherUnhandledExceptionEventArgs e)
         {
-            var exception = e.Exception;          // get exception
-            logger.Error(exception.ToString()); ; // leave the log to file
-            e.Handled = true;                     // prevent the application from crashing
-            Shutdown();                           // quit the application in a controlled way
+            logger.Error(e.Exception.ToString()); ; // leave the log to file
+            e.Handled = true; // prevent the application from crashing
+
+            MessageBox.Show(LangStr.UnhandledError, "TezTer", MessageBoxButton.OK, MessageBoxImage.Error);
+            Shutdown(); // quit the application in a controlled way
         }
     }
 }
