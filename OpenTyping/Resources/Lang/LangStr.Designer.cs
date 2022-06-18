@@ -529,6 +529,24 @@ namespace OpenTyping.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use the UZB(Lotincha), you have to install UZB(Lotincha) setup.exe in layouts folder in &quot;.
+        /// </summary>
+        internal static string KeyLayoutDesc1 {
+            get {
+                return ResourceManager.GetString("KeyLayoutDesc1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot; where this App is installed..
+        /// </summary>
+        internal static string KeyLayoutDesc2 {
+            get {
+                return ResourceManager.GetString("KeyLayoutDesc2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keys.
         /// </summary>
         internal static string KeyPrac {

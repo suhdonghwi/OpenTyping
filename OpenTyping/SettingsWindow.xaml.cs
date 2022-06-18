@@ -406,6 +406,18 @@ namespace OpenTyping
             Process.Start(hl.NavigateUri.AbsoluteUri);
         }
 
+        private void KeyLayout_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            KeyLayout selected = KeyLayoutsCombo.SelectedItem as KeyLayout;
+
+            KeyLayoutDesc.Text = "";
+            if (selected.Name.Contains("Lotincha"))
+            {
+                string exeDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                KeyLayoutDesc.Text = LangStr.KeyLayoutDesc1 + exeDirectory + LangStr.KeyLayoutDesc2;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

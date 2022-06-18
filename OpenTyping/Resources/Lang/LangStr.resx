@@ -387,6 +387,12 @@
   <data name="Server" xml:space="preserve">
     <value>Server</value>
   </data>
+  <data name="KeyLayoutDesc1" xml:space="preserve">
+    <value>To use the UZB(Lotincha), you have to install UZB(Lotincha) setup.exe in layouts folder in "</value>
+  </data>
+  <data name="KeyLayoutDesc2" xml:space="preserve">
+    <value>" where this App is installed.</value>
+  </data>
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB file is broken. Please reinstall this App or delete the broken DB file.</value>
   </data>

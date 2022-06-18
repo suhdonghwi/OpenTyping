@@ -378,6 +378,12 @@
   <data name="WordCount" xml:space="preserve">
     <value>단어 수</value>
   </data>
+  <data name="KeyLayoutDesc1" xml:space="preserve">
+    <value>UZB(Lotincha)를 사용하려면 이 앱이 설치된 "</value>
+  </data>
+  <data name="KeyLayoutDesc2" xml:space="preserve">
+    <value>" 안의 layouts 폴더에 UZB(Lotincha) setup.exe를 설치해야 합니다.</value>
+  </data>
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB 파일이 손상되었습니다. 앱을 재설치 하거나 손상된 DB 파일을 지워주세요.</value>
   </data>

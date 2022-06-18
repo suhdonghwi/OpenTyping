@@ -145,22 +145,22 @@
     <value>Iltimos, mashq qilish uchun 2 yoki undan ortiq kalitni tanlang.</value>
   </data>
   <data name="ErrMsg2" xml:space="preserve">
-    <value>Shu nomdagi fayl Klaviatura fayllari yoʻnalishida allaqachon mavjud.</value>
+    <value>Shu nomdagi fayl Klaviatura fayllari papkasida allaqachon mavjud.</value>
   </data>
   <data name="ErrMsg3" xml:space="preserve">
-    <value>Shu nomdagi fayl Matnlar fayllari yoʻnalishida allaqachon mavjud.</value>
+    <value>Shu nomdagi fayl Matnlar fayllari papkasida allaqachon mavjud.</value>
   </data>
   <data name="ErrMsg4" xml:space="preserve">
-    <value>Oʻchirib boʻlmaydi, chunki faqat bitta klaviatura maʼlumotlari mavjud.</value>
+    <value>O'chirib bo'lmaydi, chunki faqat bitta klaviatura ma'lumotlari mavjud.</value>
   </data>
   <data name="ErrMsg5" xml:space="preserve">
-    <value>Oʻchirib boʻlmaydi, chunki faqat bitta matn maʼlumotlari mavjud.</value>
+    <value>O'chirib bo'lmaydi, chunki faqat bitta matn ma'lumotlari mavjud.</value>
   </data>
   <data name="ErrMsg6" xml:space="preserve">
     <value>Fayldagi koreyscha bo'g'inlari soni bitta yoki undan kam.</value>
   </data>
   <data name="ErrMsg7" xml:space="preserve">
-    <value>Ilova fayl yo'nalishini aniqlashda xatolik yuz berdi.</value>
+    <value>Ilova fayl papkasini aniqlashda xatolik yuz berdi.</value>
   </data>
   <data name="ExceptShftKey" xml:space="preserve">
     <value>Katta harflar</value>
@@ -175,7 +175,7 @@
     <value>Statistik ma'lumotlarni qayta o'rnatish</value>
   </data>
   <data name="KeyDataPath" xml:space="preserve">
-    <value>Klaviatura fayllar yo'nalishi</value>
+    <value>Klaviatura fayllar papkasi</value>
   </data>
   <data name="KeyPrac" xml:space="preserve">
     <value>Harflar mashqi</value>
@@ -184,7 +184,7 @@
     <value>Klaviaturadagi har bir tugmachalarning joyini mashq qiling.</value>
   </data>
   <data name="KeyPracHelp" xml:space="preserve">
-    <value>Har tugmacha o‘rnini bosib mashq qilmoqchi tugmachani tanlash mumkin.</value>
+    <value>Har tugmacha o'rnini bosib mashq qilmoqchi tugmachani tanlash mumkin.</value>
   </data>
   <data name="ArtPrac" xml:space="preserve">
     <value>Matnlar mashqi</value>
@@ -193,7 +193,7 @@
     <value>Bir matn orqali mashq qiling.</value>
   </data>
   <data name="MostWrongKey" xml:space="preserve">
-    <value>Ko‘p xatoga yo‘l qo‘ygan harflaringiz</value>
+    <value>Ko'p xatoga yo'l qo'ygan harflaringiz</value>
   </data>
   <data name="NumPracSen" xml:space="preserve">
     <value>Amaldagi gaplar soni</value>
@@ -202,7 +202,7 @@
     <value>OK</value>
   </data>
   <data name="PracDataPath" xml:space="preserve">
-    <value>Matn fayllar yo'nalishi</value>
+    <value>Matn fayllar papkasi</value>
   </data>
   <data name="RanSenLoc" xml:space="preserve">
     <value>Gaplarni tasodifiy tartibga solish</value>
@@ -238,10 +238,10 @@
     <value>Tanlangan matn</value>
   </data>
   <data name="WarnMsg3" xml:space="preserve">
-    <value>ni oʻchirib tashlamoqchimisiz?</value>
+    <value>ni o'chirib tashlamoqchimisiz?</value>
   </data>
   <data name="WarnMsg4" xml:space="preserve">
-    <value>ning statistik maʼlumotlarni oʻchirib tashlamoqchimisiz?</value>
+    <value>ning statistik ma'lumotlarni qayta tiklamoqchimisiz?</value>
   </data>
   <data name="Accuracy" xml:space="preserve">
     <value>Aniqlik</value>
@@ -286,10 +286,10 @@
     <value>ta borligidan mos kelmaydi.</value>
   </data>
   <data name="ErrMsg8" xml:space="preserve">
-    <value>Klaviatura faylini topib boʻlmadi. Klaviatura faylini o'sha yo'nalishida yarating va qayta urinib ko'ring.</value>
+    <value>Klaviatura faylini topib bo'lmadi. Klaviatura faylini o'sha papkasida yarating va qayta urinib ko'ring.</value>
   </data>
   <data name="ErrMsg9" xml:space="preserve">
-    <value>Matn faylini topib boʻlmadi. Matn faylini o'sha yo'nalishida yarating va qayta urinib ko'ring.</value>
+    <value>Matn faylini topib bo'lmadi. Matn faylini o'sha papkasida yarating va qayta urinib ko'ring.</value>
   </data>
   <data name="InPage" xml:space="preserve">
     <value>sahifalarning</value>
@@ -337,7 +337,7 @@
     <value>Mualiflik huquqi</value>
   </data>
   <data name="DWork" xml:space="preserve">
-    <value>Qoʼshimcha ish</value>
+    <value>Qo'shimcha ish</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Litsenziya</value>
@@ -352,7 +352,7 @@
     <value>So'zlar mashqi</value>
   </data>
   <data name="WordPracDesc" xml:space="preserve">
-    <value>So‘zlarni mashq qiling va yuqori o‘rinni egallashga urinib ko‘ring.</value>
+    <value>So'zlarni mashq qiling va yuqori o'rinni egallashga urinib ko'ring.</value>
   </data>
   <data name="Tutorial" xml:space="preserve">
     <value>Qo'llanma</value>
@@ -383,6 +383,12 @@
   </data>
   <data name="WordCount" xml:space="preserve">
     <value>So'z soni</value>
+  </data>
+  <data name="KeyLayoutDesc1" xml:space="preserve">
+    <value>UZB (Lotincha) dan foydalanish uchun ushbu ilova o'rnatilgan "</value>
+  </data>
+  <data name="KeyLayoutDesc2" xml:space="preserve">
+    <value>" ichida "layouts" papkasida UZB (Lotincha) setup.exe faylini o'rnatish kerak.</value>
   </data>
   <data name="ErrMsg24" xml:space="preserve">
     <value>DB fayli buzilgan. Dasturni qayta o'rnating yoki buzilgan DB faylini o'chirib tashlang.</value>

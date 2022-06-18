@@ -10,7 +10,7 @@
                  mc:Ignorable="d"
                  Title="설정" 
                  Style="{StaticResource WindowTitleStyle}"
-                 Width="500" 
+                 Width="600" 
                  Height="500"
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
@@ -63,6 +63,7 @@
                                     Margin="0 0 0 8">
                             <ComboBox x:Name="KeyLayoutsCombo"
                                       DataContext="{Binding ElementName=SelfWindow}"
+                                      SelectionChanged="KeyLayout_SelectionChanged"
                                       Width="200" 
                                       Margin="0 0 5 0"
                                       FontFamily="{StaticResource NanumGothic}"
@@ -111,11 +112,9 @@
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Button>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
                             <Button x:Name="ClearStatButton"
                                     Click="ClearStatButton_Click"
+                                    Margin="10 0 0 0"
                                     Background="#ffa8a8"
                                     BorderThickness="0">
                                 <StackPanel Orientation="Horizontal">
@@ -124,7 +123,7 @@
                                                Margin="0 0 4 0"
                                                Fill="#c92a2a">
                                         <Rectangle.OpacityMask>
-                                            <VisualBrush Visual="{iconPacks:FontAwesome TrashAltRegular}"/>
+                                            <VisualBrush Visual="{iconPacks:FontAwesome Kind=RedoAltSolid}"/>
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
                                     <TextBlock Name="InitStat" Text="통계 정보 초기화"
@@ -133,6 +132,10 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
+                        <TextBlock Name="KeyLayoutDesc" Margin="0 0 0 10" 
+                                   FontWeight="SemiBold" FontSize="15" 
+                                   Foreground="#1c7ed6" TextWrapping="Wrap">
+                        </TextBlock>
 
                         <TextBlock Style="{StaticResource SettingNameTextBlock}"
                                    Name="KeyDataPath"

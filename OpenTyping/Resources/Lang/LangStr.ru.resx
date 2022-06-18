@@ -385,10 +385,16 @@
     <value>Локальный</value>
   </data>
   <data name="Server" xml:space="preserve">
-    <value>Server</value>
+    <value>Сервер</value>
+  </data>
+  <data name="KeyLayoutDesc1" xml:space="preserve">
+    <value>Чтобы использовать UZB (Lotincha), вам необходимо установить UZB (Lotincha) setup.exe в папку layouts в "</value>
+  </data>
+  <data name="KeyLayoutDesc2" xml:space="preserve">
+    <value>" ,где установлено это приложение.</value>
   </data>
   <data name="ErrMsg24" xml:space="preserve">
-    <value>DB file is broken. Please reinstall this App or delete the broken DB file.</value>
+    <value>Файл ДБ поврежден. Пожалуйста, переустановите это приложение или удалите поврежденный файл ДБ.</value>
   </data>
   <data name="ErrMsg25" xml:space="preserve">
     <value>Нет площади DefaultKeys.</value>
