@@ -84,8 +84,19 @@ namespace OpenTyping
         private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/WrongPressed.mp3");
         private readonly Volume volume;
 
+        // Magnify window
+        private bool isMagnified;
+        private double baseFontSize;
+        public double BaseFontSize
+        {
+            get => baseFontSize;
+            private set => SetField(ref baseFontSize, value);
+        }
+
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
+            BaseFontSize = App.BaseFontSize;
+
             InitializeComponent();
             this.SetTextBylanguage();
             this.FontAssignByLang();
@@ -277,6 +288,9 @@ namespace OpenTyping
             {
                 KeyIncorrectCount = incorrectStats
             });
+
+            // Restore magnification
+            if (isMagnified) BaseFontSize /= 1.5;
         }
 
         private void KeyPracticeWindow_Activated(object sender, EventArgs e)
@@ -355,6 +369,46 @@ namespace OpenTyping
             {
                 e.Handled = true;
             }
+        }
+
+        private void MagnifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMagnified)
+            {
+                SizeToContent = SizeToContent.Manual;
+                Width = ActualWidth * 1.5;
+
+                BaseFontSize *= 1.5;
+                KeyLayoutBox.WidthRatio = 1.2;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyMinus;
+                SizeToContent = SizeToContent.Height; // Have to call to fit to content's height again
+
+                isMagnified = true;
+            }
+            else
+            {
+                SizeToContent = SizeToContent.WidthAndHeight;
+
+                BaseFontSize /= 1.5;
+                KeyLayoutBox.WidthRatio = 1.0;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyAdd;
+
+                isMagnified = false;
+            }
+
+            KeyLayoutBox.LoadKeyLayout(); // Refresh key layout control
+
+            // Repaint the colored key
+            if (ColorToggleBtn.IsChecked == true)
+            {
+                KeyLayoutBox.ToggleColoredKeys(true, CurrentKey.Pos);
+            }
+            else
+            {
+                KeyLayoutBox.ToggleColoredKeys(false, CurrentKey.Pos);
+            }
+
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup); // Refresh current key
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

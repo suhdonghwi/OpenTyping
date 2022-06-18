@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Media;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -65,11 +66,23 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        // Sound
         private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
         private readonly Volume volume;
 
+        // Magnify window
+        private bool isMagnified;
+        private double baseFontSize;
+        public double BaseFontSize
+        {
+            get => baseFontSize;
+            private set => SetField(ref baseFontSize, value);
+        }
+
         public ArticlePracticeWindow(PracticeData practiceData)
         {
+            BaseFontSize = App.BaseFontSize;
+
             InitializeComponent();
             this.SetTextBylanguage();
             this.FontAssignByLang();
@@ -139,6 +152,9 @@ namespace OpenTyping
                     AverageAccuracy = Convert.ToInt32(accuracyList.Average())
                 });
             }
+
+            // Restore magnification
+            if (isMagnified) BaseFontSize /= 1.5;
         }
 
         private void NextLine()
@@ -274,6 +290,30 @@ namespace OpenTyping
             if (input.Length < currentText.Length)
             {
                 currentTextBlock.Inlines.Add(new Run(currentText.Substring(input.Length)));
+            }
+        }
+
+        private void MagnifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMagnified)
+            {
+                SizeToContent = SizeToContent.Manual;
+                Width = ActualWidth * 1.5;
+
+                BaseFontSize *= 1.5;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyMinus;
+                SizeToContent = SizeToContent.Height; // Have to call to fit to content's height again
+
+                isMagnified = true;
+            }
+            else
+            {
+                SizeToContent = SizeToContent.WidthAndHeight;
+
+                BaseFontSize /= 1.5;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyAdd;
+
+                isMagnified = false;
             }
         }
 

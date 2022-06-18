@@ -10,14 +10,28 @@
                  mc:Ignorable="d"
                  Title="열린타자"
                  Icon="{StaticResource AppIcon}"
-                 Height="400"
-                 Width="700"
-                 ResizeMode="CanMinimize">
+                 MinHeight="400"
+                 MinWidth="700"
+                 SizeToContent="WidthAndHeight"
+                 ResizeMode="CanMinimize"
+                 Closed="SyllablePracticeWindow_Closed">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Name="MagnifyButton" 
+                    Click="MagnifyButton_Click">
+                <iconPacks:PackIconModern x:Name="MagnifyIcon" Kind="MagnifyAdd" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    
     <Grid>
         <Grid.Resources>
             <Style x:Key="PrevNextTextBlock" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
-                <Setter Property="FontSize" Value="60pt"/>
+                <Setter Property="FontSize" Value="{Binding BaseFontSize,
+                                                    Converter={local:MathConverter},
+                                                    ConverterParameter=@VALUE*5}"/>
                 <Setter Property="Foreground" Value="#868e96"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -37,7 +51,7 @@
         <StackPanel Grid.Column="1"
                     Orientation="Vertical"
                     VerticalAlignment="Center"
-                    Margin="0 0 0 45">
+                    Margin="0 80 0 120">
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10"
                         HorizontalAlignment="Center">
@@ -53,7 +67,9 @@
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CorrectCount}"
                        Margin="0 3 0 0"
-                       FontSize="16pt"/>
+                       FontSize="{Binding BaseFontSize,
+                                  Converter={local:MathConverter},
+                                  ConverterParameter=@VALUE*2}"/>
             </StackPanel>
 
             <Border BorderBrush="#868e96"
@@ -66,15 +82,23 @@
                 <StackPanel DataContext="{Binding ElementName=SelfWindow}"
                             Orientation="Horizontal">
                     <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
-                               FontSize="80pt"
+                               FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE*8}"
                                Margin="0 8 30 0"
                                Text="{Binding Path=CurrentSyllable}"/>
                     <TextBox x:Name="CurrentTextBox"
                              FontFamily="{StaticResource NanumBarunGothic}"
-                             FontSize="80pt"
+                             FontSize="{Binding BaseFontSize,
+                                        Converter={local:MathConverter},
+                                        ConverterParameter=@VALUE*8}"
                              Background="#f8f9fa"
-                             Width="110"
-                             Height="125"
+                             Width="{Binding BaseFontSize,
+                                     Converter={local:MathConverter},
+                                     ConverterParameter=@VALUE*8}"
+                             Height="{Binding BaseFontSize,
+                                     Converter={local:MathConverter},
+                                     ConverterParameter=@VALUE*9}"
                              SelectionBrush="Transparent"
                              TextChanged="CurrentTextBox_TextChanged"/>
                 </StackPanel>

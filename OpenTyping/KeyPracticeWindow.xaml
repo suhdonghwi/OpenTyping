@@ -10,14 +10,25 @@
                  mc:Ignorable="d"
                  Title="열린타자"
                  Style="{StaticResource WindowTitleStyle}"
-                 Width="810" 
-                 Height="450"
+                 MinWidth="810" 
+                 MinHeight="500"
                  ResizeMode="CanMinimize"
+                 SizeToContent="WidthAndHeight"
                  Icon="{StaticResource AppIcon}"
                  Closed="KeyPracticeWindow_Closed"
                  LocationChanged="KeyPracticeWindow_LocationChanged"
                  Activated="KeyPracticeWindow_Activated"
                  Deactivated="KeyPracticeWindow_Deactivated">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Name="MagnifyButton" 
+                    Click="MagnifyButton_Click">
+                <iconPacks:PackIconModern x:Name="MagnifyIcon" Kind="MagnifyAdd" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    
     <StackPanel Orientation="Vertical">
         <Grid x:Name="KeyGrid"
               Margin="0 10 0 0">
@@ -34,7 +45,9 @@
                        Grid.Column="0"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding PreviousKey.KeyData}"
-                       FontSize="30pt"
+                       FontSize="{Binding BaseFontSize,
+                                  Converter={local:MathConverter},
+                                  ConverterParameter=@VALUE*3}"
                        Foreground="#adb5bd"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"/>
@@ -48,7 +61,9 @@
                        Grid.Column="2"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding CurrentKey.KeyData}"
-                       FontSize="60pt"
+                       FontSize="{Binding BaseFontSize,
+                                  Converter={local:MathConverter},
+                                  ConverterParameter=@VALUE*6}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
             <Rectangle Grid.Column="3"
@@ -61,7 +76,9 @@
                        Grid.Column="4"
                        Style="{StaticResource NormalTextBlock}"
                        Text="{Binding NextKey.KeyData}"
-                       FontSize="30pt"
+                       FontSize="{Binding BaseFontSize,
+                                  Converter={local:MathConverter},
+                                  ConverterParameter=@VALUE*3}"
                        Foreground="#adb5bd"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
@@ -89,8 +106,9 @@
                            Style="{StaticResource NormalTextBlock}"
                            Text="{Binding CorrectCount}"
                            Margin="0 3 0 0"
-                           FontSize="14pt"/>
-
+                           FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE*0.4+@VALUE}"/>
                 <Rectangle Width="1.5"
                            Height="20"
                            Margin="10 0 10 0" 
@@ -108,7 +126,9 @@
                            Style="{StaticResource NormalTextBlock}"
                            Text="{Binding IncorrectCount}"
                            Margin="0 3 0 0"
-                           FontSize="14pt"/>
+                           FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE*0.4+@VALUE}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" 
@@ -153,7 +173,9 @@
         </Grid>
         
         <local:KeyLayoutBox x:Name="KeyLayoutBox"
+                            WidthRatio="1.0"
                             Clickable="False"
+                            Margin="20 0 20 20"
                             HorizontalAlignment="Center"/>
     </StackPanel>
 </mah:MetroWindow>

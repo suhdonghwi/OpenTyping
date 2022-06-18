@@ -46,8 +46,17 @@
             </StackPanel>
         </Border>
         <Popup Name="handPopup" AllowsTransparency="True"
-               PlacementTarget="{Binding ElementName=KeyTop}" Placement="Center" VerticalOffset="55">
-            <Image Name="handImg" Width="120"/>
+               PlacementTarget="{Binding ElementName=KeyTop}" 
+               Placement="Center" 
+               DataContext="{Binding ElementName=SelfControl}"
+               VerticalOffset="{Binding ActualHeight,
+                                Converter={local:MathConverter},
+                                ConverterParameter=@VALUE*1.2}">
+            <Image Name="handImg"
+                   DataContext="{Binding ElementName=SelfControl}"
+                   Width="{Binding ActualHeight,
+                           Converter={local:MathConverter},
+                           ConverterParameter=@VALUE*2.5}"/>
         </Popup>
     </Canvas>
 </UserControl>
