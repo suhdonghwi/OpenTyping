@@ -361,7 +361,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\Lang\LangStr.ru.resx" />
+    <EmbeddedResource Include="Resources\Lang\LangStr.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang\LangStr.uz.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

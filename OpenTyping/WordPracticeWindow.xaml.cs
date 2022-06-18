@@ -29,6 +29,13 @@ namespace OpenTyping
         private PracticeData practiceData;
         private int? currentSentenceIndex;
 
+        private string previousText;
+        public string PreviousText
+        {
+            get => previousText;
+            set => SetField(ref previousText, value);
+        }
+
         private string currentText;
         public string CurrentText
         {
@@ -185,6 +192,7 @@ namespace OpenTyping
                 CurrentTextBlock.FontFamily = new FontFamily("Times New Roman");
                 NextTextBlock.FontFamily = new FontFamily("Times New Roman");
                 CurrentTextBox.FontFamily = new FontFamily("Times New Roman");
+                OriginTextBlock.FontFamily = new FontFamily("Times New Roman");
             }
         }
 
@@ -318,6 +326,10 @@ namespace OpenTyping
                     return;
                 }
 
+                if (currentSentenceIndex != 0)
+                {
+                    PreviousText = practiceData.TextData[currentSentenceIndex.Value - 1];
+                }
                 CurrentText = practiceData.TextData[currentSentenceIndex.Value];
                 NextText = "";
                 if (currentSentenceIndex != practiceData.TextData.Count - 1)
@@ -363,7 +375,7 @@ namespace OpenTyping
                 {
                     playPressedSound.Play();
                 }
-                await Task.Delay(20);
+                await Task.Delay(10);
                 KeyLayoutBox.ReleaseKey(currKeyPos);
             }
         }
