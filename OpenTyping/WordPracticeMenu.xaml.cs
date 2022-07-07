@@ -39,12 +39,12 @@ namespace OpenTyping
         private int countdownTime;
         static public List<Timer> Timers = new List<Timer>
         {
-            new Timer("∞"),
             new Timer("3M"),
             new Timer("5M"),
             new Timer("10M"),
             new Timer("15M"),
-            new Timer("30M")
+            new Timer("30M"),
+            new Timer("∞")
         };
 
         public WordPracticeMenu()
