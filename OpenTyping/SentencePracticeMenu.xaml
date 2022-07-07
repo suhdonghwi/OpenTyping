@@ -8,7 +8,7 @@
                         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                         xmlns:local="clr-namespace:OpenTyping"
                         mc:Ignorable="d" 
-                        d:DesignHeight="450"
+                        d:DesignHeight="500"
                         d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -32,11 +32,13 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource NormalTextBlock}" 
+                               Name="MenuName"
                                Text="문장연습"
                                FontSize="32pt"
                                Margin="0 2 0 0"/>
                 </StackPanel>
                 <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Name="MenuDesc"
                            Text=": 짧은 길이의 문장으로 나누어서 연습합니다."
                            FontSize="14pt"/>
             </StackPanel>
@@ -99,7 +101,8 @@
                             <VisualBrush Visual="{iconPacks:FontAwesome QuestionCircleSolid}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock FontFamily="{StaticResource NanumBarunGothic}"
+                    <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Name="MenuHelp"
                                Text="연습하고 싶은 글을 클릭하여 선택하세요."
                                VerticalAlignment="Bottom"
                                FontSize="14pt"/>
@@ -123,20 +126,17 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Style="{StaticResource NormalTextBlock}"
+                           Name="SetToggle"
                            Text="문장 무작위 배열"
                            FontFamily="{StaticResource NanumGothic}"
                            FontWeight="Bold"
                            FontSize="13pt"
                            VerticalAlignment="Center"
                            Margin="0 0 5 0"/>
-                <mah:ToggleSwitch DataContext="{Binding ElementName=SelfControl}"
-                                  HorizontalAlignment="Right"
-                                  VerticalAlignment="Center"
-                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                <mah:ToggleSwitch VerticalAlignment="Center"
                                   Foreground="#212529"
-                                  OnLabel="" OffLabel=""
-                                  IsChecked="{Binding Path=IsRandom,
-                                                      Mode=OneWayToSource}"/>
+                                  OnContent="" OffContent=""
+                                  Toggled="ToggleSwitch_Toggled"/>
             </StackPanel>
             <Button x:Name="StartButton"
                     DockPanel.Dock="Right"
@@ -150,6 +150,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock Style="{StaticResource ControlButtonText}"
+                               Name="StartBtn"
                                Text="연습 시작"/>
                 </StackPanel>
             </Button>

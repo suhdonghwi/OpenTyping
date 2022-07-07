@@ -10,12 +10,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <!-- Accent and AppTheme setting -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <!-- Theme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Cobalt.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BitmapImage x:Key="AppIcon">pack://application:,,,/Resources/icon.png</BitmapImage>
@@ -23,6 +20,52 @@
 
             <FontFamily x:Key="NanumBarunGothic">pack://application:,,,/Resources/Fonts/#나눔바른고딕</FontFamily>
             <FontFamily x:Key="NanumGothic">pack://application:,,,/Resources/Fonts/#나눔고딕</FontFamily>
+            <FontFamily x:Key="LabDigital">pack://application:,,,/Resources/Fonts/#LAB디지털</FontFamily>
+            <FontFamily x:Key="PTMono">pack://application:,,,/Resources/Fonts/#PTMono</FontFamily>
+
+            <SolidColorBrush x:Key="DefaultKeyShadowColor">
+                <SolidColorBrush.Color><Color A="255" R="206" G="212" B="218"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+
+            <SolidColorBrush x:Key="CorrectKeyColor">
+                <SolidColorBrush.Color><Color A="255" R="0" G="255" B="0"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="CorrectKeyShadowColor">
+                <SolidColorBrush.Color><Color A="255" R="105" G="219" B="124"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="IncorrectKeyColor">
+                <SolidColorBrush.Color><Color A="255" R="255" G="0" B="0"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="IncorrectKeyShadowColor">
+                <SolidColorBrush.Color><Color A="255" R="255" G="135" B="135"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            
+            <SolidColorBrush x:Key="L5">
+                <SolidColorBrush.Color><Color A="80" R="248" G="171" B="53"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="L4">
+                <SolidColorBrush.Color><Color A="80" R="239" G="232" B="21"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="L3">
+                <SolidColorBrush.Color><Color A="80" R="94" G="206" B="0"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="L2">
+                <SolidColorBrush.Color><Color A="80" R="0" G="213" B="141"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="R2">
+                <SolidColorBrush.Color><Color A="80" R="50" G="164" B="242"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="R3">
+                <SolidColorBrush.Color><Color A="80" R="144" G="72" B="247"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="R4">
+                <SolidColorBrush.Color><Color A="80" R="255" G="57" B="241"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+            <SolidColorBrush x:Key="R5">
+                <SolidColorBrush.Color><Color A="80" R="253" G="90" B="97"/></SolidColorBrush.Color>
+            </SolidColorBrush>
+
+            <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="BaseFontSize">10</sys:Double>
 
             <Style x:Key="WindowTitleStyle" TargetType="mah:MetroWindow">
                 <Setter Property="TitleTemplate">
@@ -40,12 +83,12 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="TabItemLabel" TargetType="Label" BasedOn="{StaticResource MetroLabel}">
+            <Style x:Key="TabItemLabel" TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}">
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Foreground"
                         Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" />
-                <Setter Property="FontSize" Value="18pt" />
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}" />
+                <Setter Property="FontSize" Value="15pt" />
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}" />
                 <Setter Property="FontWeight" Value="Regular" />
                 <Setter Property="Margin" Value="0 4 0 0" />
             </Style>
@@ -56,11 +99,11 @@
             </Style>
 
             <Style x:Key="NormalLabel" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}"/>
             </Style>
 
             <Style x:Key="NormalTextBlock" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
+                <Setter Property="FontFamily" Value="{StaticResource PTMono}"/>
                 <Setter Property="Foreground" Value="#212529"/>
             </Style>
 

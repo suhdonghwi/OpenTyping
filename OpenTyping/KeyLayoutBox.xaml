@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d" 
-             d:DesignHeight="450" 
+             d:DesignHeight="500" 
              d:DesignWidth="800">
     <UserControl.Resources>
         <Style x:Key="ModKeyBoxStyle"
                TargetType="local:KeyBox">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="MinHeight" Value="50"/>
             <Setter Property="Margin" Value="0 0 2 2"/>
             <Setter Property="KeyColor" Value="#dee2e6"/>
             <Setter Property="ShadowColor" Value="#adb5bd"/>
@@ -37,38 +37,46 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel x:Name="NumberRow"
                         Style="{StaticResource KeyRowStyle}"/>
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="BackspaceKey" 
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource BackspaceKey}"
-                          Width="100"/>
+                          MinWidth="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="TabKey"
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource TabKey}"
-                          Width="80"/>
+                          MinWidth="80"/>
             <StackPanel x:Name="FirstRow"
                         Style="{StaticResource KeyRowStyle}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="CapsLockKey"
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource CapsLockKey}"
-                          Width="100"/>
+                          MinWidth="100"/>
             <StackPanel x:Name="SecondRow"
                         Style="{StaticResource KeyRowStyle}"/>
-            <local:KeyBox Style="{StaticResource ModKeyBoxStyle}"
+            <local:KeyBox x:Name="EnterKey"
+                          Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource EnterKey}"
-                          Width="103"/>
+                          MinWidth="103"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <local:KeyBox x:Name="LShiftKey"
                           Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource ShiftKey}"
-                          Width="130"/>
+                          MinWidth="130"/>
             <StackPanel x:Name="ThirdRow"
                         Style="{StaticResource KeyRowStyle}"/>
             <local:KeyBox x:Name="RShiftKey"
                           Style="{StaticResource ModKeyBoxStyle}"
                           Key="{StaticResource ShiftKey}"
-                          Width="125"/>
+                          MinWidth="125"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel x:Name="ForthRow"
+                        Style="{StaticResource KeyRowStyle}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

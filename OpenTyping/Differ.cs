@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Media;
 
 namespace OpenTyping
@@ -13,7 +14,7 @@ namespace OpenTyping
             {
                 Equal,
                 Intermediate,
-                Unequal,
+                Unequal
             }
 
             public string Text { get; }
@@ -75,7 +76,15 @@ namespace OpenTyping
             {
                 char ch1 = text1[i], ch2 = text2[i];
 
-                DiffData.DiffState state = ch1 == ch2 ? DiffData.DiffState.Equal : DiffData.DiffState.Unequal;
+                DiffData.DiffState state;
+                if (ch1 == ch2)
+                {
+                    state = DiffData.DiffState.Equal;
+                }
+                else
+                {
+                    state = DiffData.DiffState.Unequal;
+                }
 
                 if (i == length - 1)
                 {
@@ -126,15 +135,26 @@ namespace OpenTyping
                 result.Add(new DiffData(tempString, currentState));
             }
 
+            
             if (text1.Length == text2.Length) return result;
 
-            result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
+            text1 = string.Concat(text1.Take(text2.Length + 1)); // Truncate the excess of inputted characters
+            if (text1.Length < text2.Length)
+            {
+                // If user press enter key before inputing until the end of a word, the remained charaters will be blnak.
+                result.Add(new DiffData(Regex.Replace((text1.Length < text2.Length ? text2 : text1).Substring(i),
+                                        @"[a-zA-Z가-힣ʻʼ'\-\s]", " "), DiffData.DiffState.Unequal));
+            }
+            else
+            {
+                result.Add(new DiffData((text1.Length < text2.Length ? text2 : text1).Substring(i),
                                     DiffData.DiffState.Unequal));
+            }
             return result;
         }
 
-        private readonly Brush correctBackground = Brushes.LightGreen;
-        private readonly Brush incorrectBackground = Brushes.Pink;
+        public readonly Brush correctBackground = Brushes.LightGreen;
+        public readonly Brush incorrectBackground = Brushes.Pink;
         private readonly Brush intermidiateBackground = new SolidColorBrush(Color.FromRgb(215, 244, 215));
 
         public Brush MapDiffState(DiffData.DiffState state) // Diff 상태를 그에 대응하는 색으로 변환

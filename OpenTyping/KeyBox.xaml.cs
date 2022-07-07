@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace OpenTyping
 {
@@ -23,7 +25,8 @@ namespace OpenTyping
             set => SetValue(ShadowColorProperty, value);
         }
         public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(206, 212, 218))));
+            DependencyProperty.Register("ShadowColor", typeof(Brush), typeof(KeyBox), 
+                new PropertyMetadata((Brush)Application.Current.FindResource("DefaultKeyShadowColor")));
 
         public Key Key
         {
@@ -39,11 +42,8 @@ namespace OpenTyping
         private Brush defaultKeyColor;
         private Brush defaultShadowColor;
 
-        private static readonly Brush CorrectKeyColor = new SolidColorBrush(Color.FromRgb(140, 233, 154));
-        private static readonly Brush CorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(105, 219, 124));
-
-        private static readonly Brush IncorrectKeyColor = new SolidColorBrush(Color.FromRgb(255, 168, 168));
-        private static readonly Brush IncorrectKeyShadowColor = new SolidColorBrush(Color.FromRgb(255, 135, 135));
+        private static readonly Brush IncorrectKeyColor = (Brush)Application.Current.FindResource("IncorrectKeyColor");
+        private static readonly Brush IncorrectKeyShadowColor = (Brush)Application.Current.FindResource("IncorrectKeyShadowColor");
 
         public KeyBox()
         {
@@ -51,16 +51,17 @@ namespace OpenTyping
 
             defaultKeyColor = KeyColor;
             defaultShadowColor = ShadowColor;
+            handPopup.IsOpen = false;
             Loaded += OnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            defaultKeyColor = KeyColor;
-            defaultShadowColor = ShadowColor;
+            Uri resourceUri = new Uri("Resources/imgs/" + Key.FingerPosition + ".png", UriKind.Relative);
+            handImg.Source = new BitmapImage(resourceUri);
         }
 
-        private void Press(Brush keyColor, Brush shadowColor)
+        private void Press(Brush keyColor, Brush shadowColor, bool isHandPopup = false)
         {
             if (!Pressed)
             {
@@ -73,12 +74,40 @@ namespace OpenTyping
             KeyColor = keyColor;
             ShadowColor = shadowColor;
 
+            handPopup.IsOpen = isHandPopup;
+            if (handPopup.IsOpen) 
+            {
+                // Re-positioning on Spacebar
+                if (Key.KeyData == " ") 
+                {
+                    handPopup.VerticalOffset = 0;
+                }
+
+                // Re-positioning when KeyPracticeWindow LocChanged
+                handPopup.HorizontalOffset += 1;
+                handPopup.HorizontalOffset -= 1;
+            }
+
             Pressed = true;
         }
 
-        public void PressCorrect()
+        private Brush FindKeyColor(string FingerPos)
         {
-            Press(CorrectKeyColor, CorrectKeyShadowColor);
+            return (Brush)Application.Current.FindResource(FingerPos);
+        }
+
+        public void PressCorrect(bool isHandPopup = false, bool isColored = false)
+        {
+            Brush CorrectKeyColor = (Brush)Application.Current.FindResource("CorrectKeyColor");
+            Brush CorrectKeyShadowColor = (Brush)Application.Current.FindResource("CorrectKeyShadowColor");
+
+            if (isColored && Key.KeyData != " ") // If not, Spacebar
+            {
+                CorrectKeyColor = FindKeyColor(Key.FingerPosition);
+                CorrectKeyShadowColor = FindKeyColor(Key.FingerPosition);
+            }
+
+            Press(CorrectKeyColor, CorrectKeyShadowColor, isHandPopup);
         }
 
         public void PressIncorrect()
@@ -86,7 +115,7 @@ namespace OpenTyping
             Press(IncorrectKeyColor, IncorrectKeyShadowColor);
         }
 
-        public void Release()
+        public void Release(bool isColored = false)
         {
             if (Pressed)
             {
@@ -98,6 +127,13 @@ namespace OpenTyping
 
             KeyColor = defaultKeyColor;
             ShadowColor = defaultShadowColor;
+            if (isColored && (Key.KeyData != " ")) // If not, Spacebar
+            {
+                KeyColor = FindKeyColor(Key.FingerPosition);
+                ShadowColor = FindKeyColor(Key.FingerPosition);
+            }
+           
+            handPopup.IsOpen = false;
 
             Pressed = false;
         }
@@ -105,7 +141,21 @@ namespace OpenTyping
         public void PressToggle()
         {
             if (Pressed) Release();
-            else PressCorrect();
+            else PressCorrect(false, true);
+        }
+
+        public void ToggleColor(bool colored)
+        {
+            if (colored && (Key.KeyData != " ")) // If not, Spacebar
+            {
+                KeyColor = FindKeyColor(Key.FingerPosition);
+                ShadowColor = FindKeyColor(Key.FingerPosition);
+            }
+            else
+            {
+                KeyColor = Brushes.White;
+                ShadowColor = (Brush)Application.Current.FindResource("DefaultKeyShadowColor");
+            }
         }
     }
 }

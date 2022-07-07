@@ -1,10 +1,14 @@
 ﻿using MahApps.Metro.Controls;
+using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -34,6 +38,8 @@ namespace OpenTyping
         private readonly IList<KeyPos> keyList;
         private readonly bool noShiftMode;
         private readonly Dictionary<KeyPos, int> incorrectStats = new Dictionary<KeyPos, int>();
+        private bool isHandPopup;
+        private bool isColored;
 
         private KeyInfo previousKey;
         public KeyInfo PreviousKey
@@ -73,17 +79,42 @@ namespace OpenTyping
         private static readonly Random Randomizer = new Random();
         private static readonly ThicknessAnimationUsingKeyFrames ShakeAnimation = new ThicknessAnimationUsingKeyFrames();
 
+        private readonly MediaPlayer playMedia = new MediaPlayer();
+        private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Uri uri = new Uri("pack://siteoforigin:,,,/Resources/Sounds/WrongPressed.mp3");
+        private readonly Volume volume;
+
+        // Magnify window
+        private bool isMagnified;
+        private double baseFontSize;
+        public double BaseFontSize
+        {
+            get => baseFontSize;
+            private set => SetField(ref baseFontSize, value);
+        }
+
         public KeyPracticeWindow(IList<KeyPos> keyList, bool noShiftMode)
         {
+            BaseFontSize = App.BaseFontSize;
+
             InitializeComponent();
+            this.SetTextBylanguage();
+            this.FontAssignByLang();
+
+            this.volume = (Volume)Settings.Default["Volume"];
 
             this.keyList = keyList;
             this.noShiftMode = noShiftMode;
 
             NextKey = RandomKey();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
+            var dispatcherOp = Dispatcher.BeginInvoke(DispatcherPriority.Loaded, 
                                    new Action(MoveKey));
+            dispatcherOp.Completed += (s, e) => // When asynchronous completed
+            {
+                ColorToggleBtn.IsChecked = true; // Default is the Colored keys
+                HandToggleBtn.IsChecked = true;  // Default is with hand guidance 
+            };
+
             PreviewKeyDown += KeyPracticeWindow_PreviewKeyDown;
 
             double shakiness = 30;
@@ -128,6 +159,20 @@ namespace OpenTyping
             ShakeAnimation.KeyFrames = keyFrames;
         }
 
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                PreviousTextBlock.FontFamily = new FontFamily("Times New Roman");
+                CurrentTextBlock.FontFamily = new FontFamily("Times New Roman");
+                NextTextBlock.FontFamily = new FontFamily("Times New Roman");
+            }
+        }
 
         private KeyInfo RandomKey()
         {
@@ -148,7 +193,7 @@ namespace OpenTyping
             PreviousKey = CurrentKey;
             if (PreviousKey != null)
             {
-                KeyLayoutBox.ReleaseKey(PreviousKey.Pos);
+                KeyLayoutBox.ReleaseKey(PreviousKey.Pos, isColored);
                 if (PreviousKey.IsShift)
                 {
                     KeyLayoutBox.LShiftKey.Release();
@@ -157,7 +202,7 @@ namespace OpenTyping
             }
 
             CurrentKey = NextKey;
-            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos);
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
             if (CurrentKey.IsShift)
             {
                 KeyLayoutBox.LShiftKey.PressCorrect();
@@ -183,11 +228,21 @@ namespace OpenTyping
             
             if (CurrentKey.Pos == pos && CurrentKey.IsShift == isShift)
             {
+                if (this.volume == Volume.Up)
+                {
+                    playSound.Play();
+                }
                 CorrectCount++;
                 MoveKey();
             }
-            else
+            else // Wrong pressed
             {
+                playMedia.Open(uri);
+                if (this.volume != Volume.Off)
+                {
+                    playMedia.Play();
+                }
+
                 IncorrectCount++;
 
                 if (!incorrectStats.ContainsKey(CurrentKey.Pos)) incorrectStats[CurrentKey.Pos] = 1;
@@ -204,11 +259,11 @@ namespace OpenTyping
 
                     if (CurrentKey.Pos == pos)
                     {
-                        KeyLayoutBox.PressCorrectKey(pos);
+                        KeyLayoutBox.PressCorrectKey(pos, this.isHandPopup);
                     }
                     else
                     {
-                        KeyLayoutBox.ReleaseKey(pos);
+                        KeyLayoutBox.ReleaseKey(pos, isColored);
                     }
 
                     if (CurrentKey.IsShift) // 현재 키가 윗글쇠일 경우
@@ -233,6 +288,128 @@ namespace OpenTyping
             {
                 KeyIncorrectCount = incorrectStats
             });
+
+            // Restore magnification
+            if (isMagnified) BaseFontSize /= 1.5;
+        }
+
+        private void KeyPracticeWindow_Activated(object sender, EventArgs e)
+        {
+            if (CurrentKey != null)
+            {
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
+            }
+        }
+
+        // To close opened hand popup
+        private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
+        {
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+        }
+
+        private void KeyPracticeWindow_LocationChanged(object sender, EventArgs e)
+        {
+            if (CurrentKey != null)
+            {
+                KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup);
+            }
+        }
+
+        private void HandToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
+            {
+                if (toggleButton.IsChecked == true)
+                {
+                    this.isHandPopup = true;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, true);
+                    }
+                }
+                else
+                {
+                    this.isHandPopup = false;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);
+                    }
+                }
+            }
+        }
+
+        private void ColorToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
+            {
+                if (toggleButton.IsChecked == true)
+                {
+                    isColored = true;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.ToggleColoredKeys(true, CurrentKey.Pos);
+                    }
+                }
+                else
+                {
+                    isColored = false;
+                    if (KeyLayoutBox != null)
+                    {
+                        KeyLayoutBox.ToggleColoredKeys(false, CurrentKey.Pos);
+                    }
+                }
+            }
+        }
+
+        // Pevent toggle on/off by spacebar
+        private void ToggleButton_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab || e.Key == System.Windows.Input.Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void MagnifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMagnified)
+            {
+                SizeToContent = SizeToContent.Manual;
+                Width = ActualWidth * 1.5;
+
+                BaseFontSize *= 1.5;
+                KeyLayoutBox.WidthRatio = 1.2;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyMinus;
+                SizeToContent = SizeToContent.Height; // Have to call to fit to content's height again
+
+                isMagnified = true;
+            }
+            else
+            {
+                SizeToContent = SizeToContent.WidthAndHeight;
+
+                BaseFontSize /= 1.5;
+                KeyLayoutBox.WidthRatio = 1.0;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyAdd;
+
+                isMagnified = false;
+            }
+
+            KeyLayoutBox.LoadKeyLayout(); // Refresh key layout control
+
+            // Repaint the colored key
+            if (ColorToggleBtn.IsChecked == true)
+            {
+                KeyLayoutBox.ToggleColoredKeys(true, CurrentKey.Pos);
+            }
+            else
+            {
+                KeyLayoutBox.ToggleColoredKeys(false, CurrentKey.Pos);
+            }
+
+            KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, this.isHandPopup); // Refresh current key
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -7,15 +7,36 @@
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
+                 Name="MainTitle"
                  Title="열린타자"
                  Style="{StaticResource WindowTitleStyle}"
                  FontFamily="{StaticResource NanumGothic}"
                  Width="800" 
-                 Height="450" 
+                 Height="510" 
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}">
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style x:Key="AccentCircleButtonStyle"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+                           TargetType="{x:Type ButtonBase}">
+                        <Setter Property="Opacity" Value="0.5" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="1" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Foreground="White" BorderThickness="0" Margin="5"
+                        Click="VolumeButton_Click"
+                        Style="{StaticResource AccentCircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome x:Name="VolumeBtnIcon" Kind="VolumeUpSolid" />
+                </Button>
+            </StackPanel>
+            
             <Button x:Name="SettingsButton" 
                     Click="SettingsButton_Click">
                 <StackPanel Orientation="Horizontal">
@@ -29,6 +50,7 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <TextBlock FontFamily="{StaticResource NanumGothic}"
+                               x:Name="MenuSetting"
                                Text="설정"
                                FontSize="13pt"
                                FontWeight="SemiBold"
@@ -39,7 +61,8 @@
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
-    <TabControl x:Name="MenuTabControl">
+    <TabControl x:Name="MenuTabControl" mah:TabControlHelper.Underlined="TabPanel" 
+                Style="{DynamicResource MahApps.Styles.TabControl.AnimatedSingleRow}">
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
@@ -51,11 +74,28 @@
                                          Visual="{iconPacks:Modern Home}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
-                           Content="홈"/>
+                    <Label x:Name="MenuLbl1" Style="{StaticResource TabItemLabel}"
+                           Content="홈" TabIndex="2147483645"/>
                 </StackPanel>
             </TabItem.Header>
             <local:HomeMenu x:Name="HomeMenu"/>
+        </TabItem>
+        <TabItem x:Name="TutorialTabItem">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="35" 
+                               Height="25">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome UserMdSolid}"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label x:Name="MenuLbl7" Style="{StaticResource TabItemLabel}"
+                           Content="Tutorial"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:TutorialMenu x:Name="TutorialMenu"/>
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -68,7 +108,7 @@
                                          Visual="{iconPacks:FontAwesome KeyboardRegular}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl2" Style="{StaticResource TabItemLabel}"
                            Content="자리연습"/>
                 </StackPanel>
             </TabItem.Header>
@@ -90,11 +130,29 @@
                                 BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
                                 BorderThickness="2"/>
                     </Grid>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl3" Style="{StaticResource TabItemLabel}"
                            Content="음절연습"/>
                 </StackPanel>
             </TabItem.Header>
             <local:SyllablePracticeMenu x:Name="SyllablePracticeMenu"/>
+        </TabItem>
+        <TabItem x:Name="WordPracticeTabItem">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Style="{StaticResource TabItemIconRectangle}" 
+                               Width="32" 
+                               Height="25"
+                               Margin="0 0 2 0">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" 
+                                         Visual="{iconPacks:FontAwesome Kind=FileWordRegular}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label x:Name="MenuLbl4" Style="{StaticResource TabItemLabel}"
+                           Content=" 단어연습"/>
+                </StackPanel>
+            </TabItem.Header>
+            <local:WordPracticeMenu x:Name="WordPracticeMenu"/>
         </TabItem>
         <TabItem>
             <TabItem.Header>
@@ -108,7 +166,7 @@
                                          Visual="{iconPacks:FontAwesome Kind=PencilAltSolid}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl5" Style="{StaticResource TabItemLabel}"
                            Content="문장연습"/>
                 </StackPanel>
             </TabItem.Header>
@@ -125,7 +183,7 @@
                                          Visual="{iconPacks:FontAwesome BookSolid}"/>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <Label Style="{StaticResource TabItemLabel}"
+                    <Label x:Name="MenuLbl6" Style="{StaticResource TabItemLabel}"
                            Content="긴글연습"/>
                 </StackPanel>
             </TabItem.Header>

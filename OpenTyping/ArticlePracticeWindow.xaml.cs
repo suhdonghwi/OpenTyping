@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -62,15 +66,55 @@ namespace OpenTyping
 
         private static readonly Differ Differ = new Differ();
 
+        // Sound
+        private readonly SoundPlayer playSound = new SoundPlayer(Properties.Resources.Pressed);
+        private readonly Volume volume;
+
+        // Magnify window
+        private bool isMagnified;
+        private double baseFontSize;
+        public double BaseFontSize
+        {
+            get => baseFontSize;
+            private set => SetField(ref baseFontSize, value);
+        }
+
         public ArticlePracticeWindow(PracticeData practiceData)
         {
+            BaseFontSize = App.BaseFontSize;
+
             InitializeComponent();
+            this.SetTextBylanguage();
+            this.FontAssignByLang();
 
             inputTextBoxes = new List<TextBox> { InputTextBox0, InputTextBox1, InputTextBox2 };
             targetTextBlocks = new List<TextBlock> { TargetTextBlock0, TargetTextBlock1, TargetTextBlock2 };
 
             this.practiceData = practiceData;
             this.Loaded += ArticlePracticeWindow_Loaded;
+
+            this.volume = (Volume)Settings.Default["Volume"];
+        }
+
+        private void SetTextBylanguage()
+        {
+            SelfWindow.Title = LangStr.AppName;
+            InPage.Text = LangStr.InPage;
+            Speed.Text = LangStr.Speed;
+            Accuracy.Text = LangStr.Accuracy;
+        }
+
+        private void FontAssignByLang()
+        {
+            if ((string)Settings.Default["KeyLayout"] == "Lotincha")
+            {
+                TargetTextBlock0.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox0.FontFamily = new FontFamily("Times New Roman");
+                TargetTextBlock1.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox1.FontFamily = new FontFamily("Times New Roman");
+                TargetTextBlock2.FontFamily = new FontFamily("Times New Roman");
+                InputTextBox2.FontFamily = new FontFamily("Times New Roman");
+            }
         }
 
         private void Next3Sentences()
@@ -108,6 +152,9 @@ namespace OpenTyping
                     AverageAccuracy = Convert.ToInt32(accuracyList.Average())
                 });
             }
+
+            // Restore magnification
+            if (isMagnified) BaseFontSize /= 1.5;
         }
 
         private void NextLine()
@@ -118,26 +165,8 @@ namespace OpenTyping
             var currentTextBlock = targetTextBlocks[currentLine];
             string currentText = currentTextBlock.Text;
 
-            currentTextBlock.Inlines.Clear();
             var diffs = new List<Differ.DiffData>(Differ.Diff(currentTextBox.Text, currentText, currentTextBox.Text));
 
-            for (int i = 0; i < diffs.Count() - 1; i++)
-            {
-                if (diffs[i].State == Differ.DiffData.DiffState.Intermediate)
-                {
-                    diffs[i].State = Differ.DiffData.DiffState.Unequal;
-                }
-            }
-
-            foreach (var diff in diffs)
-            {
-                var run = new Run(diff.Text)
-                {
-                    Background = Differ.MapDiffState(diff.State)
-                };
-
-                currentTextBlock.Inlines.Add(run);
-            }
 
             double accuracy = Differ.CalculateAccuracy(diffs);
             accuracyList.Add(Convert.ToInt32(accuracy * 100));
@@ -180,8 +209,8 @@ namespace OpenTyping
         private async void FinishPracticeAsync()
         {
             freeze = true;
-            await this.ShowMessageAsync("연습이 끝났습니다.",
-                                        "최종 타속은 " + TypingSpeed + ", 정확도는 " + TypingAccuracy + "% 입니다.",
+            await this.ShowMessageAsync(LangStr.FinishedPrac + " ",
+                                         LangStr.LastSpeed + " " + TypingSpeed + ", " + LangStr.Accuracy + ": "+ TypingAccuracy + "%",
                                          MessageDialogStyle.Affirmative,
                                          new MetroDialogSettings{ AnimateHide = false });
 
@@ -219,6 +248,11 @@ namespace OpenTyping
 
         private void LineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (this.volume == Volume.Up)
+            {
+                playSound.Play(); // Key pressing sound
+            }
+
             if (freeze)
             {
                 e.Handled = true;
@@ -256,6 +290,30 @@ namespace OpenTyping
             if (input.Length < currentText.Length)
             {
                 currentTextBlock.Inlines.Add(new Run(currentText.Substring(input.Length)));
+            }
+        }
+
+        private void MagnifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMagnified)
+            {
+                SizeToContent = SizeToContent.Manual;
+                Width = ActualWidth * 1.5;
+
+                BaseFontSize *= 1.5;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyMinus;
+                SizeToContent = SizeToContent.Height; // Have to call to fit to content's height again
+
+                isMagnified = true;
+            }
+            else
+            {
+                SizeToContent = SizeToContent.WidthAndHeight;
+
+                BaseFontSize /= 1.5;
+                MagnifyIcon.Kind = MahApps.Metro.IconPacks.PackIconModernKind.MagnifyAdd;
+
+                isMagnified = false;
             }
         }
 

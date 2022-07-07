@@ -3,7 +3,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:OpenTyping"
              mc:Ignorable="d" 
              d:DesignHeight="50" 
              d:DesignWidth="50">
@@ -16,7 +17,7 @@
                 BorderBrush="#212529"
                 BorderThickness="2"
                 Width="{Binding ActualWidth}"
-                Height="50">
+                MinHeight="{Binding ActualHeight}">
         </Border>
         <Border x:Name="KeyTop"
                 DataContext="{Binding ElementName=SelfControl}"
@@ -27,20 +28,35 @@
                 BorderBrush="#212529"
                 BorderThickness="2 2 2 1"
                 Width="{Binding ActualWidth}"
-                Height="43">
+                MinHeight="{Binding ActualHeight,
+                            Converter={local:MathConverter},
+                            ConverterParameter=@VALUE-7}">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">
                 <Viewbox StretchDirection="DownOnly" Stretch="Uniform">
-                    <TextBlock Text="{Binding Key.ShiftKeyData}"
-                               Style="{StaticResource NormalTextBlock}"
-                               FontSize="11pt"/>
+                    <TextBlock Name="ShiftKeyText"
+                               Text="{Binding Key.ShiftKeyData}"
+                               Style="{StaticResource NormalTextBlock}"/>
                 </Viewbox>
                 <Viewbox StretchDirection="DownOnly" Stretch="Uniform">
-                    <TextBlock Text="{Binding Key.KeyData}"
-                               Style="{StaticResource NormalTextBlock}"
-                               FontSize="11pt"/>
+                    <TextBlock Name="KeyText"
+                               Text="{Binding Key.KeyData}"
+                               Style="{StaticResource NormalTextBlock}"/>
                 </Viewbox>
             </StackPanel>
         </Border>
+        <Popup Name="handPopup" AllowsTransparency="True"
+               PlacementTarget="{Binding ElementName=KeyTop}" 
+               Placement="Center" 
+               DataContext="{Binding ElementName=SelfControl}"
+               VerticalOffset="{Binding ActualHeight,
+                                Converter={local:MathConverter},
+                                ConverterParameter=@VALUE*1.2}">
+            <Image Name="handImg"
+                   DataContext="{Binding ElementName=SelfControl}"
+                   Width="{Binding ActualHeight,
+                           Converter={local:MathConverter},
+                           ConverterParameter=@VALUE*2.5}"/>
+        </Popup>
     </Canvas>
 </UserControl>

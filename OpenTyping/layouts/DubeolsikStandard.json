@@ -1,0 +1,287 @@
+{
+  "Name": "두벌식 표준",
+  "Character": "한글",
+  "KeyLayoutData": [
+    [
+      {
+        "KeyData": "`",
+        "ShiftKeyData": "~",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "1",
+        "ShiftKeyData": "!",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "2",
+        "ShiftKeyData": "@",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "3",
+        "ShiftKeyData": "#",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "4",
+        "ShiftKeyData": "$",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "5",
+        "ShiftKeyData": "%",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "6",
+        "ShiftKeyData": "^",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "7",
+        "ShiftKeyData": "&",
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "8",
+        "ShiftKeyData": "*",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "9",
+        "ShiftKeyData": "(",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "0",
+        "ShiftKeyData": ")",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "-",
+        "ShiftKeyData": "_",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "=",
+        "ShiftKeyData": "+",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅂ",
+        "ShiftKeyData": "ㅃ",
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "ㅈ",
+        "ShiftKeyData": "ㅉ",
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "ㄷ",
+        "ShiftKeyData": "ㄸ",
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "ㄱ",
+        "ShiftKeyData": "ㄲ",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅅ",
+        "ShiftKeyData": "ㅆ",
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅛ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "ㅕ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "ㅑ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "ㅐ",
+        "ShiftKeyData": "ㅒ",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "ㅔ",
+        "ShiftKeyData": "ㅖ",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "[",
+        "ShiftKeyData": "{",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "]",
+        "ShiftKeyData": "}",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "⧵",
+        "ShiftKeyData": "|",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅁ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "ㄴ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "ㅇ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "ㄹ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅎ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅗ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "ㅓ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "ㅏ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": "ㅣ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": ";",
+        "ShiftKeyData": ":",
+        "FingerPosition": "R5"
+      },
+      {
+        "KeyData": "'",
+        "ShiftKeyData": "\"",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": "ㅋ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L5"
+      },
+      {
+        "KeyData": "ㅌ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L4"
+      },
+      {
+        "KeyData": "ㅊ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L3"
+      },
+      {
+        "KeyData": "ㅍ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅠ",
+        "ShiftKeyData": null,
+        "FingerPosition": "L2"
+      },
+      {
+        "KeyData": "ㅜ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": "ㅡ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R2"
+      },
+      {
+        "KeyData": ",",
+        "ShiftKeyData": "<",
+        "FingerPosition": "R3"
+      },
+      {
+        "KeyData": ".",
+        "ShiftKeyData": ">",
+        "FingerPosition": "R4"
+      },
+      {
+        "KeyData": "/",
+        "ShiftKeyData": "?",
+        "FingerPosition": "R5"
+      }
+    ],
+    [
+      {
+        "KeyData": " ",
+        "ShiftKeyData": null,
+        "FingerPosition": "R1"
+      }
+    ]
+  ],
+  "DefaultKeys": [
+    "0,4",
+    "0,5",
+    "0,6",
+    "0,7",
+    "1,3",
+    "1,4",
+    "1,5",
+    "1,6",
+    "2,3",
+    "2,4",
+    "2,5",
+    "2,6",
+    "3,3",
+    "3,4",
+    "3,5",
+    "3,6"
+  ],
+  "Stats": {
+    "KeyIncorrectCount": {
+      "3,4": 2,
+      "1,9": 2
+    },
+    "MostIncorrect": {
+      "Key": "3,4",
+      "Value": 2
+    },
+    "SentencePracticeCount": 0,
+    "AverageTypingSpeed": 0,
+    "AverageAccuracy": 0
+  }
+}

@@ -7,7 +7,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,11 +34,13 @@
                             BorderThickness="3.5"/>
                 </Grid>
                 <TextBlock Style="{StaticResource NormalTextBlock}" 
+                           Name="MenuName"
                            Text="음절연습"
                            FontSize="32pt"
                            Margin="0 2 0 0"/>
             </StackPanel>
             <TextBlock Style="{StaticResource NormalTextBlock}" 
+                       Name="MenuDesc"
                        Text=": 음절 단위로 입력하여 연습을 진행합니다. (한글 한정)"
                        FontSize="14pt"/>
         </StackPanel>
@@ -74,7 +76,8 @@
                           Title="2350자"
                           Background="#37b24d"
                           Height="170"
-                          Click="Start2350Tile_Click">
+                          Click="Start2350Tile_Click" 
+                          HorizontalTitleAlignment="Center">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -93,7 +96,8 @@
                           Background="#f59f00"
                           TitleFontSize="14"
                           Height="170"
-                          Click="StartModernHangulTile_Click">
+                          Click="StartModernHangulTile_Click" 
+                          HorizontalTitleAlignment="Center">
                     <TextBlock FontSize="45pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -112,7 +116,8 @@
                           Title="사용자 정의"
                           Background="#1c7ed6"
                           Height="170"
-                          Click="StartCustomTile_Click">
+                          Click="StartCustomTile_Click" 
+                          HorizontalTitleAlignment="Center">
                     <TextBlock FontSize="40pt"
                                FontFamily="{StaticResource NanumBarunGothic}"
                                Foreground="White"
@@ -135,9 +140,10 @@
                 </Rectangle.OpacityMask>
             </Rectangle>
             <TextBlock Style="{StaticResource NormalTextBlock}"
+                       Name="MenuHelp"
                        Text="2350자는 현대 한글 음절 중 가장 사용 빈도가 높은 2350자로 연습합니다."
                        VerticalAlignment="Bottom"
-                       FontSize="14pt"/>
+                       FontSize="14pt" TextWrapping="Wrap"/>
         </StackPanel>
     </Grid>
 </UserControl>

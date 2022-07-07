@@ -6,14 +6,26 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:local="clr-namespace:OpenTyping"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  Title="열린타자" 
                  Style="{StaticResource WindowTitleStyle}"
-                 Height="400" 
-                 Width="700"
+                 MinHeight="400" 
+                 MinWidth="700"
+                 SizeToContent="WidthAndHeight"
                  ResizeMode="CanMinimize"
                  Icon="{StaticResource AppIcon}"
                  Closed="ArticlePracticeWindow_Closed">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Name="MagnifyButton" 
+                    Click="MagnifyButton_Click">
+                <iconPacks:PackIconModern x:Name="MagnifyIcon" Kind="MagnifyAdd" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    
     <mah:MetroWindow.Resources>
         <Style x:Key="LineBorderStyle" TargetType="Border">
             <Setter Property="Background" Value="GhostWhite"/>
@@ -26,7 +38,9 @@
             <Setter Property="DataContext" Value="{Binding ElementName=SelfWindow}"/>
             <Setter Property="Text" Value="{Binding Path=CurrentText}"/>
             <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
-            <Setter Property="FontSize" Value="17pt"/>
+            <Setter Property="FontSize" Value="{Binding BaseFontSize,
+                                                Converter={local:MathConverter},
+                                                ConverterParameter=@VALUE*2}"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="NoWrap"/>
@@ -35,7 +49,9 @@
         <Style x:Key="LineTextBoxStyle" TargetType="TextBox">
             <Setter Property="DataContext" Value="{Binding ElementName=SelfWindow}"/>
             <Setter Property="FontFamily" Value="{StaticResource NanumBarunGothic}"/>
-            <Setter Property="FontSize" Value="17pt"/>
+            <Setter Property="FontSize" Value="{Binding BaseFontSize,
+                                                Converter={local:MathConverter},
+                                                ConverterParameter=@VALUE*2}"/>
             <Setter Property="Margin" Value="0 0 0 10"/>
             <Setter Property="Padding" Value="3"/>
             <EventSetter Event="PreviewKeyDown" Handler="LineTextBox_PreviewKeyDown"/>
@@ -90,35 +106,45 @@
                     <StackPanel Margin="5 2 5 2"
                                 Orientation="Horizontal">
                         <TextBlock Text="타속 "
+                                   Name="Speed"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
-                                   FontSize="11pt"
+                                   FontSize="{Binding BaseFontSize,
+                                              Converter={local:MathConverter},
+                                              ConverterParameter=@VALUE}"
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Path=TypingSpeed,
                                                   Mode=OneWay}"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumBarunGothic}"
-                                   FontSize="16pt"
+                                   FontSize="{Binding BaseFontSize,
+                                              Converter={local:MathConverter},
+                                              ConverterParameter=@VALUE}"
                                    VerticalAlignment="Center"
-                                   Margin="0 3 0 0"/>
+                                   Margin="3 3 0 0"/>
                     </StackPanel>
                 </Border>
                 <Border Background="#f03e3e">
                     <StackPanel Margin="5 2 5 2"
                                 Orientation="Horizontal">
                         <TextBlock Text="정확도 "
+                                   Name="Accuracy"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumGothic}"
-                                   FontSize="11pt"
+                                   FontSize="{Binding BaseFontSize,
+                                              Converter={local:MathConverter},
+                                              ConverterParameter=@VALUE}"
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Path=TypingAccuracy,
                                                   StringFormat={}{0}%,
                                                   Mode=OneWay}"
                                    Foreground="White"
                                    FontFamily="{StaticResource NanumBarunGothic}"
-                                   FontSize="16pt"
+                                   FontSize="{Binding BaseFontSize,
+                                              Converter={local:MathConverter},
+                                              ConverterParameter=@VALUE}"
                                    VerticalAlignment="Center"
-                                   Margin="0 3 0 0"/>
+                                   Margin="3 3 0 0"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -131,20 +157,27 @@
                     <TextBlock Style="{StaticResource NormalTextBlock}"
                                Text="{Binding Path=TotalPage,
                                               Mode=OneWay}"
-                               FontSize="16pt"
+                               FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE}"
                                Foreground="White"
                                Margin="0 2 7 0"
                                VerticalAlignment="Center"/>
                     <TextBlock Style="{StaticResource NormalTextBlock}"
+                               Name="InPage"
                                Text="페이지 중"
-                               FontSize="11pt"
+                               FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE}"
                                Foreground="White"
                                Margin="0 1 7 0"
                                VerticalAlignment="Center"/>
                     <TextBlock Style="{StaticResource NormalTextBlock}"
                                Text="{Binding Path=CurrentPage,
                                               Mode=OneWay}"
-                               FontSize="16pt"
+                               FontSize="{Binding BaseFontSize,
+                                          Converter={local:MathConverter},
+                                          ConverterParameter=@VALUE}"
                                Foreground="White"
                                Margin="0 2 0 0"
                                VerticalAlignment="Center"/>

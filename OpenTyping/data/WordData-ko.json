@@ -1,0 +1,13 @@
+{
+    "Name": "Words",
+    "Author": "RoboticsWare",
+    "Character":"한글",
+    "TextData":
+    [
+        "백두산",
+        "만세",
+        "삼천리",
+        "소나무",
+        "기상"
+    ]
+}

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using OpenTyping.Properties;
+using OpenTyping.Resources.Lang;
 
 namespace OpenTyping
 {
@@ -42,7 +43,7 @@ namespace OpenTyping
             {
                 if (ex is PracticeDataLoadFail || ex is InvalidPracticeDataException)
                 {
-                    MessageBox.Show(ex.Message, "열린타자", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, LangStr.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     Environment.Exit(-1);
                 }
             }
@@ -51,6 +52,11 @@ namespace OpenTyping
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public PracticeData loadWordData()
+        {
+            return PracticeData.LoadWordData();
+        }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
