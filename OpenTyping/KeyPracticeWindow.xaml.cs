@@ -301,6 +301,7 @@ namespace OpenTyping
             }
         }
 
+        // To close opened hand popup
         private void KeyPracticeWindow_Deactivated(object sender, EventArgs e)
         {
             KeyLayoutBox.PressCorrectKey(CurrentKey.Pos, false);

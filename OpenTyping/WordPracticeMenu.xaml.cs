@@ -34,7 +34,7 @@ namespace OpenTyping
     public partial class WordPracticeMenu : UserControl
     {
         private readonly Rank Rank = new Rank();
-        private User newUser;
+        private Dictionary<string, string> rtnUserRecord;
 
         private int countdownTime;
         static public List<Timer> Timers = new List<Timer>
@@ -74,16 +74,34 @@ namespace OpenTyping
 
             WordPracticeWindow wordPracticeWindow = new WordPracticeWindow(countdownTime);
             wordPracticeWindow.Closed += new EventHandler(WordPracticeWindow_Closed);
-            wordPracticeWindow.RtnNewUser += value => this.newUser = value;
+            wordPracticeWindow.RtnUserRecord += value => this.rtnUserRecord = value;
             wordPracticeWindow.ShowDialog();
         }
 
         private void WordPracticeWindow_Closed(object sender, EventArgs e)
         {
-            this.FinishPracticeAsync();
+             if ((string)Settings.Default["Name"] == "")
+            {
+                Settings.Default["Name"] = LangStr.Anonymous;
+            }
+            if ((string)Settings.Default["Org"] == "")
+            {
+                Settings.Default["Org"] = LangStr.Anonymous;
+            }
+
+            User user = new User(
+                (string)Settings.Default["Name"],
+                (string)Settings.Default["Org"],
+                int.Parse(rtnUserRecord["averageAccuracy"]),
+                int.Parse(rtnUserRecord["averageTypingSpeed"]),
+                int.Parse(rtnUserRecord["currentWordIndex"]),
+                double.Parse(rtnUserRecord["elapsedTime"])
+            );
+
+            this.FinishPracticeAsync(user, int.Parse(rtnUserRecord["practiceTotal"]));
         }
 
-        private async void FinishPracticeAsync()
+        private async void FinishPracticeAsync(User newUser, int practiceTotal)
         {
             string congMsg = "";
 
